@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="نماد zoojdarman.ir">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b7fd8"/>
+      <stop offset="100%" stop-color="#6a5acd"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f2897e"/>
+      <stop offset="100%" stop-color="#e8a94c"/>
+    </linearGradient>
+  </defs>
+  <!-- دو دایره‌ی نرم و هم‌پوشان: نماد پیوند و همراهی دو نفر -->
+  <circle cx="46" cy="52" r="34" fill="url(#g1)" opacity="0.92"/>
+  <circle cx="76" cy="52" r="34" fill="url(#g2)" opacity="0.85"/>
+  <!-- نقطه‌ی مرکزی هم‌پوشانی: نماد نقطه‌ی اتصال و تعادل -->
+  <circle cx="61" cy="52" r="12" fill="#ffffff" opacity="0.9"/>
+</svg>

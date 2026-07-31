@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#4c1d95">
+    <meta name="theme-color" content="#8b7fd8">
 
     <!-- SEO Primary Meta Tags -->
     <title>زوج‌درمانی تخصصی مهناز خوینی | مشاوره خیانت و پیش از ازدواج</title>
     <meta name="title" content="زوج‌درمانی تخصصی مهناز خوینی | مشاوره خیانت و پیش از ازدواج">
-    <meta name="description" content="مشاوره تخصصی برای دعوای مکرر، سردی و فاصله عاطفی، خیانت، حسادت و بی‌اعتمادی، دخالت خانواده‌ها و اختلاف‌نظر زوجین، زیر نظر مهناز خوینی (پروانه ۱۴۱۴۰۸). جلسات حضوری، تلفنی و آنلاین.">
+    <meta name="description" content="مشاوره تخصصی برای دعوای مکرر، سردی رابطه، خیانت، حسادت و دخالت خانواده‌ها، زیر نظر مهناز خوینی (پروانه ۱۴۱۴۰۸). جلسات حضوری، تلفنی و آنلاین.">
     <meta name="robots" content="index, follow">
     <meta name="language" content="Persian">
     <meta name="author" content="مهناز خوینی">
     <link rel="canonical" href="https://zoojdarman.ir/">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/svg+xml" href="/images/logo.svg">
+    <link rel="apple-touch-icon" href="/images/logo.svg">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -73,7 +73,7 @@
           "@id": "https://zoojdarman.ir/#clinic",
           "name": "مرکز تخصصی زوج‌درمانی zoojdarman.ir",
           "url": "https://zoojdarman.ir",
-          "logo": "https://zoojdarman.ir/logo.png",
+          "logo": "https://zoojdarman.ir/images/logo.svg",
           "image": "https://zoojdarman.ir/images/mahnaz-khoini.jpg",
           "telephone": ["+989199087264", "+982144600980"],
           "priceRange": "$$",
@@ -136,28 +136,41 @@
 
     <style>
         :root {
-            --primary: #4c1d95;
-            --primary-light: #6d28d9;
-            --primary-soft: #f3e8ff;
-            --secondary: #be123c;
-            --accent-gold: #d97706;
-            --accent-gold-light: #fef3c7;
-            --bg-main: #fafaf9;
+            /* پالت رنگی روان‌شناختی: لاوندر آرامش‌بخش + شن گرم + سبز رشد، همه پاستلی و روشن */
+            --primary: #8b7fd8;
+            --primary-deep: #6a5acd;
+            --primary-light: #a99ce8;
+            --primary-soft: #eee9fc;
+            --secondary: #f2897e;
+            --secondary-soft: #ffe3df;
+            --accent-gold: #e8a94c;
+            --accent-gold-light: #fff2d9;
+            --sage: #8fbf9f;
+            --sage-soft: #e2f3e6;
+            --bg-main: #faf8ff;
             --bg-card: #ffffff;
-            --text-dark: #0f172a;
-            --text-muted: #475569;
-            --border-color: rgba(109, 40, 217, 0.12);
-            --shadow-soft: 0 10px 30px -10px rgba(76, 29, 149, 0.08);
-            --shadow-hover: 0 20px 40px -15px rgba(76, 29, 149, 0.18);
-            --radius-lg: 24px;
-            --radius-md: 16px;
+            --text-dark: #3d3656;
+            --text-muted: #79738f;
+            --border-color: rgba(139, 127, 216, 0.16);
+            --glass-bg: rgba(255, 255, 255, 0.55);
+            --glass-bg-strong: rgba(255, 255, 255, 0.78);
+            --glass-border: rgba(255, 255, 255, 0.7);
+            --shadow-soft: 0 10px 34px -12px rgba(139, 127, 216, 0.22);
+            --shadow-hover: 0 22px 48px -16px rgba(139, 127, 216, 0.32);
+            --radius-lg: 28px;
+            --radius-md: 18px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; font-size: 16px; }
         body {
             font-family: 'Vazirmatn', sans-serif;
-            background-color: var(--bg-main);
+            background:
+                radial-gradient(circle at 8% 12%, rgba(139,127,216,0.14), transparent 45%),
+                radial-gradient(circle at 92% 18%, rgba(242,137,126,0.12), transparent 45%),
+                radial-gradient(circle at 30% 90%, rgba(143,191,159,0.14), transparent 45%),
+                var(--bg-main);
+            background-attachment: fixed;
             color: var(--text-dark);
             line-height: 1.85;
             overflow-x: hidden;
@@ -172,17 +185,18 @@
             z-index: 9999; width: 0%; transition: width 0.1s ease-out;
         }
 
-        /* Luxury Header & Navbar */
+        /* Glassy Header & Navbar */
         .header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(255, 255, 255, 0.88);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(20px) saturate(160%);
+            -webkit-backdrop-filter: blur(20px) saturate(160%);
+            border-bottom: 1px solid var(--glass-border);
             transition: all 0.3s ease;
         }
         .header.scrolled {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            background: rgba(255, 255, 255, 0.78);
+            box-shadow: 0 10px 30px rgba(139, 127, 216, 0.12);
             padding: 0.2rem 0;
         }
         .nav-container {
@@ -193,12 +207,12 @@
         .logo {
             font-size: 1.6rem; font-weight: 900;
             text-decoration: none;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--primary-deep), var(--secondary));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             display: flex; align-items: center; gap: 0.6rem;
         }
         .logo i { -webkit-text-fill-color: var(--secondary); font-size: 1.8rem; }
-        
+
         .nav-menu { display: flex; gap: 2.2rem; list-style: none; align-items: center; }
         .nav-link {
             text-decoration: none; color: var(--text-dark);
@@ -211,47 +225,57 @@
             background: linear-gradient(90deg, var(--primary-light), var(--secondary));
             transition: width 0.3s ease; border-radius: 2px;
         }
-        .nav-link:hover { color: var(--primary-light); }
+        .nav-link:hover { color: var(--primary-deep); }
         .nav-link:hover::after { width: 100%; }
 
         .btn-header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            color: white !important; padding: 0.65rem 1.6rem;
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            color: var(--primary-deep) !important; padding: 0.65rem 1.6rem;
             border-radius: 50px; font-weight: 700; font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(109, 40, 217, 0.25);
+            box-shadow: 0 4px 15px rgba(139, 127, 216, 0.15);
             text-decoration: none; transition: all 0.3s ease;
             display: inline-flex; align-items: center; gap: 0.5rem;
         }
         .btn-header:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(109, 40, 217, 0.35);
+            background: rgba(255,255,255,0.75);
+            box-shadow: 0 8px 25px rgba(139, 127, 216, 0.25);
         }
 
-        .mobile-toggle { display: none; font-size: 1.6rem; color: var(--primary); cursor: pointer; }
+        .mobile-toggle { display: none; font-size: 1.6rem; color: var(--primary-deep); cursor: pointer; }
 
         /* Hero Section Showcase */
         .hero {
             padding: 180px 2rem 100px;
-            background: radial-gradient(circle at 10% 20%, rgba(243, 232, 255, 0.7) 0%, rgba(250, 250, 249, 1) 80%);
             position: relative; overflow: hidden;
         }
         .hero::before {
             content: ''; position: absolute; top: -150px; right: -150px;
             width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(190, 18, 60, 0.08), transparent 70%);
+            background: radial-gradient(circle, rgba(242, 137, 126, 0.16), transparent 70%);
+            border-radius: 50%; pointer-events: none;
+        }
+        .hero::after {
+            content: ''; position: absolute; bottom: -180px; left: -180px;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(143, 191, 159, 0.18), transparent 70%);
             border-radius: 50%; pointer-events: none;
         }
         .hero-grid {
             max-width: 1280px; margin: 0 auto;
             display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem;
-            align-items: center;
+            align-items: center; position: relative; z-index: 1;
         }
         .hero-badge-top {
             display: inline-flex; align-items: center; gap: 0.5rem;
-            background: var(--accent-gold-light); color: var(--accent-gold);
+            background: rgba(255, 242, 217, 0.75);
+            backdrop-filter: blur(10px);
+            color: var(--accent-gold); -webkit-text-fill-color: initial;
             padding: 0.4rem 1.2rem; border-radius: 50px;
             font-size: 0.85rem; font-weight: 700; margin-bottom: 1.5rem;
-            border: 1px solid rgba(217, 119, 6, 0.2);
+            border: 1px solid rgba(232, 169, 76, 0.3);
         }
         .hero-title {
             font-size: 3.4rem; font-weight: 900; line-height: 1.25;
@@ -259,7 +283,7 @@
             letter-spacing: -0.5px;
         }
         .hero-title span {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--primary-deep), var(--secondary));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         .hero-subtitle {
@@ -267,7 +291,7 @@
             margin-bottom: 2.5rem; line-height: 1.9; max-width: 620px;
         }
         .hero-actions { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-bottom: 3rem; }
-        
+
         .btn-main {
             padding: 1rem 2.2rem; border-radius: 50px;
             font-weight: 700; font-size: 1.05rem;
@@ -277,19 +301,21 @@
         }
         .btn-primary-gradient {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
+            color: white; box-shadow: 0 10px 28px rgba(139, 127, 216, 0.32);
         }
         .btn-primary-gradient:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(124, 58, 237, 0.4);
+            box-shadow: 0 16px 38px rgba(139, 127, 216, 0.42);
         }
         .btn-outline-glass {
-            background: rgba(255,255,255,0.8);
-            border: 2px solid var(--primary-light);
-            color: var(--primary-light);
+            background: rgba(255,255,255,0.55);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid var(--glass-border);
+            color: var(--primary-deep);
         }
         .btn-outline-glass:hover {
-            background: var(--primary-light); color: white;
+            background: rgba(255,255,255,0.85);
+            transform: translateY(-2px);
         }
 
         /* Hero Therapist Image Container */
@@ -299,16 +325,17 @@
         .therapist-frame {
             position: relative; width: 100%; max-width: 440px;
             border-radius: var(--radius-lg);
-            background: linear-gradient(145deg, #ffffff, #f1f5f9);
+            background: var(--glass-bg-strong);
+            backdrop-filter: blur(18px);
             padding: 1.2rem;
-            box-shadow: 0 25px 50px -12px rgba(76, 29, 149, 0.18);
-            border: 1px solid rgba(255,255,255,0.8);
+            box-shadow: var(--shadow-hover);
+            border: 1px solid var(--glass-border);
         }
         .therapist-image-box {
             width: 100%; height: 480px;
             border-radius: calc(var(--radius-lg) - 8px);
             overflow: hidden; position: relative;
-            background: linear-gradient(135deg, #2e1065, #7c3aed);
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary));
             display: flex; align-items: flex-end; justify-content: center;
         }
         .therapist-image-box img {
@@ -319,24 +346,24 @@
 
         /* Floating Badges */
         .floating-badge {
-            position: absolute; background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(12px);
+            position: absolute; background: var(--glass-bg-strong);
+            backdrop-filter: blur(14px);
             padding: 0.9rem 1.4rem; border-radius: 16px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.6);
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--glass-border);
             display: flex; align-items: center; gap: 0.8rem;
             z-index: 10; animation: float 5s ease-in-out infinite;
         }
         .badge-1 { top: 40px; right: -25px; }
         .badge-2 { bottom: 30px; left: -25px; animation-delay: 2.5s; }
-        
+
         .badge-icon {
             width: 45px; height: 45px; border-radius: 12px;
-            background: var(--primary-soft); color: var(--primary);
+            background: var(--primary-soft); color: var(--primary-deep);
             display: flex; align-items: center; justify-content: center;
             font-size: 1.3rem;
         }
-        .badge-text h4 { font-size: 0.95rem; font-weight: 800; }
+        .badge-text h4 { font-size: 0.95rem; font-weight: 800; color: var(--text-dark); }
         .badge-text p { font-size: 0.78rem; color: var(--text-muted); }
 
         @keyframes float {
@@ -344,18 +371,28 @@
             50% { transform: translateY(-12px); }
         }
 
-        /* Stats Section */
+        /* Stats Section - soft pastel glass bar */
         .stats-section {
-            background: linear-gradient(135deg, var(--primary), #3b0764);
-            color: white; padding: 3.5rem 2rem; position: relative;
+            background: linear-gradient(120deg, rgba(139,127,216,0.16), rgba(242,137,126,0.14), rgba(143,191,159,0.16));
+            backdrop-filter: blur(6px);
+            color: var(--text-dark); padding: 3.5rem 2rem; position: relative;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
         }
         .stats-grid {
             max-width: 1280px; margin: 0 auto;
             display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
             text-align: center;
         }
-        .stat-card h3 { font-size: 2.8rem; font-weight: 900; margin-bottom: 0.2rem; color: #fef08a; }
-        .stat-card p { font-size: 1rem; opacity: 0.9; font-weight: 500; }
+        .stat-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem 1rem;
+        }
+        .stat-card h3 { font-size: 2.5rem; font-weight: 900; margin-bottom: 0.2rem; color: var(--primary-deep); }
+        .stat-card p { font-size: 0.95rem; opacity: 0.85; font-weight: 500; }
 
         /* General Section Styling */
         section { padding: 6rem 2rem; }
@@ -373,23 +410,25 @@
         }
         .section-desc { color: var(--text-muted); font-size: 1.1rem; }
 
-        /* Specialized Relationship Pages / Service Hub */
-        .services-hub { background: #ffffff; }
+        /* Services */
+        .services-hub { background: transparent; }
         .services-grid {
             max-width: 1280px; margin: 0 auto;
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2rem;
         }
         .service-card-luxury {
-            background: var(--bg-main); border-radius: var(--radius-lg);
-            padding: 2.8rem 2rem; border: 1px solid var(--border-color);
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border-radius: var(--radius-lg);
+            padding: 2.8rem 2rem; border: 1px solid var(--glass-border);
             transition: all 0.4s ease; position: relative; overflow: hidden;
             display: flex; flex-direction: column; justify-content: space-between;
         }
         .service-card-luxury:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-hover);
-            background: #ffffff;
-            border-color: rgba(109, 40, 217, 0.3);
+            background: var(--glass-bg-strong);
+            border-color: rgba(139, 127, 216, 0.35);
         }
         .service-card-luxury::before {
             content: ''; position: absolute; top: 0; right: 0; left: 0; height: 5px;
@@ -397,11 +436,11 @@
             opacity: 0; transition: opacity 0.3s;
         }
         .service-card-luxury:hover::before { opacity: 1; }
-        
+
         .service-icon-box {
             width: 70px; height: 70px; border-radius: 20px;
-            background: linear-gradient(135deg, var(--primary-soft), #fbcfe8);
-            color: var(--primary); display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, var(--primary-soft), var(--secondary-soft));
+            color: var(--primary-deep); display: flex; align-items: center; justify-content: center;
             font-size: 2rem; margin-bottom: 1.8rem; transition: transform 0.4s ease;
         }
         .service-card-luxury:hover .service-icon-box {
@@ -412,7 +451,7 @@
         .service-card-luxury h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 1rem; }
         .service-card-luxury p { color: var(--text-muted); font-size: 0.98rem; margin-bottom: 1.8rem; line-height: 1.8; }
         .service-features-list {
-            list-style: none; margin-bottom: 2rem; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 1rem;
+            list-style: none; margin-bottom: 2rem; border-top: 1px solid var(--border-color); padding-top: 1rem;
         }
         .service-features-list li {
             font-size: 0.88rem; color: var(--text-dark); margin-bottom: 0.5rem;
@@ -423,45 +462,50 @@
         /* Peyvand Amn Link Section */
         .peyvand-link-box {
             max-width: 1280px; margin: 4rem auto 0;
-            background: linear-gradient(135deg, #2e1065, #581c87);
+            background: linear-gradient(135deg, rgba(139,127,216,0.9), rgba(242,137,126,0.85));
+            backdrop-filter: blur(10px);
             border-radius: var(--radius-lg); padding: 3.5rem; color: white;
             display: grid; grid-template-columns: 1.5fr 1fr; gap: 2rem; align-items: center;
-            box-shadow: 0 20px 40px rgba(46, 16, 101, 0.25);
+            box-shadow: var(--shadow-hover);
         }
         .peyvand-link-box h3 { font-size: 2rem; font-weight: 800; margin-bottom: 0.8rem; }
-        .peyvand-link-box p { opacity: 0.9; font-size: 1.05rem; }
+        .peyvand-link-box p { opacity: 0.95; font-size: 1.05rem; }
 
-        /* Therapist Detailed Bio Section */
-        .bio-section { background: var(--bg-main); }
+        /* Bio Section */
+        .bio-section { background: transparent; }
         .bio-grid {
             max-width: 1280px; margin: 0 auto;
             display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: center;
         }
         .bio-card-highlight {
-            background: white; border-radius: var(--radius-lg); padding: 2.5rem;
-            box-shadow: var(--shadow-soft); border: 1px solid var(--border-color);
+            background: var(--glass-bg-strong);
+            backdrop-filter: blur(16px);
+            border-radius: var(--radius-lg); padding: 2.5rem;
+            box-shadow: var(--shadow-soft); border: 1px solid var(--glass-border);
         }
         .bio-features-grid {
             display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 2rem;
         }
         .bio-feature-item {
-            background: var(--bg-main); padding: 1.2rem; border-radius: var(--radius-md);
+            background: var(--primary-soft); padding: 1.2rem; border-radius: var(--radius-md);
             display: flex; align-items: center; gap: 1rem; border-right: 4px solid var(--primary);
         }
-        .bio-feature-item i { font-size: 1.4rem; color: var(--primary); }
+        .bio-feature-item i { font-size: 1.4rem; color: var(--primary-deep); }
 
-        /* Relationship Articles / Content SEO Hub */
-        .articles-section { background: #ffffff; }
+        /* Articles */
+        .articles-section { background: transparent; }
         .articles-grid {
             max-width: 1280px; margin: 0 auto;
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
         }
         .article-card {
-            background: var(--bg-main); border-radius: var(--radius-md);
-            overflow: hidden; border: 1px solid var(--border-color);
+            background: var(--glass-bg);
+            backdrop-filter: blur(14px);
+            border-radius: var(--radius-md);
+            overflow: hidden; border: 1px solid var(--glass-border);
             transition: all 0.3s;
         }
-        .article-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-soft); }
+        .article-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-soft); background: var(--glass-bg-strong); }
         .article-content { padding: 1.8rem; }
         .article-tag {
             font-size: 0.75rem; font-weight: 800; color: var(--secondary);
@@ -471,11 +515,13 @@
         .article-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.2rem; }
 
         /* FAQ Accordion */
-        .faq-section { background: var(--bg-main); }
+        .faq-section { background: transparent; }
         .faq-accordion { max-width: 860px; margin: 0 auto; }
         .faq-item-luxury {
-            background: #ffffff; border-radius: var(--radius-md);
-            margin-bottom: 1.2rem; border: 1px solid var(--border-color);
+            background: var(--glass-bg);
+            backdrop-filter: blur(14px);
+            border-radius: var(--radius-md);
+            margin-bottom: 1.2rem; border: 1px solid var(--glass-border);
             overflow: hidden; transition: all 0.3s ease;
         }
         .faq-question-btn {
@@ -488,24 +534,26 @@
             max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease;
             padding: 0 2rem; color: var(--text-muted); line-height: 1.9;
         }
-        .faq-item-luxury.active { border-color: var(--primary); box-shadow: var(--shadow-soft); }
+        .faq-item-luxury.active { border-color: var(--primary); box-shadow: var(--shadow-soft); background: var(--glass-bg-strong); }
         .faq-item-luxury.active .faq-answer-body { max-height: 300px; padding: 0 2rem 1.6rem; }
-        .faq-item-luxury.active .faq-question-btn i { transform: rotate(180deg); color: var(--primary); }
+        .faq-item-luxury.active .faq-question-btn i { transform: rotate(180deg); color: var(--primary-deep); }
 
         /* Contact Section */
-        .contact-section { background: #ffffff; }
+        .contact-section { background: transparent; }
         .contact-grid {
             max-width: 1280px; margin: 0 auto;
             display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem;
         }
         .contact-card-box {
-            background: var(--bg-main); border-radius: var(--radius-lg); padding: 3rem;
-            border: 1px solid var(--border-color);
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border-radius: var(--radius-lg); padding: 3rem;
+            border: 1px solid var(--glass-border);
         }
         .contact-method-item {
             display: flex; align-items: center; gap: 1.2rem; margin-bottom: 1.8rem;
-            background: #ffffff; padding: 1.2rem; border-radius: var(--radius-md);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            background: var(--glass-bg-strong); padding: 1.2rem; border-radius: var(--radius-md);
+            box-shadow: 0 4px 14px rgba(139,127,216,0.08);
         }
         .contact-icon {
             width: 55px; height: 55px; border-radius: 14px;
@@ -516,17 +564,24 @@
 
         .form-luxury input, .form-luxury select, .form-luxury textarea {
             width: 100%; padding: 1rem 1.2rem; border-radius: 12px;
-            border: 2px solid #e2e8f0; font-family: inherit; font-size: 0.95rem;
+            border: 2px solid var(--border-color); font-family: inherit; font-size: 0.95rem;
             margin-bottom: 1.2rem; transition: border-color 0.3s; outline: none;
+            background: rgba(255,255,255,0.7);
         }
         .form-luxury input:focus, .form-luxury select:focus, .form-luxury textarea:focus {
             border-color: var(--primary-light);
+            background: rgba(255,255,255,0.95);
+        }
+        .sr-only {
+            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
         }
 
-        /* Footer */
+        /* Footer - soft deep plum, not harsh black */
         .footer-luxury {
-            background: #090514; color: #94a3b8; padding: 5rem 2rem 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            background: linear-gradient(180deg, #423b5c, #2e2844);
+            color: #c9c3dd; padding: 5rem 2rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
         }
         .footer-grid {
             max-width: 1280px; margin: 0 auto 4rem;
@@ -536,13 +591,13 @@
         .footer-col h4 { color: white; font-size: 1.1rem; margin-bottom: 1.5rem; font-weight: 700; }
         .footer-col ul { list-style: none; }
         .footer-col li { margin-bottom: 0.8rem; }
-        .footer-col a { color: #94a3b8; text-decoration: none; transition: color 0.3s; font-size: 0.95rem; }
+        .footer-col a { color: #c9c3dd; text-decoration: none; transition: color 0.3s; font-size: 0.95rem; }
         .footer-col a:hover { color: white; }
 
         .footer-bottom-bar {
             max-width: 1280px; margin: 0 auto; padding-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.08); text-align: center;
-            font-size: 0.88rem; color: #64748b;
+            font-size: 0.88rem; color: #9d95b8;
         }
         .footer-bottom-bar a { color: var(--secondary); text-decoration: none; font-weight: 700; }
 
@@ -563,6 +618,7 @@
             .hero-title { font-size: 2.1rem; }
         }
     </style>
+
 </head>
 <body>
 
@@ -573,7 +629,8 @@
     <header class="header" id="header">
         <div class="nav-container">
             <a href="#home" class="logo">
-                <i class="fas fa-heart-circle-check"></i> zoojdarman.ir
+                <img src="/images/logo.svg" alt="نماد zoojdarman.ir" width="32" height="32" style="border-radius:50%;">
+                zoojdarman.ir
             </a>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#home" class="nav-link">صفحه اصلی</a></li>
@@ -850,7 +907,7 @@
                     <span class="article-tag">دلبستگی و صمیمیت</span>
                     <h3 class="article-title">سبک دلبستگی شما چگونه رابطه زناشویی‌تان را جهت می‌دهد؟</h3>
                     <p class="article-desc">تحلیل تاثیر سبک‌های دلبستگی ایمن، اضطرابی و اجتنابی بر نحوه مدیریت تعارضات همسران.</p>
-                    <a href="https://zoojdarman.ir/articles/سبک-دلبستگی-و-رابطه-زناشویی" style="color: var(--primary); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="https://zoojdarman.ir/articles/attachment-style-in-marriage" style="color: var(--primary); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -859,7 +916,7 @@
                     <span class="article-tag">درمان خیانت</span>
                     <h3 class="article-title">گام‌های طلایی برای مواجهه صحیح با شوک اولیه خیانت</h3>
                     <p class="article-desc">اقدامات ضروری و تصمیماتی که نباید در روزهای نخست پس از کشف خیانت به شکل شتاب‌زده گرفته شوند.</p>
-                    <a href="https://zoojdarman.ir/articles/مواجهه-با-شوک-خیانت" style="color: var(--primary); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="https://zoojdarman.ir/articles/dealing-with-infidelity-shock" style="color: var(--primary); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -868,7 +925,7 @@
                     <span class="article-tag">مهارت‌های ارتباطی</span>
                     <h3 class="article-title">چگونه بدون سرزنش کردن، خواسته‌های عاطفی خود را مطرح کنیم؟</h3>
                     <p class="article-desc">تکنیک فرمول گفت‌وگوی امن برای پیشگیری از موضع دفاعی گرفتن همسر در مشاجرات.</p>
-                    <a href="https://zoojdarman.ir/articles/گفتگوی-امن-در-رابطه" style="color: var(--primary); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="https://zoojdarman.ir/articles/safe-communication-in-relationships" style="color: var(--primary); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -877,7 +934,7 @@
                     <span class="article-tag">فاصله عاطفی</span>
                     <h3 class="article-title">وقتی سکوت جای دعوا را می‌گیرد: نشانه‌های سرد شدن رابطه</h3>
                     <p class="article-desc">چگونه بی‌تفاوتی و کاهش گفت‌وگو خطرناک‌تر از دعواست و اولین قدم برای بازگرداندن نزدیکی چیست.</p>
-                    <a href="https://zoojdarman.ir/articles/سرد-شدن-رابطه-زناشویی" style="color: var(--primary); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="https://zoojdarman.ir/articles/emotional-distance-in-marriage" style="color: var(--primary); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -886,7 +943,7 @@
                     <span class="article-tag">خانواده و مرزبندی</span>
                     <h3 class="article-title">دخالت خانواده‌ها در زندگی مشترک: کجا باید مرز کشید؟</h3>
                     <p class="article-desc">راهکارهایی برای مدیریت مؤدبانه اما قاطعانه دخالت والدین بدون تنش دائمی بین خانواده‌ها.</p>
-                    <a href="https://zoojdarman.ir/articles/دخالت-خانواده-در-زندگی-مشترک" style="color: var(--primary); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="https://zoojdarman.ir/articles/family-interference-boundaries" style="color: var(--primary); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -895,7 +952,7 @@
                     <span class="article-tag">حسادت و اعتماد</span>
                     <h3 class="article-title">حسادت بیمارگونه یا نگرانی طبیعی؛ مرز کجاست؟</h3>
                     <p class="article-desc">تفاوت شک سالم با کنترل‌گری افراطی، و راهکار برای زوجینی که بی‌اعتمادی زندگی‌شان را فرسوده کرده.</p>
-                    <a href="https://zoojdarman.ir/articles/حسادت-و-بی-اعتمادی-در-رابطه" style="color: var(--primary); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="https://zoojdarman.ir/articles/jealousy-and-trust-issues" style="color: var(--primary); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
         </div>
