@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://zoojdarman.ir/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <!-- این ۶ مقاله اکنون واقعاً ساخته و در سایت موجود هستند -->
+  <url>
+    <loc>https://zoojdarman.ir/articles/سبک-دلبستگی-و-رابطه-زناشویی</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/مواجهه-با-شوک-خیانت</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/گفتگوی-امن-در-رابطه</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/سرد-شدن-رابطه-زناشویی</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/دخالت-خانواده-در-زندگی-مشترک</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/حسادت-و-بی-اعتمادی-در-رابطه</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>

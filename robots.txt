@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zoojdarman.ir/sitemap.xml
