@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#8b7fd8">
+    <meta name="theme-color" content="#2f5c57">
 
     <!-- SEO Primary Meta Tags -->
     <title>زوج‌درمانی تخصصی مهناز خوینی | مشاوره خیانت و پیش از ازدواج</title>
     <meta name="title" content="زوج‌درمانی تخصصی مهناز خوینی | مشاوره خیانت و پیش از ازدواج">
-    <meta name="description" content="مشاوره تخصصی برای دعوای مکرر، سردی رابطه، خیانت، حسادت و دخالت خانواده‌ها، زیر نظر مهناز خوینی (پروانه ۱۴۱۴۰۸). جلسات حضوری، تلفنی و آنلاین.">
+    <meta name="description" content="مشاوره تخصصی برای دعوای مکرر، سردی رابطه، خیانت، حسادت و دخالت خانواده‌ها، زیر نظر مهناز خوینی (پروانه ۱۴۱۴۰۸۳). جلسات حضوری، تلفنی و آنلاین.">
     <meta name="robots" content="index, follow">
     <meta name="language" content="Persian">
     <meta name="author" content="مهناز خوینی">
@@ -40,8 +40,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- فونت و آیکون‌ها به‌صورت غیرمسدودکننده لود می‌شوند تا کندی سرورهای خارجی، نمایش صفحه را معلق نگه ندارد -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    </noscript>
 
     <!-- Schema.org JSON-LD Structured Data for Google -->
     <script type="application/ld+json">
@@ -53,14 +58,14 @@
           "@id": "https://zoojdarman.ir/#therapist",
           "name": "مهناز خوینی",
           "jobTitle": "زوج‌درمانگر و مشاور خانواده",
-          "identifier": "141408",
+          "identifier": "1414083",
           "image": "https://zoojdarman.ir/images/mahnaz-khoini.jpg",
           "telephone": "+989199087264",
           "email": "Khoini.1988@gmail.com",
           "url": "https://zoojdarman.ir",
           "sameAs": [
             "https://instagram.com/peyvandamn.ir",
-            "https://t.me/peyvandamn"
+            "https://t.me/MKHOINI"
           ],
           "worksFor": {
             "@type": "MedicalBusiness",
@@ -84,7 +89,7 @@
           },
           "sameAs": [
             "https://instagram.com/peyvandamn.ir",
-            "https://t.me/peyvandamn"
+            "https://t.me/MKHOINI"
           ],
           "openingHoursSpecification": {
             "@type": "OpeningHoursSpecification",
@@ -136,133 +141,121 @@
 
     <style>
         :root {
-            /* پالت رنگی روان‌شناختی: لاوندر آرامش‌بخش + شن گرم + سبز رشد، همه پاستلی و روشن */
-            --primary: #8b7fd8;
-            --primary-deep: #6a5acd;
-            --primary-light: #a99ce8;
-            --primary-soft: #eee9fc;
-            --secondary: #f2897e;
-            --secondary-soft: #ffe3df;
-            --accent-gold: #e8a94c;
-            --accent-gold-light: #fff2d9;
-            --sage: #8fbf9f;
-            --sage-soft: #e2f3e6;
-            --bg-main: #faf8ff;
-            --bg-card: #ffffff;
-            --text-dark: #3d3656;
-            --text-muted: #79738f;
-            --border-color: rgba(139, 127, 216, 0.16);
-            --glass-bg: rgba(255, 255, 255, 0.55);
-            --glass-bg-strong: rgba(255, 255, 255, 0.78);
-            --glass-border: rgba(255, 255, 255, 0.7);
-            --shadow-soft: 0 10px 34px -12px rgba(139, 127, 216, 0.22);
-            --shadow-hover: 0 22px 48px -16px rgba(139, 127, 216, 0.32);
-            --radius-lg: 28px;
-            --radius-md: 18px;
+            /* پالت هویتی: کرم گرم (آرامش کاغذی) + سبزآبی عمیق (اعتماد و پناه امن) + گلی/رس گرم (صمیمیت انسانی) */
+            --cream: #faf5ef;
+            --cream-deep: #f2eae0;
+            --ink: #332a28;
+            --ink-soft: #6b5f5a;
+            --teal: #2f5c57;
+            --teal-light: #3d6b66;
+            --teal-soft: #e4eeec;
+            --teal-soft-2: #d6e6e3;
+            --clay: #c77b58;
+            --clay-light: #d68a63;
+            --clay-soft: #f5e3d8;
+            --gold-thread: #c9a227;
+            --border-color: rgba(51, 42, 40, 0.1);
+            --shadow-soft: 0 8px 24px -8px rgba(51, 42, 40, 0.12);
+            --shadow-hover: 0 16px 36px -12px rgba(51, 42, 40, 0.18);
+            --radius-lg: 22px;
+            --radius-md: 14px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; font-size: 16px; }
         body {
-            font-family: 'Vazirmatn', sans-serif;
-            background:
-                radial-gradient(circle at 8% 12%, rgba(139,127,216,0.14), transparent 45%),
-                radial-gradient(circle at 92% 18%, rgba(242,137,126,0.12), transparent 45%),
-                radial-gradient(circle at 30% 90%, rgba(143,191,159,0.14), transparent 45%),
-                var(--bg-main);
-            background-attachment: fixed;
-            color: var(--text-dark);
+            font-family: 'Vazirmatn', Tahoma, 'Segoe UI', sans-serif;
+            background: var(--cream);
+            color: var(--ink);
             line-height: 1.85;
             overflow-x: hidden;
         }
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+        }
 
-        ::selection { background: var(--primary-light); color: #fff; }
+        ::selection { background: var(--teal-light); color: #fff; }
 
-        /* Scroll Progress Bar */
         #scroll-progress {
-            position: fixed; top: 0; right: 0; height: 4px;
-            background: linear-gradient(90deg, var(--secondary), var(--primary-light), var(--accent-gold));
+            position: fixed; top: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--clay), var(--teal));
             z-index: 9999; width: 0%; transition: width 0.1s ease-out;
         }
 
-        /* Glassy Header & Navbar */
+        /* Header: the ONE place glass/blur is used, since it's a single fixed element, not repeated content */
         .header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(255, 255, 255, 0.55);
-            backdrop-filter: blur(20px) saturate(160%);
-            -webkit-backdrop-filter: blur(20px) saturate(160%);
-            border-bottom: 1px solid var(--glass-border);
-            transition: all 0.3s ease;
+            background: rgba(250, 245, 239, 0.82);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border-color);
+            transition: box-shadow 0.3s ease, padding 0.3s ease;
         }
-        .header.scrolled {
-            background: rgba(255, 255, 255, 0.78);
-            box-shadow: 0 10px 30px rgba(139, 127, 216, 0.12);
-            padding: 0.2rem 0;
-        }
+        .header.scrolled { box-shadow: 0 6px 20px rgba(51,42,40,0.08); padding: 0.15rem 0; }
         .nav-container {
             max-width: 1280px; margin: 0 auto;
             padding: 0.9rem 2rem;
             display: flex; justify-content: space-between; align-items: center;
         }
         .logo {
-            font-size: 1.6rem; font-weight: 900;
-            text-decoration: none;
-            background: linear-gradient(135deg, var(--primary-deep), var(--secondary));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-size: 1.5rem; font-weight: 800; letter-spacing: -0.3px;
+            text-decoration: none; color: var(--ink);
             display: flex; align-items: center; gap: 0.6rem;
         }
-        .logo i { -webkit-text-fill-color: var(--secondary); font-size: 1.8rem; }
 
-        .nav-menu { display: flex; gap: 2.2rem; list-style: none; align-items: center; }
+        .nav-menu { display: flex; gap: 2rem; list-style: none; align-items: center; }
         .nav-link {
-            text-decoration: none; color: var(--text-dark);
-            font-weight: 600; font-size: 0.95rem;
-            position: relative; transition: color 0.3s;
+            text-decoration: none; color: var(--ink-soft);
+            font-weight: 600; font-size: 0.94rem;
+            position: relative; transition: color 0.2s;
         }
         .nav-link::after {
             content: ''; position: absolute; bottom: -6px; right: 0;
-            width: 0; height: 2px;
-            background: linear-gradient(90deg, var(--primary-light), var(--secondary));
-            transition: width 0.3s ease; border-radius: 2px;
+            width: 0; height: 2px; background: var(--clay);
+            transition: width 0.25s ease; border-radius: 2px;
         }
-        .nav-link:hover { color: var(--primary-deep); }
+        .nav-link:hover { color: var(--ink); }
         .nav-link:hover::after { width: 100%; }
+        .nav-link-icon { font-size: 0.8rem; margin-left: 0.35rem; color: var(--clay); }
+
+        .header-actions { display: flex; gap: 1rem; align-items: center; }
+        .nav-menu-external { display: none; padding-top: 0.8rem !important; border-bottom: none !important; }
+        .btn-header-inmenu {
+            width: 100%; justify-content: center;
+            background: var(--teal) !important; color: white !important; border: none !important;
+            padding: 0.9rem 1.2rem; font-size: 0.95rem; text-align: center;
+        }
 
         .btn-header {
-            background: rgba(255,255,255,0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            color: var(--primary-deep) !important; padding: 0.65rem 1.6rem;
-            border-radius: 50px; font-weight: 700; font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(139, 127, 216, 0.15);
-            text-decoration: none; transition: all 0.3s ease;
+            background: var(--teal-soft);
+            border: 1px solid var(--teal-soft-2);
+            color: var(--teal) !important; padding: 0.6rem 1.4rem;
+            border-radius: 50px; font-weight: 700; font-size: 0.88rem;
+            text-decoration: none; transition: background 0.2s ease;
             display: inline-flex; align-items: center; gap: 0.5rem;
         }
-        .btn-header:hover {
-            transform: translateY(-2px);
-            background: rgba(255,255,255,0.75);
-            box-shadow: 0 8px 25px rgba(139, 127, 216, 0.25);
-        }
+        .btn-header:hover { background: var(--teal-soft-2); }
 
-        .mobile-toggle { display: none; font-size: 1.6rem; color: var(--primary-deep); cursor: pointer; }
+        .mobile-toggle {
+            display: none; font-size: 1.3rem; color: var(--teal); cursor: pointer;
+            background: var(--teal-soft); border: 1px solid var(--teal-soft-2);
+            width: 42px; height: 42px; border-radius: 12px;
+            align-items: center; justify-content: center;
+            font-family: inherit; padding: 0; outline: none;
+            transition: background 0.2s ease;
+        }
+        .mobile-toggle.open { background: var(--teal); color: white; }
 
-        /* Hero Section Showcase */
-        .hero {
-            padding: 180px 2rem 100px;
-            position: relative; overflow: hidden;
+        .mobile-menu-overlay {
+            position: fixed; inset: 0; z-index: 990;
+            background: rgba(51, 42, 40, 0.32);
+            opacity: 0; visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
-        .hero::before {
-            content: ''; position: absolute; top: -150px; right: -150px;
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(242, 137, 126, 0.16), transparent 70%);
-            border-radius: 50%; pointer-events: none;
-        }
-        .hero::after {
-            content: ''; position: absolute; bottom: -180px; left: -180px;
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(143, 191, 159, 0.18), transparent 70%);
-            border-radius: 50%; pointer-events: none;
-        }
+        .mobile-menu-overlay.active { opacity: 1; visibility: visible; }
+
+        /* ===== Hero ===== */
+        .hero { padding: 170px 2rem 90px; position: relative; overflow: hidden; }
         .hero-grid {
             max-width: 1280px; margin: 0 auto;
             display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem;
@@ -270,354 +263,230 @@
         }
         .hero-badge-top {
             display: inline-flex; align-items: center; gap: 0.5rem;
-            background: rgba(255, 242, 217, 0.75);
-            backdrop-filter: blur(10px);
-            color: var(--accent-gold); -webkit-text-fill-color: initial;
-            padding: 0.4rem 1.2rem; border-radius: 50px;
-            font-size: 0.85rem; font-weight: 700; margin-bottom: 1.5rem;
-            border: 1px solid rgba(232, 169, 76, 0.3);
+            color: var(--clay); font-weight: 700; font-size: 0.88rem;
+            margin-bottom: 1.4rem; padding-bottom: 0.3rem;
+            border-bottom: 2px solid var(--clay-soft);
         }
         .hero-title {
-            font-size: 3.4rem; font-weight: 900; line-height: 1.25;
-            color: var(--text-dark); margin-bottom: 1.5rem;
-            letter-spacing: -0.5px;
+            font-size: 3.2rem; font-weight: 800; line-height: 1.28;
+            color: var(--ink); margin-bottom: 1.4rem; letter-spacing: -1px;
         }
-        .hero-title span {
-            background: linear-gradient(135deg, var(--primary-deep), var(--secondary));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
+        .hero-title span { color: var(--teal); }
         .hero-subtitle {
-            font-size: 1.2rem; color: var(--text-muted);
-            margin-bottom: 2.5rem; line-height: 1.9; max-width: 620px;
+            font-size: 1.15rem; color: var(--ink-soft);
+            margin-bottom: 2.4rem; line-height: 1.9; max-width: 600px;
         }
-        .hero-actions { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-bottom: 3rem; }
+        .hero-actions { display: flex; gap: 1.1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
 
         .btn-main {
-            padding: 1rem 2.2rem; border-radius: 50px;
-            font-weight: 700; font-size: 1.05rem;
+            padding: 0.95rem 2.1rem; border-radius: 50px;
+            font-weight: 700; font-size: 1.02rem;
             text-decoration: none; display: inline-flex;
-            align-items: center; gap: 0.7rem;
-            transition: all 0.3s ease; cursor: pointer; border: none;
+            align-items: center; gap: 0.6rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer; border: none;
         }
         .btn-primary-gradient {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white; box-shadow: 0 10px 28px rgba(139, 127, 216, 0.32);
+            background: var(--clay); color: white;
+            box-shadow: 0 8px 20px rgba(199, 123, 88, 0.32);
         }
-        .btn-primary-gradient:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 16px 38px rgba(139, 127, 216, 0.42);
-        }
+        .btn-primary-gradient:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(199, 123, 88, 0.4); }
         .btn-outline-glass {
-            background: rgba(255,255,255,0.55);
-            backdrop-filter: blur(10px);
-            border: 1.5px solid var(--glass-border);
-            color: var(--primary-deep);
+            background: var(--teal-soft);
+            border: 1px solid var(--teal-soft-2);
+            color: var(--teal);
         }
-        .btn-outline-glass:hover {
-            background: rgba(255,255,255,0.85);
-            transform: translateY(-2px);
-        }
+        .btn-outline-glass:hover { background: var(--teal-soft-2); transform: translateY(-2px); }
 
-        /* Hero Therapist Image Container */
-        .hero-therapist-container {
-            position: relative; display: flex; justify-content: center;
-        }
+        .hero-therapist-container { position: relative; display: flex; justify-content: center; }
         .therapist-frame {
-            position: relative; width: 100%; max-width: 440px;
+            position: relative; width: 100%; max-width: 420px;
             border-radius: var(--radius-lg);
-            background: var(--glass-bg-strong);
-            backdrop-filter: blur(18px);
-            padding: 1.2rem;
+            background: #ffffff;
+            padding: 1rem;
             box-shadow: var(--shadow-hover);
-            border: 1px solid var(--glass-border);
+            border: 1px solid var(--border-color);
         }
         .therapist-image-box {
-            width: 100%; height: 480px;
-            border-radius: calc(var(--radius-lg) - 8px);
+            width: 100%; height: 460px;
+            border-radius: calc(var(--radius-lg) - 6px);
             overflow: hidden; position: relative;
-            background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+            background: linear-gradient(160deg, var(--teal-soft), var(--clay-soft));
             display: flex; align-items: flex-end; justify-content: center;
         }
-        .therapist-image-box img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        .therapist-frame:hover .therapist-image-box img { transform: scale(1.03); }
+        .therapist-image-box img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* Floating Badges */
         .floating-badge {
-            position: absolute; background: var(--glass-bg-strong);
-            backdrop-filter: blur(14px);
-            padding: 0.9rem 1.4rem; border-radius: 16px;
+            position: absolute; background: #ffffff;
+            padding: 0.85rem 1.3rem; border-radius: 14px;
             box-shadow: var(--shadow-soft);
-            border: 1px solid var(--glass-border);
-            display: flex; align-items: center; gap: 0.8rem;
-            z-index: 10; animation: float 5s ease-in-out infinite;
+            border: 1px solid var(--border-color);
+            display: flex; align-items: center; gap: 0.75rem;
+            z-index: 10;
         }
-        .badge-1 { top: 40px; right: -25px; }
-        .badge-2 { bottom: 30px; left: -25px; animation-delay: 2.5s; }
+        .badge-1 { top: 30px; right: -20px; }
+        .badge-2 { bottom: 24px; left: -20px; }
 
         .badge-icon {
-            width: 45px; height: 45px; border-radius: 12px;
-            background: var(--primary-soft); color: var(--primary-deep);
+            width: 42px; height: 42px; border-radius: 50%;
+            background: var(--teal-soft); color: var(--teal);
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.15rem;
         }
-        .badge-text h4 { font-size: 0.95rem; font-weight: 800; color: var(--text-dark); }
-        .badge-text p { font-size: 0.78rem; color: var(--text-muted); }
+        .badge-text h4 { font-size: 0.92rem; font-weight: 800; color: var(--ink); }
+        .badge-text p { font-size: 0.76rem; color: var(--ink-soft); }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
-
-        /* Stats Section - soft pastel glass bar */
-        .stats-section {
-            background: linear-gradient(120deg, rgba(139,127,216,0.16), rgba(242,137,126,0.14), rgba(143,191,159,0.16));
-            backdrop-filter: blur(6px);
-            color: var(--text-dark); padding: 3.5rem 2rem; position: relative;
-            border-top: 1px solid var(--glass-border);
-            border-bottom: 1px solid var(--glass-border);
-        }
+        /* ===== Stats bar: solid color block, no blur, no scroll-fixed background ===== */
+        .stats-section { background: var(--teal); color: white; padding: 3rem 2rem; }
         .stats-grid {
             max-width: 1280px; margin: 0 auto;
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
             text-align: center;
         }
-        .stat-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius-md);
-            padding: 1.5rem 1rem;
-        }
-        .stat-card h3 { font-size: 2.5rem; font-weight: 900; margin-bottom: 0.2rem; color: var(--primary-deep); }
-        .stat-card p { font-size: 0.95rem; opacity: 0.85; font-weight: 500; }
+        .stat-card { padding: 0.5rem; }
+        .stat-card h3 { font-size: 2.4rem; font-weight: 800; margin-bottom: 0.2rem; color: var(--clay-light); }
+        .stat-card p { font-size: 0.92rem; opacity: 0.88; font-weight: 500; }
 
-        /* General Section Styling */
-        section { padding: 6rem 2rem; }
-        .section-title-wrap {
-            text-align: center; max-width: 720px; margin: 0 auto 4rem;
-        }
+        /* ===== General section styling ===== */
+        section { padding: 5.5rem 2rem; }
+        .section-title-wrap { text-align: center; max-width: 700px; margin: 0 auto 3.5rem; }
         .section-subtitle {
-            color: var(--secondary); font-weight: 800; font-size: 0.9rem;
-            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;
-            display: block;
+            color: var(--clay); font-weight: 700; font-size: 0.85rem;
+            text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.6rem;
+            display: inline-flex; align-items: center; gap: 0.5rem;
         }
-        .section-main-title {
-            font-size: 2.4rem; font-weight: 800; color: var(--text-dark);
-            margin-bottom: 1rem; line-height: 1.3;
+        .section-subtitle::before {
+            content: ''; display: inline-block; width: 18px; height: 2px;
+            background: var(--clay); border-radius: 2px;
         }
-        .section-desc { color: var(--text-muted); font-size: 1.1rem; }
+        .section-main-title { font-size: 2.2rem; font-weight: 800; color: var(--ink); margin-bottom: 1rem; line-height: 1.35; letter-spacing: -0.5px; }
+        .section-desc { color: var(--ink-soft); font-size: 1.05rem; }
 
-        /* Services */
-        .services-hub { background: transparent; }
-        .services-grid {
-            max-width: 1280px; margin: 0 auto;
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2rem;
-        }
+        /* ===== Services: solid tinted cards, no blur ===== */
+        .services-hub { background: var(--cream); }
+        .services-grid { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; }
         .service-card-luxury {
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            border-radius: var(--radius-lg);
-            padding: 2.8rem 2rem; border: 1px solid var(--glass-border);
-            transition: all 0.4s ease; position: relative; overflow: hidden;
+            background: #ffffff; border-radius: var(--radius-lg);
+            padding: 2.4rem 1.9rem; border: 1px solid var(--border-color);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
             display: flex; flex-direction: column; justify-content: space-between;
         }
-        .service-card-luxury:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-            background: var(--glass-bg-strong);
-            border-color: rgba(139, 127, 216, 0.35);
-        }
-        .service-card-luxury::before {
-            content: ''; position: absolute; top: 0; right: 0; left: 0; height: 5px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            opacity: 0; transition: opacity 0.3s;
-        }
-        .service-card-luxury:hover::before { opacity: 1; }
+        .service-card-luxury:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
 
         .service-icon-box {
-            width: 70px; height: 70px; border-radius: 20px;
-            background: linear-gradient(135deg, var(--primary-soft), var(--secondary-soft));
-            color: var(--primary-deep); display: flex; align-items: center; justify-content: center;
-            font-size: 2rem; margin-bottom: 1.8rem; transition: transform 0.4s ease;
+            width: 58px; height: 58px; border-radius: 50%;
+            background: var(--teal-soft); color: var(--teal);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; margin-bottom: 1.6rem;
+            border: 1px solid var(--teal-soft-2);
+            transition: background 0.25s ease, color 0.25s ease;
         }
-        .service-card-luxury:hover .service-icon-box {
-            transform: scale(1.1) rotate(-5deg);
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-        }
-        .service-card-luxury h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 1rem; }
-        .service-card-luxury p { color: var(--text-muted); font-size: 0.98rem; margin-bottom: 1.8rem; line-height: 1.8; }
-        .service-features-list {
-            list-style: none; margin-bottom: 2rem; border-top: 1px solid var(--border-color); padding-top: 1rem;
-        }
-        .service-features-list li {
-            font-size: 0.88rem; color: var(--text-dark); margin-bottom: 0.5rem;
-            display: flex; align-items: center; gap: 0.5rem; font-weight: 600;
-        }
-        .service-features-list li i { color: var(--secondary); font-size: 0.8rem; }
+        .service-card-luxury:hover .service-icon-box { background: var(--teal); color: white; }
+        .service-card-luxury h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.9rem; color: var(--ink); }
+        .service-card-luxury p { color: var(--ink-soft); font-size: 0.96rem; margin-bottom: 1.6rem; line-height: 1.8; }
+        .service-features-list { list-style: none; margin-bottom: 1.8rem; border-top: 1px solid var(--border-color); padding-top: 1rem; }
+        .service-features-list li { font-size: 0.86rem; color: var(--ink); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; font-weight: 600; }
+        .service-features-list li i { color: var(--clay); font-size: 0.75rem; }
 
-        /* Peyvand Amn Link Section */
         .peyvand-link-box {
-            max-width: 1280px; margin: 4rem auto 0;
-            background: linear-gradient(135deg, rgba(139,127,216,0.9), rgba(242,137,126,0.85));
-            backdrop-filter: blur(10px);
-            border-radius: var(--radius-lg); padding: 3.5rem; color: white;
+            max-width: 1280px; margin: 3.5rem auto 0;
+            background: var(--ink); border-radius: var(--radius-lg); padding: 3rem; color: white;
             display: grid; grid-template-columns: 1.5fr 1fr; gap: 2rem; align-items: center;
-            box-shadow: var(--shadow-hover);
         }
-        .peyvand-link-box h3 { font-size: 2rem; font-weight: 800; margin-bottom: 0.8rem; }
-        .peyvand-link-box p { opacity: 0.95; font-size: 1.05rem; }
+        .peyvand-link-box h3 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.7rem; }
+        .peyvand-link-box p { opacity: 0.85; font-size: 1rem; }
 
-        /* Bio Section */
-        .bio-section { background: transparent; }
-        .bio-grid {
-            max-width: 1280px; margin: 0 auto;
-            display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: center;
-        }
-        .bio-card-highlight {
-            background: var(--glass-bg-strong);
-            backdrop-filter: blur(16px);
-            border-radius: var(--radius-lg); padding: 2.5rem;
-            box-shadow: var(--shadow-soft); border: 1px solid var(--glass-border);
-        }
-        .bio-features-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 2rem;
-        }
-        .bio-feature-item {
-            background: var(--primary-soft); padding: 1.2rem; border-radius: var(--radius-md);
-            display: flex; align-items: center; gap: 1rem; border-right: 4px solid var(--primary);
-        }
-        .bio-feature-item i { font-size: 1.4rem; color: var(--primary-deep); }
+        /* ===== Bio ===== */
+        .bio-section { background: var(--teal-soft); }
+        .bio-grid { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.2fr; gap: 3.5rem; align-items: center; }
+        .bio-card-highlight { background: #ffffff; border-radius: var(--radius-lg); padding: 2.3rem; box-shadow: var(--shadow-soft); border: 1px solid var(--border-color); }
+        .bio-features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; margin-top: 1.8rem; }
+        .bio-feature-item { background: var(--cream); padding: 1.1rem; border-radius: var(--radius-md); display: flex; align-items: center; gap: 1rem; border-right: 3px solid var(--clay); }
+        .bio-feature-item i { font-size: 1.3rem; color: var(--teal); }
 
-        /* Articles */
-        .articles-section { background: transparent; }
-        .articles-grid {
-            max-width: 1280px; margin: 0 auto;
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
-        }
-        .article-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(14px);
-            border-radius: var(--radius-md);
-            overflow: hidden; border: 1px solid var(--glass-border);
-            transition: all 0.3s;
-        }
-        .article-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-soft); background: var(--glass-bg-strong); }
-        .article-content { padding: 1.8rem; }
-        .article-tag {
-            font-size: 0.75rem; font-weight: 800; color: var(--secondary);
-            text-transform: uppercase; margin-bottom: 0.5rem; display: block;
-        }
-        .article-title { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.8rem; line-height: 1.5; }
-        .article-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.2rem; }
+        /* ===== Articles ===== */
+        .articles-section { background: var(--cream); }
+        .articles-grid { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; }
+        .article-card { background: #ffffff; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .article-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-soft); }
+        .article-content { padding: 1.7rem; }
+        .article-tag { font-size: 0.74rem; font-weight: 800; color: var(--clay); text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
+        .article-title { font-size: 1.15rem; font-weight: 800; margin-bottom: 0.75rem; line-height: 1.5; color: var(--ink); }
+        .article-desc { font-size: 0.9rem; color: var(--ink-soft); margin-bottom: 1.1rem; }
 
-        /* FAQ Accordion */
-        .faq-section { background: transparent; }
-        .faq-accordion { max-width: 860px; margin: 0 auto; }
-        .faq-item-luxury {
-            background: var(--glass-bg);
-            backdrop-filter: blur(14px);
-            border-radius: var(--radius-md);
-            margin-bottom: 1.2rem; border: 1px solid var(--glass-border);
-            overflow: hidden; transition: all 0.3s ease;
-        }
-        .faq-question-btn {
-            width: 100%; padding: 1.6rem 2rem; text-align: right; background: none;
-            border: none; font-family: inherit; font-size: 1.1rem; font-weight: 700;
-            color: var(--text-dark); cursor: pointer;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .faq-answer-body {
-            max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease;
-            padding: 0 2rem; color: var(--text-muted); line-height: 1.9;
-        }
-        .faq-item-luxury.active { border-color: var(--primary); box-shadow: var(--shadow-soft); background: var(--glass-bg-strong); }
-        .faq-item-luxury.active .faq-answer-body { max-height: 300px; padding: 0 2rem 1.6rem; }
-        .faq-item-luxury.active .faq-question-btn i { transform: rotate(180deg); color: var(--primary-deep); }
+        /* ===== FAQ ===== */
+        .faq-section { background: var(--teal-soft); }
+        .faq-accordion { max-width: 840px; margin: 0 auto; }
+        .faq-item-luxury { background: #ffffff; border-radius: var(--radius-md); margin-bottom: 1rem; border: 1px solid var(--border-color); overflow: hidden; transition: box-shadow 0.2s ease; }
+        .faq-question-btn { width: 100%; padding: 1.4rem 1.8rem; text-align: right; background: none; border: none; font-family: inherit; font-size: 1.05rem; font-weight: 700; color: var(--ink); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-answer-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; padding: 0 1.8rem; color: var(--ink-soft); line-height: 1.85; }
+        .faq-item-luxury.active { border-color: var(--teal-soft-2); box-shadow: var(--shadow-soft); }
+        .faq-item-luxury.active .faq-answer-body { max-height: 300px; padding: 0 1.8rem 1.4rem; }
+        .faq-item-luxury.active .faq-question-btn i { transform: rotate(180deg); color: var(--teal); }
 
-        /* Contact Section */
-        .contact-section { background: transparent; }
-        .contact-grid {
-            max-width: 1280px; margin: 0 auto;
-            display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem;
-        }
-        .contact-card-box {
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            border-radius: var(--radius-lg); padding: 3rem;
-            border: 1px solid var(--glass-border);
-        }
-        .contact-method-item {
-            display: flex; align-items: center; gap: 1.2rem; margin-bottom: 1.8rem;
-            background: var(--glass-bg-strong); padding: 1.2rem; border-radius: var(--radius-md);
-            box-shadow: 0 4px 14px rgba(139,127,216,0.08);
-        }
-        .contact-icon {
-            width: 55px; height: 55px; border-radius: 14px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white; display: flex; align-items: center; justify-content: center;
-            font-size: 1.3rem; flex-shrink: 0;
-        }
+        /* ===== Contact ===== */
+        .contact-section { background: var(--cream); }
+        .contact-grid { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.2fr; gap: 3.5rem; }
+        .contact-card-box { background: #ffffff; border-radius: var(--radius-lg); padding: 2.6rem; border: 1px solid var(--border-color); }
+        .contact-method-item { display: flex; align-items: center; gap: 1.1rem; margin-bottom: 1.6rem; background: var(--cream); padding: 1.1rem; border-radius: var(--radius-md); }
+        .contact-icon { width: 50px; height: 50px; border-radius: 50%; background: var(--teal); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
 
         .form-luxury input, .form-luxury select, .form-luxury textarea {
-            width: 100%; padding: 1rem 1.2rem; border-radius: 12px;
-            border: 2px solid var(--border-color); font-family: inherit; font-size: 0.95rem;
-            margin-bottom: 1.2rem; transition: border-color 0.3s; outline: none;
-            background: rgba(255,255,255,0.7);
+            width: 100%; padding: 0.9rem 1.1rem; border-radius: 10px;
+            border: 1.5px solid var(--border-color); font-family: inherit; font-size: 0.94rem;
+            margin-bottom: 1.1rem; transition: border-color 0.2s; outline: none;
+            background: var(--cream);
         }
-        .form-luxury input:focus, .form-luxury select:focus, .form-luxury textarea:focus {
-            border-color: var(--primary-light);
-            background: rgba(255,255,255,0.95);
-        }
-        .sr-only {
-            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-            overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
-        }
+        .form-luxury input:focus, .form-luxury select:focus, .form-luxury textarea:focus { border-color: var(--teal); background: #fff; }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
-        /* Footer - soft deep plum, not harsh black */
-        .footer-luxury {
-            background: linear-gradient(180deg, #423b5c, #2e2844);
-            color: #c9c3dd; padding: 5rem 2rem 2rem;
-            border-top: 1px solid rgba(255,255,255,0.08);
-        }
-        .footer-grid {
-            max-width: 1280px; margin: 0 auto 4rem;
-            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
-        }
-        .footer-brand h3 { color: white; font-size: 1.6rem; font-weight: 900; margin-bottom: 1rem; }
-        .footer-col h4 { color: white; font-size: 1.1rem; margin-bottom: 1.5rem; font-weight: 700; }
+        /* ===== Footer ===== */
+        .footer-luxury { background: var(--ink); color: #c9c0ba; padding: 4.5rem 2rem 2rem; }
+        .footer-grid { max-width: 1280px; margin: 0 auto 3.5rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+        .footer-brand h3 { color: white; font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; }
+        .footer-col h4 { color: white; font-size: 1.05rem; margin-bottom: 1.4rem; font-weight: 700; }
         .footer-col ul { list-style: none; }
-        .footer-col li { margin-bottom: 0.8rem; }
-        .footer-col a { color: #c9c3dd; text-decoration: none; transition: color 0.3s; font-size: 0.95rem; }
-        .footer-col a:hover { color: white; }
+        .footer-col li { margin-bottom: 0.75rem; }
+        .footer-col a { color: #c9c0ba; text-decoration: none; transition: color 0.2s; font-size: 0.94rem; }
+        .footer-col a:hover { color: var(--clay-light); }
 
-        .footer-bottom-bar {
-            max-width: 1280px; margin: 0 auto; padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.08); text-align: center;
-            font-size: 0.88rem; color: #9d95b8;
-        }
-        .footer-bottom-bar a { color: var(--secondary); text-decoration: none; font-weight: 700; }
+        .footer-bottom-bar { max-width: 1280px; margin: 0 auto; padding-top: 1.8rem; border-top: 1px solid rgba(255,255,255,0.08); text-align: center; font-size: 0.86rem; color: #9c938d; }
+        .footer-bottom-bar a { color: var(--clay-light); text-decoration: none; font-weight: 700; }
 
-        /* Responsive Breakpoints */
+        /* ===== Responsive ===== */
         @media (max-width: 1024px) {
-            .hero-grid, .bio-grid, .contact-grid, .peyvand-link-box { grid-template-columns: 1fr; gap: 3rem; }
+            .hero-grid, .bio-grid, .contact-grid, .peyvand-link-box { grid-template-columns: 1fr; gap: 2.5rem; }
             .services-grid, .articles-grid { grid-template-columns: repeat(2, 1fr); }
-            .hero-title { font-size: 2.6rem; }
+            .hero-title { font-size: 2.5rem; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .footer-grid { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 768px) {
-            .nav-menu { display: none; }
-            .mobile-toggle { display: block; }
+            .nav-menu {
+                display: flex; flex-direction: column;
+                position: fixed; top: 70px; right: 1rem; left: 1rem;
+                background: #ffffff;
+                border: 1px solid var(--border-color);
+                border-radius: var(--radius-md);
+                padding: 1.1rem 1.4rem;
+                box-shadow: var(--shadow-hover);
+                gap: 0.2rem; z-index: 995;
+                transform: translateY(-16px); opacity: 0; visibility: hidden; pointer-events: none;
+                transition: transform 0.25s ease, opacity 0.25s ease, visibility 0.25s ease;
+            }
+            .nav-menu.open { transform: translateY(0); opacity: 1; visibility: visible; pointer-events: auto; }
+            .nav-menu li { border-bottom: 1px solid var(--border-color); }
+            .nav-menu li:last-child { border-bottom: none; }
+            .nav-menu .nav-link { display: flex; align-items: center; padding: 0.85rem 0.2rem; }
+            .nav-menu-external { display: block; }
+            .btn-header-desktop-only { display: none; }
+            .mobile-toggle { display: flex; }
             .services-grid, .articles-grid, .stats-grid, .footer-grid { grid-template-columns: 1fr; }
-            .hero { padding-top: 130px; }
+            .hero { padding-top: 120px; }
             .badge-1, .badge-2 { display: none; }
-            .hero-title { font-size: 2.1rem; }
+            .hero-title { font-size: 2rem; }
         }
     </style>
+
 
 </head>
 <body>
@@ -633,28 +502,36 @@
                 zoojdarman.ir
             </a>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#home" class="nav-link">صفحه اصلی</a></li>
-                <li><a href="#services" class="nav-link">خدمات تخصصی</a></li>
-                <li><a href="#bio" class="nav-link">درباره درمانگر</a></li>
-                <li><a href="#articles" class="nav-link">راهنمای رابطه</a></li>
-                <li><a href="#faq" class="nav-link">سوالات متداول</a></li>
-                <li><a href="#contact" class="nav-link">تماس</a></li>
+                <li><a href="#home" class="nav-link" onclick="closeMobileMenu()"><i class="fas fa-house nav-link-icon"></i> صفحه اصلی</a></li>
+                <li><a href="#services" class="nav-link" onclick="closeMobileMenu()"><i class="fas fa-heart-pulse nav-link-icon"></i> خدمات تخصصی</a></li>
+                <li><a href="#bio" class="nav-link" onclick="closeMobileMenu()"><i class="fas fa-user nav-link-icon"></i> درباره درمانگر</a></li>
+                <li><a href="#articles" class="nav-link" onclick="closeMobileMenu()"><i class="fas fa-book-open nav-link-icon"></i> راهنمای رابطه</a></li>
+                <li><a href="#faq" class="nav-link" onclick="closeMobileMenu()"><i class="fas fa-circle-question nav-link-icon"></i> سوالات متداول</a></li>
+                <li><a href="#contact" class="nav-link" onclick="closeMobileMenu()"><i class="fas fa-phone nav-link-icon"></i> تماس</a></li>
+                <li class="nav-menu-external">
+                    <a href="https://peyvandamn.ir" target="_blank" rel="noopener noreferrer" class="btn-header btn-header-inmenu">
+                        <i class="fas fa-arrow-up-right-from-square"></i> کلینیک پیوند امن
+                    </a>
+                </li>
             </ul>
-            <div style="display: flex; gap: 1rem; align-items: center;">
-                <a href="https://peyvandamn.ir" target="_blank" rel="noopener noreferrer" class="btn-header">
+            <div class="header-actions">
+                <a href="https://peyvandamn.ir" target="_blank" rel="noopener noreferrer" class="btn-header btn-header-desktop-only">
                     <i class="fas fa-arrow-up-right-from-square"></i> کلینیک پیوند امن
                 </a>
-                <div class="mobile-toggle" onclick="toggleMobileMenu()" role="button" aria-label="باز کردن منو"><i class="fas fa-bars"></i></div>
+                <button class="mobile-toggle" id="mobileToggle" onclick="toggleMobileMenu()" aria-label="باز و بسته کردن منو" aria-expanded="false" aria-controls="navMenu">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
     </header>
+    <div class="mobile-menu-overlay" id="menuOverlay" onclick="toggleMobileMenu()"></div>
 
     <!-- Main Hero Section -->
     <section class="hero" id="home">
         <div class="hero-grid">
             <div class="hero-text-content">
                 <div class="hero-badge-top">
-                    <i class="fas fa-shield-halved"></i> پروانه نظام روانشناسی: ۱۴۱۴۰۸
+                    <i class="fas fa-shield-halved"></i> پروانه نظام روانشناسی: ۱۴۱۴۰۸۳
                 </div>
                 <h1 class="hero-title">
                     ترمیم و بازسازی صمیمیت 
@@ -664,7 +541,7 @@
                     اگر مشاجرات تکراری به بن‌بست رسیده، صمیمیت کم‌رنگ شده، حسادت و بی‌اعتمادی رابطه را فرسوده کرده، یا دخالت خانواده‌ها و اختلاف در تربیت فرزند آرامش خانه را گرفته، اینجا جای درستی هستید. <strong>مهناز خوینی</strong> (زوج‌درمانگر و مسئول فنی کلینیک پیوند امن) با رویکردی علمی و بدون قضاوت، ریشه‌ی مشکل رابطه را پیدا می‌کند، نه فقط علائم آن را.
                 </p>
                 <div class="hero-actions">
-                    <a href="https://wa.me/qr/XQLBHPDADJZND1" target="_blank" rel="noopener noreferrer" class="btn-main btn-primary-gradient">
+                    <a href="https://wa.me/989199087264" target="_blank" rel="noopener noreferrer" class="btn-main btn-primary-gradient">
                         <i class="fab fa-whatsapp"></i> رزرو آنی نوبت واتساپ
                     </a>
                     <a href="#services" class="btn-main btn-outline-glass">
@@ -684,11 +561,11 @@
                              height="480" 
                              fetchpriority="high"
                              decoding="async"
-                             onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800';">
+                             onerror="this.style.display='none';">
                     </div>
                     <div style="text-align: center; padding-top: 1rem;">
                         <h3 style="font-weight: 800; font-size: 1.3rem;">مهناز خوینی</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">زوج‌درمانگر و مسئول فنی کلینیک پیوند امن</p>
+                        <p style="color: var(--ink-soft); font-size: 0.9rem;">زوج‌درمانگر و مسئول فنی کلینیک پیوند امن</p>
                     </div>
                 </div>
 
@@ -724,7 +601,7 @@
                 <p>تضمین محرمانگی جلسات</p>
             </div>
             <div class="stat-card">
-                <h3>۱۴۱۴۰۸</h3>
+                <h3>۱۴۱۴۰۸۳</h3>
                 <p>شماره پروانه رسمی روانشناسی</p>
             </div>
             <div class="stat-card">
@@ -754,7 +631,7 @@
                         <li><i class="fas fa-check"></i> بازگرداندن صمیمیت عاطفی و جنسی کم‌رنگ‌شده</li>
                     </ul>
                 </div>
-                <a href="https://wa.me/qr/XQLBHPDADJZND1" target="_blank" rel="noopener noreferrer" class="btn-main btn-outline-glass" style="width: 100%; justify-content: center;">رزرو جلسه زوج‌درمانی</a>
+                <a href="https://wa.me/989199087264" target="_blank" rel="noopener noreferrer" class="btn-main btn-outline-glass" style="width: 100%; justify-content: center;">رزرو جلسه زوج‌درمانی</a>
             </div>
 
             <!-- Service 2 -->
@@ -768,13 +645,13 @@
                         <li><i class="fas fa-check"></i> فرآیند گام‌به‌گام بازسازی اعتماد یا مدیریت حسادت مزمن</li>
                     </ul>
                 </div>
-                <a href="https://wa.me/qr/XQLBHPDADJZND1" target="_blank" rel="noopener noreferrer" class="btn-main btn-outline-glass" style="width: 100%; justify-content: center;">مشاوره تخصصی خیانت</a>
+                <a href="https://wa.me/989199087264" target="_blank" rel="noopener noreferrer" class="btn-main btn-outline-glass" style="width: 100%; justify-content: center;">مشاوره تخصصی خیانت</a>
             </div>
 
             <!-- Service 3 -->
             <div class="service-card-luxury">
                 <div>
-                    <div class="service-icon-box"><i class="fas fa-rings-wedding"></i></div>
+                    <div class="service-icon-box"><i class="fas fa-ring"></i></div>
                     <h3>پیش از ازدواج و تفاوت انتظارات</h3>
                     <p>اختلاف در دیدگاه نسبت به فرزندآوری، مدیریت مالی، سبک زندگی یا میزان نزدیکی به خانواده‌ها، پیش از عقد راحت‌تر قابل حل است تا بعد از آن. ارزیابی تخصصی بالینی و تست‌های روان‌سنجی برای سنجش طرحواره‌ها و تفاوت‌های شخصیتی دو طرف.</p>
                     <ul class="service-features-list">
@@ -782,7 +659,7 @@
                         <li><i class="fas fa-check"></i> تحلیل سبک‌های ارتباطی و حل تعارض قبل از تعهد</li>
                     </ul>
                 </div>
-                <a href="https://wa.me/qr/XQLBHPDADJZND1" target="_blank" rel="noopener noreferrer" class="btn-main btn-outline-glass" style="width: 100%; justify-content: center;">رزرو ارزیابی ازدواج</a>
+                <a href="https://wa.me/989199087264" target="_blank" rel="noopener noreferrer" class="btn-main btn-outline-glass" style="width: 100%; justify-content: center;">رزرو ارزیابی ازدواج</a>
             </div>
 
             <!-- Service 4 -->
@@ -796,7 +673,7 @@
                         <li><i class="fas fa-check"></i> کاهش آسیب سوگ عاطفی و تصمیم‌گیری آگاهانه</li>
                     </ul>
                 </div>
-                <a href="https://wa.me/qr/XQLBHPDADJZND1" target="_blank" rel="noopener noreferrer" class="btn-main btn-outline-glass" style="width: 100%; justify-content: center;">مشاوره طلاق</a>
+                <a href="https://wa.me/989199087264" target="_blank" rel="noopener noreferrer" class="btn-main btn-outline-glass" style="width: 100%; justify-content: center;">مشاوره طلاق</a>
             </div>
 
             <!-- Service 5 -->
@@ -810,7 +687,7 @@
                         <li><i class="fas fa-check"></i> یادگیری مهارت‌های مرزبندی سالم با شریک و خانواده‌ها</li>
                     </ul>
                 </div>
-                <a href="https://wa.me/qr/XQLBHPDADJZND1" target="_blank" rel="noopener noreferrer" class="btn-main btn-outline-glass" style="width: 100%; justify-content: center;">ثبت‌نام در گروه‌درمانی</a>
+                <a href="https://wa.me/989199087264" target="_blank" rel="noopener noreferrer" class="btn-main btn-outline-glass" style="width: 100%; justify-content: center;">ثبت‌نام در گروه‌درمانی</a>
             </div>
 
             <!-- Service 6 -->
@@ -824,7 +701,7 @@
                         <li><i class="fas fa-check"></i> پلتفرم امن تصویری</li>
                     </ul>
                 </div>
-                <a href="https://wa.me/qr/XQLBHPDADJZND1" target="_blank" rel="noopener noreferrer" class="btn-main btn-outline-glass" style="width: 100%; justify-content: center;">رزرو جلسه آنلاین</a>
+                <a href="https://wa.me/989199087264" target="_blank" rel="noopener noreferrer" class="btn-main btn-outline-glass" style="width: 100%; justify-content: center;">رزرو جلسه آنلاین</a>
             </div>
         </div>
 
@@ -835,7 +712,7 @@
                 <p>برای مطالعه مقالات تخصصی تحلیلی، شرکت در وبینارها و دسترسی به منابع مرجع درمان روابط، به وب‌سایت اصلی کلینیک مراجعه کنید.</p>
             </div>
             <div style="text-align: left;">
-                <a href="https://peyvandamn.ir" target="_blank" rel="noopener noreferrer" class="btn-main" style="background: white; color: var(--primary); font-weight: 800;">
+                <a href="https://peyvandamn.ir" target="_blank" rel="noopener noreferrer" class="btn-main" style="background: white; color: var(--teal); font-weight: 800;">
                     ورود به وب‌سایت peyvandamn.ir
                 </a>
             </div>
@@ -848,17 +725,17 @@
             <div class="bio-card-highlight">
                 <span class="section-subtitle">روانشناس و زوج‌درمانگر</span>
                 <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 1rem;">مهناز خوینی</h2>
-                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
-                    مسئول فنی کلینیک پیوند امن | دارای پروانه تخصصی از سازمان نظام روانشناسی و مشاوره ایران (شماره ۱۴۱۴۰۸)
+                <p style="color: var(--ink-soft); margin-bottom: 1.5rem;">
+                    مسئول فنی کلینیک پیوند امن | دارای پروانه تخصصی از سازمان نظام روانشناسی و مشاوره ایران (شماره ۱۴۱۴۰۸۳)
                 </p>
-                <p style="color: var(--text-dark); line-height: 1.9;">
+                <p style="color: var(--ink); line-height: 1.9;">
                     با بیش از یک دهه فعالیت تخصصی در حوزه مشاوره زناشویی و روانشناسی بالینی، رویکرد من مبتنی بر پیوند دادن دانش علمی روز و تحلیل عمیق دلبستگی برای حل ریشه‌ای مشکلات روابط عاطفی است.
                 </p>
 
                 <div class="bio-features-grid">
                     <div class="bio-feature-item">
                         <i class="fas fa-certificate"></i>
-                        <div><strong>پروانه رسمی:</strong> ۱۴۱۴۰۸</div>
+                        <div><strong>پروانه رسمی:</strong> ۱۴۱۴۰۸۳</div>
                     </div>
                     <div class="bio-feature-item">
                         <i class="fas fa-user-shield"></i>
@@ -871,19 +748,19 @@
                 <h3 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem;">چرا زوج‌درمانی تخصصی با مهناز خوینی؟</h3>
                 <ul style="list-style: none;">
                     <li style="margin-bottom: 1.2rem; display: flex; gap: 1rem;">
-                        <i class="fas fa-circle-check" style="color: var(--secondary); font-size: 1.3rem; margin-top: 0.2rem;"></i>
+                        <i class="fas fa-circle-check" style="color: var(--clay); font-size: 1.3rem; margin-top: 0.2rem;"></i>
                         <div>
                             <strong>تمرکز بر ریشه، نه فقط دعوای امروز:</strong> شناسایی اینکه چرا یک نفر با فاصله گرفتن و دیگری با سرزنش واکنش نشان می‌دهد، و از کجا این الگوی اجتناب، اضطراب جدایی یا کنترل‌گری شکل گرفته.
                         </div>
                     </li>
                     <li style="margin-bottom: 1.2rem; display: flex; gap: 1rem;">
-                        <i class="fas fa-circle-check" style="color: var(--secondary); font-size: 1.3rem; margin-top: 0.2rem;"></i>
+                        <i class="fas fa-circle-check" style="color: var(--clay); font-size: 1.3rem; margin-top: 0.2rem;"></i>
                         <div>
                             <strong>محیطی بدون قضاوت و ایمن:</strong> فضایی که در آن حرف زدن از خیانت، بی‌میلی جنسی، دخالت مادرشوهر یا پدرزن، یا حتی افکار مربوط به جدایی، بدون شرمندگی امکان‌پذیر باشد.
                         </div>
                     </li>
                     <li style="margin-bottom: 1.2rem; display: flex; gap: 1rem;">
-                        <i class="fas fa-circle-check" style="color: var(--secondary); font-size: 1.3rem; margin-top: 0.2rem;"></i>
+                        <i class="fas fa-circle-check" style="color: var(--clay); font-size: 1.3rem; margin-top: 0.2rem;"></i>
                         <div>
                             <strong>راهکارهای عملیاتی برای همان هفته:</strong> تمرین‌های مشخص برای گفت‌وگو درباره پول، تربیت فرزند، یا نزدیکی جسمی، برای اجرا در منزل و تثبیت نتیجه جلسه.
                         </div>
@@ -907,7 +784,7 @@
                     <span class="article-tag">دلبستگی و صمیمیت</span>
                     <h3 class="article-title">سبک دلبستگی شما چگونه رابطه زناشویی‌تان را جهت می‌دهد؟</h3>
                     <p class="article-desc">تحلیل تاثیر سبک‌های دلبستگی ایمن، اضطرابی و اجتنابی بر نحوه مدیریت تعارضات همسران.</p>
-                    <a href="https://zoojdarman.ir/articles/attachment-style-in-marriage" style="color: var(--primary); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="https://zoojdarman.ir/articles/attachment-style-in-marriage" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -916,7 +793,7 @@
                     <span class="article-tag">درمان خیانت</span>
                     <h3 class="article-title">گام‌های طلایی برای مواجهه صحیح با شوک اولیه خیانت</h3>
                     <p class="article-desc">اقدامات ضروری و تصمیماتی که نباید در روزهای نخست پس از کشف خیانت به شکل شتاب‌زده گرفته شوند.</p>
-                    <a href="https://zoojdarman.ir/articles/dealing-with-infidelity-shock" style="color: var(--primary); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="https://zoojdarman.ir/articles/dealing-with-infidelity-shock" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -925,7 +802,7 @@
                     <span class="article-tag">مهارت‌های ارتباطی</span>
                     <h3 class="article-title">چگونه بدون سرزنش کردن، خواسته‌های عاطفی خود را مطرح کنیم؟</h3>
                     <p class="article-desc">تکنیک فرمول گفت‌وگوی امن برای پیشگیری از موضع دفاعی گرفتن همسر در مشاجرات.</p>
-                    <a href="https://zoojdarman.ir/articles/safe-communication-in-relationships" style="color: var(--primary); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="https://zoojdarman.ir/articles/safe-communication-in-relationships" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -934,7 +811,7 @@
                     <span class="article-tag">فاصله عاطفی</span>
                     <h3 class="article-title">وقتی سکوت جای دعوا را می‌گیرد: نشانه‌های سرد شدن رابطه</h3>
                     <p class="article-desc">چگونه بی‌تفاوتی و کاهش گفت‌وگو خطرناک‌تر از دعواست و اولین قدم برای بازگرداندن نزدیکی چیست.</p>
-                    <a href="https://zoojdarman.ir/articles/emotional-distance-in-marriage" style="color: var(--primary); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="https://zoojdarman.ir/articles/emotional-distance-in-marriage" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -943,7 +820,7 @@
                     <span class="article-tag">خانواده و مرزبندی</span>
                     <h3 class="article-title">دخالت خانواده‌ها در زندگی مشترک: کجا باید مرز کشید؟</h3>
                     <p class="article-desc">راهکارهایی برای مدیریت مؤدبانه اما قاطعانه دخالت والدین بدون تنش دائمی بین خانواده‌ها.</p>
-                    <a href="https://zoojdarman.ir/articles/family-interference-boundaries" style="color: var(--primary); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="https://zoojdarman.ir/articles/family-interference-boundaries" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -952,7 +829,52 @@
                     <span class="article-tag">حسادت و اعتماد</span>
                     <h3 class="article-title">حسادت بیمارگونه یا نگرانی طبیعی؛ مرز کجاست؟</h3>
                     <p class="article-desc">تفاوت شک سالم با کنترل‌گری افراطی، و راهکار برای زوجینی که بی‌اعتمادی زندگی‌شان را فرسوده کرده.</p>
-                    <a href="https://zoojdarman.ir/articles/jealousy-and-trust-issues" style="color: var(--primary); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="https://zoojdarman.ir/articles/jealousy-and-trust-issues" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-content">
+                    <span class="article-tag">رابطه سمی</span>
+                    <h3 class="article-title">رابطه سمی چیست؟ ۱۰ نشانه‌ای که نباید نادیده بگیرید</h3>
+                    <p class="article-desc">تفاوت رابطه سمی با یک رابطه‌ی سخت اما سالم، و راهکار عملی برای خروج یا ترمیم آن.</p>
+                    <a href="https://zoojdarman.ir/articles/toxic-relationship-signs" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-content">
+                    <span class="article-tag">طلاق عاطفی</span>
+                    <h3 class="article-title">طلاق عاطفی چیست؟ نشانه‌ها و راه بازگشت یا تصمیم</h3>
+                    <p class="article-desc">وقتی زیر یک سقف اما از هم دور هستید؛ نشانه‌های طلاق عاطفی و مسیرهای پیش‌رو.</p>
+                    <a href="https://zoojdarman.ir/articles/emotional-divorce" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-content">
+                    <span class="article-tag">نشانه‌های خیانت</span>
+                    <h3 class="article-title">نشانه‌های خیانت همسر | چه زمانی نگرانی واقعی است؟</h3>
+                    <p class="article-desc">نشانه‌های رفتاری خیانت و تشخیص آن از سوءتفاهم یا استرس عادی، بدون دامن‌زدن به شک بی‌مورد.</p>
+                    <a href="https://zoojdarman.ir/articles/signs-of-cheating-partner" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-content">
+                    <span class="article-tag">زبان عشق</span>
+                    <h3 class="article-title">زبان‌های عشق: همسرتان چطور محبت را می‌فهمد</h3>
+                    <p class="article-desc">پنج زبان عشق و اینکه چرا با وجود عشق واقعی، گاهی همسرتان محبت شما را حس نمی‌کند.</p>
+                    <a href="https://zoojdarman.ir/articles/five-love-languages" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-content">
+                    <span class="article-tag">گسلایتینگ</span>
+                    <h3 class="article-title">گسلایتینگ در رابطه: وقتی واقعیت خودتان را باور نمی‌کنید</h3>
+                    <p class="article-desc">نشانه‌های گسلایتینگ و راهکار عملی برای مقابله با این الگوی ظریف اما آسیب‌زا.</p>
+                    <a href="https://zoojdarman.ir/articles/gaslighting-in-relationships" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
         </div>
@@ -1018,8 +940,8 @@
                     <div class="contact-icon"><i class="fas fa-phone-flip"></i></div>
                     <div>
                         <h4 style="font-weight: 700;">تماس مستقیم تلفنی</h4>
-                        <a href="tel:+989199087264" style="text-decoration: none; color: var(--primary); font-weight: 800;">۰۹۱۹۹۰۸۷۲۶۴</a> | 
-                        <a href="tel:+982144600980" style="text-decoration: none; color: var(--text-muted);">۰۲۱-۴۴۶۰۰۹۸۰</a>
+                        <a href="tel:+989199087264" style="text-decoration: none; color: var(--teal); font-weight: 800;">۰۹۱۹۹۰۸۷۲۶۴</a> | 
+                        <a href="tel:+982144600980" style="text-decoration: none; color: var(--ink-soft);">۰۲۱-۴۴۶۰۰۹۸۰</a>
                     </div>
                 </div>
 
@@ -1027,7 +949,7 @@
                     <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
                     <div>
                         <h4 style="font-weight: 700;">پشتیبانی واتساپ</h4>
-                        <a href="https://wa.me/qr/XQLBHPDADJZND1" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: var(--secondary); font-weight: 800;">ارسال پیام و رزرو نوبت آنلاین</a>
+                        <a href="https://wa.me/989199087264" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: var(--clay); font-weight: 800;">ارسال پیام و رزرو نوبت آنلاین</a>
                     </div>
                 </div>
 
@@ -1035,14 +957,14 @@
                     <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                     <div>
                         <h4 style="font-weight: 700;">ایمیل رسمی</h4>
-                        <a href="mailto:Khoini.1988@gmail.com" style="color: var(--text-muted); font-size: 0.9rem; text-decoration:none;">Khoini.1988@gmail.com</a>
+                        <a href="mailto:Khoini.1988@gmail.com" style="color: var(--ink-soft); font-size: 0.9rem; text-decoration:none;">Khoini.1988@gmail.com</a>
                     </div>
                 </div>
             </div>
 
             <div class="contact-card-box" style="background: #ffffff;">
                 <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 1.5rem;">فرم درخواست مشاوره اولیه</h3>
-                <form class="form-luxury" onsubmit="event.preventDefault(); alert('درخواست شما با موفقیت ثبت شد. به‌زودی با شما تماس خواهیم گرفت.');">
+                <form class="form-luxury" id="consultForm" onsubmit="return submitConsultForm(event)">
                     <label for="fullname" class="sr-only">نام و نام خانوادگی</label>
                     <input id="fullname" name="fullname" type="text" placeholder="نام و نام خانوادگی" required>
                     <label for="phone" class="sr-only">شماره تماس</label>
@@ -1059,8 +981,9 @@
                     <label for="message" class="sr-only">توضیحات</label>
                     <textarea id="message" name="message" rows="4" placeholder="توضیح مختصری از وضعیت رابطه (اختیاری)"></textarea>
                     <button type="submit" class="btn-main btn-primary-gradient" style="width: 100%; justify-content: center;">
-                        <i class="fas fa-paper-plane"></i> ارسال درخواست مشاوره
+                        <i class="fab fa-whatsapp"></i> ارسال درخواست از طریق واتساپ
                     </button>
+                    <p style="text-align:center; font-size:0.82rem; color: var(--ink-soft); margin-top: 0.8rem;">با ارسال، واتساپ باز می‌شود و پیام آماده برای شما نوشته می‌شود؛ کافی است آن را برای ما بفرستید.</p>
                 </form>
             </div>
         </div>
@@ -1070,7 +993,7 @@
     <footer class="footer-luxury">
         <div class="footer-grid">
             <div class="footer-brand">
-                <h3><i class="fas fa-heart-circle-check" style="color: var(--secondary);"></i> zoojdarman.ir</h3>
+                <h3><i class="fas fa-heart-pulse" style="color: var(--clay);"></i> zoojdarman.ir</h3>
                 <p>پلتفرم تخصصی زوج‌درمانی و مشاوره خانواده با مدیریت سرکار خانم مهناز خوینی. همراه شما در مسیر ترمیم، رشد و ایجاد صمیمیت پایدار در رابطه.</p>
             </div>
             <div class="footer-col">
@@ -1096,12 +1019,12 @@
                 <ul>
                     <li><a href="https://peyvandamn.ir" target="_blank" rel="noopener noreferrer">وب‌سایت پیوند امن</a></li>
                     <li><a href="https://instagram.com/peyvandamn.ir" target="_blank" rel="noopener noreferrer">اینستاگرام پیوند امن</a></li>
-                    <li><a href="https://t.me/peyvandamn" target="_blank" rel="noopener noreferrer">کانال تلگرام</a></li>
+                    <li><a href="https://t.me/MKHOINI" target="_blank" rel="noopener noreferrer">تلگرام مهناز خوینی</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom-bar">
-            تمامی حقوق مادی و معنوی محفوظ است © ۱۴۰۴ | طراحی لوکس و بهینه‌سازی سئو برای <a href="https://zoojdarman.ir">zoojdarman.ir</a> | مدیریت: <a href="https://peyvandamn.ir" target="_blank" rel="noopener noreferrer">مهناز خوینی</a>
+            تمامی حقوق مادی و معنوی محفوظ است © ۱۴۰۴ | طراحی لوکس و بهینه‌سازی سئو برای <a href="https://zoojdarman.ir">zoojdarman.ir</a> | مدیریت: <a href="https://peyvandamn.ir" target="_blank" rel="noopener noreferrer" style="white-space: nowrap;">مهناز خوینی</a>
         </div>
     </footer>
 
@@ -1126,19 +1049,61 @@
         // Mobile Menu Toggle
         function toggleMobileMenu() {
             const navMenu = document.getElementById('navMenu');
-            if (navMenu.style.display === 'flex') {
-                navMenu.style.display = 'none';
-            } else {
-                navMenu.style.display = 'flex';
-                navMenu.style.flexDirection = 'column';
-                navMenu.style.position = 'absolute';
-                navMenu.style.top = '70px';
-                navMenu.style.right = '0';
-                navMenu.style.left = '0';
-                navMenu.style.background = '#ffffff';
-                navMenu.style.padding = '2rem';
-                navMenu.style.boxShadow = '0 20px 40px rgba(0,0,0,0.1)';
+            const overlay = document.getElementById('menuOverlay');
+            const toggleBtn = document.getElementById('mobileToggle');
+            const icon = toggleBtn.querySelector('i');
+            const isOpen = navMenu.classList.contains('open');
+            setMobileMenu(!isOpen);
+        }
+
+        function setMobileMenu(open) {
+            const navMenu = document.getElementById('navMenu');
+            const overlay = document.getElementById('menuOverlay');
+            const toggleBtn = document.getElementById('mobileToggle');
+            const icon = toggleBtn.querySelector('i');
+
+            navMenu.classList.toggle('open', open);
+            overlay.classList.toggle('active', open);
+            toggleBtn.classList.toggle('open', open);
+            toggleBtn.setAttribute('aria-expanded', String(open));
+            document.body.style.overflow = open ? 'hidden' : '';
+
+            icon.classList.toggle('fa-bars', !open);
+            icon.classList.toggle('fa-xmark', open);
+        }
+
+        function closeMobileMenu() {
+            setMobileMenu(false);
+        }
+
+        // Belt-and-suspenders: close on link click (event listener) ...
+        document.querySelectorAll('#navMenu .nav-link, #navMenu .btn-header-inmenu').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+        // ... and also when the URL hash changes (covers any edge case the click handler might miss)
+        window.addEventListener('hashchange', closeMobileMenu);
+
+        // Consultation form: builds a WhatsApp message from the entered fields (no backend needed)
+        function submitConsultForm(e) {
+            e.preventDefault();
+            const form = document.getElementById('consultForm');
+            const name = form.fullname.value.trim();
+            const phone = form.phone.value.trim();
+            const select = form['service-type'];
+            const serviceText = select.options[select.selectedIndex].text;
+            const details = form.message.value.trim();
+
+            let text = 'سلام، درخواست مشاوره اولیه دارم.' + '\n';
+            text += 'نام: ' + name + '\n';
+            text += 'شماره تماس: ' + phone + '\n';
+            text += 'نوع مشاوره: ' + serviceText;
+            if (details) {
+                text += '\n' + 'توضیح: ' + details;
             }
+
+            const waLink = 'https://wa.me/989199087264?text=' + encodeURIComponent(text);
+            window.open(waLink, '_blank');
+            return false;
         }
 
         // FAQ Accordion Toggle
