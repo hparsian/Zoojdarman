@@ -177,9 +177,11 @@
         ::selection { background: var(--teal-light); color: #fff; }
 
         #scroll-progress {
-            position: fixed; top: 0; right: 0; height: 3px;
+            position: fixed; top: 0; right: 0; height: 3px; width: 100%;
             background: linear-gradient(90deg, var(--clay), var(--teal));
-            z-index: 9999; width: 0%; transition: width 0.1s ease-out;
+            z-index: 9999;
+            transform: scaleX(0);
+            transform-origin: right;
         }
 
         /* Header: the ONE place glass/blur is used, since it's a single fixed element, not repeated content */
@@ -189,9 +191,9 @@
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
             border-bottom: 1px solid var(--border-color);
-            transition: box-shadow 0.3s ease, padding 0.3s ease;
+            transition: box-shadow 0.3s ease;
         }
-        .header.scrolled { box-shadow: 0 6px 20px rgba(51,42,40,0.08); padding: 0.15rem 0; }
+        .header.scrolled { box-shadow: 0 6px 20px rgba(51,42,40,0.08); }
         .nav-container {
             max-width: 1280px; margin: 0 auto;
             padding: 0.9rem 2rem;
@@ -1030,21 +1032,34 @@
 
     <!-- Interactive Scripts -->
     <script>
-        // Scroll Progress Bar
-        window.onscroll = function() {
-            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            let scrolled = (winScroll / height) * 100;
-            document.getElementById("scroll-progress").style.width = scrolled + "%";
+        // Scroll Progress Bar + Navbar shadow — throttled with requestAnimationFrame
+        // and using a passive listener so the browser can scroll smoothly without
+        // waiting on JS. scrollHeight/clientHeight are cached and only recomputed on
+        // resize, instead of being read on every scroll tick (which forces a costly
+        // synchronous layout on mobile and is the main cause of scroll jank).
+        let pageScrollable = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        window.addEventListener('resize', function () {
+            pageScrollable = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        }, { passive: true });
 
-            // Navbar shadow on scroll
-            const header = document.getElementById('header');
-            if (winScroll > 40) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
+        const scrollProgressEl = document.getElementById('scroll-progress');
+        const headerEl = document.getElementById('header');
+        let scrollTicking = false;
+
+        function updateOnScroll() {
+            const winScroll = window.scrollY;
+            const scrolled = pageScrollable > 0 ? Math.min(winScroll / pageScrollable, 1) : 0;
+            scrollProgressEl.style.transform = 'scaleX(' + scrolled + ')';
+            headerEl.classList.toggle('scrolled', winScroll > 40);
+            scrollTicking = false;
+        }
+
+        window.addEventListener('scroll', function () {
+            if (!scrollTicking) {
+                window.requestAnimationFrame(updateOnScroll);
+                scrollTicking = true;
             }
-        };
+        }, { passive: true });
 
         // Mobile Menu Toggle
         function toggleMobileMenu() {
