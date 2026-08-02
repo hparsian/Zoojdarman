@@ -309,13 +309,13 @@
             border: 1px solid var(--border-color);
         }
         .therapist-image-box {
-            width: 100%; height: 460px;
+            width: 100%; aspect-ratio: 4 / 5;
             border-radius: calc(var(--radius-lg) - 6px);
             overflow: hidden; position: relative;
             background: linear-gradient(160deg, var(--teal-soft), var(--clay-soft));
             display: flex; align-items: flex-end; justify-content: center;
         }
-        .therapist-image-box img { width: 100%; height: 100%; object-fit: cover; }
+        .therapist-image-box img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; }
 
         .floating-badge {
             position: absolute; background: #ffffff;
@@ -559,8 +559,8 @@
                         <!-- تصویر بالای صفحه (LCP) - بدون lazy loading و با اولویت بارگذاری بالا -->
                         <img src="https://zoojdarman.ir/images/mahnaz-khoini.jpg" 
                              alt="مهناز خوینی - زوج‌درمانگر و مشاور خانواده" 
-                             width="440" 
-                             height="480" 
+                             width="400" 
+                             height="500" 
                              fetchpriority="high"
                              decoding="async"
                              onerror="this.style.display='none';">
