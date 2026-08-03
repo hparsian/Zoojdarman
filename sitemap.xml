@@ -98,4 +98,20 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <!-- ۳ مقاله‌ی خوشه‌ای جدید برای تقویت موضوعات پرجست‌وجو -->
+  <url>
+    <loc>https://zoojdarman.ir/articles/emotional-divorce-men-vs-women</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/how-to-leave-toxic-relationship</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/why-people-cheat</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
