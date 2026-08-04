@@ -418,8 +418,29 @@
 
         /* ===== Articles ===== */
         .articles-section { background: var(--cream); }
-        .articles-grid { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; }
-        .article-card { background: #ffffff; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .articles-carousel-wrap { max-width: 1280px; margin: 0 auto; position: relative; }
+        .articles-grid {
+            display: flex; gap: 1.4rem; overflow-x: auto; scroll-behavior: smooth;
+            scroll-snap-type: x mandatory; padding: 0.4rem 0.2rem 1.2rem;
+            -webkit-overflow-scrolling: touch; scrollbar-width: thin;
+        }
+        .articles-grid::-webkit-scrollbar { height: 6px; }
+        .articles-grid::-webkit-scrollbar-thumb { background: var(--teal-soft-2); border-radius: 10px; }
+        .article-card {
+            background: #ffffff; border-radius: var(--radius-md); overflow: hidden;
+            border: 1px solid var(--border-color); transition: transform 0.2s ease, box-shadow 0.2s ease;
+            flex: 0 0 auto; width: 300px; scroll-snap-align: start;
+        }
+        .carousel-arrow {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 42px; height: 42px; border-radius: 50%; z-index: 5;
+            background: #ffffff; border: 1px solid var(--border-color); box-shadow: var(--shadow-soft);
+            color: var(--teal); display: flex; align-items: center; justify-content: center;
+            cursor: pointer; font-size: 1rem;
+        }
+        .carousel-arrow.prev { right: -8px; }
+        .carousel-arrow.next { left: -8px; }
+        @media (max-width: 768px) { .carousel-arrow { display: none; } }
         .article-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-soft); }
         .article-content { padding: 1.7rem; }
         .article-tag { font-size: 0.74rem; font-weight: 800; color: var(--clay); text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
@@ -468,7 +489,7 @@
         /* ===== Responsive ===== */
         @media (max-width: 1024px) {
             .hero-grid, .bio-grid, .contact-grid, .peyvand-link-box { grid-template-columns: 1fr; gap: 2.5rem; }
-            .services-grid, .articles-grid { grid-template-columns: repeat(2, 1fr); }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
             .hero-title { font-size: 2.5rem; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -493,7 +514,8 @@
             .nav-menu-external { display: block; }
             .btn-header-desktop-only { display: none; }
             .mobile-toggle { display: flex; }
-            .services-grid, .articles-grid, .stats-grid, .footer-grid { grid-template-columns: 1fr; }
+            .services-grid, .stats-grid, .footer-grid { grid-template-columns: 1fr; }
+            .article-card { width: 260px; }
             .hero { padding-top: 120px; }
             .badge-1, .badge-2 { display: none; }
             .hero-title { font-size: 2rem; }
@@ -511,7 +533,7 @@
     <header class="header" id="header">
         <div class="nav-container">
             <a href="#home" class="logo">
-                <img src="/images/logo-header.png" alt="زوج درمان - مهناز خوینی - Zoojdarman.ir" height="44" style="width:auto; display:block;">
+                <img src="/images/logo-header.png" alt="زوج درمان - مهناز خوینی - Zoojdarman.ir" height="44" style="width:auto; display:block; border-radius:8px;">
             </a>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#home" class="nav-link" onclick="closeMobileMenu()"><i class="fas fa-house nav-link-icon"></i> صفحه اصلی</a></li>
@@ -796,7 +818,10 @@
             <p class="section-desc">مطالب آموزشی برتر برای ارتقای آگاهی و بهبود کیفیت زندگی زناشویی</p>
         </div>
 
-        <div class="articles-grid">
+        <div class="articles-carousel-wrap">
+            <button class="carousel-arrow next" onclick="scrollArticles(-1)" aria-label="مقاله بعدی"><i class="fas fa-chevron-right"></i></button>
+            <button class="carousel-arrow prev" onclick="scrollArticles(1)" aria-label="مقاله قبلی"><i class="fas fa-chevron-left"></i></button>
+            <div class="articles-grid" id="articlesGrid">
             <article class="article-card">
                 <div class="article-content">
                     <span class="article-tag">دلبستگی و صمیمیت</span>
@@ -922,6 +947,7 @@
                     <a href="https://zoojdarman.ir/articles/why-people-cheat" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
+            </div>
         </div>
     </section>
 
@@ -1148,6 +1174,58 @@
         });
         // ... and also when the URL hash changes (covers any edge case the click handler might miss)
         window.addEventListener('hashchange', closeMobileMenu);
+
+        // Articles carousel: auto-advances every few seconds, pauses when the
+        // user manually scrolls/touches it, then resumes after a short delay.
+        (function () {
+            const track = document.getElementById('articlesGrid');
+            if (!track) return;
+            let autoTimer = null;
+            let resumeTimer = null;
+
+            function cardStep() {
+                const card = track.querySelector('.article-card');
+                const gap = 22; // matches the 1.4rem gap in CSS
+                return card ? card.getBoundingClientRect().width + gap : 320;
+            }
+
+            function advance() {
+                const maxScroll = track.scrollWidth - track.clientWidth - 4;
+                if (track.scrollLeft <= -maxScroll) {
+                    // RTL: scrollLeft goes negative as you scroll toward the end; wrap back to start
+                    track.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    track.scrollBy({ left: -cardStep(), behavior: 'smooth' });
+                }
+            }
+
+            function startAuto() {
+                stopAuto();
+                autoTimer = setInterval(advance, 4000);
+            }
+            function stopAuto() {
+                if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+            }
+            function pauseThenResume() {
+                stopAuto();
+                clearTimeout(resumeTimer);
+                resumeTimer = setTimeout(startAuto, 6000);
+            }
+
+            track.addEventListener('pointerdown', pauseThenResume, { passive: true });
+            track.addEventListener('wheel', pauseThenResume, { passive: true });
+
+            startAuto();
+        })();
+
+        function scrollArticles(direction) {
+            const track = document.getElementById('articlesGrid');
+            if (!track) return;
+            const card = track.querySelector('.article-card');
+            const gap = 22;
+            const step = (card ? card.getBoundingClientRect().width : 300) + gap;
+            track.scrollBy({ left: direction * step, behavior: 'smooth' });
+        }
 
         // Consultation form: builds a WhatsApp message from the entered fields (no backend needed)
         function submitConsultForm(e) {
