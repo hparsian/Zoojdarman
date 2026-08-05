@@ -87,7 +87,7 @@ a { color: var(--teal); }
     background: var(--teal-soft); border-radius: 16px; padding: 1.25rem; margin-top: 3rem;
     border: 1px solid var(--teal-soft-2);
 }
-.author-box img { width: 58px; height: 58px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+.author-box img { width: 58px; height: 58px; border-radius: 50%; object-fit: cover; object-position: center 15%; flex-shrink: 0; }
 .author-box h4 { font-size: 0.98rem; color: var(--ink); }
 .author-box p { font-size: 0.84rem; color: var(--ink-soft); margin: 0; }
 
