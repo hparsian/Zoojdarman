@@ -164,6 +164,7 @@
             --clay: #c77b58;
             --clay-light: #d68a63;
             --clay-soft: #f5e3d8;
+            --clay-text: #924f31; /* darker clay for small/bold text — meets WCAG AA (4.5:1) on cream and clay-soft; --clay itself stays for icons/backgrounds where only 3:1 is required */
             --gold-thread: #c9a227;
             --border-color: rgba(51, 42, 40, 0.1);
             --shadow-soft: 0 8px 24px -8px rgba(51, 42, 40, 0.12);
@@ -276,7 +277,7 @@
         }
         .hero-badge-top {
             display: inline-flex; align-items: center; gap: 0.5rem;
-            color: var(--clay); font-weight: 700; font-size: 0.88rem;
+            color: var(--clay-text); font-weight: 700; font-size: 0.88rem;
             margin-bottom: 1.4rem; padding-bottom: 0.3rem;
             border-bottom: 2px solid var(--clay-soft);
         }
@@ -363,7 +364,7 @@
         section { padding: 5.5rem 2rem; }
         .section-title-wrap { text-align: center; max-width: 700px; margin: 0 auto 3.5rem; }
         .section-subtitle {
-            color: var(--clay); font-weight: 700; font-size: 0.85rem;
+            color: var(--clay-text); font-weight: 700; font-size: 0.85rem;
             text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.6rem;
             display: inline-flex; align-items: center; gap: 0.5rem;
         }
@@ -443,7 +444,7 @@
         @media (max-width: 768px) { .carousel-arrow { display: none; } }
         .article-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-soft); }
         .article-content { padding: 1.7rem; }
-        .article-tag { font-size: 0.74rem; font-weight: 800; color: var(--clay); text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
+        .article-tag { font-size: 0.74rem; font-weight: 800; color: var(--clay-text); text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
         .article-title { font-size: 1.15rem; font-weight: 800; margin-bottom: 0.75rem; line-height: 1.5; color: var(--ink); }
         .article-desc { font-size: 0.9rem; color: var(--ink-soft); margin-bottom: 1.1rem; }
 
@@ -836,6 +837,24 @@
             <div class="articles-grid" id="articlesGrid">
             <article class="article-card">
                 <div class="article-content">
+                    <span class="article-tag">پیش از ازدواج</span>
+                    <h3 class="article-title">سوالات مشاوره پیش از ازدواج: چه چیزهایی باید بپرسید؟</h3>
+                    <p class="article-desc">هفت حوزه‌ی کلیدی که باید پیش از ازدواج با نامزدتان صادقانه گفت‌وگو کنید.</p>
+                    <a href="https://zoojdarman.ir/articles/premarital-counseling-questions" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-content">
+                    <span class="article-tag">طلاق</span>
+                    <h3 class="article-title">کی باید به فکر طلاق باشیم؟ راهنمای تصمیم‌گیری آگاهانه</h3>
+                    <p class="article-desc">تفاوت دوره‌ی سخت با نقطه‌ی جدی‌شدن فکر طلاق، و مسیر تصمیم‌گیری کم‌آسیب.</p>
+                    <a href="https://zoojdarman.ir/articles/deciding-about-divorce" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-content">
                     <span class="article-tag">دلبستگی و صمیمیت</span>
                     <h3 class="article-title">سبک دلبستگی شما چگونه رابطه زناشویی‌تان را جهت می‌دهد؟</h3>
                     <p class="article-desc">تحلیل تاثیر سبک‌های دلبستگی ایمن، اضطرابی و اجتنابی بر نحوه مدیریت تعارضات همسران.</p>
@@ -1104,7 +1123,7 @@
                     <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
                     <div>
                         <h4 style="font-weight: 700;">پشتیبانی واتساپ</h4>
-                        <a href="https://wa.me/989199087264" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: var(--clay); font-weight: 800;">ارسال پیام و رزرو نوبت آنلاین</a>
+                        <a href="https://wa.me/989199087264" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: var(--clay-text); font-weight: 800;">ارسال پیام و رزرو نوبت آنلاین</a>
                     </div>
                 </div>
 

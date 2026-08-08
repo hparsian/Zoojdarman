@@ -9,6 +9,7 @@
     --clay: #c77b58;
     --clay-light: #d68a63;
     --clay-soft: #f5e3d8;
+    --clay-text: #924f31; /* darker clay for small/bold text — meets WCAG AA (4.5:1) on cream and clay-soft */
     --border-color: rgba(51, 42, 40, 0.1);
     --shadow-soft: 0 8px 24px -10px rgba(51, 42, 40, 0.14);
 }
@@ -34,7 +35,7 @@ a { color: var(--teal); }
 
 .article-wrap { max-width: 800px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
 .article-tag-top {
-    display: inline-block; background: var(--clay-soft); color: var(--clay);
+    display: inline-block; background: var(--clay-soft); color: var(--clay-text);
     font-size: 0.78rem; font-weight: 800; padding: 0.3rem 1rem; border-radius: 50px;
     margin-bottom: 1.2rem;
 }
@@ -56,7 +57,7 @@ a { color: var(--teal); }
     border-right: 4px solid var(--clay);
     border-radius: 12px; padding: 1.25rem 1.5rem; margin: 1.7rem 0;
 }
-.callout strong { color: var(--clay); }
+.callout strong { color: var(--clay-text); }
 
 .cta-box {
     background: var(--teal); color: white; border-radius: 20px; padding: 2.1rem; margin: 3rem 0; text-align: center;
