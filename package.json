@@ -1,0 +1,14 @@
+{
+  "name": "zoojdarman",
+  "version": "1.0.0",
+  "description": "مرکز تخصصی زوج‌درمانی، مشاوره خیانت، طلاق و روابط عاطفی مهناز خوینی",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "node -e \"console.log('Build completed')\"",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

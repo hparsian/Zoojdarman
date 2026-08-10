@@ -197,4 +197,23 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <!-- مقالات تخصصی جدید و پرجست‌وجو (خوشه کلیدواژه‌های طلایی) -->
+  <url>
+    <loc>https://zoojdarman.ir/articles/rebuilding-trust-after-infidelity</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/sex-therapy-marital-intimacy</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/anger-management-in-marriage</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
 </urlset>
