@@ -278,7 +278,7 @@ a:hover { color: var(--clay); }
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-top: 1px solid rgba(0, 0, 0, 0.1);
-        padding: 0.6rem 0.8rem;
+        padding: 0.6rem 0.8rem max(0.6rem, env(safe-area-inset-bottom, 0.6rem));
         box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
     }
     .mobile-quick-actions {

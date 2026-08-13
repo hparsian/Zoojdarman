@@ -15,8 +15,8 @@ app.use((req, res, next) => {
   const forwardedProto = req.headers['x-forwarded-proto'];
   const host = req.headers.host || '';
   
-  // If request is HTTP or non-canonical host, redirect 301 to canonical HTTPS
-  if (forwardedProto === 'http') {
+  // If request is HTTP on production domain, redirect 301 to canonical HTTPS
+  if (forwardedProto === 'http' && (host === 'zoojdarman.ir' || host === 'www.zoojdarman.ir')) {
     return res.redirect(301, `https://zoojdarman.ir${req.originalUrl}`);
   }
   

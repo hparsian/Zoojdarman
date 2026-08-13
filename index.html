@@ -20,11 +20,12 @@
     <meta name="robots" content="index, follow">
     <meta name="language" content="Persian">
     <meta name="author" content="مهناز خوینی">
-    <link rel="canonical" href="https://zoojdarman.ir/">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/images/logo-512.png">
-    <link rel="apple-touch-icon" href="/images/logo-512.png">
+    <link rel="canonical" href="/">
+    <!-- Favicon & Touch Icons -->
+    <link rel="icon" type="image/svg+xml" href="/images/logo.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-512.png">
+    <link rel="shortcut icon" href="/favicon.ico">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -874,7 +875,7 @@
                 backdrop-filter: blur(12px);
                 -webkit-backdrop-filter: blur(12px);
                 border-top: 1px solid rgba(0, 0, 0, 0.1);
-                padding: 0.6rem 0.8rem;
+                padding: 0.6rem 0.8rem max(0.6rem, env(safe-area-inset-bottom, 0.6rem));
                 box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
             }
             .mobile-quick-actions {
@@ -964,8 +965,10 @@
         }
         @media (max-width: 768px) {
             html, body { overflow-x: hidden; max-width: 100vw; }
-            body { padding-bottom: 70px; }
+            body { padding-bottom: 75px; }
             section { padding: 3.5rem 1.2rem; }
+            .nav-container { padding: 0.75rem 1rem; }
+            .logo { font-size: 1.25rem; }
             .mobile-quick-bar { display: block; }
             .back-to-top { bottom: 80px; left: 16px; right: auto; width: 42px; height: 42px; }
             .nav-menu {
@@ -977,6 +980,7 @@
                 padding: 1.2rem 1.4rem;
                 box-shadow: var(--shadow-hover);
                 gap: 0.2rem; z-index: 995;
+                max-height: calc(100vh - 85px); overflow-y: auto; -webkit-overflow-scrolling: touch;
                 transform: translateY(-16px); opacity: 0; visibility: hidden; pointer-events: none;
                 transition: transform 0.25s ease, opacity 0.25s ease, visibility 0.25s ease;
             }
@@ -1072,7 +1076,7 @@
 
             /* Contact & Footer Mobile */
             .contact-grid { grid-template-columns: 1fr; gap: 1.8rem; }
-            .contact-card { padding: 1.4rem 1.1rem; border-radius: var(--radius-lg); }
+            .contact-card-box { padding: 1.4rem 1.1rem; border-radius: var(--radius-lg); }
             .contact-map-frame { height: 260px; border-radius: var(--radius-lg); }
             .footer-luxury { padding: 3.5rem 1.2rem 2.2rem; }
             .footer-grid { grid-template-columns: 1fr; gap: 2.2rem; text-align: center; }
@@ -1194,10 +1198,10 @@
                 </div>
 
                 <div class="floating-badge badge-2">
-                    <div class="badge-icon badge-icon-teal"><i class="fas fa-shield-heart"></i></div>
+                    <div class="badge-icon badge-icon-teal"><i class="fas fa-globe"></i></div>
                     <div class="badge-text">
-                        <p class="badge-value">+۲۰۰۰ جلسه مشاوره</p>
-                        <p>حضوری تهران و آنلاین بین‌الملل</p>
+                        <p class="badge-value">حضوری و آنلاین</p>
+                        <p>تهران و مراجعان خارج از کشور</p>
                     </div>
                 </div>
 
@@ -1211,10 +1215,10 @@
                         </div>
                     </div>
                     <div class="trust-pill-item">
-                        <div class="trust-pill-icon badge-icon-teal"><i class="fas fa-shield-heart"></i></div>
+                        <div class="trust-pill-icon badge-icon-teal"><i class="fas fa-globe"></i></div>
                         <div>
-                            <p style="font-size:0.88rem; font-weight:800; margin:0; color:var(--ink);">+۲۰۰۰ جلسه</p>
-                            <p style="font-size:0.75rem; color:var(--ink-soft); margin:0;">مشاوره موثر</p>
+                            <p style="font-size:0.88rem; font-weight:800; margin:0; color:var(--ink);">حضوری و آنلاین</p>
+                            <p style="font-size:0.75rem; color:var(--ink-soft); margin:0;">تهران و خارج از کشور</p>
                         </div>
                     </div>
                 </div>
@@ -1227,7 +1231,7 @@
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-icon"><i class="fas fa-comments"></i></div>
-                <p class="stat-value">+۲۰۰۰<span>+</span></p>
+                <p class="stat-value">+۲۰۰۰</p>
                 <p>جلسه مشاوره موفق و مؤثر</p>
             </div>
             <div class="stat-card">
@@ -1302,7 +1306,7 @@
                 <div>
                     <span class="service-badge">رویکرد هیجان‌مدار EFT</span>
                     <div class="service-icon-box"><i class="fas fa-heart-pulse"></i></div>
-                    <h3><a href="https://zoojdarman.ir/services/couples-therapy" style="color: inherit; text-decoration: none;">دعوای مکرر و سردی رابطه</a></h3>
+                    <h3><a href="/services/couples-therapy/" style="color: inherit; text-decoration: none;">دعوای مکرر و سردی رابطه</a></h3>
                     <p>وقتی هر بحث کوچک به دعوای بزرگ تبدیل می‌شود، یا سکوت و بی‌تفاوتی جای گفت‌وگو را گرفته است. شناسایی چرخه منفی «سرزنش-اجتناب» و جایگزینی آن با پیوند عاطفی امن.</p>
                     <ul class="service-features-list">
                         <li><i class="fas fa-check-circle"></i> پایان دادن به مشاجرات تکرارشونده و فرسایشی</li>
@@ -1310,7 +1314,7 @@
                     </ul>
                 </div>
                 <div>
-                    <a href="https://zoojdarman.ir/services/couples-therapy" style="display:block; text-align:center; font-weight:800; font-size:0.88rem; color: var(--teal); margin-bottom: 0.8rem; text-decoration:none;">مشاهده پروتکل کامل درمان ←</a>
+                    <a href="/services/couples-therapy/" style="display:block; text-align:center; font-weight:800; font-size:0.88rem; color: var(--teal); margin-bottom: 0.8rem; text-decoration:none;">مشاهده پروتکل کامل درمان ←</a>
                     <a href="https://wa.me/989199087264?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%AF%D8%B1%D8%AE%D9%88%D8%A7%D8%B3%D8%AA%20%D9%86%D9%88%D8%A8%D8%AA%20%D8%B2%D9%88%D8%AC%E2%80%8C%D8%AF%D8%B1%D9%85%D8%A7%D9%86%DB%8C%20%D8%AF%D8%A7%D8%B1%D9%85" target="_blank" rel="noopener noreferrer" class="btn-main btn-outline-glass" style="width: 100%; justify-content: center;">رزرو جلسه زوج‌درمانی</a>
                 </div>
             </div>
@@ -1320,7 +1324,7 @@
                 <div>
                     <span class="service-badge">پروتکل ۳ مرحله‌ای التیام تروما</span>
                     <div class="service-icon-box"><i class="fas fa-heart-crack"></i></div>
-                    <h3><a href="https://zoojdarman.ir/services/infidelity-counseling" style="color: inherit; text-decoration: none;">خیانت، حسادت و بی‌اعتمادی</a></h3>
+                    <h3><a href="/services/infidelity-counseling/" style="color: inherit; text-decoration: none;">خیانت، حسادت و بی‌اعتمادی</a></h3>
                     <p>از کشف پیمان‌شکنی تا شک‌های مداوم و چک‌کردن گوشی. پروتکل درمانی سه‌مرحله‌ای برای مهار شوک اولیه، التیام تروما، ریشه‌یابی علل و بازسازی تدریجی اعتماد یا تصمیم‌گیری اصولی.</p>
                     <ul class="service-features-list">
                         <li><i class="fas fa-check-circle"></i> مدیریت شوک حاد و نشخوار فکری پس از کشف خیانت</li>
@@ -1328,7 +1332,7 @@
                     </ul>
                 </div>
                 <div>
-                    <a href="https://zoojdarman.ir/services/infidelity-counseling" style="display:block; text-align:center; font-weight:800; font-size:0.88rem; color: var(--teal); margin-bottom: 0.8rem; text-decoration:none;">مشاهده پروتکل کامل درمان ←</a>
+                    <a href="/services/infidelity-counseling/" style="display:block; text-align:center; font-weight:800; font-size:0.88rem; color: var(--teal); margin-bottom: 0.8rem; text-decoration:none;">مشاهده پروتکل کامل درمان ←</a>
                     <a href="https://wa.me/989199087264?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%AF%D8%B1%D8%AE%D9%88%D8%A7%D8%B3%D8%AA%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%AA%D8%AE%D8%B5%D8%B5%DB%8C%20%D8%AE%DB%8C%D8%A7%D9%86%D8%AA%20%D9%88%20%D8%A7%D8%B9%D8%AA%D9%85%D8%A7%D8%AF%20%D8%AF%D8%A7%D8%B1%D9%85" target="_blank" rel="noopener noreferrer" class="btn-main btn-outline-glass" style="width: 100%; justify-content: center;">مشاوره تخصصی خیانت</a>
                 </div>
             </div>
@@ -1338,7 +1342,7 @@
                 <div>
                     <span class="service-badge">تست‌های روان‌سنجی و طرحواره</span>
                     <div class="service-icon-box"><i class="fas fa-ring"></i></div>
-                    <h3><a href="https://zoojdarman.ir/services/premarital-counseling" style="color: inherit; text-decoration: none;">پیش از ازدواج و تفاوت انتظارات</a></h3>
+                    <h3><a href="/services/premarital-counseling/" style="color: inherit; text-decoration: none;">پیش از ازدواج و تفاوت انتظارات</a></h3>
                     <p>اختلاف در دیدگاه نسبت به مسائل مالی، سبک زندگی، روابط با خانواده‌ها و باورها. ارزیابی تخصصی بالینی و تست‌های روان‌سنجی برای سنجش طرحواره‌ها و ریسک‌فاکتورهای ازدواج.</p>
                     <ul class="service-features-list">
                         <li><i class="fas fa-check-circle"></i> سنجش تناسب شخصیتی و الگوهای دلبستگی دو طرف</li>
@@ -1346,7 +1350,7 @@
                     </ul>
                 </div>
                 <div>
-                    <a href="https://zoojdarman.ir/services/premarital-counseling" style="display:block; text-align:center; font-weight:800; font-size:0.88rem; color: var(--teal); margin-bottom: 0.8rem; text-decoration:none;">مشاهده پروتکل کامل درمان ←</a>
+                    <a href="/services/premarital-counseling/" style="display:block; text-align:center; font-weight:800; font-size:0.88rem; color: var(--teal); margin-bottom: 0.8rem; text-decoration:none;">مشاهده پروتکل کامل درمان ←</a>
                     <a href="https://wa.me/989199087264?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%AF%D8%B1%D8%AE%D9%88%D8%A7%D8%B3%D8%AA%20%D8%A7%D8%B1%D8%B2%DB%8C%D8%A7%D8%A8%DB%8C%20%D9%88%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D9%BE%DB%8C%D8%B4%20%D8%A7%D8%B2%20%D8%A7%D8%B2%D8%AF%D9%88%D8%A7%D8%AC%20%D8%AF%D8%A7%D8%B1%D9%85" target="_blank" rel="noopener noreferrer" class="btn-main btn-outline-glass" style="width: 100%; justify-content: center;">رزرو ارزیابی ازدواج</a>
                 </div>
             </div>
@@ -1356,7 +1360,7 @@
                 <div>
                     <span class="service-badge">مدیریت سوگ عاطفی و فرزندان</span>
                     <div class="service-icon-box"><i class="fas fa-scale-balanced"></i></div>
-                    <h3><a href="https://zoojdarman.ir/services/divorce-counseling" style="color: inherit; text-decoration: none;">طلاق، جدایی و تصمیم‌گیری آگاهانه</a></h3>
+                    <h3><a href="/services/divorce-counseling/" style="color: inherit; text-decoration: none;">طلاق، جدایی و تصمیم‌گیری آگاهانه</a></h3>
                     <p>وقتی رابطه به بن‌بست رسیده اما سردرگمی درباره تصمیم درست و نگرانی از آسیب به فرزندان تصمیم‌گیری را دشوار کرده است. همراهی حرفه‌ای برای تفکیک تصمیم هیجانی از منطقی.</p>
                     <ul class="service-features-list">
                         <li><i class="fas fa-check-circle"></i> محافظت از سلامت روانی فرزندان و والدگری مشترک</li>
@@ -1364,7 +1368,7 @@
                     </ul>
                 </div>
                 <div>
-                    <a href="https://zoojdarman.ir/services/divorce-counseling" style="display:block; text-align:center; font-weight:800; font-size:0.88rem; color: var(--teal); margin-bottom: 0.8rem; text-decoration:none;">مشاهده پروتکل کامل درمان ←</a>
+                    <a href="/services/divorce-counseling/" style="display:block; text-align:center; font-weight:800; font-size:0.88rem; color: var(--teal); margin-bottom: 0.8rem; text-decoration:none;">مشاهده پروتکل کامل درمان ←</a>
                     <a href="https://wa.me/989199087264?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%AF%D8%B1%D8%AE%D9%88%D8%A7%D8%B3%D8%AA%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%AA%D8%B5%D9%85%DB%8C%D9%85%E2%80%8C%DA%AF%DB%8C%D8%B1%DB%8C%20%D8%B7%D9%84%D8%A7%D9%82%20%D8%AF%D8%A7%D8%B1%D9%85" target="_blank" rel="noopener noreferrer" class="btn-main btn-outline-glass" style="width: 100%; justify-content: center;">مشاوره طلاق</a>
                 </div>
             </div>
@@ -1374,7 +1378,7 @@
                 <div>
                     <span class="service-badge">گروه‌درمانی تحلیلی و مهارت‌محور</span>
                     <div class="service-icon-box"><i class="fas fa-people-group"></i></div>
-                    <h3><a href="https://zoojdarman.ir/services/relationship-patterns-therapy" style="color: inherit; text-decoration: none;">الگوهای تکرارشونده در روابط</a></h3>
+                    <h3><a href="/services/relationship-patterns-therapy/" style="color: inherit; text-decoration: none;">الگوهای تکرارشونده در روابط</a></h3>
                     <p>برای کسانی که در چند رابطه پیاپی با افراد مشابه یا سناریوهای آسیب‌زای تکراری مواجه می‌شوند. واکاوی ریشه‌های ناخودآگاه انتخاب شریک عاطفی و تقویت عزت‌نفس ارتباطی.</p>
                     <ul class="service-features-list">
                         <li><i class="fas fa-check-circle"></i> شکستن تله‌های انتخاب پارتنر نامناسب</li>
@@ -1382,7 +1386,7 @@
                     </ul>
                 </div>
                 <div>
-                    <a href="https://zoojdarman.ir/services/relationship-patterns-therapy" style="display:block; text-align:center; font-weight:800; font-size:0.88rem; color: var(--teal); margin-bottom: 0.8rem; text-decoration:none;">مشاهده پروتکل کامل درمان ←</a>
+                    <a href="/services/relationship-patterns-therapy/" style="display:block; text-align:center; font-weight:800; font-size:0.88rem; color: var(--teal); margin-bottom: 0.8rem; text-decoration:none;">مشاهده پروتکل کامل درمان ←</a>
                     <a href="https://wa.me/989199087264?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%AF%D8%B1%D8%AE%D9%88%D8%A7%D8%B3%D8%AA%20%D8%AB%D8%A8%D8%AA%E2%80%8C%D9%86%D8%A7%D9%85%20%D8%AF%D8%B1%20%DA%AF%D8%B1%D9%88%D9%87%E2%80%8C%D8%AF%D8%B1%D9%85%D8%A7%D9%86%DB%8C%20%D8%A7%D9%84%DA%AF%D9%88%D9%87%D8%A7%DB%8C%20%D8%B1%D8%A7%D8%A8%D8%B7%D9%87%20%D8%AF%D8%A7%D8%B1%D9%85" target="_blank" rel="noopener noreferrer" class="btn-main btn-outline-glass" style="width: 100%; justify-content: center;">ثبت‌نام در گروه‌درمانی</a>
                 </div>
             </div>
@@ -1392,7 +1396,7 @@
                 <div>
                     <span class="service-badge">بین‌المللی و ایرانیان خارج از کشور</span>
                     <div class="service-icon-box"><i class="fas fa-laptop-medical"></i></div>
-                    <h3><a href="https://zoojdarman.ir/services/online-counseling" style="color: inherit; text-decoration: none;">مشاوره آنلاین تصویری و تلفنی</a></h3>
+                    <h3><a href="/services/online-counseling/" style="color: inherit; text-decoration: none;">مشاوره آنلاین تصویری و تلفنی</a></h3>
                     <p>برگزاری جلسات امن و محرمانه تصویری مطابق با منطقه زمانی مراجعین مقیم آمریکا، اروپا، استرالیا و شهرهای مختلف ایران با بالاترین کیفیت درمانی.</p>
                     <ul class="service-features-list">
                         <li><i class="fas fa-check-circle"></i> هماهنگی زمان جلسات بر اساس Time Zone شما</li>
@@ -1400,7 +1404,7 @@
                     </ul>
                 </div>
                 <div>
-                    <a href="https://zoojdarman.ir/services/online-counseling" style="display:block; text-align:center; font-weight:800; font-size:0.88rem; color: var(--teal); margin-bottom: 0.8rem; text-decoration:none;">مشاهده پروتکل کامل درمان ←</a>
+                    <a href="/services/online-counseling/" style="display:block; text-align:center; font-weight:800; font-size:0.88rem; color: var(--teal); margin-bottom: 0.8rem; text-decoration:none;">مشاهده پروتکل کامل درمان ←</a>
                     <a href="https://wa.me/989199087264?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%AF%D8%B1%D8%AE%D9%88%D8%A7%D8%B3%D8%AA%20%D9%86%D9%88%D8%A8%D8%AA%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%A2%D9%86%D9%84%D8%A7%DB%8C%D9%86%20%D8%AF%D8%A7%D8%B1%D9%85" target="_blank" rel="noopener noreferrer" class="btn-main btn-outline-glass" style="width: 100%; justify-content: center;">رزرو جلسه آنلاین</a>
                 </div>
             </div>
@@ -1494,7 +1498,7 @@
                     <span class="article-tag">درمان خیانت</span>
                     <h3 class="article-title">بازسازی اعتماد پس از خیانت؛ ۶ مرحله علمی ترمیم رابطه</h3>
                     <p class="article-desc">چگونه بعد از خیانت همسر دوباره اعتماد کنیم؟ راهنمای کاربردی بازسازی اعتماد و التیام تروما.</p>
-                    <a href="https://zoojdarman.ir/articles/rebuilding-trust-after-infidelity" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/rebuilding-trust-after-infidelity/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1503,7 +1507,7 @@
                     <span class="article-tag">صمیمیت و سکس‌تراپی</span>
                     <h3 class="article-title">سکس‌تراپی و صمیمیت زناشویی؛ حل تفاوت میل و سردی جنسی</h3>
                     <p class="article-desc">بررسی علل تفاوت میل جنسی همسران و تکنیک‌های استاندارد سکس‌تراپی برای خروج از چرخه فشار-اجتناب.</p>
-                    <a href="https://zoojdarman.ir/articles/sex-therapy-marital-intimacy" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/sex-therapy-marital-intimacy/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1512,7 +1516,7 @@
                     <span class="article-tag">مهارت حل تعارض</span>
                     <h3 class="article-title">مدیریت خشم در مشاجرات؛ چطور رابطه را تخریب نکنیم؟</h3>
                     <p class="article-desc">پروتکل طلایی تایم‌اوت، مهار طغیان هیجانی و جلوگیری از توهین و کلمات غیرقابل جبران در دعوا.</p>
-                    <a href="https://zoojdarman.ir/articles/anger-management-in-marriage" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/anger-management-in-marriage/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1521,7 +1525,7 @@
                     <span class="article-tag">پیش از ازدواج</span>
                     <h3 class="article-title">سوالات مشاوره پیش از ازدواج: چه چیزهایی باید بپرسید؟</h3>
                     <p class="article-desc">هفت حوزه‌ی کلیدی که باید پیش از ازدواج با نامزدتان صادقانه گفت‌وگو کنید.</p>
-                    <a href="https://zoojdarman.ir/articles/premarital-counseling-questions" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/premarital-counseling-questions/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1530,7 +1534,7 @@
                     <span class="article-tag">طلاق</span>
                     <h3 class="article-title">کی باید به فکر طلاق باشیم؟ راهنمای تصمیم‌گیری آگاهانه</h3>
                     <p class="article-desc">تفاوت دوره‌ی سخت با نقطه‌ی جدی‌شدن فکر طلاق، و مسیر تصمیم‌گیری کم‌آسیب.</p>
-                    <a href="https://zoojdarman.ir/articles/deciding-about-divorce" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/deciding-about-divorce/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1539,7 +1543,7 @@
                     <span class="article-tag">دلبستگی و صمیمیت</span>
                     <h3 class="article-title">سبک دلبستگی شما چگونه رابطه زناشویی‌تان را جهت می‌دهد؟</h3>
                     <p class="article-desc">تحلیل تاثیر سبک‌های دلبستگی ایمن، اضطرابی و اجتنابی بر نحوه مدیریت تعارضات همسران.</p>
-                    <a href="https://zoojdarman.ir/articles/attachment-style-in-marriage" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/attachment-style-in-marriage/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1548,7 +1552,7 @@
                     <span class="article-tag">درمان خیانت</span>
                     <h3 class="article-title">گام‌های طلایی برای مواجهه صحیح با شوک اولیه خیانت</h3>
                     <p class="article-desc">اقدامات ضروری و تصمیماتی که نباید در روزهای نخست پس از کشف خیانت به شکل شتاب‌زده گرفته شوند.</p>
-                    <a href="https://zoojdarman.ir/articles/dealing-with-infidelity-shock" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/dealing-with-infidelity-shock/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1557,7 +1561,7 @@
                     <span class="article-tag">مهارت‌های ارتباطی</span>
                     <h3 class="article-title">چگونه بدون سرزنش کردن، خواسته‌های عاطفی خود را مطرح کنیم؟</h3>
                     <p class="article-desc">تکنیک فرمول گفت‌وگوی امن برای پیشگیری از موضع دفاعی گرفتن همسر در مشاجرات.</p>
-                    <a href="https://zoojdarman.ir/articles/safe-communication-in-relationships" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/safe-communication-in-relationships/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1566,7 +1570,7 @@
                     <span class="article-tag">فاصله عاطفی</span>
                     <h3 class="article-title">وقتی سکوت جای دعوا را می‌گیرد: نشانه‌های سرد شدن رابطه</h3>
                     <p class="article-desc">چگونه بی‌تفاوتی و کاهش گفت‌وگو خطرناک‌تر از دعواست و اولین قدم برای بازگرداندن نزدیکی چیست.</p>
-                    <a href="https://zoojdarman.ir/articles/emotional-distance-in-marriage" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/emotional-distance-in-marriage/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1575,7 +1579,7 @@
                     <span class="article-tag">خانواده و مرزبندی</span>
                     <h3 class="article-title">دخالت خانواده‌ها در زندگی مشترک: کجا باید مرز کشید؟</h3>
                     <p class="article-desc">راهکارهایی برای مدیریت مؤدبانه اما قاطعانه دخالت والدین بدون تنش دائمی بین خانواده‌ها.</p>
-                    <a href="https://zoojdarman.ir/articles/family-interference-boundaries" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/family-interference-boundaries/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1584,7 +1588,7 @@
                     <span class="article-tag">حسادت و اعتماد</span>
                     <h3 class="article-title">حسادت بیمارگونه یا نگرانی طبیعی؛ مرز کجاست؟</h3>
                     <p class="article-desc">تفاوت شک سالم با کنترل‌گری افراطی، و راهکار برای زوجینی که بی‌اعتمادی زندگی‌شان را فرسوده کرده.</p>
-                    <a href="https://zoojdarman.ir/articles/jealousy-and-trust-issues" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/jealousy-and-trust-issues/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1593,7 +1597,7 @@
                     <span class="article-tag">رابطه سمی</span>
                     <h3 class="article-title">رابطه سمی چیست؟ ۱۰ نشانه‌ای که نباید نادیده بگیرید</h3>
                     <p class="article-desc">تفاوت رابطه سمی با یک رابطه‌ی سخت اما سالم، و راهکار عملی برای خروج یا ترمیم آن.</p>
-                    <a href="https://zoojdarman.ir/articles/toxic-relationship-signs" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/toxic-relationship-signs/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1602,7 +1606,7 @@
                     <span class="article-tag">طلاق عاطفی</span>
                     <h3 class="article-title">طلاق عاطفی چیست؟ نشانه‌ها و راه بازگشت یا تصمیم</h3>
                     <p class="article-desc">وقتی زیر یک سقف اما از هم دور هستید؛ نشانه‌های طلاق عاطفی و مسیرهای پیش‌رو.</p>
-                    <a href="https://zoojdarman.ir/articles/emotional-divorce" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/emotional-divorce/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1611,7 +1615,7 @@
                     <span class="article-tag">نشانه‌های خیانت</span>
                     <h3 class="article-title">نشانه‌های خیانت همسر | چه زمانی نگرانی واقعی است؟</h3>
                     <p class="article-desc">نشانه‌های رفتاری خیانت و تشخیص آن از سوءتفاهم یا استرس عادی، بدون دامن‌زدن به شک بی‌مورد.</p>
-                    <a href="https://zoojdarman.ir/articles/signs-of-cheating-partner" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/signs-of-cheating-partner/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1620,7 +1624,7 @@
                     <span class="article-tag">زبان عشق</span>
                     <h3 class="article-title">زبان‌های عشق: همسرتان چطور محبت را می‌فهمد</h3>
                     <p class="article-desc">پنج زبان عشق و اینکه چرا با وجود عشق واقعی، گاهی همسرتان محبت شما را حس نمی‌کند.</p>
-                    <a href="https://zoojdarman.ir/articles/five-love-languages" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/five-love-languages/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1629,7 +1633,7 @@
                     <span class="article-tag">گسلایتینگ</span>
                     <h3 class="article-title">گسلایتینگ در رابطه: وقتی واقعیت خودتان را باور نمی‌کنید</h3>
                     <p class="article-desc">نشانه‌های گسلایتینگ و راهکار عملی برای مقابله با این الگوی ظریف اما آسیب‌زا.</p>
-                    <a href="https://zoojdarman.ir/articles/gaslighting-in-relationships" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/gaslighting-in-relationships/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1638,7 +1642,7 @@
                     <span class="article-tag">طلاق عاطفی</span>
                     <h3 class="article-title">نشانه‌های طلاق عاطفی در زنان و مردان چه فرقی دارد؟</h3>
                     <p class="article-desc">چرا مردان و زنان معمولاً طلاق عاطفی را متفاوت نشان می‌دهند و چگونه این تفاوت به بازگشت رابطه کمک می‌کند.</p>
-                    <a href="https://zoojdarman.ir/articles/emotional-divorce-men-vs-women" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/emotional-divorce-men-vs-women/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1647,7 +1651,7 @@
                     <span class="article-tag">رابطه سمی</span>
                     <h3 class="article-title">چگونه از یک رابطه سمی جدا شویم؟ راهنمای گام‌به‌گام</h3>
                     <p class="article-desc">چرا جدا شدن از رابطه سمی این‌قدر سخت است و چگونه می‌توان با کمترین آسیب این مسیر را طی کرد.</p>
-                    <a href="https://zoojdarman.ir/articles/how-to-leave-toxic-relationship" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/how-to-leave-toxic-relationship/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1656,7 +1660,7 @@
                     <span class="article-tag">خیانت</span>
                     <h3 class="article-title">چرا آدم‌ها خیانت می‌کنند؟ دلایل روانشناختی خیانت</h3>
                     <p class="article-desc">بررسی دلایل روانشناختی رایج خیانت زناشویی، از خلأ عاطفی تا بحران هویت.</p>
-                    <a href="https://zoojdarman.ir/articles/why-people-cheat" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/why-people-cheat/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1665,7 +1669,7 @@
                     <span class="article-tag">رویکردها</span>
                     <h3 class="article-title">زوج‌درمانی گاتمن چیست؟ ۷ اصل برای ازدواج موفق</h3>
                     <p class="article-desc">آشنایی با ۷ اصل گاتمن، چهار سوار آخرالزمان رابطه و اینکه این روش برای چه زوج‌هایی مناسب است.</p>
-                    <a href="https://zoojdarman.ir/articles/gottman-couples-therapy" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/gottman-couples-therapy/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1674,7 +1678,7 @@
                     <span class="article-tag">رویکردها</span>
                     <h3 class="article-title">زوج‌درمانی هیجان‌مدار (EFT) چیست؟ روش سوزان جانسون</h3>
                     <p class="article-desc">آشنایی با مراحل نه‌گانه EFT، تفاوتش با گاتمن و چرخه‌ی منفی تعقیب-فرار در رابطه.</p>
-                    <a href="https://zoojdarman.ir/articles/emotionally-focused-therapy-eft" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/emotionally-focused-therapy-eft/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1683,7 +1687,7 @@
                     <span class="article-tag">رویکردها</span>
                     <h3 class="article-title">مقایسه رویکردهای زوج‌درمانی؛ کدام روش مناسب‌تر است؟</h3>
                     <p class="article-desc">مقایسه‌ی گاتمن، EFT، طرحواره‌محور، شناختی‌رفتاری و سیستمی برای انتخاب رویکرد مناسب رابطه‌ی شما.</p>
-                    <a href="https://zoojdarman.ir/articles/couples-therapy-approaches-comparison" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/couples-therapy-approaches-comparison/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1692,7 +1696,7 @@
                     <span class="article-tag">رویکردها</span>
                     <h3 class="article-title">زوج‌درمانی طرحواره‌محور چیست؟</h3>
                     <p class="article-desc">وقتی واکنش‌های شدید در رابطه، ریشه در الگوهای عمیق دوران کودکی دارند.</p>
-                    <a href="https://zoojdarman.ir/articles/schema-therapy-couples" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/schema-therapy-couples/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1701,7 +1705,7 @@
                     <span class="article-tag">راهنمای شروع</span>
                     <h3 class="article-title">زوج‌درمانی چند جلسه طول می‌کشد؟</h3>
                     <p class="article-desc">پاسخ کوتاه و دقیق درباره تعداد جلسات و عوامل مؤثر بر طول مسیر درمان.</p>
-                    <a href="https://zoojdarman.ir/articles/how-many-sessions-couples-therapy" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/how-many-sessions-couples-therapy/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1710,7 +1714,7 @@
                     <span class="article-tag">خیانت</span>
                     <h3 class="article-title">خیانت مرد به زن؛ چرا اتفاق می‌افتد و مسیر پیش‌رو چیست؟</h3>
                     <p class="article-desc">دلایل رایج خیانت مردان، تفاوت خیانت هیجانی و جسمی، و مسیر پیش‌روی زوج پس از افشا.</p>
-                    <a href="https://zoojdarman.ir/articles/husband-infidelity-to-wife" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/husband-infidelity-to-wife/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1719,7 +1723,7 @@
                     <span class="article-tag">خیانت</span>
                     <h3 class="article-title">خیانت زن به شوهر؛ تفاوت دلایل و مسیر بازسازی اعتماد</h3>
                     <p class="article-desc">دلایل رایج خیانت زنان و تفاوتش با الگوهای رایج در خیانت مردان.</p>
-                    <a href="https://zoojdarman.ir/articles/wife-infidelity-to-husband" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/wife-infidelity-to-husband/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
 
@@ -1728,7 +1732,7 @@
                     <span class="article-tag">راهنمای شروع</span>
                     <h3 class="article-title">مشاوره خیانت تلفنی و آنلاین؛ چطور جلسه اول را شروع کنیم؟</h3>
                     <p class="article-desc">مزایای این فرمت برای موضوعی حساس مثل خیانت و نحوه آماده‌شدن برای جلسه اول.</p>
-                    <a href="https://zoojdarman.ir/articles/phone-online-infidelity-counseling" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
+                    <a href="/articles/phone-online-infidelity-counseling/" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
             </div>
@@ -1851,7 +1855,7 @@
                     <button type="submit" class="btn-main btn-primary-gradient" style="width: 100%; justify-content: center;">
                         <i class="fab fa-whatsapp"></i> ارسال درخواست از طریق واتساپ
                     </button>
-                    <p style="text-align:center; font-size:0.82rem; color: var(--ink-soft); margin-top: 0.8rem;">با ارسال، واتساپ باز می‌شود و پیام آماده برای شما نوشته می‌شود؛ کافی است آن را برای ما بفرستید. (<a href="https://zoojdarman.ir/privacy-policy" style="color: var(--teal);">حریم خصوصی</a>)</p>
+                    <p style="text-align:center; font-size:0.82rem; color: var(--ink-soft); margin-top: 0.8rem;">با ارسال، واتساپ باز می‌شود و پیام آماده برای شما نوشته می‌شود؛ کافی است آن را برای ما بفرستید. (<a href="/privacy-policy/" style="color: var(--teal);">حریم خصوصی</a>)</p>
                 </form>
             </div>
         </div>
@@ -1861,7 +1865,16 @@
     <footer class="footer-luxury">
         <div class="footer-grid">
             <div class="footer-brand">
-                <h3><i class="fas fa-heart-pulse" style="color: var(--clay);"></i> zoojdarman.ir</h3>
+                <h3 dir="ltr" style="display:inline-flex; align-items:center; font-family: Arial, sans-serif; letter-spacing: -0.5px; unicode-bidi: isolate; margin-bottom: 0.8rem;">
+                    <span style="font-size: 1.5rem; font-weight: 900; color: #ffffff;">Z</span>
+                    <svg width="0.56em" height="0.56em" viewBox="0 0 32 29" style="position:relative; top:0.06em; margin:0 -0.01em;" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 29 C16 29 0 18.5 0 8.8 C0 3.5 4 0 8.6 0 C11.8 0 14.4 1.8 16 4.6 C17.6 1.8 20.2 0 23.4 0 C28 0 32 3.5 32 8.8 C32 18.5 16 29 16 29 Z" fill="#88c2b9"/>
+                    </svg>
+                    <svg width="0.56em" height="0.56em" viewBox="0 0 32 29" style="position:relative; top:0.06em; margin:0 -0.01em;" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 29 C16 29 0 18.5 0 8.8 C0 3.5 4 0 8.6 0 C11.8 0 14.4 1.8 16 4.6 C17.6 1.8 20.2 0 23.4 0 C28 0 32 3.5 32 8.8 C32 18.5 16 29 16 29 Z" fill="var(--clay)"/>
+                    </svg>
+                    <span style="font-size: 1.5rem; font-weight: 900; color: #ffffff;">jdarman.ir</span>
+                </h3>
                 <p>پلتفرم تخصصی زوج‌درمانی و مشاوره خانواده با مدیریت سرکار خانم مهناز خوینی. همراه شما در مسیر ترمیم، رشد و ایجاد صمیمیت پایدار در رابطه.</p>
             </div>
             <div class="footer-col">
@@ -1892,7 +1905,7 @@
             </div>
         </div>
         <div class="footer-bottom-bar">
-            تمامی حقوق مادی و معنوی محفوظ است © ۱۴۰۴ | طراحی لوکس و بهینه‌سازی سئو برای <a href="https://zoojdarman.ir">zoojdarman.ir</a> | مدیریت: <a href="https://peyvandamn.ir" target="_blank" rel="noopener noreferrer" style="white-space: nowrap;">مهناز خوینی</a> | <a href="https://zoojdarman.ir/privacy-policy">حریم خصوصی</a>
+            تمامی حقوق مادی و معنوی محفوظ است © ۱۴۰۴ | طراحی لوکس و بهینه‌سازی سئو برای <a href="/">zoojdarman.ir</a> | مدیریت: <a href="https://peyvandamn.ir" target="_blank" rel="noopener noreferrer" style="white-space: nowrap;">مهناز خوینی</a> | <a href="/privacy-policy/">حریم خصوصی</a>
         </div>
     </footer>
 
