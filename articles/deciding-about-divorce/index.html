@@ -2,13 +2,21 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <!-- Google Analytics (GA4) — قبل از استفاده، G-XXXXXXXXXX را با Measurement ID واقعی خودتان جایگزین کنید -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <!-- Google Analytics (GA4) -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
+      (function() {
+        var gaId = 'G-XXXXXXXXXX'; // جایگزین کنید با Measurement ID واقعی خودتان
+        if (gaId && gaId !== 'G-XXXXXXXXXX') {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
+          document.head.appendChild(s);
+          gtag('js', new Date());
+          gtag('config', gaId);
+        }
+      })();
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#2f5c57">
@@ -237,6 +245,34 @@
 
     <div class="site-footer-mini">
         زوج‌درمان بخشی از خدمات محتوایی <a href="https://peyvandamn.ir/" target="_blank" rel="noopener noreferrer">کلینیک پیوند امن</a> است. تمامی حقوق محفوظ است © ۱۴۰۴ | <a href="/">zoojdarman.ir</a>
+    </div>
+
+    <!-- Desktop Floating Contact Widget -->
+    <div class="desktop-floating-contacts">
+        <a href="https://wa.me/989199087264" target="_blank" rel="noopener noreferrer" class="desktop-floating-btn btn-wa">
+            <i class="fab fa-whatsapp"></i> واتساپ: ۰۹۱۹۹۰۸۷۲۶۴
+        </a>
+        <a href="tel:+989199087264" class="desktop-floating-btn btn-mobile">
+            <i class="fas fa-mobile-alt"></i> همراه: ۰۹۱۹۹۰۸۷۲۶۴
+        </a>
+        <a href="tel:+982144600980" class="desktop-floating-btn btn-clinic">
+            <i class="fas fa-phone-alt"></i> کلینیک: ۰۲۱۴۴۶۰۰۹۸۰
+        </a>
+    </div>
+
+    <!-- Mobile Quick Sticky Bar -->
+    <div class="mobile-sticky-quick-bar">
+        <div class="mobile-quick-actions">
+            <a href="https://wa.me/989199087264" target="_blank" rel="noopener noreferrer" class="mobile-quick-btn quick-btn-wa">
+                <i class="fab fa-whatsapp"></i> واتساپ
+            </a>
+            <a href="tel:+989199087264" class="mobile-quick-btn quick-btn-call">
+                <i class="fas fa-phone"></i> همراه
+            </a>
+            <a href="tel:+982144600980" class="mobile-quick-btn quick-btn-clinic">
+                <i class="fas fa-phone-alt"></i> کلینیک
+            </a>
+        </div>
     </div>
 </body>
 </html>

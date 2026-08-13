@@ -2,13 +2,21 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <!-- Google Analytics (GA4) — قبل از استفاده، G-XXXXXXXXXX را با Measurement ID واقعی خودتان جایگزین کنید -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <!-- Google Analytics (GA4) -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
+      (function() {
+        var gaId = 'G-XXXXXXXXXX'; // جایگزین کنید با Measurement ID واقعی خودتان
+        if (gaId && gaId !== 'G-XXXXXXXXXX') {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
+          document.head.appendChild(s);
+          gtag('js', new Date());
+          gtag('config', gaId);
+        }
+      })();
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#2f5c57">
