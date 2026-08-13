@@ -197,9 +197,125 @@ a:hover { color: var(--clay); }
     * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }
 @media (max-width: 600px) {
-    .article-h1 { font-size: 1.6rem; }
-    .article-wrap { padding: 1.8rem 1rem 4rem; }
+    .article-h1 { font-size: 1.55rem; word-break: break-word; }
+    .article-wrap { padding: 1.5rem 1rem 4rem; }
     .author-box { flex-direction: column; text-align: center; }
     .top-bar { padding: 0.8rem 1rem; }
+    .cta-box { padding: 1.6rem 1.1rem; border-radius: 16px; }
+    .cta-box h3 { font-size: 1.2rem; }
+    .cta-btn { width: 100%; justify-content: center; box-sizing: border-box; }
+}
+
+/* ===== Floating Contact Widget & Mobile Sticky Bar ===== */
+.desktop-floating-contacts {
+    position: fixed;
+    bottom: 28px;
+    left: 28px;
+    z-index: 9990;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.desktop-floating-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.75rem 1.25rem;
+    border-radius: 50px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    transition: all 0.25s ease;
+    backdrop-filter: blur(10px);
+    line-height: 1.2;
+    direction: rtl;
+}
+.desktop-floating-btn.btn-mobile {
+    background: #1e524b;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.desktop-floating-btn.btn-mobile:hover {
+    background: #143e38;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(30, 82, 75, 0.35);
+}
+.desktop-floating-btn.btn-clinic {
+    background: #ffffff;
+    color: #1e524b !important;
+    border: 1.5px solid #1e524b;
+}
+.desktop-floating-btn.btn-clinic:hover {
+    background: #f0f7f6;
+    transform: translateY(-3px) scale(1.02);
+}
+.desktop-floating-btn.btn-wa {
+    background: #25D366;
+    color: #ffffff !important;
+}
+.desktop-floating-btn.btn-wa:hover {
+    background: #1eb855;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35);
+}
+
+.mobile-sticky-quick-bar {
+    display: none;
+}
+@media (max-width: 768px) {
+    .desktop-floating-contacts {
+        display: none;
+    }
+    .mobile-sticky-quick-bar {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 0.6rem 0.8rem;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+    }
+    .mobile-quick-actions {
+        display: flex;
+        gap: 0.5rem;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    .mobile-quick-btn {
+        flex: 1;
+        padding: 0.65rem 0.5rem;
+        border-radius: 50px;
+        font-weight: 800;
+        font-size: 0.8rem;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.35rem;
+        white-space: nowrap;
+        transition: all 0.2s ease;
+    }
+    .quick-btn-wa {
+        background: #25D366;
+        color: #ffffff !important;
+    }
+    .quick-btn-call {
+        background: #1e524b;
+        color: #ffffff !important;
+    }
+    .quick-btn-clinic {
+        background: #f0f7f6;
+        color: #1e524b !important;
+        border: 1px solid rgba(30, 82, 75, 0.2);
+    }
+    body {
+        padding-bottom: 60px;
+    }
 }
 

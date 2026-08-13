@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- صفحه اصلی و صفحات پایه -->
   <url>
     <loc>https://zoojdarman.ir/</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
@@ -12,43 +13,7 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-  <!-- این ۶ مقاله اکنون واقعاً ساخته و در سایت موجود هستند -->
-  <url>
-    <loc>https://zoojdarman.ir/articles/attachment-style-in-marriage</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zoojdarman.ir/articles/dealing-with-infidelity-shock</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zoojdarman.ir/articles/safe-communication-in-relationships</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zoojdarman.ir/articles/emotional-distance-in-marriage</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zoojdarman.ir/articles/family-interference-boundaries</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zoojdarman.ir/articles/jealousy-and-trust-issues</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+
   <!-- ۶ صفحه‌ی اختصاصی خدمات -->
   <url>
     <loc>https://zoojdarman.ir/services/couples-therapy</loc>
@@ -86,9 +51,58 @@
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-  <!-- ۵ مقاله جدید با موضوعات پرجست‌وجو -->
+
+  <!-- ۴۲ مقاله تخصصی کلینیک -->
   <url>
-    <loc>https://zoojdarman.ir/articles/toxic-relationship-signs</loc>
+    <loc>https://zoojdarman.ir/articles/anger-management-in-marriage</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/attachment-style-in-marriage</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/consensual-divorce-counseling</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/controlling-paranoid-spouse</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/couples-therapy-approaches-comparison</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/cultural-class-differences-marriage</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/dealing-with-infidelity-shock</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/deciding-about-divorce</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/emotional-distance-in-marriage</loc>
     <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -97,13 +111,43 @@
     <loc>https://zoojdarman.ir/articles/emotional-divorce</loc>
     <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://zoojdarman.ir/articles/signs-of-cheating-partner</loc>
+    <loc>https://zoojdarman.ir/articles/emotional-divorce-men-vs-women</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/emotional-vs-sexual-infidelity</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/emotionally-focused-therapy-eft</loc>
     <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/engagement-period-conflicts</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/family-interference-boundaries</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/financial-infidelity-in-marriage</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://zoojdarman.ir/articles/five-love-languages</loc>
@@ -117,46 +161,8 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <!-- ۳ مقاله‌ی خوشه‌ای جدید برای تقویت موضوعات پرجست‌وجو -->
-  <url>
-    <loc>https://zoojdarman.ir/articles/emotional-divorce-men-vs-women</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zoojdarman.ir/articles/how-to-leave-toxic-relationship</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zoojdarman.ir/articles/why-people-cheat</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <!-- خوشه‌ی جدید: رویکردهای زوج‌درمانی -->
   <url>
     <loc>https://zoojdarman.ir/articles/gottman-couples-therapy</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zoojdarman.ir/articles/emotionally-focused-therapy-eft</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://zoojdarman.ir/articles/couples-therapy-approaches-comparison</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://zoojdarman.ir/articles/schema-therapy-couples</loc>
     <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -165,25 +171,49 @@
     <loc>https://zoojdarman.ir/articles/how-many-sessions-couples-therapy</loc>
     <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/how-to-leave-toxic-relationship</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
   </url>
   <url>
     <loc>https://zoojdarman.ir/articles/husband-infidelity-to-wife</loc>
     <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://zoojdarman.ir/articles/wife-infidelity-to-husband</loc>
+    <loc>https://zoojdarman.ir/articles/jealousy-and-trust-issues</loc>
     <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/living-with-narcissistic-spouse</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/managing-spouse-anger-arguments</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/mismatched-libido-couples-therapy</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://zoojdarman.ir/articles/phone-online-infidelity-counseling</loc>
     <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.65</priority>
   </url>
   <url>
     <loc>https://zoojdarman.ir/articles/premarital-counseling-questions</loc>
@@ -192,17 +222,34 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zoojdarman.ir/articles/deciding-about-divorce</loc>
-    <lastmod>2026-08-08</lastmod>
+    <loc>https://zoojdarman.ir/articles/premarital-psychological-tests</loc>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
-  <!-- مقالات تخصصی جدید و پرجست‌وجو (خوشه کلیدواژه‌های طلایی) -->
+  <url>
+    <loc>https://zoojdarman.ir/articles/rebuilding-relationship-after-infidelity</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
   <url>
     <loc>https://zoojdarman.ir/articles/rebuilding-trust-after-infidelity</loc>
     <lastmod>2026-08-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/safe-communication-in-relationships</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/schema-therapy-couples</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://zoojdarman.ir/articles/sex-therapy-marital-intimacy</loc>
@@ -211,9 +258,51 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://zoojdarman.ir/articles/anger-management-in-marriage</loc>
-    <lastmod>2026-08-10</lastmod>
+    <loc>https://zoojdarman.ir/articles/sexual-dysfunction-emotional-divorce</loc>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/signs-marriage-is-over-test</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/signs-of-cheating-partner</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/silent-divorce-emotional-separation</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/toxic-relationship-signs</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/vaginismus-fear-of-intercourse</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/why-people-cheat</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/wife-infidelity-to-husband</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

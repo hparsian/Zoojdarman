@@ -177,9 +177,9 @@
             --border-color: rgba(30, 25, 24, 0.09);
             --border-focus: rgba(30, 82, 75, 0.35);
             
-            --shadow-xs: 0 1px 3px rgba(30, 25, 24, 0.04), 0 1px 2px rgba(30, 25, 24, 0.02);
-            --shadow-soft: 0 8px 24px -6px rgba(30, 25, 24, 0.08), 0 2px 8px -2px rgba(30, 25, 24, 0.04);
-            --shadow-hover: 0 18px 38px -8px rgba(30, 25, 24, 0.12), 0 4px 12px -2px rgba(30, 25, 24, 0.04);
+            --shadow-xs: 0 2px 6px rgba(30, 25, 24, 0.03);
+            --shadow-soft: 0 10px 30px -8px rgba(30, 25, 24, 0.08), 0 3px 10px -2px rgba(30, 25, 24, 0.03);
+            --shadow-hover: 0 20px 42px -10px rgba(30, 25, 24, 0.12), 0 6px 16px -3px rgba(30, 25, 24, 0.04);
             --shadow-teal: 0 10px 28px -6px rgba(30, 82, 75, 0.28);
             --shadow-clay: 0 10px 28px -6px rgba(196, 100, 60, 0.3);
             
@@ -219,14 +219,14 @@
         /* ===== Header Navbar ===== */
         .header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(251, 248, 244, 0.88);
+            background: rgba(251, 248, 244, 0.92);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border-color);
             transition: all 0.3s ease;
         }
         .header.scrolled {
-            background: rgba(251, 248, 244, 0.96);
+            background: rgba(251, 248, 244, 0.98);
             box-shadow: 0 8px 24px rgba(30, 25, 24, 0.06);
             border-bottom-color: rgba(30, 25, 24, 0.12);
         }
@@ -311,8 +311,9 @@
             position: relative;
             overflow: hidden;
             background:
-                radial-gradient(circle at 85% 20%, rgba(196, 100, 60, 0.07) 0%, transparent 45%),
-                radial-gradient(circle at 15% 70%, rgba(30, 82, 75, 0.08) 0%, transparent 45%);
+                radial-gradient(circle at 85% 20%, rgba(196, 100, 60, 0.08) 0%, transparent 45%),
+                radial-gradient(circle at 15% 70%, rgba(30, 82, 75, 0.09) 0%, transparent 45%),
+                var(--cream);
         }
         .hero-grid {
             max-width: 1280px; margin: 0 auto;
@@ -332,7 +333,7 @@
         }
         .pulse-dot {
             width: 9px; height: 9px; border-radius: 50%;
-            background: #10b981; position: relative;
+            background: #10b981; position: relative; flex-shrink: 0;
         }
         .pulse-dot::after {
             content: ''; position: absolute; inset: -3px; border-radius: 50%;
@@ -390,7 +391,7 @@
             box-shadow: var(--shadow-soft);
         }
 
-        .hero-therapist-container { position: relative; display: flex; justify-content: center; }
+        .hero-therapist-container { position: relative; display: flex; flex-direction: column; align-items: center; }
         .therapist-frame {
             position: relative; width: 100%; max-width: 410px;
             border-radius: var(--radius-xl);
@@ -455,12 +456,29 @@
         .badge-icon-gold { background: var(--gold-soft); color: var(--gold); }
         
         .badge-text p.badge-value { font-size: 0.96rem; font-weight: 800; color: var(--ink); margin: 0; }
-        .badge-text p { font-size: 0.78rem; color: var(--ink-soft); }
+        .badge-text p { font-size: 0.78rem; color: var(--ink-soft); margin: 0; }
+
+        /* Mobile Trust Pills for Therapist Frame */
+        .therapist-mobile-trust-pills {
+            display: none;
+            gap: 0.6rem; margin-top: 1.2rem; width: 100%; max-width: 410px;
+        }
+        .trust-pill-item {
+            flex: 1; background: #ffffff; border: 1px solid var(--border-color);
+            border-radius: var(--radius-md); padding: 0.75rem 0.85rem;
+            display: flex; align-items: center; gap: 0.65rem;
+            box-shadow: var(--shadow-xs);
+        }
+        .trust-pill-icon {
+            width: 36px; height: 36px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; flex-shrink: 0;
+        }
 
         /* ===== Stats Bar ===== */
         .stats-section {
-            background: linear-gradient(135deg, var(--teal), var(--teal-dark));
-            color: white; padding: 3.2rem 2rem;
+            background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+            color: white; padding: 3.5rem 2rem;
             position: relative; overflow: hidden;
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
         }
@@ -471,22 +489,32 @@
         }
         .stats-grid {
             max-width: 1280px; margin: 0 auto;
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.8rem;
             text-align: center; position: relative; z-index: 1;
         }
         .stat-card {
-            padding: 1rem 0.5rem;
-            border-radius: var(--radius-md);
-            transition: transform 0.2s ease;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 1.6rem 1rem;
+            border-radius: var(--radius-lg);
+            transition: transform 0.25s ease, background 0.25s ease;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
-        .stat-card:hover { transform: translateY(-3px); }
+        .stat-card:hover { transform: translateY(-4px); background: rgba(255, 255, 255, 0.1); }
+        .stat-icon {
+            width: 48px; height: 48px; border-radius: 14px;
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--clay-light); display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; margin-bottom: 0.8rem;
+        }
         .stat-card p.stat-value {
-            font-size: 2.5rem; font-weight: 900; margin-bottom: 0.3rem;
+            font-size: 2.3rem; font-weight: 900; margin-bottom: 0.2rem;
             color: #ffffff; letter-spacing: -0.5px;
             display: flex; align-items: center; justify-content: center; gap: 0.3rem;
         }
         .stat-card p.stat-value span { color: var(--clay-light); }
-        .stat-card p { font-size: 0.94rem; opacity: 0.9; font-weight: 600; color: var(--teal-soft); }
+        .stat-card p { font-size: 0.92rem; opacity: 0.92; font-weight: 600; color: var(--teal-soft); margin: 0; }
 
         /* ===== General Section Styling ===== */
         section { padding: 5.5rem 2rem; }
@@ -495,7 +523,8 @@
             color: var(--clay-text); font-weight: 800; font-size: 0.86rem;
             text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.7rem;
             display: inline-flex; align-items: center; gap: 0.6rem;
-            background: var(--clay-soft); padding: 0.35rem 1rem; border-radius: 50px;
+            background: var(--clay-soft); padding: 0.35rem 1.1rem; border-radius: 50px;
+            border: 1px solid rgba(196, 100, 60, 0.15);
         }
         .section-main-title {
             font-size: 2.3rem; font-weight: 900; color: var(--ink);
@@ -507,22 +536,22 @@
         .diagnosis-widget-wrap {
             max-width: 1100px; margin: 0 auto 4.5rem;
             background: #ffffff; border-radius: var(--radius-xl);
-            padding: 2.5rem 2rem; border: 1.5px solid var(--border-color);
+            padding: 2.8rem 2.2rem; border: 1.5px solid var(--border-color);
             box-shadow: var(--shadow-soft);
         }
-        .diagnosis-header { text-align: center; margin-bottom: 2rem; }
-        .diagnosis-header h3 { font-size: 1.5rem; font-weight: 800; color: var(--ink); margin-bottom: 0.5rem; }
-        .diagnosis-header p { font-size: 0.95rem; color: var(--ink-soft); }
+        .diagnosis-header { text-align: center; margin-bottom: 2.2rem; }
+        .diagnosis-header h3 { font-size: 1.6rem; font-weight: 800; color: var(--ink); margin-bottom: 0.5rem; }
+        .diagnosis-header p { font-size: 0.98rem; color: var(--ink-soft); }
         .diagnosis-cards-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
-            margin-bottom: 2rem;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem;
+            margin-bottom: 2.2rem;
         }
         .diagnosis-option-btn {
             background: var(--cream); border: 2px solid var(--border-color);
-            border-radius: var(--radius-lg); padding: 1.4rem 1.1rem;
+            border-radius: var(--radius-lg); padding: 1.5rem 1.1rem;
             text-align: center; cursor: pointer; transition: all 0.25s ease;
             font-family: inherit; color: var(--ink); display: flex; flex-direction: column;
-            align-items: center; justify-content: center; gap: 0.75rem;
+            align-items: center; justify-content: center; gap: 0.85rem; position: relative;
         }
         .diagnosis-option-btn:hover {
             border-color: var(--teal); background: var(--teal-soft);
@@ -530,27 +559,35 @@
         }
         .diagnosis-option-btn.active {
             border-color: var(--teal); background: #ffffff;
-            box-shadow: 0 8px 20px -4px rgba(30, 82, 75, 0.18);
+            box-shadow: 0 10px 24px -4px rgba(30, 82, 75, 0.2);
+        }
+        .diagnosis-option-btn.active::after {
+            content: '✓'; position: absolute; top: -10px; left: 14px;
+            background: var(--teal); color: white; width: 22px; height: 22px;
+            border-radius: 50%; font-size: 0.75rem; font-weight: 900;
+            display: flex; align-items: center; justify-content: center;
         }
         .diagnosis-option-icon {
-            width: 48px; height: 48px; border-radius: 12px;
+            width: 52px; height: 52px; border-radius: 14px;
             background: #ffffff; color: var(--teal);
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.3rem; transition: all 0.2s ease;
+            font-size: 1.35rem; transition: all 0.25s ease;
             box-shadow: var(--shadow-xs);
         }
         .diagnosis-option-btn.active .diagnosis-option-icon {
             background: var(--teal); color: white;
+            box-shadow: 0 4px 12px rgba(30, 82, 75, 0.25);
         }
-        .diagnosis-option-title { font-size: 0.96rem; font-weight: 800; line-height: 1.4; }
+        .diagnosis-option-title { font-size: 0.96rem; font-weight: 800; line-height: 1.45; }
         .diagnosis-result-box {
-            background: var(--cream-deep); border-radius: var(--radius-lg);
-            padding: 1.8rem 2rem; border-right: 5px solid var(--teal);
+            background: var(--teal-soft); border-radius: var(--radius-lg);
+            padding: 2rem 2.2rem; border: 1px solid var(--teal-soft-2);
+            border-right: 6px solid var(--teal);
             display: flex; justify-content: space-between; align-items: center; gap: 2rem;
             transition: all 0.3s ease;
         }
-        .diagnosis-result-text h4 { font-size: 1.15rem; font-weight: 800; color: var(--teal); margin-bottom: 0.4rem; }
-        .diagnosis-result-text p { font-size: 0.95rem; color: var(--ink-soft); line-height: 1.7; margin: 0; }
+        .diagnosis-result-text h4 { font-size: 1.2rem; font-weight: 800; color: var(--teal); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .diagnosis-result-text p { font-size: 0.98rem; color: var(--ink); line-height: 1.8; margin: 0; }
 
         /* ===== Services ===== */
         .services-hub { background: var(--cream); }
@@ -563,7 +600,7 @@
             position: relative; overflow: hidden;
         }
         .service-card-luxury::before {
-            content: ''; position: absolute; top: 0; right: 0; left: 0; height: 4px;
+            content: ''; position: absolute; top: 0; right: 0; left: 0; height: 4.5px;
             background: linear-gradient(90deg, var(--teal), var(--clay));
             opacity: 0; transition: opacity 0.3s ease;
         }
@@ -577,7 +614,8 @@
         .service-badge {
             display: inline-block; font-size: 0.74rem; font-weight: 800;
             color: var(--teal); background: var(--teal-soft);
-            padding: 0.25rem 0.75rem; border-radius: 50px; margin-bottom: 1.2rem;
+            padding: 0.28rem 0.8rem; border-radius: 50px; margin-bottom: 1.2rem;
+            border: 1px solid var(--teal-soft-2);
         }
         .service-icon-box {
             width: 58px; height: 58px; border-radius: 16px;
@@ -590,6 +628,7 @@
         .service-card-luxury:hover .service-icon-box {
             background: var(--teal); color: white;
             transform: scale(1.06);
+            box-shadow: 0 6px 16px rgba(30, 82, 75, 0.25);
         }
         .service-card-luxury h3 { font-size: 1.28rem; font-weight: 800; margin-bottom: 0.85rem; color: var(--ink); }
         .service-card-luxury p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.85; }
@@ -598,17 +637,25 @@
             font-size: 0.88rem; color: var(--ink); margin-bottom: 0.55rem;
             display: flex; align-items: flex-start; gap: 0.6rem; font-weight: 600;
         }
-        .service-features-list li i { color: var(--clay); font-size: 0.82rem; margin-top: 0.25rem; }
+        .service-features-list li i { color: var(--clay); font-size: 0.85rem; margin-top: 0.25rem; flex-shrink: 0; }
 
         .peyvand-link-box {
             max-width: 1280px; margin: 4rem auto 0;
             background: linear-gradient(135deg, var(--ink), #2b2322);
             border-radius: var(--radius-xl); padding: 3rem; color: white;
             display: grid; grid-template-columns: 1.5fr 1fr; gap: 2rem; align-items: center;
-            box-shadow: var(--shadow-soft); border: 1px solid rgba(255,255,255,0.06);
+            box-shadow: var(--shadow-soft); border: 1px solid rgba(255,255,255,0.08);
+            position: relative; overflow: hidden; box-sizing: border-box;
+        }
+        .peyvand-link-box::before {
+            content: ''; position: absolute; top: -50px; left: -50px; width: 200px; height: 200px;
+            background: radial-gradient(circle, rgba(196, 100, 60, 0.15) 0%, transparent 70%);
+            pointer-events: none;
         }
         .peyvand-link-box h3 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.7rem; color: #fff; }
-        .peyvand-link-box p { opacity: 0.88; font-size: 1.02rem; line-height: 1.85; }
+        .peyvand-link-box p { opacity: 0.88; font-size: 1.02rem; line-height: 1.85; margin: 0; }
+        .peyvand-btn-wrap { text-align: left; }
+        .peyvand-btn { background: #ffffff !important; color: var(--teal) !important; font-weight: 800; box-shadow: var(--shadow-soft); }
 
         /* ===== Bio ===== */
         .bio-section { background: var(--teal-soft); position: relative; }
@@ -621,27 +668,29 @@
         .bio-feature-item {
             background: var(--cream); padding: 1.1rem; border-radius: var(--radius-md);
             display: flex; align-items: center; gap: 1rem; border-right: 3.5px solid var(--clay);
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid var(--border-color); border-right: 3.5px solid var(--clay);
         }
-        .bio-feature-item:hover { transform: translateY(-2px); }
-        .bio-feature-item i { font-size: 1.4rem; color: var(--teal); }
+        .bio-feature-item:hover { transform: translateY(-2px); box-shadow: var(--shadow-xs); }
+        .bio-feature-item i { font-size: 1.4rem; color: var(--teal); flex-shrink: 0; }
 
         .bio-pillar-list { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; }
-        .bio-pillar-item {
+        .bio-pillar-card {
             background: #ffffff; padding: 1.4rem 1.6rem; border-radius: var(--radius-lg);
             border: 1px solid var(--border-color); display: flex; gap: 1.1rem;
             box-shadow: var(--shadow-xs); transition: all 0.25s ease;
         }
-        .bio-pillar-item:hover {
+        .bio-pillar-card:hover {
             transform: translateX(-4px);
             border-color: var(--teal-soft-2);
             box-shadow: var(--shadow-soft);
         }
         .bio-pillar-icon {
-            width: 44px; height: 44px; border-radius: 12px;
+            width: 46px; height: 46px; border-radius: 12px;
             background: var(--clay-soft); color: var(--clay);
             display: flex; align-items: center; justify-content: center;
             font-size: 1.25rem; flex-shrink: 0;
+            border: 1px solid rgba(196, 100, 60, 0.15);
         }
 
         /* ===== Articles ===== */
@@ -657,26 +706,32 @@
         .article-card {
             background: #ffffff; border-radius: var(--radius-lg); overflow: hidden;
             border: 1px solid var(--border-color); transition: all 0.25s ease;
-            flex: 0 0 auto; width: 315px; scroll-snap-align: start;
+            flex: 0 0 auto; width: 320px; scroll-snap-align: start;
             display: flex; flex-direction: column; justify-content: space-between;
+            position: relative;
+        }
+        .article-card::before {
+            content: ''; position: absolute; top: 0; right: 0; left: 0; height: 3px;
+            background: linear-gradient(90deg, var(--teal), var(--clay));
+            opacity: 0.6;
         }
         .article-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-soft); border-color: rgba(30, 82, 75, 0.25); }
         .carousel-arrow {
             position: absolute; top: 50%; transform: translateY(-50%);
-            width: 46px; height: 46px; border-radius: 50%; z-index: 5;
+            width: 48px; height: 48px; border-radius: 50%; z-index: 5;
             background: #ffffff; border: 1px solid var(--border-color); box-shadow: var(--shadow-soft);
             color: var(--teal); display: flex; align-items: center; justify-content: center;
             cursor: pointer; font-size: 1.1rem; transition: all 0.2s ease;
         }
         .carousel-arrow:hover { background: var(--teal); color: white; transform: translateY(-50%) scale(1.08); }
-        .carousel-arrow.prev { right: -12px; }
-        .carousel-arrow.next { left: -12px; }
+        .carousel-arrow.prev { right: -14px; }
+        .carousel-arrow.next { left: -14px; }
         @media (max-width: 768px) { .carousel-arrow { display: none; } }
         
-        .article-content { padding: 1.8rem; }
-        .article-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; }
-        .article-tag { font-size: 0.74rem; font-weight: 800; color: var(--clay-text); background: var(--clay-soft); padding: 0.2rem 0.65rem; border-radius: 50px; }
-        .article-read-time { font-size: 0.74rem; color: var(--ink-muted); font-weight: 600; }
+        .article-content { padding: 1.8rem; display: flex; flex-direction: column; height: 100%; justify-content: space-between; }
+        .article-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; }
+        .article-tag { font-size: 0.74rem; font-weight: 800; color: var(--clay-text); background: var(--clay-soft); padding: 0.22rem 0.7rem; border-radius: 50px; border: 1px solid rgba(196, 100, 60, 0.12); }
+        .article-read-time { font-size: 0.75rem; color: var(--ink-muted); font-weight: 600; display: flex; align-items: center; gap: 0.3rem; }
         .article-title { font-size: 1.15rem; font-weight: 800; margin-bottom: 0.8rem; line-height: 1.55; color: var(--ink); }
         .article-desc { font-size: 0.9rem; color: var(--ink-soft); margin-bottom: 1.3rem; line-height: 1.75; }
 
@@ -747,36 +802,122 @@
         }
         .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
-        /* ===== Mobile Sticky Quick-Action Bar ===== */
-        .mobile-quick-bar {
+        /* ===== Floating Contact Widget & Mobile Sticky Bar ===== */
+        .desktop-floating-contacts {
+            position: fixed;
+            bottom: 28px;
+            left: 28px;
+            z-index: 9990;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .desktop-floating-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.88rem;
+            font-weight: 800;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+            transition: all 0.25s ease;
+            backdrop-filter: blur(10px);
+            line-height: 1.2;
+            direction: rtl;
+        }
+        .desktop-floating-btn.btn-mobile {
+            background: #1e524b;
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .desktop-floating-btn.btn-mobile:hover {
+            background: #143e38;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(30, 82, 75, 0.35);
+        }
+        .desktop-floating-btn.btn-clinic {
+            background: #ffffff;
+            color: #1e524b !important;
+            border: 1.5px solid #1e524b;
+        }
+        .desktop-floating-btn.btn-clinic:hover {
+            background: #f0f7f6;
+            transform: translateY(-3px) scale(1.02);
+        }
+        .desktop-floating-btn.btn-wa {
+            background: #25D366;
+            color: #ffffff !important;
+        }
+        .desktop-floating-btn.btn-wa:hover {
+            background: #1eb855;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35);
+        }
+
+        .mobile-sticky-quick-bar {
             display: none;
-            position: fixed; bottom: 0; left: 0; right: 0;
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-top: 1px solid var(--border-color);
-            padding: 0.75rem 1.2rem; z-index: 998;
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
         }
-        .mobile-quick-buttons { display: flex; gap: 0.8rem; max-width: 500px; margin: 0 auto; }
-        .mobile-quick-btn {
-            flex: 1; padding: 0.75rem 1rem; border-radius: 50px;
-            font-weight: 800; font-size: 0.92rem; text-decoration: none;
-            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-            transition: all 0.2s ease;
-        }
-        .mobile-quick-whatsapp {
-            background: linear-gradient(135deg, var(--clay), var(--clay-dark));
-            color: white !important; box-shadow: var(--shadow-clay);
-        }
-        .mobile-quick-call {
-            background: var(--teal-soft); color: var(--teal) !important;
-            border: 1px solid var(--teal-soft-2);
+        @media (max-width: 768px) {
+            .desktop-floating-contacts {
+                display: none;
+            }
+            .mobile-sticky-quick-bar {
+                display: block;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 9999;
+                background: rgba(255, 255, 255, 0.96);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border-top: 1px solid rgba(0, 0, 0, 0.1);
+                padding: 0.6rem 0.8rem;
+                box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+            }
+            .mobile-quick-actions {
+                display: flex;
+                gap: 0.5rem;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            .mobile-quick-btn {
+                flex: 1;
+                padding: 0.65rem 0.5rem;
+                border-radius: 50px;
+                font-weight: 800;
+                font-size: 0.8rem;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.35rem;
+                white-space: nowrap;
+                transition: all 0.2s ease;
+            }
+            .quick-btn-wa {
+                background: #25D366;
+                color: #ffffff !important;
+            }
+            .quick-btn-call {
+                background: #1e524b;
+                color: #ffffff !important;
+            }
+            .quick-btn-clinic {
+                background: #f0f7f6;
+                color: #1e524b !important;
+                border: 1px solid rgba(30, 82, 75, 0.2);
+            }
+            body {
+                padding-bottom: 60px;
+            }
         }
 
         /* ===== Back To Top Button ===== */
         .back-to-top {
-            position: fixed; bottom: 85px; left: 24px;
+            position: fixed; bottom: 28px; right: 28px;
             width: 46px; height: 46px; border-radius: 50%;
             background: #ffffff; color: var(--teal);
             border: 1.5px solid var(--border-color);
@@ -786,7 +927,7 @@
             opacity: 0; visibility: hidden;
             transition: all 0.3s ease;
         }
-        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top.visible, .back-to-top.show { opacity: 1; visibility: visible; }
         .back-to-top:hover {
             background: var(--teal); color: white;
             transform: translateY(-3px); box-shadow: var(--shadow-hover);
@@ -815,14 +956,18 @@
             .services-grid { grid-template-columns: repeat(2, 1fr); }
             .diagnosis-cards-grid { grid-template-columns: repeat(2, 1fr); }
             .diagnosis-result-box { flex-direction: column; text-align: center; }
-            .hero-title { font-size: 2.5rem; }
+            .hero-title { font-size: 2.4rem; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .footer-grid { grid-template-columns: 1fr 1fr; }
+            .peyvand-link-box { padding: 2.2rem 1.8rem; }
+            .peyvand-btn-wrap { text-align: right; margin-top: 0.5rem; }
         }
         @media (max-width: 768px) {
+            html, body { overflow-x: hidden; max-width: 100vw; }
             body { padding-bottom: 70px; }
+            section { padding: 3.5rem 1.2rem; }
             .mobile-quick-bar { display: block; }
-            .back-to-top { bottom: 85px; left: 16px; width: 40px; height: 40px; }
+            .back-to-top { bottom: 80px; left: 16px; right: auto; width: 42px; height: 42px; }
             .nav-menu {
                 display: flex; flex-direction: column;
                 position: fixed; top: 70px; right: 1rem; left: 1rem;
@@ -842,14 +987,102 @@
             .nav-menu-external { display: block; }
             .btn-header-desktop-only { display: none; }
             .mobile-toggle { display: flex; }
-            .services-grid, .stats-grid, .footer-grid, .diagnosis-cards-grid { grid-template-columns: 1fr; }
-            .article-card { width: 275px; }
-            .hero { padding-top: 120px; }
+            .services-grid, .footer-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+            .article-card { width: 280px; }
+            .hero { padding: 105px 1rem 3rem 1rem; }
+            .hero-actions { flex-direction: column; width: 100%; gap: 0.8rem; }
+            .hero-actions .btn-main { width: 100%; justify-content: center; box-sizing: border-box; }
             .badge-1, .badge-2 { display: none; }
-            .hero-title { font-size: 2.1rem; }
-            .stats-section { padding: 2.2rem 1.5rem; }
-            .stat-card p.stat-value { font-size: 2.1rem; }
-            .bio-features-grid { grid-template-columns: 1fr; }
+            .therapist-mobile-trust-pills { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.2rem; }
+            .hero-title { font-size: 1.95rem; line-height: 1.38; letter-spacing: -0.3px; word-break: break-word; }
+            .hero-subtitle { font-size: 0.95rem; line-height: 1.8; }
+            
+            /* Stats on Mobile */
+            .stats-section { padding: 2.2rem 1rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+            .stat-card { padding: 1.1rem 0.5rem; border-radius: var(--radius-md); }
+            .stat-icon { width: 38px; height: 38px; font-size: 1.05rem; margin-bottom: 0.4rem; border-radius: 10px; }
+            .stat-card p.stat-value { font-size: 1.65rem; margin-bottom: 0.15rem; }
+            .stat-card p { font-size: 0.78rem; line-height: 1.35; }
+
+            /* Diagnosis Widget on Mobile */
+            .diagnosis-widget-wrap { padding: 1.5rem 1rem; border-radius: var(--radius-lg); margin-bottom: 3rem; }
+            .diagnosis-header h3 { font-size: 1.35rem; }
+            .diagnosis-header p { font-size: 0.88rem; }
+            .diagnosis-cards-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+            .diagnosis-option-btn {
+                flex-direction: row; text-align: right;
+                align-items: center; justify-content: flex-start;
+                padding: 1.1rem 1rem; gap: 0.85rem;
+            }
+            .diagnosis-option-icon { width: 42px; height: 42px; font-size: 1.15rem; flex-shrink: 0; }
+            .diagnosis-option-title { font-size: 0.92rem; text-align: right; }
+            .diagnosis-result-box { padding: 1.3rem 1rem; text-align: center; flex-direction: column; gap: 1.1rem; }
+            .diagnosis-result-text h4 { justify-content: center; font-size: 1.1rem; }
+            .diagnosis-result-text p { font-size: 0.88rem; text-align: center; }
+            .diagnosis-result-box .btn-main { width: 100%; justify-content: center; }
+
+            /* Peyvand Link Box Banner on Mobile */
+            .peyvand-link-box {
+                padding: 1.6rem 1.2rem !important;
+                border-radius: var(--radius-lg) !important;
+                gap: 1.2rem !important;
+                margin-top: 2.2rem !important;
+                text-align: center !important;
+            }
+            .peyvand-link-box h3 {
+                font-size: 1.25rem !important;
+                line-height: 1.5 !important;
+                word-break: break-word !important;
+                justify-content: center !important;
+                display: flex !important;
+                align-items: center !important;
+                gap: 0.5rem !important;
+                flex-wrap: wrap !important;
+            }
+            .peyvand-link-box p {
+                font-size: 0.9rem !important;
+                line-height: 1.75 !important;
+                opacity: 0.92 !important;
+                text-align: center !important;
+            }
+            .peyvand-btn-wrap {
+                text-align: center !important;
+                width: 100% !important;
+                margin-top: 0.4rem !important;
+            }
+            .peyvand-btn {
+                width: 100% !important;
+                box-sizing: border-box !important;
+                justify-content: center !important;
+                padding: 0.85rem 0.8rem !important;
+                font-size: 0.88rem !important;
+                white-space: normal !important;
+                word-break: break-word !important;
+            }
+
+            /* Bio & Services Mobile */
+            .bio-grid { grid-template-columns: 1fr; gap: 1.8rem; }
+            .bio-card-highlight { padding: 1.5rem 1.2rem; border-radius: var(--radius-lg); }
+            .bio-card-highlight h2 { font-size: 1.8rem; }
+            .bio-pillar-card { padding: 1.1rem 0.9rem; border-radius: var(--radius-md); gap: 0.8rem; }
+            .bio-pillar-icon { width: 40px; height: 40px; font-size: 1.1rem; }
+            .service-card-luxury { padding: 1.5rem 1.2rem; border-radius: var(--radius-lg); }
+            .service-card-luxury .btn-main { width: 100%; justify-content: center; box-sizing: border-box; }
+
+            /* Contact & Footer Mobile */
+            .contact-grid { grid-template-columns: 1fr; gap: 1.8rem; }
+            .contact-card { padding: 1.4rem 1.1rem; border-radius: var(--radius-lg); }
+            .contact-map-frame { height: 260px; border-radius: var(--radius-lg); }
+            .footer-luxury { padding: 3.5rem 1.2rem 2.2rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2.2rem; text-align: center; }
+            .footer-brand { text-align: center; }
+            .footer-col h4 { margin-bottom: 0.9rem; }
+            .footer-col ul { padding: 0; display: flex; flex-direction: column; align-items: center; }
+        }
+        @media (max-width: 380px) {
+            .hero-title { font-size: 1.75rem; }
+            .stats-grid { grid-template-columns: 1fr; }
         }
     </style>
 
@@ -951,7 +1184,7 @@
                     </div>
                 </div>
 
-                <!-- Floating Social Proof Badges -->
+                <!-- Floating Social Proof Badges (Desktop) -->
                 <div class="floating-badge badge-1">
                     <div class="badge-icon badge-icon-gold"><i class="fas fa-award"></i></div>
                     <div class="badge-text">
@@ -967,6 +1200,24 @@
                         <p>حضوری تهران و آنلاین بین‌الملل</p>
                     </div>
                 </div>
+
+                <!-- Mobile Trust Pills (Visible only on mobile) -->
+                <div class="therapist-mobile-trust-pills">
+                    <div class="trust-pill-item">
+                        <div class="trust-pill-icon badge-icon-gold"><i class="fas fa-award"></i></div>
+                        <div>
+                            <p style="font-size:0.88rem; font-weight:800; margin:0; color:var(--ink);">+۱۰ سال تجربه</p>
+                            <p style="font-size:0.75rem; color:var(--ink-soft); margin:0;">زوج‌درمانی تخصصی</p>
+                        </div>
+                    </div>
+                    <div class="trust-pill-item">
+                        <div class="trust-pill-icon badge-icon-teal"><i class="fas fa-shield-heart"></i></div>
+                        <div>
+                            <p style="font-size:0.88rem; font-weight:800; margin:0; color:var(--ink);">+۲۰۰۰ جلسه</p>
+                            <p style="font-size:0.75rem; color:var(--ink-soft); margin:0;">مشاوره موثر</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -975,18 +1226,22 @@
     <div class="stats-section">
         <div class="stats-grid">
             <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-comments"></i></div>
                 <p class="stat-value">+۲۰۰۰<span>+</span></p>
                 <p>جلسه مشاوره موفق و مؤثر</p>
             </div>
             <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-user-shield"></i></div>
                 <p class="stat-value">۱۰۰٪</p>
-                <p>تضمین رازداری و پروتکل محرمانگی</p>
+                <p>تضمین رازداری و محرمانگی</p>
             </div>
             <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-id-card"></i></div>
                 <p class="stat-value">۱۴۱۴۰۸۳</p>
-                <p>پروانه تخصصی سازمان نظام روانشناسی</p>
+                <p>پروانه تخصصی نظام روانشناسی</p>
             </div>
             <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-brain"></i></div>
                 <p class="stat-value">EFT & CBT</p>
                 <p>رویکردهای استاندارد جهانی درمان</p>
             </div>
@@ -1157,8 +1412,8 @@
                 <h3><i class="fas fa-building-columns"></i> کلینیک روانشناسی و مرکز خدمات روانشناختی پیوند امن</h3>
                 <p>مرکز تخصصی روان‌درمانی، زوج‌درمانی، کارگاه‌های آموزش خانواده و ارزیابی‌های جامع روان‌شناختی تحت نظارت سازمان نظام روان‌شناسی.</p>
             </div>
-            <div style="text-align: left;">
-                <a href="https://peyvandamn.ir" target="_blank" rel="noopener noreferrer" class="btn-main" style="background: white; color: var(--teal); font-weight: 800; box-shadow: var(--shadow-soft);">
+            <div class="peyvand-btn-wrap">
+                <a href="https://peyvandamn.ir" target="_blank" rel="noopener noreferrer" class="btn-main peyvand-btn">
                     <i class="fas fa-arrow-up-right-from-square"></i> ورود به وب‌سایت peyvandamn.ir
                 </a>
             </div>
@@ -1194,27 +1449,30 @@
             </div>
 
             <div>
-                <h3 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem;">چرا زوج‌درمانی تخصصی با مهناز خوینی؟</h3>
-                <ul style="list-style: none;">
-                    <li style="margin-bottom: 1.2rem; display: flex; gap: 1rem;">
-                        <i class="fas fa-circle-check" style="color: var(--clay); font-size: 1.3rem; margin-top: 0.2rem;"></i>
+                <h3 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--ink);">چرا زوج‌درمانی تخصصی با مهناز خوینی؟</h3>
+                <div class="bio-pillar-list">
+                    <div class="bio-pillar-card">
+                        <div class="bio-pillar-icon"><i class="fas fa-bullseye"></i></div>
                         <div>
-                            <strong>تمرکز بر ریشه، نه فقط دعوای امروز:</strong> شناسایی اینکه چرا یک نفر با فاصله گرفتن و دیگری با سرزنش واکنش نشان می‌دهد، و از کجا این الگوی اجتناب، اضطراب جدایی یا کنترل‌گری شکل گرفته.
+                            <h4 style="font-size:1.05rem; font-weight:800; color:var(--ink); margin-bottom:0.3rem;">تمرکز بر ریشه، نه فقط دعوای امروز</h4>
+                            <p style="font-size:0.92rem; color:var(--ink-soft); margin:0; line-height:1.75;">شناسایی اینکه چرا یک نفر با فاصله گرفتن و دیگری با سرزنش واکنش نشان می‌دهد، و از کجا این الگوی اجتناب، اضطراب جدایی یا کنترل‌گری شکل گرفته است.</p>
                         </div>
-                    </li>
-                    <li style="margin-bottom: 1.2rem; display: flex; gap: 1rem;">
-                        <i class="fas fa-circle-check" style="color: var(--clay); font-size: 1.3rem; margin-top: 0.2rem;"></i>
+                    </div>
+                    <div class="bio-pillar-card">
+                        <div class="bio-pillar-icon"><i class="fas fa-hand-holding-heart"></i></div>
                         <div>
-                            <strong>محیطی بدون قضاوت و ایمن:</strong> فضایی که در آن حرف زدن از خیانت، بی‌میلی جنسی، دخالت مادرشوهر یا پدرزن، یا حتی افکار مربوط به جدایی، بدون شرمندگی امکان‌پذیر باشد.
+                            <h4 style="font-size:1.05rem; font-weight:800; color:var(--ink); margin-bottom:0.3rem;">محیطی بدون قضاوت و ایمن</h4>
+                            <p style="font-size:0.92rem; color:var(--ink-soft); margin:0; line-height:1.75;">فضایی مطمئن که در آن صحبت از خیانت، بی‌میلی جنسی، دخالت اطرافیان یا حتی افکار مربوط به جدایی بدون شرمندگی امکان‌پذیر است.</p>
                         </div>
-                    </li>
-                    <li style="margin-bottom: 1.2rem; display: flex; gap: 1rem;">
-                        <i class="fas fa-circle-check" style="color: var(--clay); font-size: 1.3rem; margin-top: 0.2rem;"></i>
+                    </div>
+                    <div class="bio-pillar-card">
+                        <div class="bio-pillar-icon"><i class="fas fa-list-check"></i></div>
                         <div>
-                            <strong>راهکارهای عملیاتی برای همان هفته:</strong> تمرین‌های مشخص برای گفت‌وگو درباره پول، تربیت فرزند، یا نزدیکی جسمی، برای اجرا در منزل و تثبیت نتیجه جلسه.
+                            <h4 style="font-size:1.05rem; font-weight:800; color:var(--ink); margin-bottom:0.3rem;">راهکارهای عملیاتی برای همان هفته</h4>
+                            <p style="font-size:0.92rem; color:var(--ink-soft); margin:0; line-height:1.75;">تمرین‌های کاربردی و برنامه‌ریزی‌شده برای گفت‌وگو درباره مسائل مالی، تربیت فرزندان، یا صمیمیت زناشویی جهت اجرا در منزل.</p>
                         </div>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1473,6 +1731,11 @@
                     <a href="https://zoojdarman.ir/articles/phone-online-infidelity-counseling" style="color: var(--teal); font-weight: 700; text-decoration: none;">مطالعه مقاله کامل ←</a>
                 </div>
             </article>
+            </div>
+            <div style="text-align: center; margin-top: 2.2rem;">
+                <a href="#contact" class="btn-main btn-outline-glass">
+                    <i class="fas fa-book-open"></i> دسترسی به تمام ۴۲ مقاله و راهنمای تخصصی در کلینیک
+                </a>
             </div>
         </div>
     </section>
@@ -1848,14 +2111,30 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- Desktop Floating Contact Widget -->
+    <div class="desktop-floating-contacts">
+        <a href="https://wa.me/989199087264" target="_blank" rel="noopener noreferrer" class="desktop-floating-btn btn-wa">
+            <i class="fab fa-whatsapp"></i> واتساپ: ۰۹۱۹۹۰۸۷۲۶۴
+        </a>
+        <a href="tel:+989199087264" class="desktop-floating-btn btn-mobile">
+            <i class="fas fa-mobile-alt"></i> همراه: ۰۹۱۹۹۰۸۷۲۶۴
+        </a>
+        <a href="tel:+982144600980" class="desktop-floating-btn btn-clinic">
+            <i class="fas fa-phone-alt"></i> کلینیک: ۰۲۱۴۴۶۰۰۹۸۰
+        </a>
+    </div>
+
     <!-- Mobile Quick Sticky Bar -->
     <div class="mobile-sticky-quick-bar">
         <div class="mobile-quick-actions">
             <a href="https://wa.me/989199087264" target="_blank" rel="noopener noreferrer" class="mobile-quick-btn quick-btn-wa">
-                <i class="fab fa-whatsapp"></i> پیام فوری واتساپ
+                <i class="fab fa-whatsapp"></i> واتساپ
             </a>
             <a href="tel:+989199087264" class="mobile-quick-btn quick-btn-call">
-                <i class="fas fa-phone"></i> تماس تلفنی
+                <i class="fas fa-phone"></i> همراه
+            </a>
+            <a href="tel:+982144600980" class="mobile-quick-btn quick-btn-clinic">
+                <i class="fas fa-phone-alt"></i> کلینیک
             </a>
         </div>
     </div>
