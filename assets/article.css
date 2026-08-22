@@ -1,19 +1,25 @@
 :root {
-    --cream: #faf5ef;
-    --cream-deep: #f2eae0;
-    --ink: #332a28;
-    --ink-soft: #6b5f5a;
-    --teal: #2f5c57;
-    --teal-light: #3d6b66;
-    --teal-soft: #e4eeec;
-    --teal-soft-2: #d6e6e3;
-    --clay: #c77b58;
-    --clay-light: #d68a63;
-    --clay-soft: #f5e3d8;
-    --clay-text: #924f31; /* darker clay for small/bold text — meets WCAG AA (4.5:1) on cream and clay-soft */
-    --border-color: rgba(51, 42, 40, 0.1);
-    --shadow-soft: 0 8px 24px -10px rgba(51, 42, 40, 0.14);
-    --shadow-hover: 0 14px 30px -10px rgba(51, 42, 40, 0.18);
+    --cream: #f3efe7;
+    --cream-deep: #eae3d6;
+    --cream-light: #fffdfa;
+    --ink: #201c1a;
+    --ink-soft: #5c534c;
+    --ink-muted: #8a8079;
+    --teal: #17423b;
+    --teal-dark: #0e2b26;
+    --teal-light: #3d786d;
+    --teal-soft: #e7f0ed;
+    --teal-soft-2: #cfe1dc;
+    --clay: #99453b;
+    --clay-dark: #7a332b;
+    --clay-light: #b66459;
+    --clay-soft: #f5e6e1;
+    --clay-text: #6e2f27; /* darker clay for small/bold text — meets WCAG AA (4.5:1) on cream and clay-soft */
+    --gold: #ad8a3c;
+    --gold-soft: #f7f0dd;
+    --border-color: rgba(32, 28, 26, 0.1);
+    --shadow-soft: 0 8px 24px -10px rgba(32, 28, 26, 0.16);
+    --shadow-hover: 0 14px 30px -10px rgba(32, 28, 26, 0.2);
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; font-size: 16px; }
@@ -232,7 +238,7 @@ a:hover { color: var(--clay); }
     direction: rtl;
 }
 .desktop-floating-btn.btn-mobile {
-    background: #1e524b;
+    background: #17423b;
     color: #ffffff !important;
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -243,8 +249,8 @@ a:hover { color: var(--clay); }
 }
 .desktop-floating-btn.btn-clinic {
     background: #ffffff;
-    color: #1e524b !important;
-    border: 1.5px solid #1e524b;
+    color: #17423b !important;
+    border: 1.5px solid #17423b;
 }
 .desktop-floating-btn.btn-clinic:hover {
     background: #f0f7f6;
@@ -306,12 +312,12 @@ a:hover { color: var(--clay); }
         color: #ffffff !important;
     }
     .quick-btn-call {
-        background: #1e524b;
+        background: #17423b;
         color: #ffffff !important;
     }
     .quick-btn-clinic {
         background: #f0f7f6;
-        color: #1e524b !important;
+        color: #17423b !important;
         border: 1px solid rgba(30, 82, 75, 0.2);
     }
     body {
