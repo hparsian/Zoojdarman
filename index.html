@@ -160,42 +160,102 @@
     </script>
 
     <style>
+        /* ═══════════════════════════════════════
+           DESIGN TOKENS — zoojdarman.ir
+           ═══════════════════════════════════════ */
         :root {
-            /* پالت هویتی: بژ گرم مایل به خاکستری + سبز جنگلی عمیق + رزوود صمیمی */
-            --cream: #f3efe7;
-            --cream-deep: #eae3d6;
-            --cream-light: #fffdfa;
-            --ink: #201c1a;
-            --ink-soft: #5c534c;
-            --ink-muted: #8a8079;
-            
-            --teal: #17423b;
+            /* ── Colors ── */
+            --color-background: #faf7f2;
+            --color-background-warm: #f5f0e8;
+            --color-surface: #ffffff;
+            --color-primary: #17423b;
+            --color-primary-hover: #1e574e;
+            --color-primary-light: #3d786d;
+            --color-primary-soft: #e7f0ed;
+            --color-primary-soft-2: #cfe1dc;
+            --color-secondary: #99453b;
+            --color-secondary-hover: #b66459;
+            --color-secondary-light: #b66459;
+            --color-secondary-soft: #f5e6e1;
+            --color-secondary-text: #6e2f27;
+            --color-accent: #ad8a3c;
+            --color-accent-soft: #f7f0dd;
+            --color-text: #201c1a;
+            --color-text-secondary: #5c534c;
+            --color-text-muted: #8a8079;
+            --color-text-inverse: #ffffff;
+            --color-border: rgba(32, 28, 26, 0.08);
+            --color-border-focus: rgba(23, 66, 59, 0.35);
+            --color-success: #10b981;
+
+            /* Legacy aliases (kept for backward compat) */
+            --cream: var(--color-background);
+            --cream-deep: var(--color-background-warm);
+            --cream-light: var(--color-surface);
+            --ink: var(--color-text);
+            --ink-soft: var(--color-text-secondary);
+            --ink-muted: var(--color-text-muted);
+            --teal: var(--color-primary);
             --teal-dark: #0e2b26;
-            --teal-light: #3d786d;
-            --teal-soft: #e7f0ed;
-            --teal-soft-2: #cfe1dc;
-            
-            --clay: #99453b;
+            --teal-light: var(--color-primary-light);
+            --teal-soft: var(--color-primary-soft);
+            --teal-soft-2: var(--color-primary-soft-2);
+            --clay: var(--color-secondary);
             --clay-dark: #7a332b;
-            --clay-light: #b66459;
-            --clay-soft: #f5e6e1;
-            --clay-text: #6e2f27;
-            
-            --gold: #ad8a3c;
-            --gold-soft: #f7f0dd;
-            --border-color: rgba(32, 28, 26, 0.1);
-            --border-focus: rgba(23, 66, 59, 0.35);
-            
-            --shadow-xs: 0 2px 6px rgba(32, 28, 26, 0.04);
+            --clay-light: var(--color-secondary-light);
+            --clay-soft: var(--color-secondary-soft);
+            --clay-text: var(--color-secondary-text);
+            --gold: var(--color-accent);
+            --gold-soft: var(--color-accent-soft);
+            --border-color: var(--color-border);
+            --border-focus: var(--color-border-focus);
+
+            /* ── Shadows ── */
+            --shadow-xs: 0 1px 3px rgba(32, 28, 26, 0.04), 0 1px 2px rgba(32, 28, 26, 0.02);
+            --shadow-sm: 0 4px 12px -2px rgba(32, 28, 26, 0.06), 0 2px 6px -1px rgba(32, 28, 26, 0.03);
             --shadow-soft: 0 10px 30px -8px rgba(32, 28, 26, 0.1), 0 3px 10px -2px rgba(32, 28, 26, 0.04);
+            --shadow-md: 0 10px 30px -8px rgba(32, 28, 26, 0.1), 0 3px 10px -2px rgba(32, 28, 26, 0.04);
+            --shadow-lg: 0 20px 42px -10px rgba(32, 28, 26, 0.14), 0 6px 16px -3px rgba(32, 28, 26, 0.05);
             --shadow-hover: 0 20px 42px -10px rgba(32, 28, 26, 0.14), 0 6px 16px -3px rgba(32, 28, 26, 0.05);
+            --shadow-xl: 0 25px 55px -12px rgba(32, 28, 26, 0.18), 0 8px 20px -4px rgba(32, 28, 26, 0.06);
             --shadow-teal: 0 10px 28px -6px rgba(23, 66, 59, 0.3);
+            --shadow-primary: 0 10px 28px -6px rgba(23, 66, 59, 0.3);
             --shadow-clay: 0 10px 28px -6px rgba(153, 69, 59, 0.32);
-            
-            --radius-xl: 24px;
-            --radius-lg: 18px;
-            --radius-md: 12px;
+            --shadow-secondary: 0 10px 28px -6px rgba(153, 69, 59, 0.32);
+
+            /* ── Radius ── */
             --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 18px;
+            --radius-xl: 24px;
+            --radius-full: 9999px;
+
+            /* ── Typography ── */
+            --font-family: 'Vazirmatn', Tahoma, 'Segoe UI', sans-serif;
+            --font-size-xs: clamp(0.7rem, 0.65rem + 0.2vw, 0.8rem);
+            --font-size-sm: clamp(0.8rem, 0.75rem + 0.25vw, 0.9rem);
+            --font-size-base: clamp(0.9rem, 0.85rem + 0.25vw, 1rem);
+            --font-size-lg: clamp(1rem, 0.9rem + 0.5vw, 1.15rem);
+            --font-size-xl: clamp(1.15rem, 1rem + 0.75vw, 1.35rem);
+            --font-size-2xl: clamp(1.35rem, 1.1rem + 1.2vw, 1.75rem);
+            --font-size-3xl: clamp(1.75rem, 1.3rem + 2vw, 2.5rem);
+            --font-size-hero: clamp(2rem, 1.2rem + 3.5vw, 3.2rem);
+            --line-height-tight: 1.3;
+            --line-height-relaxed: 1.85;
+            --letter-spacing-tight: -0.03em;
+
+            /* ── Transitions ── */
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --duration-fast: 150ms;
+            --duration-normal: 250ms;
+            --duration-slow: 400ms;
+            --duration-slower: 600ms;
+
+            /* ── Container ── */
+            --container-max: 1280px;
+            --container-narrow: 860px;
+            --container-padding: 2rem;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -214,7 +274,48 @@
             * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
         }
 
-        ::selection { background: var(--teal-light); color: #fff; }
+        ::selection { background: var(--color-primary-light); color: #fff; }
+        img { max-width: 100%; height: auto; }
+
+        /* ═══════════════════════════════════════
+           SCROLL REVEAL ANIMATIONS
+           ═══════════════════════════════════════ */
+        .reveal {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity var(--duration-slower) var(--ease-out), transform var(--duration-slower) var(--ease-out);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-up {
+            opacity: 0; transform: translateY(40px);
+            transition: opacity var(--duration-slower) var(--ease-out), transform var(--duration-slower) var(--ease-out);
+        }
+        .reveal-up.visible { opacity: 1; transform: translateY(0); }
+        .reveal-left {
+            opacity: 0; transform: translateX(40px);
+            transition: opacity var(--duration-slower) var(--ease-out), transform var(--duration-slower) var(--ease-out);
+        }
+        .reveal-left.visible { opacity: 1; transform: translateX(0); }
+        .reveal-right {
+            opacity: 0; transform: translateX(-40px);
+            transition: opacity var(--duration-slower) var(--ease-out), transform var(--duration-slower) var(--ease-out);
+        }
+        .reveal-right.visible { opacity: 1; transform: translateX(0); }
+        .reveal-scale {
+            opacity: 0; transform: scale(0.95);
+            transition: opacity var(--duration-slower) var(--ease-out), transform var(--duration-slower) var(--ease-out);
+        }
+        .reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+        /* Focus visible for accessibility */
+        :focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+            border-radius: var(--radius-sm);
+        }
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+        }
 
         #scroll-progress {
             position: fixed; top: 0; right: 0; height: 3.5px; width: 100%;
@@ -1159,18 +1260,18 @@
     <section class="hero" id="home">
         <div class="hero-grid">
             <div class="hero-text-content">
-                <div class="hero-badge-top">
+                <div class="hero-badge-top reveal">
                     <span class="pulse-dot"></span>
                     <span>پروانه رسمی نظام روانشناسی: ۱۴۱۴۰۸۳ | پذیرش حضوری و آنلاین</span>
                 </div>
-                <h1 class="hero-title">
+                <h1 class="hero-title reveal-up">
                     ترمیم، بازسازی و امنیت 
                     <span>در تخصصی‌ترین مرکز زوج‌درمانی</span>
                 </h1>
-                <p class="hero-subtitle">
+                <p class="hero-subtitle reveal-up">
                     اگر مشاجرات تکراری به بن‌بست رسیده، صمیمیت کم‌رنگ شده، حسادت و بی‌اعتمادی رابطه را فرسوده کرده، یا دخالت خانواده‌ها آرامش خانه را گرفته است، <strong>مهناز خوینی</strong> (زوج‌درمانگر و مسئول فنی کلینیک پیوند امن) با رویکرد علمی هیجان‌مدار (EFT) و شناخت‌درمانی، ریشه‌ی تعارض را درمان می‌کند.
                 </p>
-                <div class="hero-actions">
+                <div class="hero-actions reveal-up">
                     <a href="https://wa.me/989199087264" target="_blank" rel="noopener noreferrer" class="btn-main btn-primary-gradient">
                         <i class="fab fa-whatsapp"></i> رزرو آنی نوبت واتساپ
                     </a>
@@ -1182,7 +1283,7 @@
 
             <!-- Prominent Therapist Showcase -->
             <div class="hero-therapist-container">
-                <div class="therapist-frame">
+                <div class="therapist-frame reveal-scale">
                     <div class="therapist-image-box">
                         <span class="therapist-status-ribbon">
                             <span class="pulse-dot"></span>
@@ -1247,22 +1348,22 @@
     <!-- Stats Bar -->
     <div class="stats-section">
         <div class="stats-grid">
-            <div class="stat-card">
+            <div class="stat-card reveal">
                 <div class="stat-icon"><i class="fas fa-comments"></i></div>
                 <p class="stat-value">+۲۰۰۰</p>
                 <p>جلسه مشاوره موفق و مؤثر</p>
             </div>
-            <div class="stat-card">
+            <div class="stat-card reveal">
                 <div class="stat-icon"><i class="fas fa-user-shield"></i></div>
                 <p class="stat-value">۱۰۰٪</p>
                 <p>تضمین رازداری و محرمانگی</p>
             </div>
-            <div class="stat-card">
+            <div class="stat-card reveal">
                 <div class="stat-icon"><i class="fas fa-id-card"></i></div>
                 <p class="stat-value">۱۴۱۴۰۸۳</p>
                 <p>پروانه تخصصی نظام روانشناسی</p>
             </div>
-            <div class="stat-card">
+            <div class="stat-card reveal">
                 <div class="stat-icon"><i class="fas fa-brain"></i></div>
                 <p class="stat-value">EFT & CBT</p>
                 <p>رویکردهای استاندارد جهانی درمان</p>
@@ -1272,7 +1373,7 @@
 
     <!-- Interactive Relationship Assessment Triage Section -->
     <section id="assessment" style="padding-bottom: 2rem;">
-        <div class="diagnosis-widget-wrap">
+        <div class="diagnosis-widget-wrap reveal">
             <div class="diagnosis-header">
                 <span class="section-subtitle"><i class="fas fa-compass"></i> خودسنجی هوشمند وضعیت رابطه</span>
                 <h3>رابطه شما اکنون در چه مرحله‌ای قرار دارد؟</h3>
@@ -1313,14 +1414,14 @@
     <!-- Specialized Services -->
     <section class="services-hub" id="services">
         <div class="section-title-wrap">
-            <span class="section-subtitle"><i class="fas fa-heart-pulse"></i> دپارتمان‌های تخصصی کلینیک</span>
-            <h2 class="section-main-title">خدمات بالینی و درمانی زوجین</h2>
-            <p class="section-desc">ارائه راهکارهای علمی مبتنی بر الگوی درمان هیجان‌مدار (EFT) و شناخت‌درمانی برای التیام و تقویت بنیان خانواده.</p>
+            <span class="section-subtitle reveal"><i class="fas fa-heart-pulse"></i> دپارتمان‌های تخصصی کلینیک</span>
+            <h2 class="section-main-title reveal-up">خدمات بالینی و درمانی زوجین</h2>
+            <p class="section-desc reveal-up">ارائه راهکارهای علمی مبتنی بر الگوی درمان هیجان‌مدار (EFT) و شناخت‌درمانی برای التیام و تقویت بنیان خانواده.</p>
         </div>
 
         <div class="services-grid">
             <!-- Service 1 -->
-            <div class="service-card-luxury">
+            <div class="service-card-luxury reveal">
                 <div>
                     <span class="service-badge">رویکرد هیجان‌مدار EFT</span>
                     <div class="service-icon-box"><i class="fas fa-heart-pulse"></i></div>
@@ -1338,7 +1439,7 @@
             </div>
 
             <!-- Service 2 -->
-            <div class="service-card-luxury">
+            <div class="service-card-luxury reveal">
                 <div>
                     <span class="service-badge">پروتکل ۳ مرحله‌ای التیام تروما</span>
                     <div class="service-icon-box"><i class="fas fa-heart-crack"></i></div>
@@ -1356,7 +1457,7 @@
             </div>
 
             <!-- Service 3 -->
-            <div class="service-card-luxury">
+            <div class="service-card-luxury reveal">
                 <div>
                     <span class="service-badge">تست‌های روان‌سنجی و طرحواره</span>
                     <div class="service-icon-box"><i class="fas fa-ring"></i></div>
@@ -1374,7 +1475,7 @@
             </div>
 
             <!-- Service 4 -->
-            <div class="service-card-luxury">
+            <div class="service-card-luxury reveal">
                 <div>
                     <span class="service-badge">مدیریت سوگ عاطفی و فرزندان</span>
                     <div class="service-icon-box"><i class="fas fa-scale-balanced"></i></div>
@@ -1392,7 +1493,7 @@
             </div>
 
             <!-- Service 5 -->
-            <div class="service-card-luxury">
+            <div class="service-card-luxury reveal">
                 <div>
                     <span class="service-badge">گروه‌درمانی تحلیلی و مهارت‌محور</span>
                     <div class="service-icon-box"><i class="fas fa-people-group"></i></div>
@@ -1410,7 +1511,7 @@
             </div>
 
             <!-- Service 6 -->
-            <div class="service-card-luxury">
+            <div class="service-card-luxury reveal">
                 <div>
                     <span class="service-badge">بین‌المللی و ایرانیان خارج از کشور</span>
                     <div class="service-icon-box"><i class="fas fa-laptop-medical"></i></div>
@@ -1445,7 +1546,7 @@
     <!-- Bio & Therapist Credentials -->
     <section class="bio-section" id="bio">
         <div class="bio-grid">
-            <div class="bio-card-highlight">
+            <div class="bio-card-highlight reveal-right">
                 <span class="section-subtitle">روانشناس و زوج‌درمانگر</span>
                 <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 1rem;">مهناز خوینی</h2>
                 <p style="color: var(--ink-soft); margin-bottom: 1.5rem;">
@@ -1472,7 +1573,7 @@
 
             <div>
                 <h3 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--ink);">چرا زوج‌درمانی تخصصی با مهناز خوینی؟</h3>
-                <div class="bio-pillar-list">
+                <div class="bio-pillar-list reveal-left">
                     <div class="bio-pillar-card">
                         <div class="bio-pillar-icon"><i class="fas fa-bullseye"></i></div>
                         <div>
@@ -1507,7 +1608,7 @@
             <p class="section-desc">مطالب آموزشی برتر برای ارتقای آگاهی و بهبود کیفیت زندگی زناشویی</p>
         </div>
 
-        <div class="articles-carousel-wrap">
+        <div class="articles-carousel-wrap reveal">
             <button class="carousel-arrow next" onclick="scrollArticles(-1)" aria-label="مقاله بعدی"><i class="fas fa-chevron-left"></i></button>
             <button class="carousel-arrow prev" onclick="scrollArticles(1)" aria-label="مقاله قبلی"><i class="fas fa-chevron-right"></i></button>
             <div class="articles-grid" id="articlesGrid">
@@ -1899,7 +2000,7 @@
             <h2 class="section-main-title">سوالات متداول مراجعان</h2>
         </div>
 
-        <div class="faq-accordion">
+        <div class="faq-accordion reveal">
             <div class="faq-item-luxury">
                 <button class="faq-question-btn" onclick="toggleFaq(this)">
                     <span>زوج‌درمانی چیست و چه زمانی باید مراجعه کنیم؟</span>
@@ -1945,7 +2046,7 @@
     <!-- Contact & Booking Section -->
     <section class="contact-section" id="contact">
         <div class="contact-grid">
-            <div class="contact-card-box">
+            <div class="contact-card-box reveal-right">
                 <h3 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem;">راهنمای رزرو نوبت و ارتباط</h3>
                 
                 <div class="contact-method-item">
@@ -1982,7 +2083,7 @@
                 </div>
             </div>
 
-            <div class="contact-card-box" style="background: #ffffff;">
+            <div class="contact-card-box reveal" style="background: #ffffff;">
                 <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 1.5rem;">فرم درخواست مشاوره اولیه</h3>
                 <form class="form-luxury" id="consultForm" onsubmit="return submitConsultForm(event)">
                     <label for="fullname" class="sr-only">نام و نام خانوادگی</label>
@@ -2060,6 +2161,40 @@
     <!-- Interactive Scripts -->
     <script>
         // Scroll Progress Bar + Navbar shadow — throttled with requestAnimationFrame
+        // ═══════════════════════════════════════════
+        // SCROLL REVEAL — Intersection Observer
+        // ═══════════════════════════════════════════
+        (function() {
+            var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            if (prefersReducedMotion) return;
+            var revealElements = document.querySelectorAll(".reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale");
+            if (!revealElements.length || !("IntersectionObserver" in window)) {
+                revealElements.forEach(function(el) { el.classList.add("visible"); });
+                return;
+            }
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+            revealElements.forEach(function(el) { observer.observe(el); });
+        })();
+
+        // Smooth Anchor Scroll
+        document.querySelectorAll("a[href^="#"]").forEach(function(anchor) {
+            anchor.addEventListener("click", function(e) {
+                var target = document.querySelector(this.getAttribute("href"));
+                if (target) {
+                    e.preventDefault();
+                    var headerHeight = document.getElementById("header").offsetHeight;
+                    var targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight - 16;
+                    window.scrollTo({ top: targetPosition, behavior: "smooth" });
+                }
+            });
+        });
         // and using a passive listener so the browser can scroll smoothly without
         // waiting on JS. scrollHeight/clientHeight are cached and only recomputed on
         // resize, instead of being read on every scroll tick (which forces a costly
