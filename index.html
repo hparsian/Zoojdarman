@@ -1207,6 +1207,290 @@
             .hero-title { font-size: 1.75rem; }
             .stats-grid { grid-template-columns: 1fr; }
         }
+
+        /* ═══════════════════════════════════════
+           MICRO-INTERACTIONS & ENHANCED UX
+           ═══════════════════════════════════════ */
+
+        /* ── Button System ── */
+
+        .btn-main { position: relative; overflow: hidden; }
+
+        .btn-main::after {
+
+            content: "";
+
+            position: absolute; inset: 0;
+
+            background: radial-gradient(circle at var(--ripple-x, 50%) var(--ripple-y, 50%), rgba(255,255,255,0.3) 0%, transparent 60%);
+
+            opacity: 0; transition: opacity 0.4s ease;
+
+        }
+
+        .btn-main:active::after { opacity: 1; }
+
+        .btn-main:active { transform: scale(0.98); }
+
+        .btn-loading { pointer-events: none; opacity: 0.8; }
+
+        .btn-loading::before {
+
+            content: ""; position: absolute; inset: 0;
+
+            background: inherit; border-radius: inherit;
+
+        }
+
+        .btn-loading .fa-spinner { animation: spin 0.8s linear infinite; }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+
+        /* ── Card Hover System ── */
+
+        .service-card-luxury,
+
+        .article-card,
+
+        .bio-pillar-card,
+
+        .diagnosis-option-btn,
+
+        .faq-item-luxury,
+
+        .contact-method-item,
+
+        .bio-feature-item {
+
+            transition: transform var(--duration-normal) var(--ease-out),
+
+                        box-shadow var(--duration-normal) var(--ease-out),
+
+                        border-color var(--duration-normal) ease,
+
+                        background var(--duration-normal) ease;
+
+        }
+
+
+        /* ── Link Underline Animation ── */
+
+        .nav-link,
+
+        .article-card a,
+
+        .footer-col a {
+
+            position: relative;
+
+        }
+
+        .nav-link::before {
+
+            content: ""; position: absolute;
+
+            bottom: -2px; right: 0; width: 0; height: 2px;
+
+            background: var(--color-primary);
+
+            transition: width 0.3s var(--ease-out);
+
+        }
+
+        .nav-link:hover::before { width: 100%; }
+
+
+        /* ── Form UX ── */
+
+        .form-luxury input,
+
+        .form-luxury select,
+
+        .form-luxury textarea {
+
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+
+        }
+
+        .form-luxury input:focus,
+
+        .form-luxury select:focus,
+
+        .form-luxury textarea:focus {
+
+            border-color: var(--color-primary);
+
+            background: var(--color-surface);
+
+            box-shadow: 0 0 0 3px var(--color-primary-soft);
+
+        }
+
+        .form-luxury input.error,
+
+        .form-luxury select.error,
+
+        .form-luxury textarea.error {
+
+            border-color: #ef4444;
+
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+
+        }
+
+        .form-luxury input.valid,
+
+        .form-luxury select.valid,
+
+        .form-luxury textarea.valid {
+
+            border-color: var(--color-success);
+
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+
+        }
+
+        .form-error-msg {
+
+            color: #ef4444; font-size: 0.8rem; font-weight: 600;
+
+            margin-top: -0.8rem; margin-bottom: 0.8rem;
+
+            display: none; align-items: center; gap: 0.3rem;
+
+        }
+
+        .form-error-msg.visible { display: flex; }
+
+        .form-success-msg {
+
+            color: var(--color-success); font-size: 0.9rem; font-weight: 600;
+
+            padding: 0.8rem; border-radius: var(--radius-md);
+
+            background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.2);
+
+            display: none; align-items: center; gap: 0.5rem;
+
+            margin-top: 0.5rem;
+
+        }
+
+        .form-success-msg.visible { display: flex; }
+
+
+        /* ── Enhanced FAQ Accordion ── */
+
+        .faq-answer-body {
+
+            max-height: 0; overflow: hidden;
+
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+
+                        padding 0.3s ease,
+
+                        opacity 0.3s ease;
+
+            padding: 0 1.8rem;
+
+            opacity: 0;
+
+        }
+
+        .faq-item-luxury.active .faq-answer-body {
+
+            max-height: 350px;
+
+            padding: 0 1.8rem 1.5rem;
+
+            opacity: 1;
+
+        }
+
+        .faq-question-btn {
+
+            transition: color 0.2s ease;
+
+        }
+
+        .faq-question-btn:hover { color: var(--color-primary); }
+
+
+        /* ── Image Hover Effects ── */
+
+        .therapist-image-box img,
+
+        .service-icon-box {
+
+            transition: transform 0.4s var(--ease-out),
+
+                        background 0.3s ease,
+
+                        color 0.3s ease,
+
+                        box-shadow 0.3s ease;
+
+        }
+
+
+        /* ── Scroll Progress Enhanced ── */
+
+        #scroll-progress {
+
+            height: 3px;
+
+            transition: transform 0.05s linear;
+
+        }
+
+
+        /* ── Accessibility Enhancements ── */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale {
+
+                opacity: 1 !important;
+
+                transform: none !important;
+
+                transition: none !important;
+
+            }
+
+            .btn-main:active { transform: none; }
+
+            .btn-main:active::after { opacity: 0; }
+
+        }
+
+        @media (prefers-color-scheme: dark) {
+
+            :root {
+
+                --color-background: #1a1a1a;
+
+                --color-surface: #2a2a2a;
+
+            }
+
+        }
+
+
+        /* ── Print Styles ── */
+
+        @media print {
+
+            .header, .mobile-sticky-quick-bar, .desktop-floating-contacts,
+
+            .back-to-top, #scroll-progress, .mobile-menu-overlay { display: none !important; }
+
+            body { background: white; color: black; }
+
+            .reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale { opacity: 1 !important; transform: none !important; }
+
+        }
     </style>
 
 
@@ -1257,7 +1541,7 @@
     <div class="mobile-menu-overlay" id="menuOverlay" onclick="toggleMobileMenu()"></div>
 
     <!-- Main Hero Section -->
-    <section class="hero" id="home">
+    <section class="hero" id="home" role="banner">
         <div class="hero-grid">
             <div class="hero-text-content">
                 <div class="hero-badge-top reveal">
@@ -1346,7 +1630,7 @@
     </section>
 
     <!-- Stats Bar -->
-    <div class="stats-section">
+    <div class="stats-section" role="region" aria-label="آمار و ارقام">
         <div class="stats-grid">
             <div class="stat-card reveal">
                 <div class="stat-icon"><i class="fas fa-comments"></i></div>
@@ -1412,7 +1696,7 @@
     </section>
 
     <!-- Specialized Services -->
-    <section class="services-hub" id="services">
+    <section class="services-hub" id="services" role="region" aria-label="خدمات تخصصی">
         <div class="section-title-wrap">
             <span class="section-subtitle reveal"><i class="fas fa-heart-pulse"></i> دپارتمان‌های تخصصی کلینیک</span>
             <h2 class="section-main-title reveal-up">خدمات بالینی و درمانی زوجین</h2>
@@ -1544,7 +1828,7 @@
     </section>
 
     <!-- Bio & Therapist Credentials -->
-    <section class="bio-section" id="bio">
+    <section class="bio-section" id="bio" role="region" aria-label="درباره متخصص">
         <div class="bio-grid">
             <div class="bio-card-highlight reveal-right">
                 <span class="section-subtitle">روانشناس و زوج‌درمانگر</span>
@@ -1601,7 +1885,7 @@
     </section>
 
     <!-- SEO Articles & Content Hub -->
-    <section class="articles-section" id="articles">
+    <section class="articles-section" id="articles" role="region" aria-label="مقالات">
         <div class="section-title-wrap">
             <span class="section-subtitle">بانک دانش رابطه</span>
             <h2 class="section-main-title">راهنماهای تخصصی روانشناسی رابطه</h2>
@@ -1994,7 +2278,7 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="faq-section" id="faq">
+    <section class="faq-section" id="faq" role="region" aria-label="سوالات متداول">
         <div class="section-title-wrap">
             <span class="section-subtitle">پاسخ به دغدغه‌های شما</span>
             <h2 class="section-main-title">سوالات متداول مراجعان</h2>
@@ -2002,7 +2286,7 @@
 
         <div class="faq-accordion reveal">
             <div class="faq-item-luxury">
-                <button class="faq-question-btn" onclick="toggleFaq(this)">
+                <button class="faq-question-btn" onclick="toggleFaq(this)" aria-expanded="false">
                     <span>زوج‌درمانی چیست و چه زمانی باید مراجعه کنیم؟</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
@@ -2012,7 +2296,7 @@
             </div>
 
             <div class="faq-item-luxury">
-                <button class="faq-question-btn" onclick="toggleFaq(this)">
+                <button class="faq-question-btn" onclick="toggleFaq(this)" aria-expanded="false">
                     <span>آیا اگر همسرم حاضر به همکاری نباشد، مشاوره فردی موثر است؟</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
@@ -2022,7 +2306,7 @@
             </div>
 
             <div class="faq-item-luxury">
-                <button class="faq-question-btn" onclick="toggleFaq(this)">
+                <button class="faq-question-btn" onclick="toggleFaq(this)" aria-expanded="false">
                     <span>کیفیت جلسات آنلاین زوج‌درمانی چگونه است؟</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
@@ -2032,7 +2316,7 @@
             </div>
 
             <div class="faq-item-luxury">
-                <button class="faq-question-btn" onclick="toggleFaq(this)">
+                <button class="faq-question-btn" onclick="toggleFaq(this)" aria-expanded="false">
                     <span>چطور بفهمیم مشکل ما یک دوره سخت عادی است یا نیاز به زوج‌درمانی داریم؟</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
@@ -2044,7 +2328,7 @@
     </section>
 
     <!-- Contact & Booking Section -->
-    <section class="contact-section" id="contact">
+    <section class="contact-section" id="contact" role="region" aria-label="تماس با ما">
         <div class="contact-grid">
             <div class="contact-card-box reveal-right">
                 <h3 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem;">راهنمای رزرو نوبت و ارتباط</h3>
@@ -2312,27 +2596,60 @@
             track.scrollBy({ left: direction * step, behavior: 'smooth' });
         }
 
-        // Consultation form: builds a WhatsApp message from the entered fields (no backend needed)
+        // Consultation form: enhanced with validation, loading state, and success feedback
         function submitConsultForm(e) {
             e.preventDefault();
-            const form = document.getElementById('consultForm');
+            const form = document.getElementById("consultForm");
+            const submitBtn = document.getElementById("submitBtn") || form.querySelector("button[type=submit]");
             const name = form.fullname.value.trim();
             const phone = form.phone.value.trim();
-            const select = form['service-type'];
-            if (!select.value) {
-                alert('لطفاً نوع مشاوره مورد نظر را انتخاب کنید.');
-                select.focus();
+            const select = form["service-type"];
+            const message = form.querySelector("textarea");
+            
+            // Clear previous states
+            form.querySelectorAll(".error, .valid").forEach(el => { el.classList.remove("error", "valid"); });
+            form.querySelectorAll(".form-error-msg").forEach(el => { el.classList.remove("visible"); });
+            
+            // Validate
+            let hasError = false;
+            if (!name) { form.fullname.classList.add("error"); hasError = true; }
+            if (!phone) { form.phone.classList.add("error"); hasError = true; }
+            if (!select.value) { select.classList.add("error"); hasError = true; }
+            
+            if (hasError) {
+                const firstError = form.querySelector(".error");
+                if (firstError) firstError.focus();
                 return false;
             }
+            
+            // Show loading state
+            submitBtn.classList.add("btn-loading");
+            const originalHTML = submitBtn.innerHTML;
+            submitBtn.innerHTML = "<i class=\"fas fa-spinner fa-spin\"></i> در حال ارسال...";
+            
+            // Build WhatsApp message
             const serviceText = select.options[select.selectedIndex].text;
-            const details = form.message.value.trim();
-
-            let text = 'سلام، درخواست مشاوره اولیه دارم.' + '\n';
-            text += 'نام: ' + name + '\n';
-            text += 'شماره تماس: ' + phone + '\n';
-            text += 'نوع مشاوره: ' + serviceText;
-            if (details) {
-                text += '\n' + 'توضیح: ' + details;
+            const details = message ? message.value.trim() : "";
+            let text = "سلام، درخواست مشاوره اولیه دارم.\n";
+            text += "نام: " + name + "\n";
+            text += "شماره تماس: " + phone + "\n";
+            text += "نوع مشاوره: " + serviceText;
+            if (details) text += "\nتوضیح: " + details;
+            
+            const waLink = "https://wa.me/989199087264?text=" + encodeURIComponent(text);
+            
+            // Simulate brief delay then open WhatsApp
+            setTimeout(function() {
+                window.open(waLink, "_blank");
+                submitBtn.classList.remove("btn-loading");
+                submitBtn.innerHTML = originalHTML;
+                // Mark fields as valid
+                form.querySelectorAll("input, select, textarea").forEach(el => { el.classList.add("valid"); });
+                setTimeout(() => { form.querySelectorAll(".valid").forEach(el => { el.classList.remove("valid"); }); }, 3000);
+            }, 600);
+            
+            return false;
+        }
             }
 
             const waLink = 'https://wa.me/989199087264?text=' + encodeURIComponent(text);
@@ -2341,17 +2658,35 @@
         }
 
         // FAQ Accordion Toggle
+        // FAQ Accordion Toggle — enhanced with ARIA support
         function toggleFaq(element) {
             const faqItem = element.parentElement;
-            const isActive = faqItem.classList.contains('active');
+            const isActive = faqItem.classList.contains("active");
+            const answerBody = faqItem.querySelector(".faq-answer-body");
+            const chevron = element.querySelector("i");
             
-            document.querySelectorAll('.faq-item-luxury').forEach(item => {
-                item.classList.remove('active');
+            // Close all other FAQ items
+            document.querySelectorAll(".faq-item-luxury").forEach(function(item) {
+                if (item !== faqItem) {
+                    item.classList.remove("active");
+                    var otherBtn = item.querySelector(".faq-question-btn");
+                    var otherAnswer = item.querySelector(".faq-answer-body");
+                    if (otherBtn) otherBtn.setAttribute("aria-expanded", "false");
+                    if (otherAnswer) otherAnswer.setAttribute("aria-hidden", "true");
+                }
             });
-
+            
+            // Toggle current item
             if (!isActive) {
-                faqItem.classList.add('active');
+                faqItem.classList.add("active");
+                element.setAttribute("aria-expanded", "true");
+                if (answerBody) answerBody.setAttribute("aria-hidden", "false");
+            } else {
+                faqItem.classList.remove("active");
+                element.setAttribute("aria-expanded", "false");
+                if (answerBody) answerBody.setAttribute("aria-hidden", "true");
             }
+        }
         }
 
         // Relationship Assessment Data & Interactive Switcher
