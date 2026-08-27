@@ -28,7 +28,7 @@
     <meta name="robots" content="index, follow">
     <meta name="language" content="Persian">
     <meta name="author" content="مهناز خوینی">
-    <link rel="canonical" href="/">
+    <link rel="canonical" href="https://zoojdarman.ir/">
     <!-- Favicon & Touch Icons -->
     <link rel="icon" type="image/svg+xml" href="/images/logo.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-512.png">
@@ -160,42 +160,102 @@
     </script>
 
     <style>
+        /* ═══════════════════════════════════════
+           DESIGN TOKENS — zoojdarman.ir
+           ═══════════════════════════════════════ */
         :root {
-            /* پالت هویتی: بژ گرم مایل به خاکستری + سبز جنگلی عمیق + رزوود صمیمی */
-            --cream: #f3efe7;
-            --cream-deep: #eae3d6;
-            --cream-light: #fffdfa;
-            --ink: #201c1a;
-            --ink-soft: #5c534c;
-            --ink-muted: #8a8079;
-            
-            --teal: #17423b;
+            /* ── Colors ── */
+            --color-background: #faf7f2;
+            --color-background-warm: #f5f0e8;
+            --color-surface: #ffffff;
+            --color-primary: #17423b;
+            --color-primary-hover: #1e574e;
+            --color-primary-light: #3d786d;
+            --color-primary-soft: #e7f0ed;
+            --color-primary-soft-2: #cfe1dc;
+            --color-secondary: #99453b;
+            --color-secondary-hover: #b66459;
+            --color-secondary-light: #b66459;
+            --color-secondary-soft: #f5e6e1;
+            --color-secondary-text: #6e2f27;
+            --color-accent: #ad8a3c;
+            --color-accent-soft: #f7f0dd;
+            --color-text: #201c1a;
+            --color-text-secondary: #5c534c;
+            --color-text-muted: #8a8079;
+            --color-text-inverse: #ffffff;
+            --color-border: rgba(32, 28, 26, 0.08);
+            --color-border-focus: rgba(23, 66, 59, 0.35);
+            --color-success: #10b981;
+
+            /* Legacy aliases (kept for backward compat) */
+            --cream: var(--color-background);
+            --cream-deep: var(--color-background-warm);
+            --cream-light: var(--color-surface);
+            --ink: var(--color-text);
+            --ink-soft: var(--color-text-secondary);
+            --ink-muted: var(--color-text-muted);
+            --teal: var(--color-primary);
             --teal-dark: #0e2b26;
-            --teal-light: #3d786d;
-            --teal-soft: #e7f0ed;
-            --teal-soft-2: #cfe1dc;
-            
-            --clay: #99453b;
+            --teal-light: var(--color-primary-light);
+            --teal-soft: var(--color-primary-soft);
+            --teal-soft-2: var(--color-primary-soft-2);
+            --clay: var(--color-secondary);
             --clay-dark: #7a332b;
-            --clay-light: #b66459;
-            --clay-soft: #f5e6e1;
-            --clay-text: #6e2f27;
-            
-            --gold: #ad8a3c;
-            --gold-soft: #f7f0dd;
-            --border-color: rgba(32, 28, 26, 0.1);
-            --border-focus: rgba(23, 66, 59, 0.35);
-            
-            --shadow-xs: 0 2px 6px rgba(32, 28, 26, 0.04);
+            --clay-light: var(--color-secondary-light);
+            --clay-soft: var(--color-secondary-soft);
+            --clay-text: var(--color-secondary-text);
+            --gold: var(--color-accent);
+            --gold-soft: var(--color-accent-soft);
+            --border-color: var(--color-border);
+            --border-focus: var(--color-border-focus);
+
+            /* ── Shadows ── */
+            --shadow-xs: 0 1px 3px rgba(32, 28, 26, 0.04), 0 1px 2px rgba(32, 28, 26, 0.02);
+            --shadow-sm: 0 4px 12px -2px rgba(32, 28, 26, 0.06), 0 2px 6px -1px rgba(32, 28, 26, 0.03);
             --shadow-soft: 0 10px 30px -8px rgba(32, 28, 26, 0.1), 0 3px 10px -2px rgba(32, 28, 26, 0.04);
+            --shadow-md: 0 10px 30px -8px rgba(32, 28, 26, 0.1), 0 3px 10px -2px rgba(32, 28, 26, 0.04);
+            --shadow-lg: 0 20px 42px -10px rgba(32, 28, 26, 0.14), 0 6px 16px -3px rgba(32, 28, 26, 0.05);
             --shadow-hover: 0 20px 42px -10px rgba(32, 28, 26, 0.14), 0 6px 16px -3px rgba(32, 28, 26, 0.05);
+            --shadow-xl: 0 25px 55px -12px rgba(32, 28, 26, 0.18), 0 8px 20px -4px rgba(32, 28, 26, 0.06);
             --shadow-teal: 0 10px 28px -6px rgba(23, 66, 59, 0.3);
+            --shadow-primary: 0 10px 28px -6px rgba(23, 66, 59, 0.3);
             --shadow-clay: 0 10px 28px -6px rgba(153, 69, 59, 0.32);
-            
-            --radius-xl: 24px;
-            --radius-lg: 18px;
-            --radius-md: 12px;
+            --shadow-secondary: 0 10px 28px -6px rgba(153, 69, 59, 0.32);
+
+            /* ── Radius ── */
             --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 18px;
+            --radius-xl: 24px;
+            --radius-full: 9999px;
+
+            /* ── Typography ── */
+            --font-family: 'Vazirmatn', Tahoma, 'Segoe UI', sans-serif;
+            --font-size-xs: clamp(0.7rem, 0.65rem + 0.2vw, 0.8rem);
+            --font-size-sm: clamp(0.8rem, 0.75rem + 0.25vw, 0.9rem);
+            --font-size-base: clamp(0.9rem, 0.85rem + 0.25vw, 1rem);
+            --font-size-lg: clamp(1rem, 0.9rem + 0.5vw, 1.15rem);
+            --font-size-xl: clamp(1.15rem, 1rem + 0.75vw, 1.35rem);
+            --font-size-2xl: clamp(1.35rem, 1.1rem + 1.2vw, 1.75rem);
+            --font-size-3xl: clamp(1.75rem, 1.3rem + 2vw, 2.5rem);
+            --font-size-hero: clamp(2rem, 1.2rem + 3.5vw, 3.2rem);
+            --line-height-tight: 1.3;
+            --line-height-relaxed: 1.85;
+            --letter-spacing-tight: -0.03em;
+
+            /* ── Transitions ── */
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --duration-fast: 150ms;
+            --duration-normal: 250ms;
+            --duration-slow: 400ms;
+            --duration-slower: 600ms;
+
+            /* ── Container ── */
+            --container-max: 1280px;
+            --container-narrow: 860px;
+            --container-padding: 2rem;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -214,7 +274,48 @@
             * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
         }
 
-        ::selection { background: var(--teal-light); color: #fff; }
+        ::selection { background: var(--color-primary-light); color: #fff; }
+        img { max-width: 100%; height: auto; }
+
+        /* ═══════════════════════════════════════
+           SCROLL REVEAL ANIMATIONS
+           ═══════════════════════════════════════ */
+        .reveal {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity var(--duration-slower) var(--ease-out), transform var(--duration-slower) var(--ease-out);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-up {
+            opacity: 0; transform: translateY(40px);
+            transition: opacity var(--duration-slower) var(--ease-out), transform var(--duration-slower) var(--ease-out);
+        }
+        .reveal-up.visible { opacity: 1; transform: translateY(0); }
+        .reveal-left {
+            opacity: 0; transform: translateX(40px);
+            transition: opacity var(--duration-slower) var(--ease-out), transform var(--duration-slower) var(--ease-out);
+        }
+        .reveal-left.visible { opacity: 1; transform: translateX(0); }
+        .reveal-right {
+            opacity: 0; transform: translateX(-40px);
+            transition: opacity var(--duration-slower) var(--ease-out), transform var(--duration-slower) var(--ease-out);
+        }
+        .reveal-right.visible { opacity: 1; transform: translateX(0); }
+        .reveal-scale {
+            opacity: 0; transform: scale(0.95);
+            transition: opacity var(--duration-slower) var(--ease-out), transform var(--duration-slower) var(--ease-out);
+        }
+        .reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+        /* Focus visible for accessibility */
+        :focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+            border-radius: var(--radius-sm);
+        }
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+        }
 
         #scroll-progress {
             position: fixed; top: 0; right: 0; height: 3.5px; width: 100%;
@@ -1017,6 +1118,8 @@
             .badge-1, .badge-2 { display: none; }
             .therapist-mobile-trust-pills { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.2rem; }
             .hero-title { font-size: 1.95rem; line-height: 1.38; letter-spacing: -0.3px; word-break: break-word; }
+            .hero-title span { display: inline; }
+            .hero-title span::after { display: none; }
             .hero-subtitle { font-size: 0.95rem; line-height: 1.8; }
             
             /* Stats on Mobile */
@@ -1106,6 +1209,290 @@
             .hero-title { font-size: 1.75rem; }
             .stats-grid { grid-template-columns: 1fr; }
         }
+
+        /* ═══════════════════════════════════════
+           MICRO-INTERACTIONS & ENHANCED UX
+           ═══════════════════════════════════════ */
+
+        /* ── Button System ── */
+
+        .btn-main { position: relative; overflow: hidden; }
+
+        .btn-main::after {
+
+            content: "";
+
+            position: absolute; inset: 0;
+
+            background: radial-gradient(circle at var(--ripple-x, 50%) var(--ripple-y, 50%), rgba(255,255,255,0.3) 0%, transparent 60%);
+
+            opacity: 0; transition: opacity 0.4s ease;
+
+        }
+
+        .btn-main:active::after { opacity: 1; }
+
+        .btn-main:active { transform: scale(0.98); }
+
+        .btn-loading { pointer-events: none; opacity: 0.8; }
+
+        .btn-loading::before {
+
+            content: ""; position: absolute; inset: 0;
+
+            background: inherit; border-radius: inherit;
+
+        }
+
+        .btn-loading .fa-spinner { animation: spin 0.8s linear infinite; }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+
+        /* ── Card Hover System ── */
+
+        .service-card-luxury,
+
+        .article-card,
+
+        .bio-pillar-card,
+
+        .diagnosis-option-btn,
+
+        .faq-item-luxury,
+
+        .contact-method-item,
+
+        .bio-feature-item {
+
+            transition: transform var(--duration-normal) var(--ease-out),
+
+                        box-shadow var(--duration-normal) var(--ease-out),
+
+                        border-color var(--duration-normal) ease,
+
+                        background var(--duration-normal) ease;
+
+        }
+
+
+        /* ── Link Underline Animation ── */
+
+        .nav-link,
+
+        .article-card a,
+
+        .footer-col a {
+
+            position: relative;
+
+        }
+
+        .nav-link::before {
+
+            content: ""; position: absolute;
+
+            bottom: -2px; right: 0; width: 0; height: 2px;
+
+            background: var(--color-primary);
+
+            transition: width 0.3s var(--ease-out);
+
+        }
+
+        .nav-link:hover::before { width: 100%; }
+
+
+        /* ── Form UX ── */
+
+        .form-luxury input,
+
+        .form-luxury select,
+
+        .form-luxury textarea {
+
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+
+        }
+
+        .form-luxury input:focus,
+
+        .form-luxury select:focus,
+
+        .form-luxury textarea:focus {
+
+            border-color: var(--color-primary);
+
+            background: var(--color-surface);
+
+            box-shadow: 0 0 0 3px var(--color-primary-soft);
+
+        }
+
+        .form-luxury input.error,
+
+        .form-luxury select.error,
+
+        .form-luxury textarea.error {
+
+            border-color: #ef4444;
+
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+
+        }
+
+        .form-luxury input.valid,
+
+        .form-luxury select.valid,
+
+        .form-luxury textarea.valid {
+
+            border-color: var(--color-success);
+
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+
+        }
+
+        .form-error-msg {
+
+            color: #ef4444; font-size: 0.8rem; font-weight: 600;
+
+            margin-top: -0.8rem; margin-bottom: 0.8rem;
+
+            display: none; align-items: center; gap: 0.3rem;
+
+        }
+
+        .form-error-msg.visible { display: flex; }
+
+        .form-success-msg {
+
+            color: var(--color-success); font-size: 0.9rem; font-weight: 600;
+
+            padding: 0.8rem; border-radius: var(--radius-md);
+
+            background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.2);
+
+            display: none; align-items: center; gap: 0.5rem;
+
+            margin-top: 0.5rem;
+
+        }
+
+        .form-success-msg.visible { display: flex; }
+
+
+        /* ── Enhanced FAQ Accordion ── */
+
+        .faq-answer-body {
+
+            max-height: 0; overflow: hidden;
+
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+
+                        padding 0.3s ease,
+
+                        opacity 0.3s ease;
+
+            padding: 0 1.8rem;
+
+            opacity: 0;
+
+        }
+
+        .faq-item-luxury.active .faq-answer-body {
+
+            max-height: 350px;
+
+            padding: 0 1.8rem 1.5rem;
+
+            opacity: 1;
+
+        }
+
+        .faq-question-btn {
+
+            transition: color 0.2s ease;
+
+        }
+
+        .faq-question-btn:hover { color: var(--color-primary); }
+
+
+        /* ── Image Hover Effects ── */
+
+        .therapist-image-box img,
+
+        .service-icon-box {
+
+            transition: transform 0.4s var(--ease-out),
+
+                        background 0.3s ease,
+
+                        color 0.3s ease,
+
+                        box-shadow 0.3s ease;
+
+        }
+
+
+        /* ── Scroll Progress Enhanced ── */
+
+        #scroll-progress {
+
+            height: 3px;
+
+            transition: transform 0.05s linear;
+
+        }
+
+
+        /* ── Accessibility Enhancements ── */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale {
+
+                opacity: 1 !important;
+
+                transform: none !important;
+
+                transition: none !important;
+
+            }
+
+            .btn-main:active { transform: none; }
+
+            .btn-main:active::after { opacity: 0; }
+
+        }
+
+        @media (prefers-color-scheme: dark) {
+
+            :root {
+
+                --color-background: #1a1a1a;
+
+                --color-surface: #2a2a2a;
+
+            }
+
+        }
+
+
+        /* ── Print Styles ── */
+
+        @media print {
+
+            .header, .mobile-sticky-quick-bar, .desktop-floating-contacts,
+
+            .back-to-top, #scroll-progress, .mobile-menu-overlay { display: none !important; }
+
+            body { background: white; color: black; }
+
+            .reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale { opacity: 1 !important; transform: none !important; }
+
+        }
     </style>
 
 
@@ -1156,21 +1543,21 @@
     <div class="mobile-menu-overlay" id="menuOverlay" onclick="toggleMobileMenu()"></div>
 
     <!-- Main Hero Section -->
-    <section class="hero" id="home">
+    <section class="hero" id="home" role="banner">
         <div class="hero-grid">
             <div class="hero-text-content">
-                <div class="hero-badge-top">
+                <div class="hero-badge-top reveal">
                     <span class="pulse-dot"></span>
                     <span>پروانه رسمی نظام روانشناسی: ۱۴۱۴۰۸۳ | پذیرش حضوری و آنلاین</span>
                 </div>
-                <h1 class="hero-title">
+                <h1 class="hero-title reveal-up">
                     ترمیم، بازسازی و امنیت 
                     <span>در تخصصی‌ترین مرکز زوج‌درمانی</span>
                 </h1>
-                <p class="hero-subtitle">
+                <p class="hero-subtitle reveal-up">
                     اگر مشاجرات تکراری به بن‌بست رسیده، صمیمیت کم‌رنگ شده، حسادت و بی‌اعتمادی رابطه را فرسوده کرده، یا دخالت خانواده‌ها آرامش خانه را گرفته است، <strong>مهناز خوینی</strong> (زوج‌درمانگر و مسئول فنی کلینیک پیوند امن) با رویکرد علمی هیجان‌مدار (EFT) و شناخت‌درمانی، ریشه‌ی تعارض را درمان می‌کند.
                 </p>
-                <div class="hero-actions">
+                <div class="hero-actions reveal-up">
                     <a href="https://wa.me/989199087264" target="_blank" rel="noopener noreferrer" class="btn-main btn-primary-gradient">
                         <i class="fab fa-whatsapp"></i> رزرو آنی نوبت واتساپ
                     </a>
@@ -1182,7 +1569,7 @@
 
             <!-- Prominent Therapist Showcase -->
             <div class="hero-therapist-container">
-                <div class="therapist-frame">
+                <div class="therapist-frame reveal-scale">
                     <div class="therapist-image-box">
                         <span class="therapist-status-ribbon">
                             <span class="pulse-dot"></span>
@@ -1245,24 +1632,24 @@
     </section>
 
     <!-- Stats Bar -->
-    <div class="stats-section">
+    <div class="stats-section" role="region" aria-label="آمار و ارقام">
         <div class="stats-grid">
-            <div class="stat-card">
+            <div class="stat-card reveal">
                 <div class="stat-icon"><i class="fas fa-comments"></i></div>
                 <p class="stat-value">+۲۰۰۰</p>
                 <p>جلسه مشاوره موفق و مؤثر</p>
             </div>
-            <div class="stat-card">
+            <div class="stat-card reveal">
                 <div class="stat-icon"><i class="fas fa-user-shield"></i></div>
                 <p class="stat-value">۱۰۰٪</p>
                 <p>تضمین رازداری و محرمانگی</p>
             </div>
-            <div class="stat-card">
+            <div class="stat-card reveal">
                 <div class="stat-icon"><i class="fas fa-id-card"></i></div>
                 <p class="stat-value">۱۴۱۴۰۸۳</p>
                 <p>پروانه تخصصی نظام روانشناسی</p>
             </div>
-            <div class="stat-card">
+            <div class="stat-card reveal">
                 <div class="stat-icon"><i class="fas fa-brain"></i></div>
                 <p class="stat-value">EFT & CBT</p>
                 <p>رویکردهای استاندارد جهانی درمان</p>
@@ -1272,7 +1659,7 @@
 
     <!-- Interactive Relationship Assessment Triage Section -->
     <section id="assessment" style="padding-bottom: 2rem;">
-        <div class="diagnosis-widget-wrap">
+        <div class="diagnosis-widget-wrap reveal">
             <div class="diagnosis-header">
                 <span class="section-subtitle"><i class="fas fa-compass"></i> خودسنجی هوشمند وضعیت رابطه</span>
                 <h3>رابطه شما اکنون در چه مرحله‌ای قرار دارد؟</h3>
@@ -1311,16 +1698,16 @@
     </section>
 
     <!-- Specialized Services -->
-    <section class="services-hub" id="services">
+    <section class="services-hub" id="services" role="region" aria-label="خدمات تخصصی">
         <div class="section-title-wrap">
-            <span class="section-subtitle"><i class="fas fa-heart-pulse"></i> دپارتمان‌های تخصصی کلینیک</span>
-            <h2 class="section-main-title">خدمات بالینی و درمانی زوجین</h2>
-            <p class="section-desc">ارائه راهکارهای علمی مبتنی بر الگوی درمان هیجان‌مدار (EFT) و شناخت‌درمانی برای التیام و تقویت بنیان خانواده.</p>
+            <span class="section-subtitle reveal"><i class="fas fa-heart-pulse"></i> دپارتمان‌های تخصصی کلینیک</span>
+            <h2 class="section-main-title reveal-up">خدمات بالینی و درمانی زوجین</h2>
+            <p class="section-desc reveal-up">ارائه راهکارهای علمی مبتنی بر الگوی درمان هیجان‌مدار (EFT) و شناخت‌درمانی برای التیام و تقویت بنیان خانواده.</p>
         </div>
 
         <div class="services-grid">
             <!-- Service 1 -->
-            <div class="service-card-luxury">
+            <div class="service-card-luxury reveal">
                 <div>
                     <span class="service-badge">رویکرد هیجان‌مدار EFT</span>
                     <div class="service-icon-box"><i class="fas fa-heart-pulse"></i></div>
@@ -1338,7 +1725,7 @@
             </div>
 
             <!-- Service 2 -->
-            <div class="service-card-luxury">
+            <div class="service-card-luxury reveal">
                 <div>
                     <span class="service-badge">پروتکل ۳ مرحله‌ای التیام تروما</span>
                     <div class="service-icon-box"><i class="fas fa-heart-crack"></i></div>
@@ -1356,7 +1743,7 @@
             </div>
 
             <!-- Service 3 -->
-            <div class="service-card-luxury">
+            <div class="service-card-luxury reveal">
                 <div>
                     <span class="service-badge">تست‌های روان‌سنجی و طرحواره</span>
                     <div class="service-icon-box"><i class="fas fa-ring"></i></div>
@@ -1374,7 +1761,7 @@
             </div>
 
             <!-- Service 4 -->
-            <div class="service-card-luxury">
+            <div class="service-card-luxury reveal">
                 <div>
                     <span class="service-badge">مدیریت سوگ عاطفی و فرزندان</span>
                     <div class="service-icon-box"><i class="fas fa-scale-balanced"></i></div>
@@ -1392,7 +1779,7 @@
             </div>
 
             <!-- Service 5 -->
-            <div class="service-card-luxury">
+            <div class="service-card-luxury reveal">
                 <div>
                     <span class="service-badge">گروه‌درمانی تحلیلی و مهارت‌محور</span>
                     <div class="service-icon-box"><i class="fas fa-people-group"></i></div>
@@ -1410,7 +1797,7 @@
             </div>
 
             <!-- Service 6 -->
-            <div class="service-card-luxury">
+            <div class="service-card-luxury reveal">
                 <div>
                     <span class="service-badge">بین‌المللی و ایرانیان خارج از کشور</span>
                     <div class="service-icon-box"><i class="fas fa-laptop-medical"></i></div>
@@ -1443,9 +1830,9 @@
     </section>
 
     <!-- Bio & Therapist Credentials -->
-    <section class="bio-section" id="bio">
+    <section class="bio-section" id="bio" role="region" aria-label="درباره متخصص">
         <div class="bio-grid">
-            <div class="bio-card-highlight">
+            <div class="bio-card-highlight reveal-right">
                 <span class="section-subtitle">روانشناس و زوج‌درمانگر</span>
                 <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 1rem;">مهناز خوینی</h2>
                 <p style="color: var(--ink-soft); margin-bottom: 1.5rem;">
@@ -1472,7 +1859,7 @@
 
             <div>
                 <h3 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--ink);">چرا زوج‌درمانی تخصصی با مهناز خوینی؟</h3>
-                <div class="bio-pillar-list">
+                <div class="bio-pillar-list reveal-left">
                     <div class="bio-pillar-card">
                         <div class="bio-pillar-icon"><i class="fas fa-bullseye"></i></div>
                         <div>
@@ -1500,14 +1887,14 @@
     </section>
 
     <!-- SEO Articles & Content Hub -->
-    <section class="articles-section" id="articles">
+    <section class="articles-section" id="articles" role="region" aria-label="مقالات">
         <div class="section-title-wrap">
             <span class="section-subtitle">بانک دانش رابطه</span>
             <h2 class="section-main-title">راهنماهای تخصصی روانشناسی رابطه</h2>
             <p class="section-desc">مطالب آموزشی برتر برای ارتقای آگاهی و بهبود کیفیت زندگی زناشویی</p>
         </div>
 
-        <div class="articles-carousel-wrap">
+        <div class="articles-carousel-wrap reveal">
             <button class="carousel-arrow next" onclick="scrollArticles(-1)" aria-label="مقاله بعدی"><i class="fas fa-chevron-left"></i></button>
             <button class="carousel-arrow prev" onclick="scrollArticles(1)" aria-label="مقاله قبلی"><i class="fas fa-chevron-right"></i></button>
             <div class="articles-grid" id="articlesGrid">
@@ -1893,15 +2280,15 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="faq-section" id="faq">
+    <section class="faq-section" id="faq" role="region" aria-label="سوالات متداول">
         <div class="section-title-wrap">
             <span class="section-subtitle">پاسخ به دغدغه‌های شما</span>
             <h2 class="section-main-title">سوالات متداول مراجعان</h2>
         </div>
 
-        <div class="faq-accordion">
+        <div class="faq-accordion reveal">
             <div class="faq-item-luxury">
-                <button class="faq-question-btn" onclick="toggleFaq(this)">
+                <button class="faq-question-btn" onclick="toggleFaq(this)" aria-expanded="false">
                     <span>زوج‌درمانی چیست و چه زمانی باید مراجعه کنیم؟</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
@@ -1911,7 +2298,7 @@
             </div>
 
             <div class="faq-item-luxury">
-                <button class="faq-question-btn" onclick="toggleFaq(this)">
+                <button class="faq-question-btn" onclick="toggleFaq(this)" aria-expanded="false">
                     <span>آیا اگر همسرم حاضر به همکاری نباشد، مشاوره فردی موثر است؟</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
@@ -1921,7 +2308,7 @@
             </div>
 
             <div class="faq-item-luxury">
-                <button class="faq-question-btn" onclick="toggleFaq(this)">
+                <button class="faq-question-btn" onclick="toggleFaq(this)" aria-expanded="false">
                     <span>کیفیت جلسات آنلاین زوج‌درمانی چگونه است؟</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
@@ -1931,7 +2318,7 @@
             </div>
 
             <div class="faq-item-luxury">
-                <button class="faq-question-btn" onclick="toggleFaq(this)">
+                <button class="faq-question-btn" onclick="toggleFaq(this)" aria-expanded="false">
                     <span>چطور بفهمیم مشکل ما یک دوره سخت عادی است یا نیاز به زوج‌درمانی داریم؟</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
@@ -1943,9 +2330,9 @@
     </section>
 
     <!-- Contact & Booking Section -->
-    <section class="contact-section" id="contact">
+    <section class="contact-section" id="contact" role="region" aria-label="تماس با ما">
         <div class="contact-grid">
-            <div class="contact-card-box">
+            <div class="contact-card-box reveal-right">
                 <h3 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem;">راهنمای رزرو نوبت و ارتباط</h3>
                 
                 <div class="contact-method-item">
@@ -1982,7 +2369,7 @@
                 </div>
             </div>
 
-            <div class="contact-card-box" style="background: #ffffff;">
+            <div class="contact-card-box reveal" style="background: #ffffff;">
                 <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 1.5rem;">فرم درخواست مشاوره اولیه</h3>
                 <form class="form-luxury" id="consultForm" onsubmit="return submitConsultForm(event)">
                     <label for="fullname" class="sr-only">نام و نام خانوادگی</label>
@@ -2060,6 +2447,40 @@
     <!-- Interactive Scripts -->
     <script>
         // Scroll Progress Bar + Navbar shadow — throttled with requestAnimationFrame
+        // ═══════════════════════════════════════════
+        // SCROLL REVEAL — Intersection Observer
+        // ═══════════════════════════════════════════
+        (function() {
+            var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            if (prefersReducedMotion) return;
+            var revealElements = document.querySelectorAll(".reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale");
+            if (!revealElements.length || !("IntersectionObserver" in window)) {
+                revealElements.forEach(function(el) { el.classList.add("visible"); });
+                return;
+            }
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+            revealElements.forEach(function(el) { observer.observe(el); });
+        })();
+
+        // Smooth Anchor Scroll
+        document.querySelectorAll("a[href^="#"]").forEach(function(anchor) {
+            anchor.addEventListener("click", function(e) {
+                var target = document.querySelector(this.getAttribute("href"));
+                if (target) {
+                    e.preventDefault();
+                    var headerHeight = document.getElementById("header").offsetHeight;
+                    var targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight - 16;
+                    window.scrollTo({ top: targetPosition, behavior: "smooth" });
+                }
+            });
+        });
         // and using a passive listener so the browser can scroll smoothly without
         // waiting on JS. scrollHeight/clientHeight are cached and only recomputed on
         // resize, instead of being read on every scroll tick (which forces a costly
@@ -2177,27 +2598,60 @@
             track.scrollBy({ left: direction * step, behavior: 'smooth' });
         }
 
-        // Consultation form: builds a WhatsApp message from the entered fields (no backend needed)
+        // Consultation form: enhanced with validation, loading state, and success feedback
         function submitConsultForm(e) {
             e.preventDefault();
-            const form = document.getElementById('consultForm');
+            const form = document.getElementById("consultForm");
+            const submitBtn = document.getElementById("submitBtn") || form.querySelector("button[type=submit]");
             const name = form.fullname.value.trim();
             const phone = form.phone.value.trim();
-            const select = form['service-type'];
-            if (!select.value) {
-                alert('لطفاً نوع مشاوره مورد نظر را انتخاب کنید.');
-                select.focus();
+            const select = form["service-type"];
+            const message = form.querySelector("textarea");
+            
+            // Clear previous states
+            form.querySelectorAll(".error, .valid").forEach(el => { el.classList.remove("error", "valid"); });
+            form.querySelectorAll(".form-error-msg").forEach(el => { el.classList.remove("visible"); });
+            
+            // Validate
+            let hasError = false;
+            if (!name) { form.fullname.classList.add("error"); hasError = true; }
+            if (!phone) { form.phone.classList.add("error"); hasError = true; }
+            if (!select.value) { select.classList.add("error"); hasError = true; }
+            
+            if (hasError) {
+                const firstError = form.querySelector(".error");
+                if (firstError) firstError.focus();
                 return false;
             }
+            
+            // Show loading state
+            submitBtn.classList.add("btn-loading");
+            const originalHTML = submitBtn.innerHTML;
+            submitBtn.innerHTML = "<i class=\"fas fa-spinner fa-spin\"></i> در حال ارسال...";
+            
+            // Build WhatsApp message
             const serviceText = select.options[select.selectedIndex].text;
-            const details = form.message.value.trim();
-
-            let text = 'سلام، درخواست مشاوره اولیه دارم.' + '\n';
-            text += 'نام: ' + name + '\n';
-            text += 'شماره تماس: ' + phone + '\n';
-            text += 'نوع مشاوره: ' + serviceText;
-            if (details) {
-                text += '\n' + 'توضیح: ' + details;
+            const details = message ? message.value.trim() : "";
+            let text = "سلام، درخواست مشاوره اولیه دارم.\n";
+            text += "نام: " + name + "\n";
+            text += "شماره تماس: " + phone + "\n";
+            text += "نوع مشاوره: " + serviceText;
+            if (details) text += "\nتوضیح: " + details;
+            
+            const waLink = "https://wa.me/989199087264?text=" + encodeURIComponent(text);
+            
+            // Simulate brief delay then open WhatsApp
+            setTimeout(function() {
+                window.open(waLink, "_blank");
+                submitBtn.classList.remove("btn-loading");
+                submitBtn.innerHTML = originalHTML;
+                // Mark fields as valid
+                form.querySelectorAll("input, select, textarea").forEach(el => { el.classList.add("valid"); });
+                setTimeout(() => { form.querySelectorAll(".valid").forEach(el => { el.classList.remove("valid"); }); }, 3000);
+            }, 600);
+            
+            return false;
+        }
             }
 
             const waLink = 'https://wa.me/989199087264?text=' + encodeURIComponent(text);
@@ -2206,17 +2660,35 @@
         }
 
         // FAQ Accordion Toggle
+        // FAQ Accordion Toggle — enhanced with ARIA support
         function toggleFaq(element) {
             const faqItem = element.parentElement;
-            const isActive = faqItem.classList.contains('active');
+            const isActive = faqItem.classList.contains("active");
+            const answerBody = faqItem.querySelector(".faq-answer-body");
+            const chevron = element.querySelector("i");
             
-            document.querySelectorAll('.faq-item-luxury').forEach(item => {
-                item.classList.remove('active');
+            // Close all other FAQ items
+            document.querySelectorAll(".faq-item-luxury").forEach(function(item) {
+                if (item !== faqItem) {
+                    item.classList.remove("active");
+                    var otherBtn = item.querySelector(".faq-question-btn");
+                    var otherAnswer = item.querySelector(".faq-answer-body");
+                    if (otherBtn) otherBtn.setAttribute("aria-expanded", "false");
+                    if (otherAnswer) otherAnswer.setAttribute("aria-hidden", "true");
+                }
             });
-
+            
+            // Toggle current item
             if (!isActive) {
-                faqItem.classList.add('active');
+                faqItem.classList.add("active");
+                element.setAttribute("aria-expanded", "true");
+                if (answerBody) answerBody.setAttribute("aria-hidden", "false");
+            } else {
+                faqItem.classList.remove("active");
+                element.setAttribute("aria-expanded", "false");
+                if (answerBody) answerBody.setAttribute("aria-hidden", "true");
             }
+        }
         }
 
         // Relationship Assessment Data & Interactive Switcher
