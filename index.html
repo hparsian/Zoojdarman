@@ -410,6 +410,9 @@
             border: 1px solid var(--border-color);
         }
         .therapist-image-wrap { position: relative; }
+        /* Extra top space reserves room for badge-2, which floats fully
+           below the image so it never covers the photo. */
+        .therapist-name-block { padding-top: 5.5rem; }
         .therapist-image-box {
             width: 100%; aspect-ratio: 4 / 4.8;
             border-radius: calc(var(--radius-xl) - 8px);
@@ -445,11 +448,13 @@
             box-shadow: var(--shadow-hover);
         }
         .badge-1 {
-            top: -24px; right: -24px;
+            bottom: 100%; margin-bottom: 14px;
+            top: auto; right: -24px;
             animation: floatBadge 4s ease-in-out infinite alternate;
         }
         .badge-2 {
-            bottom: 24px; left: -24px;
+            top: 100%; margin-top: 14px;
+            bottom: auto; left: -24px;
             animation: floatBadge 4s ease-in-out 2s infinite alternate;
         }
         @keyframes floatBadge {
@@ -968,6 +973,7 @@
             .diagnosis-result-box { flex-direction: column; text-align: center; }
             .hero-title { font-size: 2.4rem; }
             .badge-1, .badge-2 { display: none; }
+            .therapist-name-block { padding-top: 1.1rem; }
             .therapist-mobile-trust-pills { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.2rem; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -1209,7 +1215,7 @@
                             </div>
                         </div>
                     </div>
-                    <div style="text-align: center; padding-top: 1.1rem;">
+                    <div class="therapist-name-block" style="text-align: center;">
                         <p style="font-weight: 900; font-size: 1.35rem; margin: 0; color: var(--ink); display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
                             <span>مهناز خوینی</span>
                             <i class="fas fa-circle-check" style="color: #0284c7; font-size: 1.05rem;" title="روانشناس دارای پروانه رسمی"></i>
