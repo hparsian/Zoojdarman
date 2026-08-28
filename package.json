@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "node server.js",
-    "build": "node -e \"console.log('Build completed')\"",
     "start": "node server.js",
+    "build": "node -e \"console.log('Build completed - static site')\"",
     "lint": "node -e \"console.log('Lint clean')\""
   },
   "dependencies": {
