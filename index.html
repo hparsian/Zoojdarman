@@ -362,16 +362,6 @@
             color: var(--teal);
             position: relative;
             display: inline-block;
-            padding-bottom: 0.12em;
-        }
-        .hero-title span::after {
-            content: '';
-            position: absolute;
-            right: 1%; left: 1%; bottom: -0.05em;
-            height: 0.2em;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 16'%3E%3Cpath d='M2 10 Q40 2 75 9 T150 9 T225 9 T298 6' stroke='%2399453b' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
-            background-size: 100% 100%;
-            opacity: 0.9;
         }
         .hero-subtitle {
             font-size: 1.15rem; color: var(--ink-soft);
@@ -419,6 +409,7 @@
             box-shadow: var(--shadow-hover);
             border: 1px solid var(--border-color);
         }
+        .therapist-image-wrap { position: relative; }
         .therapist-image-box {
             width: 100%; aspect-ratio: 4 / 4.8;
             border-radius: calc(var(--radius-xl) - 8px);
@@ -976,6 +967,8 @@
             .diagnosis-cards-grid { grid-template-columns: repeat(2, 1fr); }
             .diagnosis-result-box { flex-direction: column; text-align: center; }
             .hero-title { font-size: 2.4rem; }
+            .badge-1, .badge-2 { display: none; }
+            .therapist-mobile-trust-pills { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.2rem; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .footer-grid { grid-template-columns: 1fr 1fr; }
             .peyvand-link-box { padding: 2.2rem 1.8rem; }
@@ -1183,19 +1176,38 @@
             <!-- Prominent Therapist Showcase -->
             <div class="hero-therapist-container">
                 <div class="therapist-frame">
-                    <div class="therapist-image-box">
-                        <span class="therapist-status-ribbon">
-                            <span class="pulse-dot"></span>
-                            <span>پذیرش فعال جلسات</span>
-                        </span>
-                        <!-- تصویر بالای صفحه (LCP) - بدون lazy loading و با اولویت بارگذاری بالا -->
-                        <img src="https://zoojdarman.ir/images/mahnaz-khoini.jpg" 
-                             alt="مهناز خوینی - زوج‌درمانگر و روانشناس بالینی" 
-                             width="400" 
-                             height="500" 
-                             fetchpriority="high"
-                             decoding="async"
-                             onerror="this.style.display='none';">
+                    <div class="therapist-image-wrap">
+                        <div class="therapist-image-box">
+                            <span class="therapist-status-ribbon">
+                                <span class="pulse-dot"></span>
+                                <span>پذیرش فعال جلسات</span>
+                            </span>
+                            <!-- تصویر بالای صفحه (LCP) - بدون lazy loading و با اولویت بارگذاری بالا -->
+                            <img src="https://zoojdarman.ir/images/mahnaz-khoini.jpg" 
+                                 alt="مهناز خوینی - زوج‌درمانگر و روانشناس بالینی" 
+                                 width="400" 
+                                 height="500" 
+                                 fetchpriority="high"
+                                 decoding="async"
+                                 onerror="this.style.display='none';">
+                        </div>
+
+                        <!-- Floating Social Proof Badges (Desktop) -->
+                        <div class="floating-badge badge-1">
+                            <div class="badge-icon badge-icon-gold"><i class="fas fa-award"></i></div>
+                            <div class="badge-text">
+                                <p class="badge-value">+۱۰ سال تجربه بالینی</p>
+                                <p>تخصص زوج‌درمانی و دلبستگی</p>
+                            </div>
+                        </div>
+
+                        <div class="floating-badge badge-2">
+                            <div class="badge-icon badge-icon-teal"><i class="fas fa-globe"></i></div>
+                            <div class="badge-text">
+                                <p class="badge-value">حضوری و آنلاین</p>
+                                <p>تهران و مراجعان خارج از کشور</p>
+                            </div>
+                        </div>
                     </div>
                     <div style="text-align: center; padding-top: 1.1rem;">
                         <p style="font-weight: 900; font-size: 1.35rem; margin: 0; color: var(--ink); display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
@@ -1206,22 +1218,6 @@
                     </div>
                 </div>
 
-                <!-- Floating Social Proof Badges (Desktop) -->
-                <div class="floating-badge badge-1">
-                    <div class="badge-icon badge-icon-gold"><i class="fas fa-award"></i></div>
-                    <div class="badge-text">
-                        <p class="badge-value">+۱۰ سال تجربه بالینی</p>
-                        <p>تخصص زوج‌درمانی و دلبستگی</p>
-                    </div>
-                </div>
-
-                <div class="floating-badge badge-2">
-                    <div class="badge-icon badge-icon-teal"><i class="fas fa-globe"></i></div>
-                    <div class="badge-text">
-                        <p class="badge-value">حضوری و آنلاین</p>
-                        <p>تهران و مراجعان خارج از کشور</p>
-                    </div>
-                </div>
 
                 <!-- Mobile Trust Pills (Visible only on mobile) -->
                 <div class="therapist-mobile-trust-pills">
@@ -1249,12 +1245,12 @@
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-icon"><i class="fas fa-comments"></i></div>
-                <p class="stat-value">+۲۰۰۰</p>
+                <p class="stat-value" data-count-target="2000" data-count-prefix="+">۰</p>
                 <p>جلسه مشاوره موفق و مؤثر</p>
             </div>
             <div class="stat-card">
                 <div class="stat-icon"><i class="fas fa-user-shield"></i></div>
-                <p class="stat-value">۱۰۰٪</p>
+                <p class="stat-value" data-count-target="100" data-count-suffix="٪">۰٪</p>
                 <p>تضمین رازداری و محرمانگی</p>
             </div>
             <div class="stat-card">
@@ -2058,6 +2054,51 @@
     </footer>
 
     <!-- Interactive Scripts -->
+    <script>
+        // Count-up animation for stats-bar numbers — starts when the section
+        // scrolls into view, runs once per page load.
+        (function () {
+            const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+            function toPersianDigits(num) {
+                return String(num).replace(/\d/g, function (d) { return persianDigits[d]; });
+            }
+
+            const countEls = document.querySelectorAll('.stat-value[data-count-target]');
+            if (!countEls.length) return;
+
+            function runCount(el) {
+                const target = parseInt(el.getAttribute('data-count-target'), 10);
+                const prefix = el.getAttribute('data-count-prefix') || '';
+                const suffix = el.getAttribute('data-count-suffix') || '';
+                const duration = 1400;
+                const startTime = performance.now();
+
+                function tick(now) {
+                    const progress = Math.min((now - startTime) / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3); // ease-out
+                    const current = Math.round(target * eased);
+                    el.textContent = prefix + toPersianDigits(current) + suffix;
+                    if (progress < 1) {
+                        requestAnimationFrame(tick);
+                    }
+                }
+                requestAnimationFrame(tick);
+            }
+
+            const statsObserver = new IntersectionObserver(function (entries, observer) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        countEls.forEach(runCount);
+                        observer.disconnect();
+                    }
+                });
+            }, { threshold: 0.35 });
+
+            const statsSection = document.querySelector('.stats-section');
+            if (statsSection) statsObserver.observe(statsSection);
+        })();
+    </script>
+
     <script>
         // Scroll Progress Bar + Navbar shadow — throttled with requestAnimationFrame
         // and using a passive listener so the browser can scroll smoothly without
