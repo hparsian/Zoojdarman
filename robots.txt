@@ -1,4 +1,17 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /*.json$
 
+# Sitemap
 Sitemap: https://zoojdarman.ir/sitemap.xml
+
+# RSS Feed
+Allow: /feed.xml
+
+# Crawl-delay for polite bots
+User-agent: Bingbot
+Crawl-delay: 10
+
+User-agent: Yandex
+Crawl-delay: 10
