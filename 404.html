@@ -7,7 +7,7 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       (function() {
-        var gaId = 'G-XXXXXXXXXX'; // جایگزین کنید با Measurement ID واقعی خودتان
+        var gaId = 'G-XXXXXXXXXX';
         if (gaId && gaId !== 'G-XXXXXXXXXX') {
           var s = document.createElement('script');
           s.async = true;
@@ -19,8 +19,8 @@
       })();
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#17423b">
-    <title>صفحه پیدا نشد | zoojdarman.ir</title>
+    <meta name="theme-color" content="#44386B">
+    <title>صفحه پیدا نشد (خطای ۴۰۴) | مرکز تخصصی زوج‌درمانی</title>
     <meta name="robots" content="noindex, follow">
     <!-- Favicon & Touch Icons -->
     <link rel="icon" type="image/svg+xml" href="/images/logo.svg">
@@ -30,63 +30,154 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;800;900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    </noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --cream: #f3efe7; --ink: #201c1a; --ink-soft: #5c534c;
-            --teal: #17423b; --teal-soft: #e7f0ed; --clay: #99453b; --clay-soft: #f5e6e1;
-            --border-color: rgba(51, 42, 40, 0.1);
+            --warm-bg: #FAF8F5;
+            --lavender-bg: #F2EFF8;
+            --primary-text: #292733;
+            --secondary-text: #6F6B78;
+            --purple-primary: #6D5AA8;
+            --purple-dark: #44386B;
+            --purple-soft: #f2eff8;
+            --soft-peach: #E8A58D;
+            --peach-soft: #fcf1ec;
+            --border-color: #E5E0EA;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Vazirmatn', Tahoma, 'Segoe UI', sans-serif;
-            background: var(--cream); color: var(--ink);
-            min-height: 100vh; display: flex; align-items: center; justify-content: center;
-            padding: 2rem; text-align: center; line-height: 1.85;
+            font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, Tahoma, sans-serif;
+            background: var(--warm-bg);
+            color: var(--primary-text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            line-height: 1.85;
+            -webkit-font-smoothing: antialiased;
         }
-        .wrap { max-width: 480px; }
-        .logo-mark { width: 100px; height: 100px; margin: 0 auto 1.5rem; border-radius: 16px; }
-        .code { font-size: 5rem; font-weight: 900; color: var(--teal); line-height: 1; margin-bottom: 0.5rem; letter-spacing: -2px; }
-        h1 { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.8rem; }
-        p { color: var(--ink-soft); margin-bottom: 2rem; font-size: 1.02rem; }
-        .actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem; }
+        .wrap {
+            max-width: 520px;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 3rem 2.2rem;
+            box-shadow: 0 10px 30px -6px rgba(68, 56, 107, 0.08);
+            border: 1px solid var(--border-color);
+        }
+        .logo-mark {
+            width: 84px;
+            height: 84px;
+            margin: 0 auto 1.25rem;
+            border-radius: 18px;
+            box-shadow: 0 4px 16px rgba(68, 56, 107, 0.12);
+        }
+        .code {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: var(--purple-dark);
+            line-height: 1;
+            margin-bottom: 0.75rem;
+            letter-spacing: -2px;
+        }
+        h1 {
+            font-size: 1.55rem;
+            font-weight: 800;
+            margin-bottom: 0.85rem;
+            color: var(--purple-dark);
+        }
+        p {
+            color: var(--secondary-text);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        .actions {
+            display: flex;
+            gap: 0.85rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2.2rem;
+        }
         .btn {
-            padding: 0.85rem 1.8rem; border-radius: 50px; font-weight: 700; font-size: 0.95rem;
-            text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.85rem 1.6rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
         }
-        .btn-primary { background: var(--teal); color: white; }
-        .btn-outline { background: var(--teal-soft); color: var(--teal); border: 1px solid #cfe1dc; }
-        .links { border-top: 1px solid var(--border-color); padding-top: 1.5rem; }
-        .links h3 { font-size: 0.95rem; margin-bottom: 1rem; color: var(--ink); }
-        .links ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-        .links a { color: var(--teal); text-decoration: none; font-weight: 600; font-size: 0.92rem; }
-        .links a:hover { text-decoration: underline; }
+        .btn-primary {
+            background: var(--purple-primary);
+            color: #ffffff;
+            box-shadow: 0 8px 20px -4px rgba(109, 90, 168, 0.35);
+        }
+        .btn-primary:hover {
+            background: var(--purple-dark);
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background: #ffffff;
+            color: var(--purple-dark);
+            border: 1.5px solid var(--border-color);
+        }
+        .btn-outline:hover {
+            background: var(--purple-soft);
+            transform: translateY(-2px);
+        }
+        .links {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+        }
+        .links h3 {
+            font-size: 0.96rem;
+            margin-bottom: 1rem;
+            color: var(--purple-dark);
+            font-weight: 800;
+        }
+        .links ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+        .links a {
+            color: var(--purple-primary);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.94rem;
+            transition: color 0.2s;
+        }
+        .links a:hover {
+            color: var(--purple-dark);
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <div class="wrap">
-        <img src="/images/logo-512.png" alt="zoojdarman.ir" class="logo-mark">
+    <main class="wrap" id="main-content">
+        <img src="/images/logo-512.png" alt="لوگوی زوج‌درمان" class="logo-mark" width="84" height="84">
         <div class="code">۴۰۴</div>
-        <h1>این صفحه پیدا نشد</h1>
-        <p>ممکن است آدرس اشتباه تایپ شده باشد یا این صفحه جابه‌جا شده باشد. نگران نباشید، از اینجا می‌توانید به مسیر درست برگردید.</p>
+        <h1>صفحه مورد نظر پیدا نشد</h1>
+        <p>ممکن است آدرس به درستی وارد نشده باشد یا این صفحه منتقل شده باشد. شما می‌توانید به صفحه اصلی بازگردید یا مستقیماً با کلینیک در ارتباط باشید.</p>
         <div class="actions">
             <a href="/" class="btn btn-primary"><i class="fas fa-house"></i> بازگشت به صفحه اصلی</a>
-            <a href="https://wa.me/989199087264" target="_blank" rel="noopener noreferrer" class="btn btn-outline"><i class="fab fa-whatsapp"></i> ارتباط مستقیم با واتساپ</a>
+            <a href="https://wa.me/989199087264" target="_blank" rel="noopener noreferrer" class="btn btn-outline"><i class="fab fa-whatsapp"></i> پیام به پشتیبانی واتساپ</a>
         </div>
         <div class="links">
-            <h3>یا یکی از این بخش‌ها را ببینید</h3>
+            <h3>بخش‌های پربازدید کلینیک:</h3>
             <ul>
-                <li><a href="/#services">خدمات تخصصی زوج‌درمانی</a></li>
-                <li><a href="/#articles">راهنمای رابطه (مقالات)</a></li>
-                <li><a href="/#faq">سوالات متداول</a></li>
-                <li><a href="/#contact">تماس و رزرو نوبت</a></li>
+                <li><a href="/#services">خدمات تخصصی زوج‌درمانی و خیانت</a></li>
+                <li><a href="/#assessment">تست و ارزیابی آنلاین رابطه</a></li>
+                <li><a href="/#articles">دانشنامه و مقالات علمی</a></li>
+                <li><a href="/#contact">نوبت‌دهی و تماس با مطب</a></li>
             </ul>
         </div>
-    </div>
+    </main>
 </body>
 </html>
