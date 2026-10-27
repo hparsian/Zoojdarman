@@ -12,13 +12,41 @@ import { InteractiveToolsSuite } from './InteractiveToolsSuite';
 interface ToolsViewProps {
   onBack: () => void;
   onNavigateContact: () => void;
+  onSelectTest?: (slug: string) => void;
 }
 
-export const ToolsView: React.FC<ToolsViewProps> = ({ onBack, onNavigateContact }) => {
+export const ToolsView: React.FC<ToolsViewProps> = ({ onBack, onNavigateContact, onSelectTest }) => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     document.title = 'تست آنلاین رایگان رضایت زناشویی و سلامت رابطه | انریچ و گاتمن | مهناز خوینی';
   }, []);
+
+  const dedicatedTests = [
+    {
+      title: 'تست رضایت زناشویی انریچ',
+      slug: 'enrich-marital-satisfaction',
+      desc: '۱۰ سوال استاندارد ارزیابی ابعاد صمیمیت، حل تعارض و اعتماد',
+      badge: 'پرطرفدارترین',
+    },
+    {
+      title: 'پیش‌بینی طلاق عاطفی گاتمن',
+      slug: 'gottman-divorce-predictor',
+      desc: 'ارزیابی ۴ رفتار مرگبار سرزنش، تحقیر، دفاع و قفل شدن گفتگو',
+      badge: 'هشدار زودهنگام',
+    },
+    {
+      title: 'تست سبک‌های دلبستگی عاطفی',
+      slug: 'attachment-style-in-relationships',
+      desc: 'کشف ریشه مشاجرات و سبک‌های ایمن، اضطرابی و اجتنابی',
+      badge: 'رویکرد EFT',
+    },
+    {
+      title: 'آزمون ۵ زبان عشق گری چاپمن',
+      slug: 'five-love-languages',
+      desc: 'کشف زبان عشق غالب و زبان دوم شما و همسرتان در رابطه',
+      badge: 'احیای صمیمیت',
+    },
+  ];
 
   return (
     <div className="bg-[#FAF8F5] min-h-screen pb-24">
@@ -55,6 +83,37 @@ export const ToolsView: React.FC<ToolsViewProps> = ({ onBack, onNavigateContact 
           <span>/</span>
           <span className="text-[#6D5AA8] font-bold">سامانه تست‌های آنلاین رابطه</span>
         </nav>
+
+        {/* Dedicated Test Pages Hub Grid */}
+        <div className="mb-10">
+          <h2 className="text-sm font-black text-[#44386B] mb-3">
+            صفحات اختصاصی آزمون‌های روانشناسی رابطه:
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {dedicatedTests.map((dt) => (
+              <button
+                key={dt.slug}
+                onClick={() => onSelectTest && onSelectTest(dt.slug)}
+                className="p-4 rounded-2xl bg-white border border-[#E5E0EA] hover:border-[#6D5AA8] text-right shadow-xs hover:shadow-md transition-all cursor-pointer flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-[10px] font-black text-[#6D5AA8] bg-[#f2eff8] px-2 py-0.5 rounded-full mb-1.5 inline-block">
+                    {dt.badge}
+                  </span>
+                  <h3 className="text-xs font-black text-[#292733] mb-1 leading-snug">
+                    {dt.title}
+                  </h3>
+                  <p className="text-[11px] text-[#6F6B78] line-clamp-2">
+                    {dt.desc}
+                  </p>
+                </div>
+                <span className="text-[11px] font-bold text-[#6D5AA8] mt-3 block pt-2 border-t border-[#E5E0EA]">
+                  ورود به صفحه اختصاصی ←
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
 
         {/* Embedded Interactive Suite */}
         <InteractiveToolsSuite />

@@ -23,9 +23,11 @@ import { ProcessView } from './components/ProcessView';
 import { FaqView } from './components/FaqView';
 import { ContactView } from './components/ContactView';
 import { ToolsView } from './components/ToolsView';
+import { SingleTestView } from './components/SingleTestView';
 import { ArticlesArchiveView } from './components/ArticlesArchiveView';
 import { ServicesArchiveView } from './components/ServicesArchiveView';
 import { TopicsView } from './components/TopicsView';
+import { getTestBySlug } from './data/testsData';
 import { AlertCircle } from 'lucide-react';
 
 type RouteState =
@@ -39,6 +41,7 @@ type RouteState =
   | { type: 'faq' }
   | { type: 'contact' }
   | { type: 'tools' }
+  | { type: 'singleTest'; testSlug: string }
   | { type: 'topics' }
   | { type: 'privacy' }
   | { type: '404' };
@@ -61,6 +64,12 @@ export const App: React.FC = () => {
       setRoute({ type: 'service', slug });
     } else if (path === '/services') {
       setRoute({ type: 'services' });
+    } else if (path.startsWith('/tests/')) {
+      const testSlug = path.replace('/tests/', '');
+      setRoute({ type: 'singleTest', testSlug });
+    } else if (path.startsWith('/tools/') && path !== '/tools') {
+      const testSlug = path.replace('/tools/', '');
+      setRoute({ type: 'singleTest', testSlug });
     } else if (path === '/about' || path === '/bio') {
       setRoute({ type: 'about' });
     } else if (path === '/process' || path === '/treatment-process') {
@@ -69,7 +78,7 @@ export const App: React.FC = () => {
       setRoute({ type: 'faq' });
     } else if (path === '/contact' || path === '/appointment') {
       setRoute({ type: 'contact' });
-    } else if (path === '/tools' || path === '/assessments') {
+    } else if (path === '/tools' || path === '/assessments' || path === '/tests') {
       setRoute({ type: 'tools' });
     } else if (path === '/topics' || path === '/qa') {
       setRoute({ type: 'topics' });
@@ -154,6 +163,11 @@ export const App: React.FC = () => {
     setRoute({ type: 'tools' });
   };
 
+  const navigateToSingleTest = (testSlug: string) => {
+    window.history.pushState({}, '', `/tests/${testSlug}`);
+    setRoute({ type: 'singleTest', testSlug });
+  };
+
   const navigateToTopics = () => {
     window.history.pushState({}, '', '/topics');
     setRoute({ type: 'topics' });
@@ -165,6 +179,32 @@ export const App: React.FC = () => {
   };
 
   // Render view depending on route
+  if (route.type === 'singleTest') {
+    const currentTest = getTestBySlug(route.testSlug);
+    if (!currentTest) {
+      return (
+        <div className="min-h-screen bg-[#FAF8F5] flex flex-col items-center justify-center p-6 text-center">
+          <AlertCircle className="w-16 h-16 text-[#6D5AA8] mb-4" />
+          <h1 className="text-2xl font-black text-[#44386B] mb-2">آزمون مورد نظر یافت نشد</h1>
+          <p className="text-sm text-[#6F6B78] mb-6">آدرس آزمون تغییر کرده یا به صفحه دیگری منتقل شده است.</p>
+          <button
+            onClick={() => navigateToTools()}
+            className="px-6 py-3 bg-[#6D5AA8] text-white rounded-full font-bold text-xs cursor-pointer"
+          >
+            مشاهده سایر آزمون‌های رابطه
+          </button>
+        </div>
+      );
+    }
+    return (
+      <SingleTestView
+        test={currentTest}
+        onBack={navigateToTools}
+        onSelectOtherTest={navigateToSingleTest}
+        onNavigateContact={navigateToContact}
+      />
+    );
+  }
   if (route.type === 'articles') {
     return (
       <ArticlesArchiveView
@@ -230,6 +270,7 @@ export const App: React.FC = () => {
       <ToolsView
         onBack={() => navigateToHome('tools')}
         onNavigateContact={navigateToContact}
+        onSelectTest={navigateToSingleTest}
       />
     );
   }
