@@ -82,6 +82,11 @@ export const Hero: React.FC<HeroProps> = ({ onScrollToAssessment, onScrollToTool
                   (e.target as HTMLImageElement).src = '/images/mahnaz-khoini.jpg';
                 }}
                 alt="مهناز خوینی زوج‌درمانگر و مشاور خانواده"
+                width={617}
+                height={775}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 className="w-full h-[440px] sm:h-[480px] object-cover object-top rounded-2xl"
               />
 

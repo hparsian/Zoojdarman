@@ -127,7 +127,13 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({ onSelectArticl
                   {art.category}
                 </span>
                 <h3 className="text-base sm:text-lg font-black text-[#292733] group-hover:text-[#6D5AA8] transition-colors leading-snug mb-3">
-                  {art.h1 || art.title}
+                  <a
+                    href={`/articles/${art.slug}`}
+                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); onSelectArticle(art.slug); }}
+                    className="hover:text-[#6D5AA8]"
+                  >
+                    {art.h1 || art.title}
+                  </a>
                 </h3>
                 <p className="text-xs sm:text-sm text-[#6F6B78] leading-relaxed line-clamp-3 mb-6">
                   {art.description}

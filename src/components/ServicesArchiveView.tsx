@@ -28,7 +28,6 @@ export const ServicesArchiveView: React.FC<ServicesArchiveViewProps> = ({
 }) => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    document.title = 'خدمات تخصصی زوج‌درمانی، مشاوره خیانت و بهبود روابط عاطفی | مهناز خوینی';
   }, []);
 
   return (
@@ -36,13 +35,14 @@ export const ServicesArchiveView: React.FC<ServicesArchiveViewProps> = ({
       {/* Top Bar */}
       <div className="bg-white border-b border-[#E5E0EA] sticky top-0 z-40">
         <div className="container-custom h-16 flex items-center justify-between">
-          <button
-            onClick={onBack}
+          <a
+            href="/"
+            onClick={(e) => { e.preventDefault(); onBack(); }}
             className="inline-flex items-center gap-2 text-xs sm:text-sm font-black text-[#6D5AA8] hover:text-[#44386B] cursor-pointer"
           >
             <ArrowRight className="w-4 h-4" />
             <span>بازگشت به صفحه اصلی</span>
-          </button>
+          </a>
 
           <div className="flex items-center text-lg font-black text-[#44386B]" dir="ltr">
             <span>Z</span>
@@ -60,9 +60,9 @@ export const ServicesArchiveView: React.FC<ServicesArchiveViewProps> = ({
       <div className="container-custom max-w-4xl pt-8 sm:pt-12">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-[#8e8a96] mb-6">
-          <button onClick={onBack} className="hover:text-[#6D5AA8] cursor-pointer">
+          <a href="/" onClick={(e) => { e.preventDefault(); onBack(); }} className="hover:text-[#6D5AA8] cursor-pointer">
             صفحه اصلی
-          </button>
+          </a>
           <span>/</span>
           <span className="text-[#6D5AA8] font-bold">خدمات تخصصی</span>
         </nav>
@@ -103,13 +103,14 @@ export const ServicesArchiveView: React.FC<ServicesArchiveViewProps> = ({
               </div>
 
               <div className="flex flex-col sm:flex-row md:flex-col gap-2.5 w-full md:w-auto shrink-0">
-                <button
-                  onClick={() => onSelectService(s.slug)}
+                <a
+                  href={`/services/${s.slug}`}
+                  onClick={(e) => { e.preventDefault(); onSelectService(s.slug); }}
                   className="px-6 py-3 bg-[#6D5AA8] hover:bg-[#44386B] text-white rounded-full font-black text-xs transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
                 >
                   <span>مشاهده جزئیات کامل خدمت</span>
                   <ChevronLeft className="w-4 h-4" />
-                </button>
+                </a>
                 <a
                   href={`https://wa.me/989199087264?text=${encodeURIComponent(
                     `سلام، برای دریافت نوبت خدمت «${s.title}» پیام می‌دهم.`

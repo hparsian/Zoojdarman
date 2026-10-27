@@ -18,7 +18,6 @@ interface ToolsViewProps {
 export const ToolsView: React.FC<ToolsViewProps> = ({ onBack, onNavigateContact, onSelectTest }) => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    document.title = 'تست آنلاین رایگان رضایت زناشویی و سلامت رابطه | انریچ و گاتمن | مهناز خوینی';
   }, []);
 
   const dedicatedTests = [
@@ -53,13 +52,14 @@ export const ToolsView: React.FC<ToolsViewProps> = ({ onBack, onNavigateContact,
       {/* Top Bar */}
       <div className="bg-white border-b border-[#E5E0EA] sticky top-0 z-40">
         <div className="container-custom h-16 flex items-center justify-between">
-          <button
-            onClick={onBack}
+          <a
+            href="/"
+            onClick={(e) => { e.preventDefault(); onBack(); }}
             className="inline-flex items-center gap-2 text-xs sm:text-sm font-black text-[#6D5AA8] hover:text-[#44386B] cursor-pointer"
           >
             <ArrowRight className="w-4 h-4" />
             <span>بازگشت به صفحه اصلی</span>
-          </button>
+          </a>
 
           <div className="flex items-center text-lg font-black text-[#44386B]" dir="ltr">
             <span>Z</span>
@@ -77,9 +77,9 @@ export const ToolsView: React.FC<ToolsViewProps> = ({ onBack, onNavigateContact,
       <div className="container-custom max-w-4xl pt-8 sm:pt-12">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-[#8e8a96] mb-6">
-          <button onClick={onBack} className="hover:text-[#6D5AA8] cursor-pointer">
+          <a href="/" onClick={(e) => { e.preventDefault(); onBack(); }} className="hover:text-[#6D5AA8] cursor-pointer">
             صفحه اصلی
-          </button>
+          </a>
           <span>/</span>
           <span className="text-[#6D5AA8] font-bold">سامانه تست‌های آنلاین رابطه</span>
         </nav>
@@ -91,9 +91,10 @@ export const ToolsView: React.FC<ToolsViewProps> = ({ onBack, onNavigateContact,
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {dedicatedTests.map((dt) => (
-              <button
+              <a
                 key={dt.slug}
-                onClick={() => onSelectTest && onSelectTest(dt.slug)}
+                href={`/tests/${dt.slug}`}
+                onClick={(e) => { e.preventDefault(); onSelectTest && onSelectTest(dt.slug); }}
                 className="p-4 rounded-2xl bg-white border border-[#E5E0EA] hover:border-[#6D5AA8] text-right shadow-xs hover:shadow-md transition-all cursor-pointer flex flex-col justify-between"
               >
                 <div>
@@ -110,7 +111,7 @@ export const ToolsView: React.FC<ToolsViewProps> = ({ onBack, onNavigateContact,
                 <span className="text-[11px] font-bold text-[#6D5AA8] mt-3 block pt-2 border-t border-[#E5E0EA]">
                   ورود به صفحه اختصاصی ←
                 </span>
-              </button>
+              </a>
             ))}
           </div>
         </div>

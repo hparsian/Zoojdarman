@@ -828,6 +828,10 @@ export const InteractiveToolsSuite: React.FC = () => {
                       (e.target as HTMLImageElement).src = '/images/mahnaz-khoini.jpg';
                     }}
                     alt="مهناز خوینی"
+                    width={617}
+                    height={775}
+                    loading="lazy"
+                    decoding="async"
                     className="w-12 h-12 rounded-full object-cover border-2 border-[#6D5AA8]"
                   />
                   <div>

@@ -64,52 +64,58 @@ export const Footer: React.FC<FooterProps> = ({
             </h4>
             <ul className="flex flex-col gap-2.5 text-xs text-[#D8D2E5]">
               <li>
-                <button
-                  onClick={() => onNavigateService('couples-therapy')}
+                <a
+                  href="/services/couples-therapy"
+                  onClick={(e) => { e.preventDefault(); onNavigateService('couples-therapy'); }}
                   className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
                 >
                   زوج‌درمانی هیجان‌مدار (EFT)
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigateService('infidelity-counseling')}
+                <a
+                  href="/services/infidelity-counseling"
+                  onClick={(e) => { e.preventDefault(); onNavigateService('infidelity-counseling'); }}
                   className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
                 >
                   مشاوره تخصصی درمان خیانت
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigateService('divorce-counseling')}
+                <a
+                  href="/services/divorce-counseling"
+                  onClick={(e) => { e.preventDefault(); onNavigateService('divorce-counseling'); }}
                   className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
                 >
                   مشاوره طلاق آگاهانه و کاهش آسیب
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigateService('online-counseling')}
+                <a
+                  href="/services/online-counseling"
+                  onClick={(e) => { e.preventDefault(); onNavigateService('online-counseling'); }}
                   className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
                 >
                   مشاوره آنلاین خارج از کشور
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigateService('premarital-counseling')}
+                <a
+                  href="/services/premarital-counseling"
+                  onClick={(e) => { e.preventDefault(); onNavigateService('premarital-counseling'); }}
                   className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
                 >
                   مشاوره پیش از ازدواج و تست‌ها
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigateService('relationship-patterns-therapy')}
+                <a
+                  href="/services/relationship-patterns-therapy"
+                  onClick={(e) => { e.preventDefault(); onNavigateService('relationship-patterns-therapy'); }}
                   className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
                 >
                   طرحواره‌درمانی روابط عاطفی
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -121,44 +127,49 @@ export const Footer: React.FC<FooterProps> = ({
             </h4>
             <ul className="flex flex-col gap-2.5 text-xs text-[#D8D2E5]">
               <li>
-                <button
-                  onClick={() => onNavigateArticle('anger-management-in-marriage')}
+                <a
+                  href="/articles/anger-management-in-marriage"
+                  onClick={(e) => { e.preventDefault(); onNavigateArticle('anger-management-in-marriage'); }}
                   className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
                 >
                   مدیریت خشم در مشاجرات
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigateArticle('attachment-style-in-marriage')}
+                <a
+                  href="/articles/attachment-style-in-marriage"
+                  onClick={(e) => { e.preventDefault(); onNavigateArticle('attachment-style-in-marriage'); }}
                   className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
                 >
                   سبک‌های دلبستگی در ازدواج
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigateArticle('dealing-with-infidelity-shock')}
+                <a
+                  href="/articles/dealing-with-infidelity-shock"
+                  onClick={(e) => { e.preventDefault(); onNavigateArticle('dealing-with-infidelity-shock'); }}
                   className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
                 >
                   مواجهه با شوک خیانت
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigateArticle('emotional-distance-in-marriage')}
+                <a
+                  href="/articles/emotional-distance-in-marriage"
+                  onClick={(e) => { e.preventDefault(); onNavigateArticle('emotional-distance-in-marriage'); }}
                   className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
                 >
                   سرد شدن رابطه زناشویی
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigateArticle('deciding-about-divorce')}
+                <a
+                  href="/articles/deciding-about-divorce"
+                  onClick={(e) => { e.preventDefault(); onNavigateArticle('deciding-about-divorce'); }}
                   className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
                 >
                   تصمیم‌گیری آگاهانه درباره طلاق
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -170,68 +181,76 @@ export const Footer: React.FC<FooterProps> = ({
             </h4>
             <ul className="flex flex-col gap-2.5 text-xs text-[#D8D2E5]">
               <li>
-                <button
-                  onClick={() => (onNavigateTools ? onNavigateTools() : onNavigateHome('tools'))}
+                <a
+                  href="/tools"
+                  onClick={(e) => { e.preventDefault(); onNavigateTools ? onNavigateTools() : onNavigateHome('tools'); }}
                   className="hover:text-[#E8A58D] text-[#8FAF9B] font-bold transition-colors cursor-pointer text-right flex items-center gap-1"
                 >
                   <span>تست آنلاین سلامت رابطه (انریچ)</span>
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => (onNavigateTopics ? onNavigateTopics() : onNavigateHome('seo-hub'))}
+                <a
+                  href="/topics"
+                  onClick={(e) => { e.preventDefault(); onNavigateTopics ? onNavigateTopics() : onNavigateHome('seo-hub'); }}
                   className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
                 >
                   موضوعات و جستجوهای پرطرفدار
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigateHome('assessment')}
+                <a
+                  href="/#assessment"
+                  onClick={(e) => { e.preventDefault(); onNavigateHome('assessment'); }}
                   className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
                 >
                   راهنمای تشخیصی رابطه
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => (onNavigateAbout ? onNavigateAbout() : onNavigateHome('bio'))}
+                <a
+                  href="/about"
+                  onClick={(e) => { e.preventDefault(); onNavigateAbout ? onNavigateAbout() : onNavigateHome('bio'); }}
                   className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
                 >
                   درباره مهناز خوینی
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => (onNavigateProcess ? onNavigateProcess() : onNavigateHome('process'))}
+                <a
+                  href="/process"
+                  onClick={(e) => { e.preventDefault(); onNavigateProcess ? onNavigateProcess() : onNavigateHome('process'); }}
                   className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
                 >
                   مراحل و پروتکل درمانی
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => (onNavigateFaq ? onNavigateFaq() : onNavigateHome('faq'))}
+                <a
+                  href="/faq"
+                  onClick={(e) => { e.preventDefault(); onNavigateFaq ? onNavigateFaq() : onNavigateHome('faq'); }}
                   className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
                 >
                   پرسش‌های متداول
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => (onNavigateContact ? onNavigateContact() : onNavigateHome('contact'))}
+                <a
+                  href="/contact"
+                  onClick={(e) => { e.preventDefault(); onNavigateContact ? onNavigateContact() : onNavigateHome('contact'); }}
                   className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
                 >
                   آدرس و تماس کلینیک
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={onNavigatePrivacy}
+                <a
+                  href="/privacy-policy"
+                  onClick={(e) => { e.preventDefault(); onNavigatePrivacy(); }}
                   className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
                 >
                   حریم خصوصی و محرمانگی
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -241,12 +260,13 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#D8D2E5]">
           <p>© کلیه حقوق مادی و معنوی برای zoojdarman.ir و مهناز خوینی محفوظ است.</p>
           <div className="flex items-center gap-4">
-            <button
-              onClick={onNavigatePrivacy}
+            <a
+              href="/privacy-policy"
+              onClick={(e) => { e.preventDefault(); onNavigatePrivacy(); }}
               className="text-white hover:underline cursor-pointer"
             >
               حریم خصوصی و محرمانگی
-            </button>
+            </a>
             <span>•</span>
             <span dir="ltr">تهران، منطقه ۲ (پیوند امن)</span>
           </div>

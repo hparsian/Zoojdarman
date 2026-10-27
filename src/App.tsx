@@ -29,22 +29,8 @@ import { ServicesArchiveView } from './components/ServicesArchiveView';
 import { TopicsView } from './components/TopicsView';
 import { getTestBySlug } from './data/testsData';
 import { AlertCircle } from 'lucide-react';
-
-type RouteState =
-  | { type: 'home'; section?: string }
-  | { type: 'article'; slug: string }
-  | { type: 'articles' }
-  | { type: 'service'; slug: string }
-  | { type: 'services' }
-  | { type: 'about' }
-  | { type: 'process' }
-  | { type: 'faq' }
-  | { type: 'contact' }
-  | { type: 'tools' }
-  | { type: 'singleTest'; testSlug: string }
-  | { type: 'topics' }
-  | { type: 'privacy' }
-  | { type: '404' };
+import { RouteState } from './types';
+import { applySeo, seoForRoute } from './seo';
 
 export const App: React.FC = () => {
   const [route, setRoute] = useState<RouteState>({ type: 'home' });
@@ -99,6 +85,11 @@ export const App: React.FC = () => {
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
+
+  // به‌روزرسانی متا سئو (عنوان، توضیحات، canonical، OG و JSON-LD) برای هر مسیر
+  useEffect(() => {
+    applySeo(seoForRoute(route));
+  }, [route]);
 
   // Handle in-page smooth scroll
   const scrollToSection = (sectionId?: string) => {

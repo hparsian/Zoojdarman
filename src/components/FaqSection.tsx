@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HelpCircle, ChevronDown } from 'lucide-react';
 import { FaqItem } from '../types';
+import { registerFaqSchema } from '../seo';
 
 export const FaqSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -35,6 +36,9 @@ export const FaqSection: React.FC = () => {
   const toggle = (idx: number) => {
     setOpenIndex(openIndex === idx ? null : idx);
   };
+
+  // داده‌های ساختاریافته پرسش‌وپاسخ صفحه اصلی (JSON-LD)
+  useEffect(() => registerFaqSchema(faqs), []);
 
   return (
     <section className="py-20 bg-[#FAF8F5]" id="faq">

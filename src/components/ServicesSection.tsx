@@ -96,13 +96,14 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                   </ul>
                 </div>
 
-                <button
-                  onClick={() => onSelectService(service.slug)}
+                <a
+                  href={`/services/${service.slug}`}
+                  onClick={(e) => { e.preventDefault(); onSelectService(service.slug); }}
                   className="inline-flex items-center gap-1.5 text-xs font-black text-[#6D5AA8] group-hover:text-[#44386B] pt-4 border-t border-[#E5E0EA] hover:gap-2.5 transition-all text-right cursor-pointer"
                 >
                   <span>مطالعه پروتکل درمان و رزرو نوبت</span>
                   <ArrowLeft className="w-3.5 h-3.5" />
-                </button>
+                </a>
               </article>
             );
           })}

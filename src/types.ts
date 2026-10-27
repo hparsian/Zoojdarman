@@ -35,3 +35,19 @@ export interface FaqItem {
   q: string;
   a: string;
 }
+
+export type RouteState =
+  | { type: 'home'; section?: string }
+  | { type: 'article'; slug: string }
+  | { type: 'articles' }
+  | { type: 'service'; slug: string }
+  | { type: 'services' }
+  | { type: 'about' }
+  | { type: 'process' }
+  | { type: 'faq' }
+  | { type: 'contact' }
+  | { type: 'tools' }
+  | { type: 'singleTest'; testSlug: string }
+  | { type: 'topics' }
+  | { type: 'privacy' }
+  | { type: '404' };

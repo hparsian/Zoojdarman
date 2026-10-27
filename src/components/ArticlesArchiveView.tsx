@@ -27,7 +27,6 @@ export const ArticlesArchiveView: React.FC<ArticlesArchiveViewProps> = ({
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    document.title = 'بانک مقالات تخصصی زوج‌درمانی، خیانت و بهبود روابط عاطفی | مهناز خوینی';
   }, []);
 
   // Extract distinct categories
@@ -47,13 +46,14 @@ export const ArticlesArchiveView: React.FC<ArticlesArchiveViewProps> = ({
       {/* Top Bar */}
       <div className="bg-white border-b border-[#E5E0EA] sticky top-0 z-40">
         <div className="container-custom h-16 flex items-center justify-between">
-          <button
-            onClick={onBack}
+          <a
+            href="/"
+            onClick={(e) => { e.preventDefault(); onBack(); }}
             className="inline-flex items-center gap-2 text-xs sm:text-sm font-black text-[#6D5AA8] hover:text-[#44386B] cursor-pointer"
           >
             <ArrowRight className="w-4 h-4" />
             <span>بازگشت به صفحه اصلی</span>
-          </button>
+          </a>
 
           <div className="flex items-center text-lg font-black text-[#44386B]" dir="ltr">
             <span>Z</span>
@@ -71,9 +71,9 @@ export const ArticlesArchiveView: React.FC<ArticlesArchiveViewProps> = ({
       <div className="container-custom pt-8 sm:pt-12">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-[#8e8a96] mb-6">
-          <button onClick={onBack} className="hover:text-[#6D5AA8] cursor-pointer">
+          <a href="/" onClick={(e) => { e.preventDefault(); onBack(); }} className="hover:text-[#6D5AA8] cursor-pointer">
             صفحه اصلی
-          </button>
+          </a>
           <span>/</span>
           <span className="text-[#6D5AA8] font-bold">بانک مقالات تخصصی</span>
         </nav>
@@ -157,7 +157,13 @@ export const ArticlesArchiveView: React.FC<ArticlesArchiveViewProps> = ({
                 </div>
 
                 <h2 className="text-base font-black text-[#292733] group-hover:text-[#6D5AA8] transition-colors leading-snug mb-3">
-                  {art.title}
+                  <a
+                    href={`/articles/${art.slug}`}
+                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); onSelectArticle(art.slug); }}
+                    className="hover:text-[#6D5AA8]"
+                  >
+                    {art.title}
+                  </a>
                 </h2>
 
                 <p className="text-xs text-[#6F6B78] leading-relaxed line-clamp-3 mb-4 text-justify">

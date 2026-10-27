@@ -35,6 +35,10 @@ export const BioSection: React.FC = () => {
               <img
                 src="/images/mahnaz-khoini.jpg"
                 alt="مهناز خوینی کارشناس ارشد روانشناسی بالینی و زوج درمانگر"
+                width={617}
+                height={775}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-[450px] object-cover object-top rounded-2xl"
               />
               <div className="mt-4 p-3 bg-[#edf5f0] text-[#5e826b] rounded-xl text-center font-bold text-xs flex items-center justify-center gap-2">

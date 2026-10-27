@@ -336,21 +336,23 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
                       <div className="flex flex-wrap items-center justify-between gap-3 pt-2 text-xs">
                         <div className="flex items-center gap-2">
                           {topic.articleSlug && (
-                            <button
-                              onClick={() => onSelectArticle(topic.articleSlug!)}
+                            <a
+                              href={`/articles/${topic.articleSlug}`}
+                              onClick={(e) => { e.preventDefault(); onSelectArticle(topic.articleSlug!); }}
                               className="inline-flex items-center gap-1.5 text-[#6D5AA8] hover:text-[#44386B] font-black hover:underline cursor-pointer"
                             >
                               <span>مطالعه مقاله کامل تخصصی</span>
                               <ArrowRight className="w-3.5 h-3.5 rotate-180" />
-                            </button>
+                            </a>
                           )}
                           {topic.serviceSlug && (
-                            <button
-                              onClick={() => onSelectService(topic.serviceSlug!)}
+                            <a
+                              href={`/services/${topic.serviceSlug}`}
+                              onClick={(e) => { e.preventDefault(); onSelectService(topic.serviceSlug!); }}
                               className="inline-flex items-center gap-1.5 text-[#5e826b] hover:text-[#4d6d58] font-bold hover:underline cursor-pointer mr-3"
                             >
                               <span>مشاهده پروتکل خدمت</span>
-                            </button>
+                            </a>
                           )}
                         </div>
 

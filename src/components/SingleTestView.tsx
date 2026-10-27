@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TestDetailData, testsData } from '../data/testsData';
+import { registerFaqSchema } from '../seo';
 import {
   ArrowRight,
   Sparkles,
@@ -37,12 +38,14 @@ export const SingleTestView: React.FC<SingleTestViewProps> = ({
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    document.title = test.seoTitle;
     setCurrentQuestionIndex(0);
     setSelectedAnswers({});
     setTestCompleted(false);
     setCopiedResult(false);
   }, [test]);
+
+  // داده‌های ساختاریافته پرسش‌وپاسخ آزمون (JSON-LD)
+  useEffect(() => registerFaqSchema(test.faqs), [test]);
 
   const currentQuestion = test.questions[currentQuestionIndex];
 
@@ -89,13 +92,14 @@ export const SingleTestView: React.FC<SingleTestViewProps> = ({
       {/* Top Bar */}
       <div className="bg-white border-b border-[#E5E0EA] sticky top-0 z-40">
         <div className="container-custom h-16 flex items-center justify-between">
-          <button
-            onClick={onBack}
+          <a
+            href="/tools"
+            onClick={(e) => { e.preventDefault(); onBack(); }}
             className="inline-flex items-center gap-2 text-xs sm:text-sm font-black text-[#6D5AA8] hover:text-[#44386B] cursor-pointer"
           >
             <ArrowRight className="w-4 h-4" />
             <span>بازگشت به سامانه آزمون‌ها</span>
-          </button>
+          </a>
 
           <div className="flex items-center text-lg font-black text-[#44386B]" dir="ltr">
             <span>Z</span>
@@ -113,13 +117,13 @@ export const SingleTestView: React.FC<SingleTestViewProps> = ({
       <div className="container-custom max-w-4xl pt-8 sm:pt-12">
         {/* Breadcrumbs */}
         <nav className="flex items-center gap-2 text-xs text-[#8e8a96] mb-6 flex-wrap">
-          <button onClick={onBack} className="hover:text-[#6D5AA8] cursor-pointer">
+          <a href="/" onClick={(e) => { e.preventDefault(); onBack(); }} className="hover:text-[#6D5AA8] cursor-pointer">
             صفحه اصلی
-          </button>
+          </a>
           <span>/</span>
-          <button onClick={onBack} className="hover:text-[#6D5AA8] cursor-pointer">
+          <a href="/tools" onClick={(e) => { e.preventDefault(); onBack(); }} className="hover:text-[#6D5AA8] cursor-pointer">
             سامانه تست‌های آنلاین رابطه
-          </button>
+          </a>
           <span>/</span>
           <span className="text-[#6D5AA8] font-bold">{test.title}</span>
         </nav>
@@ -269,6 +273,10 @@ export const SingleTestView: React.FC<SingleTestViewProps> = ({
                       (e.target as HTMLImageElement).src = '/images/mahnaz-khoini.jpg';
                     }}
                     alt="مهناز خوینی"
+                    width={617}
+                    height={775}
+                    loading="lazy"
+                    decoding="async"
                     className="w-12 h-12 rounded-full object-cover border-2 border-[#6D5AA8]"
                   />
                   <div>
@@ -424,19 +432,21 @@ export const SingleTestView: React.FC<SingleTestViewProps> = ({
             <h3 className="text-base sm:text-lg font-black text-[#44386B]">
               سایر تست‌های روانشناسی و ارزیابی رابطه
             </h3>
-            <button
-              onClick={onBack}
+            <a
+              href="/tools"
+              onClick={(e) => { e.preventDefault(); onBack(); }}
               className="text-xs font-bold text-[#6D5AA8] hover:underline cursor-pointer"
             >
               مشاهده همه تست‌ها
-            </button>
+            </a>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {otherTests.map((ot) => (
-              <button
+              <a
                 key={ot.id}
-                onClick={() => onSelectOtherTest(ot.slug)}
+                href={`/tests/${ot.slug}`}
+                onClick={(e) => { e.preventDefault(); onSelectOtherTest(ot.slug); }}
                 className="p-5 rounded-2xl bg-white border border-[#E5E0EA] hover:border-[#6D5AA8] hover:shadow-md transition-all text-right flex flex-col justify-between cursor-pointer group"
               >
                 <div>
@@ -455,7 +465,7 @@ export const SingleTestView: React.FC<SingleTestViewProps> = ({
                   <span>شروع این تست</span>
                   <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                 </div>
-              </button>
+              </a>
             ))}
           </div>
         </div>

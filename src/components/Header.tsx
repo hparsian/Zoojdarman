@@ -81,8 +81,9 @@ export const Header: React.FC<HeaderProps> = ({
 
         <div className="container-custom h-[78px] flex items-center justify-between">
           {/* Brand Logo */}
-          <button
-            onClick={() => handleLinkClick('top')}
+          <a
+            href="/"
+            onClick={(e) => { e.preventDefault(); handleLinkClick('top'); }}
             className="flex items-center gap-3 text-right group cursor-pointer"
             dir="ltr"
           >
@@ -100,65 +101,74 @@ export const Header: React.FC<HeaderProps> = ({
               <span className="text-xs font-black text-[#44386B]">مهناز خوینی</span>
               <span className="text-[10px] text-[#6F6B78]">زوج‌درمانگر و مشاور خانواده</span>
             </div>
-          </button>
+          </a>
 
           {/* Desktop Nav Links */}
           <nav className="hidden lg:flex items-center gap-6">
-            <button
-              onClick={() => handleLinkClick('tools')}
+            <a
+              href="/tools"
+              onClick={(e) => { e.preventDefault(); handleLinkClick('tools'); }}
               className="text-xs font-black text-[#6D5AA8] bg-[#f2eff8] hover:bg-[#6D5AA8] hover:text-white px-3.5 py-1.5 rounded-full border border-[#6D5AA8]/30 flex items-center gap-1.5 transition-all cursor-pointer shadow-xs"
             >
               <Sparkles className="w-3.5 h-3.5 text-[#E8A58D]" />
               <span>تست آنلاین رابطه</span>
-            </button>
-            <button
-              onClick={() => handleLinkClick('seo-hub')}
+            </a>
+            <a
+              href="/topics"
+              onClick={(e) => { e.preventDefault(); handleLinkClick('seo-hub'); }}
               className="text-sm font-bold text-[#6F6B78] hover:text-[#6D5AA8] transition-colors cursor-pointer"
             >
               موضوعات پرجستجو
-            </button>
-            <button
-              onClick={() => handleLinkClick('assessment')}
+            </a>
+            <a
+              href="/#assessment"
+              onClick={(e) => { e.preventDefault(); handleLinkClick('assessment'); }}
               className="text-sm font-bold text-[#6F6B78] hover:text-[#6D5AA8] transition-colors cursor-pointer"
             >
               راهنمای مراجعان
-            </button>
-            <button
-              onClick={() => handleLinkClick('services')}
+            </a>
+            <a
+              href="/services"
+              onClick={(e) => { e.preventDefault(); handleLinkClick('services'); }}
               className="text-sm font-bold text-[#6F6B78] hover:text-[#6D5AA8] transition-colors cursor-pointer"
             >
               خدمات تخصصی
-            </button>
-            <button
-              onClick={() => handleLinkClick('process')}
+            </a>
+            <a
+              href="/process"
+              onClick={(e) => { e.preventDefault(); handleLinkClick('process'); }}
               className="text-sm font-bold text-[#6F6B78] hover:text-[#6D5AA8] transition-colors cursor-pointer"
             >
               مراحل درمان
-            </button>
-            <button
-              onClick={() => handleLinkClick('bio')}
+            </a>
+            <a
+              href="/about"
+              onClick={(e) => { e.preventDefault(); handleLinkClick('bio'); }}
               className="text-sm font-bold text-[#6F6B78] hover:text-[#6D5AA8] transition-colors cursor-pointer"
             >
               درباره مهناز خوینی
-            </button>
-            <button
-              onClick={() => handleLinkClick('articles')}
+            </a>
+            <a
+              href="/articles"
+              onClick={(e) => { e.preventDefault(); handleLinkClick('articles'); }}
               className="text-sm font-bold text-[#6F6B78] hover:text-[#6D5AA8] transition-colors cursor-pointer"
             >
               راهنمای رابطه و مقالات
-            </button>
-            <button
-              onClick={() => handleLinkClick('faq')}
+            </a>
+            <a
+              href="/faq"
+              onClick={(e) => { e.preventDefault(); handleLinkClick('faq'); }}
               className="text-sm font-bold text-[#6F6B78] hover:text-[#6D5AA8] transition-colors cursor-pointer"
             >
               سوالات متداول
-            </button>
-            <button
-              onClick={() => handleLinkClick('contact')}
+            </a>
+            <a
+              href="/contact"
+              onClick={(e) => { e.preventDefault(); handleLinkClick('contact'); }}
               className="text-sm font-bold text-[#6F6B78] hover:text-[#6D5AA8] transition-colors cursor-pointer"
             >
               تماس و نوبت‌دهی
-            </button>
+            </a>
           </nav>
 
           {/* Header Actions */}
@@ -216,70 +226,81 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
 
               <div className="flex flex-col gap-3">
-                <button
-                  onClick={() => handleLinkClick('tools')}
+                <a
+                  href="/tools"
+                  onClick={(e) => { e.preventDefault(); handleLinkClick('tools'); }}
                   className="flex items-center gap-2.5 py-2 px-3 rounded-xl bg-[#f2eff8] text-right font-black text-[#6D5AA8] hover:bg-[#6D5AA8] hover:text-white transition-all"
                 >
                   <Sparkles className="w-4 h-4 text-[#E8A58D]" />
                   <span>تست آنلاین سلامت رابطه (رایگان)</span>
-                </button>
-                <button
-                  onClick={() => handleLinkClick('seo-hub')}
+                </a>
+                <a
+                  href="/topics"
+                  onClick={(e) => { e.preventDefault(); handleLinkClick('seo-hub'); }}
                   className="flex items-center gap-3 py-2 text-right font-extrabold text-[#292733] hover:text-[#6D5AA8]"
                 >
                   <span>موضوعات پرجستجوی گوگل</span>
-                </button>
-                <button
-                  onClick={() => handleLinkClick('assessment')}
+                </a>
+                <a
+                  href="/#assessment"
+                  onClick={(e) => { e.preventDefault(); handleLinkClick('assessment'); }}
                   className="flex items-center gap-3 py-2 text-right font-extrabold text-[#292733] hover:text-[#6D5AA8]"
                 >
                   <span>راهنمای تشخیصی مراجعان</span>
-                </button>
-                <button
-                  onClick={() => handleLinkClick('services')}
+                </a>
+                <a
+                  href="/services"
+                  onClick={(e) => { e.preventDefault(); handleLinkClick('services'); }}
                   className="flex items-center gap-3 py-2 text-right font-extrabold text-[#292733] hover:text-[#6D5AA8]"
                 >
                   <span>خدمات تخصصی</span>
-                </button>
-                <button
-                  onClick={() => handleLinkClick('process')}
+                </a>
+                <a
+                  href="/process"
+                  onClick={(e) => { e.preventDefault(); handleLinkClick('process'); }}
                   className="flex items-center gap-3 py-2 text-right font-extrabold text-[#292733] hover:text-[#6D5AA8]"
                 >
                   <span>مراحل ۴ گانه درمان</span>
-                </button>
-                <button
-                  onClick={() => handleLinkClick('bio')}
+                </a>
+                <a
+                  href="/about"
+                  onClick={(e) => { e.preventDefault(); handleLinkClick('bio'); }}
                   className="flex items-center gap-3 py-2 text-right font-extrabold text-[#292733] hover:text-[#6D5AA8]"
                 >
                   <span>سوابق مهناز خوینی</span>
-                </button>
-                <button
-                  onClick={() => handleLinkClick('articles')}
+                </a>
+                <a
+                  href="/articles"
+                  onClick={(e) => { e.preventDefault(); handleLinkClick('articles'); }}
                   className="flex items-center gap-3 py-2 text-right font-extrabold text-[#292733] hover:text-[#6D5AA8]"
                 >
                   <span>بانک مقالات و راهنما</span>
-                </button>
-                <button
-                  onClick={() => handleLinkClick('faq')}
+                </a>
+                <a
+                  href="/faq"
+                  onClick={(e) => { e.preventDefault(); handleLinkClick('faq'); }}
                   className="flex items-center gap-3 py-2 text-right font-extrabold text-[#292733] hover:text-[#6D5AA8]"
                 >
                   <span>سوالات متداول</span>
-                </button>
-                <button
-                  onClick={() => handleLinkClick('contact')}
+                </a>
+                <a
+                  href="/contact"
+                  onClick={(e) => { e.preventDefault(); handleLinkClick('contact'); }}
                   className="flex items-center gap-3 py-2 text-right font-extrabold text-[#292733] hover:text-[#6D5AA8]"
                 >
                   <span>تماس و نوبت‌دهی</span>
-                </button>
-                <button
-                  onClick={() => {
+                </a>
+                <a
+                  href="/privacy-policy"
+                  onClick={(e) => {
+                    e.preventDefault();
                     setMobileMenuOpen(false);
                     onNavigatePrivacy();
                   }}
                   className="flex items-center gap-3 py-2 text-right font-medium text-xs text-[#6F6B78] hover:text-[#6D5AA8]"
                 >
                   <span>حریم خصوصی و محرمانگی</span>
-                </button>
+                </a>
               </div>
             </div>
 

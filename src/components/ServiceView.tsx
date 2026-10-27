@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { ServiceItem } from '../types';
+import { registerFaqSchema } from '../seo';
 import { ArrowRight, MessageSquare, CheckCircle2, ShieldCheck, HelpCircle } from 'lucide-react';
 
 interface ServiceViewProps {
@@ -10,21 +11,24 @@ interface ServiceViewProps {
 export const ServiceView: React.FC<ServiceViewProps> = ({ service, onBack }) => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    document.title = `${service.title} | مهناز خوینی`;
   }, [service]);
+
+  // داده‌های ساختاریافته پرسش‌وپاسخ خدمت (JSON-LD)
+  useEffect(() => registerFaqSchema(service.faqs), [service]);
 
   return (
     <div className="bg-[#FAF8F5] min-h-screen pb-24">
       {/* Top Bar */}
       <div className="bg-white border-b border-[#E5E0EA] sticky top-0 z-40">
         <div className="container-custom h-16 flex items-center justify-between">
-          <button
-            onClick={onBack}
+          <a
+            href="/"
+            onClick={(e) => { e.preventDefault(); onBack(); }}
             className="inline-flex items-center gap-2 text-xs sm:text-sm font-black text-[#6D5AA8] hover:text-[#44386B] cursor-pointer"
           >
             <ArrowRight className="w-4 h-4" />
             <span>بازگشت به خدمات و صفحه اصلی</span>
-          </button>
+          </a>
 
           <div className="flex items-center text-lg font-black text-[#44386B]" dir="ltr">
             <span>Z</span>
@@ -42,9 +46,9 @@ export const ServiceView: React.FC<ServiceViewProps> = ({ service, onBack }) => 
       <div className="container-custom max-w-4xl pt-8 sm:pt-12">
         {/* Breadcrumbs */}
         <nav className="flex items-center gap-2 text-xs text-[#8e8a96] mb-6">
-          <button onClick={onBack} className="hover:text-[#6D5AA8] cursor-pointer">صفحه اصلی</button>
+          <a href="/" onClick={(e) => { e.preventDefault(); onBack(); }} className="hover:text-[#6D5AA8] cursor-pointer">صفحه اصلی</a>
           <span>/</span>
-          <button onClick={onBack} className="hover:text-[#6D5AA8] cursor-pointer">خدمات تخصصی</button>
+          <a href="/services" onClick={(e) => { e.preventDefault(); onBack(); }} className="hover:text-[#6D5AA8] cursor-pointer">خدمات تخصصی</a>
           <span>/</span>
           <span className="text-[#6D5AA8] font-bold">{service.title}</span>
         </nav>
@@ -135,6 +139,10 @@ export const ServiceView: React.FC<ServiceViewProps> = ({ service, onBack }) => 
               (e.target as HTMLImageElement).src = '/images/mahnaz-khoini.jpg';
             }}
             alt="مهناز خوینی"
+            width={617}
+            height={775}
+            loading="lazy"
+            decoding="async"
             className="w-16 h-16 rounded-full object-cover shrink-0 border-2 border-[#6D5AA8]"
           />
           <div>
