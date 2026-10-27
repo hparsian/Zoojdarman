@@ -145,6 +145,11 @@ function breadcrumbNode(items: SeoBreadcrumbItem[], currentUrl: string): Record<
   };
 }
 
+/** عنوان را با نام برند می‌سازد؛ اگر از قبل برند داشته باشد تکرار نمی‌شود */
+function withBrand(title: string): string {
+  return title.includes('مهناز خوینی') ? title : `${title} | مهناز خوینی`;
+}
+
 function notFoundSeo(): SeoPage {
   const path = typeof window !== 'undefined' ? window.location.pathname : '/';
   return {
@@ -266,7 +271,7 @@ export function seoForRoute(route: RouteState): SeoPage {
       if (!article) return notFoundSeo();
       const path = `/articles/${article.slug}`;
       return {
-        title: `${article.title} | مهناز خوینی`,
+        title: withBrand(article.title),
         description: article.description,
         path,
         ogType: 'article',
@@ -293,7 +298,7 @@ export function seoForRoute(route: RouteState): SeoPage {
       if (!service) return notFoundSeo();
       const path = `/services/${service.slug}`;
       return {
-        title: `${service.title} | مهناز خوینی`,
+        title: withBrand(service.title),
         description: service.description,
         path,
         breadcrumb: [
