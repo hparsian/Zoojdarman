@@ -74,7 +74,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ onBack, onNavigateTool
         </div>
 
         {/* Quick Contact Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
           <a
             href="https://wa.me/989199087264?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D9%86%D9%88%D8%A8%D8%AA%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%B2%D9%88%D8%AC%E2%80%8C%D8%AF%D8%B1%D9%85%D8%A7%D9%86%DB%8C%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%87%D9%85."
             target="_blank"
@@ -101,6 +101,18 @@ export const ContactView: React.FC<ContactViewProps> = ({ onBack, onNavigateTool
             <span className="text-[11px] text-[#6F6B78] mt-1">شنبه تا پنج‌شنبه ۹ تا ۲۱</span>
           </a>
 
+          <a
+            href="tel:02144600980"
+            className="p-5 rounded-2xl bg-white border border-[#E5E0EA] hover:border-[#6D5AA8] shadow-xs flex flex-col items-center text-center group transition-all"
+          >
+            <div className="w-12 h-12 rounded-2xl bg-[#fcf1ec] text-[#8e482f] flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+              <Phone className="w-6 h-6" />
+            </div>
+            <span className="text-xs text-[#6F6B78] font-bold mb-1">تلفن ثابت کلینیک</span>
+            <span className="text-sm font-black text-[#44386B]" dir="ltr">۰۲۱ ۴۴۶۰۰۹۸۰</span>
+            <span className="text-[11px] text-[#6F6B78] mt-1">پذیرش و هماهنگی وقت</span>
+          </a>
+
           <div className="p-5 rounded-2xl bg-white border border-[#E5E0EA] shadow-xs flex flex-col items-center text-center">
             <div className="w-12 h-12 rounded-2xl bg-[#FAF8F5] text-[#E8A58D] flex items-center justify-center mb-3">
               <Video className="w-6 h-6" />
@@ -121,7 +133,23 @@ export const ContactView: React.FC<ContactViewProps> = ({ onBack, onNavigateTool
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm text-[#6F6B78]">
             <div className="space-y-3">
               <p className="leading-relaxed">
-                <strong>آدرس جلسات حضوری:</strong> تهران، منطقه ۲ (کلینیک تخصصی روان‌شناسی و مشاوره خانواده پیوند امن)
+                <strong>آدرس جلسات حضوری:</strong> تهران، منطقه ۲ (کلینیک تخصصی روان‌شناسی و مشاوره خانواده{' '}
+                <a
+                  href="https://peyvandamn.ir"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#6D5AA8] font-bold hover:underline"
+                >
+                  پیوند امن
+                </a>
+                )
+              </p>
+              <p>
+                <strong>تلفن کلینیک:</strong>{' '}
+                <a href="tel:02144600980" className="text-[#6D5AA8] font-bold hover:underline" dir="ltr">
+                  ۰۲۱ ۴۴۶۰۰۹۸۰
+                </a>
+                {' '}(شنبه تا پنج‌شنبه ۹ تا ۲۱)
               </p>
               <p>
                 <strong>دسترسی حمل‌ونقل:</strong> دسترسی آسان از طریق بزرگراه‌های یادگار امام، چمران و ایستگاه‌های مترو و بی‌آرتی منطقه ۲.

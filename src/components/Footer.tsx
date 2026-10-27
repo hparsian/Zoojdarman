@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Heart } from 'lucide-react';
+import { ShieldCheck, Heart, Phone, ExternalLink } from 'lucide-react';
 
 interface FooterProps {
   onNavigateHome: (sectionId?: string) => void;
@@ -47,9 +47,31 @@ export const Footer: React.FC<FooterProps> = ({
               <span>jdarman.ir</span>
             </div>
 
-            <p className="text-xs sm:text-sm text-[#D8D2E5] leading-relaxed mb-6 max-w-sm text-justify">
+            <p className="text-xs sm:text-sm text-[#D8D2E5] leading-relaxed mb-4 max-w-sm text-justify">
               مرکز تخصصی زوج‌درمانی، درمان خیانت و مشاوره روابط عاطفی مهناز خوینی، مسئول فنی کلینیک پیوند امن و عضو سازمان نظام روان‌شناسی و مشاوره ایران (پروانه ۱۴۱۴۰۸۳).
             </p>
+
+            <div className="flex flex-col gap-2.5 mb-4 max-w-sm">
+              <a
+                href="tel:02144600980"
+                className="flex items-center gap-2 text-xs font-bold text-[#8FAF9B] hover:text-[#E8A58D] transition-colors"
+                dir="ltr"
+              >
+                <Phone className="w-4 h-4 shrink-0" />
+                <span>۰۲۱ ۴۴۶۰۰۹۸۰</span>
+              </a>
+              <a
+                href="https://peyvandamn.ir"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-xs font-bold text-[#8FAF9B] hover:text-[#E8A58D] transition-colors"
+              >
+                <ExternalLink className="w-4 h-4 shrink-0" />
+                <span>
+                  کلینیک پیوند امن — <span dir="ltr">peyvandamn.ir</span>
+                </span>
+              </a>
+            </div>
 
             <div className="flex items-center gap-2 text-xs text-[#8FAF9B] bg-white/5 border border-white/10 px-3.5 py-2 rounded-xl">
               <ShieldCheck className="w-4 h-4 shrink-0" />
@@ -266,6 +288,16 @@ export const Footer: React.FC<FooterProps> = ({
               className="text-white hover:underline cursor-pointer"
             >
               حریم خصوصی و محرمانگی
+            </a>
+            <span>•</span>
+            <a
+              href="https://peyvandamn.ir"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:underline"
+              dir="ltr"
+            >
+              peyvandamn.ir
             </a>
             <span>•</span>
             <span dir="ltr">تهران، منطقه ۲ (پیوند امن)</span>
