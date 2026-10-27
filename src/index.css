@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+:root {
+  /* Visual Palette */
+  --purple-primary: #6D5AA8;
+  --purple-dark: #44386B;
+  --purple-light: #8b79c4;
+  --purple-soft: #f2eff8;
+  --purple-soft-2: #e3ddef;
+  
+  --sage-green: #8FAF9B;
+  --sage-dark: #5e826b;
+  --sage-soft: #edf5f0;
+  --sage-soft-2: #d8e8dd;
+  
+  --soft-peach: #E8A58D;
+  --peach-dark: #b86e53;
+  --peach-soft: #fcf1ec;
+  --peach-text: #8e482f;
+  
+  /* Surfaces */
+  --warm-bg: #FAF8F5;
+  --lavender-bg: #F2EFF8;
+  --white: #FFFFFF;
+  
+  /* Typography */
+  --primary-text: #292733;
+  --secondary-text: #6F6B78;
+  --muted-text: #8e8a96;
+  --faint-text: #b1adb9;
+  
+  /* Borders */
+  --border-color: #E5E0EA;
+  --border-subtle: #ede9f2;
+  --border-focus: rgba(109, 90, 168, 0.45);
+  
+  /* Shadows */
+  --shadow-xs: 0 1px 3px rgba(68, 56, 107, 0.04);
+  --shadow-soft: 0 4px 20px -4px rgba(68, 56, 107, 0.06), 0 2px 6px -1px rgba(68, 56, 107, 0.03);
+  --shadow-hover: 0 12px 32px -6px rgba(68, 56, 107, 0.10), 0 4px 12px -2px rgba(68, 56, 107, 0.04);
+  --shadow-purple: 0 10px 26px -6px rgba(109, 90, 168, 0.32);
+  
+  /* Radii */
+  --radius-xl: 24px;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --radius-pill: 9999px;
+  
+  --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--warm-bg);
+  color: var(--primary-text);
+  line-height: 1.85;
+  overflow-x: hidden;
+  direction: rtl;
+  text-align: right;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--purple-soft-2);
+  color: var(--purple-dark);
+}
+
+/* Custom Utilities matching original design */
+.container-custom {
+  max-width: 1220px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Article & Service Body Styling */
+.article-rendered-content {
+  font-size: 1.06rem;
+  line-height: 2.05;
+  color: #33313d;
+}
+
+.article-rendered-content h2 {
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: var(--purple-dark);
+  margin-top: 2.8rem;
+  margin-bottom: 1.1rem;
+  position: relative;
+  padding-right: 1rem;
+}
+
+.article-rendered-content h2::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 15%;
+  bottom: 15%;
+  width: 4px;
+  background: var(--purple-primary);
+  border-radius: 4px;
+}
+
+.article-rendered-content h3 {
+  font-size: 1.28rem;
+  font-weight: 800;
+  color: var(--purple-dark);
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+
+.article-rendered-content p {
+  margin-bottom: 1.4rem;
+  text-align: justify;
+}
+
+.article-rendered-content ul,
+.article-rendered-content ol {
+  margin-bottom: 1.6rem;
+  padding-right: 1.6rem;
+}
+
+.article-rendered-content li {
+  margin-bottom: 0.6rem;
+}
+
+.article-rendered-content a {
+  color: var(--purple-primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-weight: 600;
+}
+
+.article-rendered-content .callout {
+  background: var(--purple-soft);
+  border-right: 4px solid var(--purple-primary);
+  border-radius: var(--radius-md);
+  padding: 1.4rem 1.6rem;
+  margin: 2rem 0;
+  font-size: 0.98rem;
+  color: var(--purple-dark);
+}
+
+.article-rendered-content blockquote {
+  border-right: 3px solid var(--soft-peach);
+  padding: 1rem 1.4rem;
+  margin: 1.5rem 0;
+  background: var(--peach-soft);
+  color: var(--peach-text);
+  border-radius: var(--radius-sm);
+  font-style: italic;
+}
+
+/* Pulse animation */
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.7; }
+}
+
+.pulse-dot {
+  animation: pulseDot 2s infinite;
+}
