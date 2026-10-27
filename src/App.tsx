@@ -349,21 +349,21 @@ export const App: React.FC = () => {
         onNavigateTopics={navigateToTopics}
       />
 
-      <main className="flex-1">
+      <main className="flex-1 home-page">
         <Hero
           onScrollToAssessment={() => scrollToSection('assessment')}
           onScrollToTools={() => scrollToSection('tools')}
         />
         <Stats />
         <InteractiveToolsSuite />
-        <DiagnosticWidget />
         <ServicesSection onSelectService={navigateToService} />
+        <ProcessSection />
+        <DiagnosticWidget />
         <KeywordsHubSection
           onSelectArticle={navigateToArticle}
           onSelectService={navigateToService}
           onScrollToTools={() => scrollToSection('tools')}
         />
-        <ProcessSection />
         <BioSection />
         <ArticlesSection onSelectArticle={navigateToArticle} />
         <FaqSection />

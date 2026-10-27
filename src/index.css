@@ -86,6 +86,49 @@ body {
   padding-right: 1.5rem;
 }
 
+/* ============================================================
+   طراحی بصری «کم‌تراکم» صفحه اصلی (main.home-page)
+
+   اصول این نسخه:
+   1) یکدست‌شدن پس‌زمینه بخش‌ها (حذف نوارهای رنگی متناوب)
+   2) تخت‌شدن کارت‌ها (حذف سایه‌ها، تکیه بر خط مویی)
+   3) فضای عمودی بیشتر و یکنواخت بین بخش‌ها
+   4) تیترهای بزرگ‌تر و برچسب‌های بالای تیتر بدون جعبه
+   فقط روی صفحه اصلی اعمال می‌شود؛ با حذف این بلوک،
+   استایل پیش‌فرض تیلویند برمی‌گردد.
+   ============================================================ */
+.home-page > section {
+  background-color: #faf8f5;
+  background-image: none;
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.home-page > section:not(:first-child) {
+  padding-block: clamp(3.5rem, 6.5vw, 6.25rem);
+}
+
+/* کارت‌ها، جعبه‌ها و نشان‌ها: تخت و بدون سایه */
+.home-page [class*='shadow-'] {
+  box-shadow: none !important;
+}
+
+/* تیتر هر بخش: بزرگ‌تر، با فاصله کمتر از متن و آرام‌تر */
+.home-page > section .container-custom > div > h2 {
+  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.75rem;
+}
+
+/* برچسب بالای تیتر: بدون پس‌زمینه و حاشیه (کاهش شلوغی) */
+.home-page > section .container-custom > div:first-child > span:first-child {
+  background-color: transparent;
+  border-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+
 /* Article & Service Body Styling */
 .article-rendered-content {
   font-size: 1.06rem;
