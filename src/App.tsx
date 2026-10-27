@@ -16,12 +16,30 @@ import { ServiceView } from './components/ServiceView';
 import { PrivacyPolicyView } from './components/PrivacyPolicyView';
 import { getArticleBySlug } from './data/articles';
 import { getServiceBySlug } from './data/services';
+import { InteractiveToolsSuite } from './components/InteractiveToolsSuite';
+import { KeywordsHubSection } from './components/KeywordsHubSection';
+import { AboutView } from './components/AboutView';
+import { ProcessView } from './components/ProcessView';
+import { FaqView } from './components/FaqView';
+import { ContactView } from './components/ContactView';
+import { ToolsView } from './components/ToolsView';
+import { ArticlesArchiveView } from './components/ArticlesArchiveView';
+import { ServicesArchiveView } from './components/ServicesArchiveView';
+import { TopicsView } from './components/TopicsView';
 import { AlertCircle } from 'lucide-react';
 
 type RouteState =
   | { type: 'home'; section?: string }
   | { type: 'article'; slug: string }
+  | { type: 'articles' }
   | { type: 'service'; slug: string }
+  | { type: 'services' }
+  | { type: 'about' }
+  | { type: 'process' }
+  | { type: 'faq' }
+  | { type: 'contact' }
+  | { type: 'tools' }
+  | { type: 'topics' }
   | { type: 'privacy' }
   | { type: '404' };
 
@@ -36,9 +54,25 @@ export const App: React.FC = () => {
     if (path.startsWith('/articles/')) {
       const slug = path.replace('/articles/', '');
       setRoute({ type: 'article', slug });
+    } else if (path === '/articles') {
+      setRoute({ type: 'articles' });
     } else if (path.startsWith('/services/')) {
       const slug = path.replace('/services/', '');
       setRoute({ type: 'service', slug });
+    } else if (path === '/services') {
+      setRoute({ type: 'services' });
+    } else if (path === '/about' || path === '/bio') {
+      setRoute({ type: 'about' });
+    } else if (path === '/process' || path === '/treatment-process') {
+      setRoute({ type: 'process' });
+    } else if (path === '/faq') {
+      setRoute({ type: 'faq' });
+    } else if (path === '/contact' || path === '/appointment') {
+      setRoute({ type: 'contact' });
+    } else if (path === '/tools' || path === '/assessments') {
+      setRoute({ type: 'tools' });
+    } else if (path === '/topics' || path === '/qa') {
+      setRoute({ type: 'topics' });
     } else if (path === '/privacy-policy') {
       setRoute({ type: 'privacy' });
     } else {
@@ -75,9 +109,19 @@ export const App: React.FC = () => {
     setTimeout(() => scrollToSection(sectionId), 50);
   };
 
+  const navigateToServices = () => {
+    window.history.pushState({}, '', '/services');
+    setRoute({ type: 'services' });
+  };
+
   const navigateToService = (slug: string) => {
     window.history.pushState({}, '', `/services/${slug}`);
     setRoute({ type: 'service', slug });
+  };
+
+  const navigateToArticles = () => {
+    window.history.pushState({}, '', '/articles');
+    setRoute({ type: 'articles' });
   };
 
   const navigateToArticle = (slug: string) => {
@@ -85,10 +129,121 @@ export const App: React.FC = () => {
     setRoute({ type: 'article', slug });
   };
 
+  const navigateToAbout = () => {
+    window.history.pushState({}, '', '/about');
+    setRoute({ type: 'about' });
+  };
+
+  const navigateToProcess = () => {
+    window.history.pushState({}, '', '/process');
+    setRoute({ type: 'process' });
+  };
+
+  const navigateToFaq = () => {
+    window.history.pushState({}, '', '/faq');
+    setRoute({ type: 'faq' });
+  };
+
+  const navigateToContact = () => {
+    window.history.pushState({}, '', '/contact');
+    setRoute({ type: 'contact' });
+  };
+
+  const navigateToTools = () => {
+    window.history.pushState({}, '', '/tools');
+    setRoute({ type: 'tools' });
+  };
+
+  const navigateToTopics = () => {
+    window.history.pushState({}, '', '/topics');
+    setRoute({ type: 'topics' });
+  };
+
   const navigateToPrivacy = () => {
     window.history.pushState({}, '', '/privacy-policy');
     setRoute({ type: 'privacy' });
   };
+
+  // Render view depending on route
+  if (route.type === 'articles') {
+    return (
+      <ArticlesArchiveView
+        onBack={() => navigateToHome('articles')}
+        onSelectArticle={navigateToArticle}
+        onNavigateTools={navigateToTools}
+      />
+    );
+  }
+
+  if (route.type === 'services') {
+    return (
+      <ServicesArchiveView
+        onBack={() => navigateToHome('services')}
+        onSelectService={navigateToService}
+        onNavigateContact={navigateToContact}
+        onNavigateTools={navigateToTools}
+      />
+    );
+  }
+
+  if (route.type === 'about') {
+    return (
+      <AboutView
+        onBack={() => navigateToHome('bio')}
+        onNavigateContact={navigateToContact}
+        onNavigateTools={navigateToTools}
+      />
+    );
+  }
+
+  if (route.type === 'process') {
+    return (
+      <ProcessView
+        onBack={() => navigateToHome('process')}
+        onNavigateContact={navigateToContact}
+        onNavigateTools={navigateToTools}
+      />
+    );
+  }
+
+  if (route.type === 'faq') {
+    return (
+      <FaqView
+        onBack={() => navigateToHome('faq')}
+        onNavigateContact={navigateToContact}
+        onNavigateTools={navigateToTools}
+      />
+    );
+  }
+
+  if (route.type === 'contact') {
+    return (
+      <ContactView
+        onBack={() => navigateToHome('contact')}
+        onNavigateTools={navigateToTools}
+      />
+    );
+  }
+
+  if (route.type === 'tools') {
+    return (
+      <ToolsView
+        onBack={() => navigateToHome('tools')}
+        onNavigateContact={navigateToContact}
+      />
+    );
+  }
+
+  if (route.type === 'topics') {
+    return (
+      <TopicsView
+        onBack={() => navigateToHome('seo-hub')}
+        onSelectArticle={navigateToArticle}
+        onSelectService={navigateToService}
+        onNavigateTools={navigateToTools}
+      />
+    );
+  }
 
   // Render view depending on route
   if (route.type === 'article') {
@@ -152,13 +307,30 @@ export const App: React.FC = () => {
       <Header
         onNavigateHome={navigateToHome}
         onNavigatePrivacy={navigateToPrivacy}
+        onNavigateAbout={navigateToAbout}
+        onNavigateProcess={navigateToProcess}
+        onNavigateFaq={navigateToFaq}
+        onNavigateContact={navigateToContact}
+        onNavigateTools={navigateToTools}
+        onNavigateArticles={navigateToArticles}
+        onNavigateServices={navigateToServices}
+        onNavigateTopics={navigateToTopics}
       />
 
       <main className="flex-1">
-        <Hero onScrollToAssessment={() => scrollToSection('assessment')} />
+        <Hero
+          onScrollToAssessment={() => scrollToSection('assessment')}
+          onScrollToTools={() => scrollToSection('tools')}
+        />
         <Stats />
+        <InteractiveToolsSuite />
         <DiagnosticWidget />
         <ServicesSection onSelectService={navigateToService} />
+        <KeywordsHubSection
+          onSelectArticle={navigateToArticle}
+          onSelectService={navigateToService}
+          onScrollToTools={() => scrollToSection('tools')}
+        />
         <ProcessSection />
         <BioSection />
         <ArticlesSection onSelectArticle={navigateToArticle} />
@@ -171,6 +343,14 @@ export const App: React.FC = () => {
         onNavigateService={navigateToService}
         onNavigateArticle={navigateToArticle}
         onNavigatePrivacy={navigateToPrivacy}
+        onNavigateAbout={navigateToAbout}
+        onNavigateProcess={navigateToProcess}
+        onNavigateFaq={navigateToFaq}
+        onNavigateContact={navigateToContact}
+        onNavigateTools={navigateToTools}
+        onNavigateArticles={navigateToArticles}
+        onNavigateServices={navigateToServices}
+        onNavigateTopics={navigateToTopics}
       />
 
       <FloatingActions />

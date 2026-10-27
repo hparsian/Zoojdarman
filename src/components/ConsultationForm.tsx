@@ -11,13 +11,16 @@ export const ConsultationForm: React.FC = () => {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [lastWaLink, setLastWaLink] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.serviceType) {
-      alert('لطفاً نوع مشاوره را انتخاب فرمایید.');
+      setErrorMessage('لطفاً نوع مشاوره را انتخاب فرمایید.');
       return;
     }
+    setErrorMessage(null);
 
     let text = 'سلام، درخواست رزرو نوبت مشاوره دارم.\n';
     text += `نام و نام خانوادگی: ${formData.fullname}\n`;
@@ -29,7 +32,12 @@ export const ConsultationForm: React.FC = () => {
     }
 
     const waLink = `https://wa.me/989199087264?text=${encodeURIComponent(text)}`;
-    window.open(waLink, '_blank');
+    setLastWaLink(waLink);
+    try {
+      window.open(waLink, '_blank');
+    } catch {
+      // Ignored if popups blocked in iframe
+    }
     setSubmitted(true);
   };
 
@@ -62,17 +70,38 @@ export const ConsultationForm: React.FC = () => {
                 <CheckCircle className="w-10 h-10 text-[#5e826b] mx-auto mb-3" />
                 <h4 className="text-base font-black text-[#292733] mb-2">درخواست شما آماده ارسال است</h4>
                 <p className="text-xs sm:text-sm text-[#6F6B78] leading-relaxed mb-4">
-                  پیام در واتساپ کلینیک باز شد. همکاران پذیرش در اسرع وقت نوبت شما را هماهنگ خواهند کرد.
+                  پیام آماده ارسال به واتساپ کلینیک است. همکاران پذیرش در اسرع وقت نوبت شما را هماهنگ خواهند کرد.
                 </p>
-                <button
-                  onClick={() => setSubmitted(false)}
-                  className="text-xs font-bold text-[#6D5AA8] underline cursor-pointer"
-                >
-                  تکمیل مجدد فرم
-                </button>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-3">
+                  {lastWaLink && (
+                    <a
+                      href={lastWaLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#5e826b] hover:bg-[#4d6d58] text-white rounded-full text-xs font-bold transition-all shadow-sm"
+                    >
+                      <MessageSquare className="w-4 h-4" />
+                      <span>باز کردن مستقیم واتساپ</span>
+                    </a>
+                  )}
+                  <button
+                    onClick={() => {
+                      setSubmitted(false);
+                      setErrorMessage(null);
+                    }}
+                    className="text-xs font-bold text-[#6D5AA8] underline cursor-pointer px-3 py-2"
+                  >
+                    تکمیل مجدد فرم
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                {errorMessage && (
+                  <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-xs font-bold text-red-600">
+                    {errorMessage}
+                  </div>
+                )}
                 <div>
                   <label className="block text-xs font-extrabold text-[#292733] mb-1.5">
                     نام و نام خانوادگی *

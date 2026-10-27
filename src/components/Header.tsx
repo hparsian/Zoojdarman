@@ -1,12 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, MessageSquare, ShieldCheck, Heart } from 'lucide-react';
+import { Menu, X, Phone, MessageSquare, ShieldCheck, Heart, Sparkles } from 'lucide-react';
 
 interface HeaderProps {
   onNavigateHome: (hashSection?: string) => void;
   onNavigatePrivacy: () => void;
+  onNavigateAbout?: () => void;
+  onNavigateProcess?: () => void;
+  onNavigateFaq?: () => void;
+  onNavigateContact?: () => void;
+  onNavigateTools?: () => void;
+  onNavigateArticles?: () => void;
+  onNavigateServices?: () => void;
+  onNavigateTopics?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onNavigateHome, onNavigatePrivacy }) => {
+export const Header: React.FC<HeaderProps> = ({
+  onNavigateHome,
+  onNavigatePrivacy,
+  onNavigateAbout,
+  onNavigateProcess,
+  onNavigateFaq,
+  onNavigateContact,
+  onNavigateTools,
+  onNavigateArticles,
+  onNavigateServices,
+  onNavigateTopics,
+}) => {
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -24,9 +43,27 @@ export const Header: React.FC<HeaderProps> = ({ onNavigateHome, onNavigatePrivac
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleLinkClick = (sectionId: string) => {
+  const handleLinkClick = (key: string) => {
     setMobileMenuOpen(false);
-    onNavigateHome(sectionId);
+    if (key === 'tools' && onNavigateTools) {
+      onNavigateTools();
+    } else if (key === 'seo-hub' && onNavigateTopics) {
+      onNavigateTopics();
+    } else if (key === 'services' && onNavigateServices) {
+      onNavigateServices();
+    } else if (key === 'process' && onNavigateProcess) {
+      onNavigateProcess();
+    } else if (key === 'bio' && onNavigateAbout) {
+      onNavigateAbout();
+    } else if (key === 'articles' && onNavigateArticles) {
+      onNavigateArticles();
+    } else if (key === 'faq' && onNavigateFaq) {
+      onNavigateFaq();
+    } else if (key === 'contact' && onNavigateContact) {
+      onNavigateContact();
+    } else {
+      onNavigateHome(key);
+    }
   };
 
   return (
@@ -66,12 +103,25 @@ export const Header: React.FC<HeaderProps> = ({ onNavigateHome, onNavigatePrivac
           </button>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-7">
+          <nav className="hidden lg:flex items-center gap-6">
+            <button
+              onClick={() => handleLinkClick('tools')}
+              className="text-xs font-black text-[#6D5AA8] bg-[#f2eff8] hover:bg-[#6D5AA8] hover:text-white px-3.5 py-1.5 rounded-full border border-[#6D5AA8]/30 flex items-center gap-1.5 transition-all cursor-pointer shadow-xs"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-[#E8A58D]" />
+              <span>تست آنلاین رابطه</span>
+            </button>
+            <button
+              onClick={() => handleLinkClick('seo-hub')}
+              className="text-sm font-bold text-[#6F6B78] hover:text-[#6D5AA8] transition-colors cursor-pointer"
+            >
+              موضوعات پرجستجو
+            </button>
             <button
               onClick={() => handleLinkClick('assessment')}
               className="text-sm font-bold text-[#6F6B78] hover:text-[#6D5AA8] transition-colors cursor-pointer"
             >
-              ارزیابی رابطه
+              راهنمای مراجعان
             </button>
             <button
               onClick={() => handleLinkClick('services')}
@@ -167,10 +217,23 @@ export const Header: React.FC<HeaderProps> = ({ onNavigateHome, onNavigatePrivac
 
               <div className="flex flex-col gap-3">
                 <button
+                  onClick={() => handleLinkClick('tools')}
+                  className="flex items-center gap-2.5 py-2 px-3 rounded-xl bg-[#f2eff8] text-right font-black text-[#6D5AA8] hover:bg-[#6D5AA8] hover:text-white transition-all"
+                >
+                  <Sparkles className="w-4 h-4 text-[#E8A58D]" />
+                  <span>تست آنلاین سلامت رابطه (رایگان)</span>
+                </button>
+                <button
+                  onClick={() => handleLinkClick('seo-hub')}
+                  className="flex items-center gap-3 py-2 text-right font-extrabold text-[#292733] hover:text-[#6D5AA8]"
+                >
+                  <span>موضوعات پرجستجوی گوگل</span>
+                </button>
+                <button
                   onClick={() => handleLinkClick('assessment')}
                   className="flex items-center gap-3 py-2 text-right font-extrabold text-[#292733] hover:text-[#6D5AA8]"
                 >
-                  <span>ارزیابی وضعیت رابطه</span>
+                  <span>راهنمای تشخیصی مراجعان</span>
                 </button>
                 <button
                   onClick={() => handleLinkClick('services')}

@@ -3,9 +3,10 @@ import { MessageSquare, Compass, ShieldCheck, Lock, Award } from 'lucide-react';
 
 interface HeroProps {
   onScrollToAssessment: () => void;
+  onScrollToTools: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onScrollToAssessment }) => {
+export const Hero: React.FC<HeroProps> = ({ onScrollToAssessment, onScrollToTools }) => {
   return (
     <section className="relative overflow-hidden pt-12 pb-16 lg:pt-16 lg:pb-24 bg-[#FAF8F5]">
       {/* Background glow decoration */}
@@ -34,24 +35,24 @@ export const Hero: React.FC<HeroProps> = ({ onScrollToAssessment }) => {
             </p>
 
             {/* Call to Actions */}
-            <div className="flex flex-wrap items-center gap-4 mb-10 w-full sm:w-auto">
+            <div className="flex flex-wrap items-center gap-3.5 mb-10 w-full sm:w-auto">
+              <button
+                onClick={onScrollToTools}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#6D5AA8] hover:bg-[#44386B] text-white font-black text-sm px-7 py-3.5 rounded-full shadow-[0_10px_26px_-6px_rgba(109,90,168,0.35)] hover:-translate-y-0.5 transition-all cursor-pointer ring-4 ring-[#6D5AA8]/15"
+              >
+                <Compass className="w-4 h-4 text-[#E8A58D]" />
+                <span>شروع تست آنلاین سلامت رابطه (رایگان)</span>
+              </button>
+
               <a
                 href="https://wa.me/989199087264?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%DB%8C%E2%80%8C%D8%AE%D9%88%D8%A7%D9%87%D9%85%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%B2%D9%88%D8%AC%E2%80%8C%D8%AF%D8%B1%D9%85%D8%A7%D9%86%DB%8C%20%D9%88%D9%82%D8%AA%20%D8%B1%D8%B2%D8%B1%D9%88%20%DA%A9%D9%86%D9%85."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#6D5AA8] hover:bg-[#44386B] text-white font-black text-sm px-7 py-3.5 rounded-full shadow-[0_10px_26px_-6px_rgba(109,90,168,0.35)] hover:-translate-y-0.5 transition-all"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-[#f2eff8] text-[#44386B] font-extrabold text-sm px-6 py-3.5 rounded-full border border-[#6D5AA8]/40 shadow-xs hover:-translate-y-0.5 transition-all"
               >
-                <MessageSquare className="w-4 h-4" />
-                <span>رزرو وقت مشاوره در واتساپ</span>
+                <MessageSquare className="w-4 h-4 text-[#6D5AA8]" />
+                <span>رزرو وقت در واتساپ</span>
               </a>
-
-              <button
-                onClick={onScrollToAssessment}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-[#f2eff8] text-[#44386B] font-extrabold text-sm px-6 py-3.5 rounded-full border border-[#6D5AA8] shadow-xs hover:-translate-y-0.5 transition-all cursor-pointer"
-              >
-                <Compass className="w-4 h-4 text-[#6D5AA8]" />
-                <span>ارزیابی وضعیت رابطه شما</span>
-              </button>
             </div>
 
             {/* Trust Bar */}

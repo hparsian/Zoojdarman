@@ -1,0 +1,234 @@
+import React, { useState, useEffect } from 'react';
+import {
+  ArrowRight,
+  HelpCircle,
+  ChevronDown,
+  Search,
+  MessageSquare,
+  Sparkles,
+  ShieldCheck
+} from 'lucide-react';
+
+interface FaqViewProps {
+  onBack: () => void;
+  onNavigateContact: () => void;
+  onNavigateTools: () => void;
+}
+
+interface FaqItem {
+  q: string;
+  a: string;
+  category: 'general' | 'infidelity' | 'sessions' | 'divorce' | 'online';
+}
+
+export const FaqView: React.FC<FaqViewProps> = ({
+  onBack,
+  onNavigateContact,
+  onNavigateTools,
+}) => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.title = 'پرسش‌های متداول زوج‌درمانی و مشاوره رابطه | مهناز خوینی';
+  }, []);
+
+  const faqs: FaqItem[] = [
+    {
+      q: 'زوج‌درمانی معمولاً چند جلسه طول می‌کشد؟',
+      a: 'طول دوره درمان به عمق تعارضات بستگی دارد. در رویکرد هیجان‌مدار (EFT)، برای حل مشاجرات مکرر و احیای صمیمیت بین ۸ تا ۱۲ جلسه ۹۰ دقیقه‌ای نیاز است. در موارد ترومای خیانت یا طلاق عاطفی عمیق، دوره درمان معمولاً بین ۱۲ تا ۲۰ جلسه خواهد بود. جلسات در فاز اولیه به صورت هفتگی و سپس دو هفته یک‌بار برگزار می‌شوند.',
+      category: 'sessions',
+    },
+    {
+      q: 'اگر همسرم حاضر به مراجعه به مشاور نشود، آیا مشاوره تک‌نفره فایده دارد؟',
+      a: 'قطعاً بله. در بسیاری از موارد درمان با یکی از زوجین آغاز می‌شود. رابطه مانند یک بازی شطرنج است؛ وقتی یکی از طرفین حرکت خود و نحوه واکنش به تعارض را تغییر دهد، بازی طرف مقابل نیز ناگزیر دگرگون می‌شود. در جلسات انفرادی یاد می‌گیرید چگونه بدون تحمیل و سرزنش، همسرتان را برای پیوستن به درمان ترغیب کنید.',
+      category: 'general',
+    },
+    {
+      q: 'آیا اعتماد از دست رفته پس از خیانت واقعاً دوباره بازسازی می‌شود؟',
+      a: 'بله، با پروتکل علمی ۳ مرحله‌ای، امکان ترمیم کامل رابطه وجود دارد. در واقع بسیاری از زوج‌ها پس از گذراندن این مسیر، صمیمیت و صداقتی عمیق‌تر از دوران قبل از خیانت را تجربه می‌کنند؛ زیرا ریشه‌ها و شکاف‌های قبلی رابطه شفاف شده و مرزهای امن جدیدی تعریف می‌شود.',
+      category: 'infidelity',
+    },
+    {
+      q: 'آیا جلسات مشاوره آنلاین به اندازه جلسات حضوری موثر است؟',
+      a: 'تحقیقات متعدد بالینی نشان می‌دهد اثربخشی زوج‌درمانی آنلاین تصویری کاملاً با جلسات حضوری برابری می‌کند. این شیوه به ویژه برای ایرانیان مقیم خارج از کشور و عزیزانی که در شهرستان‌ها سکونت دارند یا مشغله کاری بالایی دارند بسیار مناسب و منعطف است.',
+      category: 'online',
+    },
+    {
+      q: 'تفاوت طلاق عاطفی با طلاق رسمی چیست؟',
+      a: 'در طلاق عاطفی زوجین زیر یک سقف و با شناسنامه متأهل زندگی می‌کنند، اما هیچ پیوند حسی، کلامی یا جنسی بین آنها نیست. طلاق رسمی جدایی حقوقی است. مشاوره طلاق کمک می‌کند پیش از رسیدن به نقطه بی‌بازگشت حقوقی، شانس ترمیم بررسی شود.',
+      category: 'divorce',
+    },
+    {
+      q: 'هزینه و تعرفه جلسات بر چه اساسی محاسبه می‌شود؟',
+      a: 'تعرفه جلسات دقیقاً منطبق بر نرخ‌نامه مصوب سازمان نظام روان‌شناسی و مشاوره ایران برای مقطع کارشناسی ارشد و بر اساس مدت زمان جلسه (۶۰ یا ۹۰ دقیقه) تعیین می‌گردد. جهت استعلام دقیق هزینه روز با پشتیبانی پذیرش در واتساپ در ارتباط باشید.',
+      category: 'sessions',
+    },
+    {
+      q: 'آیا تست‌های آنلاین رضایت زناشویی سایت دارای مبنای علمی هستند؟',
+      a: 'بله، آزمون‌های تعاملی سایت بر پایه مقیاس‌های استاندارد انریچ (ENRICH) و الگوی ۴ ویرانگر دکتر جان گاتمن طراحی شده‌اند و در کمتر از ۳ دقیقه کارنامه بالینی اولیه و شاخص سلامت رابطه را به شما ارائه می‌دهند.',
+      category: 'general',
+    },
+    {
+      q: 'مشاوره پیش از ازدواج چند جلسه است و شامل چه تست‌هایی می‌شود؟',
+      a: 'مشاوره پیش از ازدواج معمولاً در ۴ الی ۶ جلسه برگزار می‌شود و شامل اجرای تست‌های شخصیت‌شناسی نئو (NEO)، پرسشنامه طرحواره‌های یانگ و مصاحبه تشخیصی بالینی برای ارزیابی آمادگی ازدواج است.',
+      category: 'general',
+    },
+  ];
+
+  const categories = [
+    { id: 'all', label: 'همه سوالات' },
+    { id: 'sessions', label: 'تعداد جلسات و هزینه' },
+    { id: 'infidelity', label: 'خیانت و بازسازی اعتماد' },
+    { id: 'online', label: 'مشاوره آنلاین' },
+    { id: 'divorce', label: 'طلاق و جدایی' },
+    { id: 'general', label: 'عمومی و پیش از ازدواج' },
+  ];
+
+  const filteredFaqs = faqs.filter((f) => {
+    const matchesCat = activeCategory === 'all' || f.category === activeCategory;
+    const matchesSearch =
+      f.q.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      f.a.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesCat && matchesSearch;
+  });
+
+  return (
+    <div className="bg-[#FAF8F5] min-h-screen pb-24">
+      {/* Top Bar */}
+      <div className="bg-white border-b border-[#E5E0EA] sticky top-0 z-40">
+        <div className="container-custom h-16 flex items-center justify-between">
+          <button
+            onClick={onBack}
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-black text-[#6D5AA8] hover:text-[#44386B] cursor-pointer"
+          >
+            <ArrowRight className="w-4 h-4" />
+            <span>بازگشت به صفحه اصلی</span>
+          </button>
+
+          <div className="flex items-center text-lg font-black text-[#44386B]" dir="ltr">
+            <span>Z</span>
+            <svg width="14" height="14" viewBox="0 0 32 29" className="inline-block mx-0.5 fill-[#8FAF9B]">
+              <path d="M16 29 C16 29 0 18.5 0 8.8 C0 3.5 4 0 8.6 0 C11.8 0 14.4 1.8 16 4.6 C17.6 1.8 20.2 0 23.4 0 C28 0 32 3.5 32 8.8 C32 18.5 16 29 16 29 Z" />
+            </svg>
+            <svg width="14" height="14" viewBox="0 0 32 29" className="inline-block mx-0.5 fill-[#E8A58D]">
+              <path d="M16 29 C16 29 0 18.5 0 8.8 C0 3.5 4 0 8.6 0 C11.8 0 14.4 1.8 16 4.6 C17.6 1.8 20.2 0 23.4 0 C28 0 32 3.5 32 8.8 C32 18.5 16 29 16 29 Z" />
+            </svg>
+            <span>jdarman.ir</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="container-custom max-w-4xl pt-8 sm:pt-12">
+        {/* Breadcrumb */}
+        <nav className="flex items-center gap-2 text-xs text-[#8e8a96] mb-6">
+          <button onClick={onBack} className="hover:text-[#6D5AA8] cursor-pointer">
+            صفحه اصلی
+          </button>
+          <span>/</span>
+          <span className="text-[#6D5AA8] font-bold">سوالات متداول</span>
+        </nav>
+
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <span className="inline-block bg-[#f2eff8] text-[#6D5AA8] text-xs font-black px-4 py-1.5 rounded-full mb-3 border border-[#6D5AA8]/20">
+            پاسخ‌های شفاف به دغدغه‌های مراجعان
+          </span>
+          <h1 className="text-2xl sm:text-4xl font-black text-[#44386B] mb-4">
+            پرسش‌های متداول درباره زوج‌درمانی
+          </h1>
+          <p className="text-xs sm:text-base text-[#6F6B78] leading-relaxed">
+            پاسخ به پرتکرارترین پرسش‌ها پیرامون شیوه برگزاری جلسات، طول درمان، خیانت و مشاوره آنلاین توسط مهناز خوینی.
+          </p>
+        </div>
+
+        {/* Search & Categories */}
+        <div className="mb-10 max-w-2xl mx-auto">
+          <div className="relative mb-4">
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="جستجو در سوالات متداول..."
+              className="w-full px-5 py-3.5 pr-12 bg-white border border-[#E5E0EA] rounded-2xl text-xs sm:text-sm font-medium text-[#292733] focus:border-[#6D5AA8] focus:outline-none shadow-xs"
+            />
+            <Search className="w-5 h-5 text-[#8e8a96] absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            {categories.map((c) => (
+              <button
+                key={c.id}
+                onClick={() => setActiveCategory(c.id)}
+                className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                  activeCategory === c.id
+                    ? 'bg-[#6D5AA8] text-white'
+                    : 'bg-white text-[#6F6B78] hover:bg-[#f2eff8] border border-[#E5E0EA]'
+                }`}
+              >
+                {c.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Accordion List */}
+        <div className="space-y-3 mb-12">
+          {filteredFaqs.map((faq, idx) => {
+            const isOpen = openIndex === idx;
+            return (
+              <div
+                key={idx}
+                className={`rounded-2xl border transition-all ${
+                  isOpen
+                    ? 'bg-white border-[#6D5AA8] shadow-sm ring-1 ring-[#6D5AA8]/20'
+                    : 'bg-white/80 border-[#E5E0EA] hover:border-[#6D5AA8]/40'
+                }`}
+              >
+                <button
+                  onClick={() => setOpenIndex(isOpen ? null : idx)}
+                  className="w-full p-5 sm:p-6 text-right flex items-center justify-between gap-4 cursor-pointer"
+                >
+                  <span className="text-xs sm:text-base font-black text-[#292733] leading-snug">
+                    {faq.q}
+                  </span>
+                  <div
+                    className={`w-7 h-7 rounded-full bg-[#FAF8F5] flex items-center justify-center text-[#6D5AA8] shrink-0 transition-transform ${
+                      isOpen ? 'rotate-180 bg-[#6D5AA8] text-white' : ''
+                    }`}
+                  >
+                    <ChevronDown className="w-4 h-4" />
+                  </div>
+                </button>
+
+                {isOpen && (
+                  <div className="px-5 pb-6 sm:px-6 sm:pb-6 pt-1 text-xs sm:text-sm text-[#6F6B78] leading-relaxed border-t border-[#E5E0EA]/50 text-justify">
+                    {faq.a}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Footer Support Callout */}
+        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#E5E0EA] text-center shadow-xs">
+          <h3 className="text-base font-black text-[#44386B] mb-2">
+            سوال دیگری دارید که در اینجا پاسخ داده نشده؟
+          </h3>
+          <p className="text-xs text-[#6F6B78] mb-5">
+            همکاران بخش پذیرش در پیام‌رسان واتساپ پاسخگوی کلیه ابهامات شما درباره نوبت‌دهی و شرایط جلسات هستند.
+          </p>
+          <button
+            onClick={onNavigateContact}
+            className="px-6 py-3 bg-[#6D5AA8] hover:bg-[#44386B] text-white rounded-full font-bold text-xs shadow-md transition-all cursor-pointer"
+          >
+            تماس با بخش پذیرش کلینیک
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};

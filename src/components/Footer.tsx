@@ -6,6 +6,14 @@ interface FooterProps {
   onNavigateService: (slug: string) => void;
   onNavigateArticle: (slug: string) => void;
   onNavigatePrivacy: () => void;
+  onNavigateAbout?: () => void;
+  onNavigateProcess?: () => void;
+  onNavigateFaq?: () => void;
+  onNavigateContact?: () => void;
+  onNavigateTools?: () => void;
+  onNavigateArticles?: () => void;
+  onNavigateServices?: () => void;
+  onNavigateTopics?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
@@ -13,6 +21,14 @@ export const Footer: React.FC<FooterProps> = ({
   onNavigateService,
   onNavigateArticle,
   onNavigatePrivacy,
+  onNavigateAbout,
+  onNavigateProcess,
+  onNavigateFaq,
+  onNavigateContact,
+  onNavigateTools,
+  onNavigateArticles,
+  onNavigateServices,
+  onNavigateTopics,
 }) => {
   return (
     <footer className="bg-[#44386B] text-[#FAF8F5] pt-16 pb-12">
@@ -155,15 +171,31 @@ export const Footer: React.FC<FooterProps> = ({
             <ul className="flex flex-col gap-2.5 text-xs text-[#D8D2E5]">
               <li>
                 <button
-                  onClick={() => onNavigateHome('assessment')}
-                  className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
+                  onClick={() => (onNavigateTools ? onNavigateTools() : onNavigateHome('tools'))}
+                  className="hover:text-[#E8A58D] text-[#8FAF9B] font-bold transition-colors cursor-pointer text-right flex items-center gap-1"
                 >
-                  ارزیابی وضعیت رابطه
+                  <span>تست آنلاین سلامت رابطه (انریچ)</span>
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => onNavigateHome('bio')}
+                  onClick={() => (onNavigateTopics ? onNavigateTopics() : onNavigateHome('seo-hub'))}
+                  className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
+                >
+                  موضوعات و جستجوهای پرطرفدار
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigateHome('assessment')}
+                  className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
+                >
+                  راهنمای تشخیصی رابطه
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => (onNavigateAbout ? onNavigateAbout() : onNavigateHome('bio'))}
                   className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
                 >
                   درباره مهناز خوینی
@@ -171,7 +203,15 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <button
-                  onClick={() => onNavigateHome('faq')}
+                  onClick={() => (onNavigateProcess ? onNavigateProcess() : onNavigateHome('process'))}
+                  className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
+                >
+                  مراحل و پروتکل درمانی
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => (onNavigateFaq ? onNavigateFaq() : onNavigateHome('faq'))}
                   className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
                 >
                   پرسش‌های متداول
@@ -179,7 +219,7 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <button
-                  onClick={() => onNavigateHome('contact')}
+                  onClick={() => (onNavigateContact ? onNavigateContact() : onNavigateHome('contact'))}
                   className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
                 >
                   آدرس و تماس کلینیک
