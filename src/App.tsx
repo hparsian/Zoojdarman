@@ -18,6 +18,7 @@ import { getArticleBySlug } from './data/articles';
 import { getServiceBySlug } from './data/services';
 import { InteractiveToolsSuite } from './components/InteractiveToolsSuite';
 import { KeywordsHubSection } from './components/KeywordsHubSection';
+import { CouplesTherapyGuideSection } from './components/CouplesTherapyGuideSection';
 import { AboutView } from './components/AboutView';
 import { ProcessView } from './components/ProcessView';
 import { FaqView } from './components/FaqView';
@@ -357,6 +358,11 @@ export const App: React.FC = () => {
         <Stats />
         <InteractiveToolsSuite />
         <ServicesSection onSelectService={navigateToService} />
+        <CouplesTherapyGuideSection
+          onScrollToTools={() => scrollToSection('tools')}
+          onNavigateService={navigateToService}
+          onNavigateContact={navigateToContact}
+        />
         <ProcessSection />
         <DiagnosticWidget />
         <KeywordsHubSection

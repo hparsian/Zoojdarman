@@ -9,10 +9,10 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
   const serviceList = [
     {
       slug: 'couples-therapy',
-      title: 'زوج‌درمانی و دلبستگی (EFT)',
+      title: 'زوج درمان و زوج‌درمانی هیجان‌مدار (EFT)',
       icon: MessageSquare,
-      desc: 'شکستن چرخه‌های تکراری دعوا، توقف خشم و سرزنش، و ایجاد گفتگوی امن و سازنده بین همسران.',
-      points: ['حل مشاجرات مالی و خانوادگی', 'رهایی از تله‌های ارتباطی'],
+      desc: 'شکستن چرخه‌های فرسایشی دعوا، توقف سرزنش متقابل و ایجاد گفتگوی امن با متدهای استاندارد زوج درمان بالینی.',
+      points: ['توقف مشاجرات تکراری و قهرها', 'احیای دلبستگی و صمیمیت زناشویی'],
     },
     {
       slug: 'infidelity-counseling',
@@ -60,10 +60,10 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
             <span>خدمات تخصصی بالینی</span>
           </span>
           <h2 className="text-2xl sm:text-3xl font-black text-[#44386B] mb-3">
-            حوزه‌های درمان و مشاوره رابطه
+            حوزه‌های تخصصی زوج درمان و مشاوره رابطه
           </h2>
           <p className="text-sm sm:text-base text-[#6F6B78] leading-relaxed">
-            پروتکل‌های درمانی مبتنی بر شواهد علمی برای بازگشت امنیت و صمیمیت به کانون خانواده.
+            پروتکل‌های درمانی مبتنی بر شواهد علمی در مرکز تخصصی زوج درمان برای بازگشت امنیت و صمیمیت به زندگی مشترک.
           </p>
         </div>
 

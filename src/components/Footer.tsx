@@ -48,7 +48,7 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
 
             <p className="text-xs sm:text-sm text-[#D8D2E5] leading-relaxed mb-4 max-w-sm text-justify">
-              مرکز تخصصی زوج‌درمانی، درمان خیانت و مشاوره روابط عاطفی مهناز خوینی، مسئول فنی کلینیک پیوند امن و عضو سازمان نظام روان‌شناسی و مشاوره ایران (پروانه ۱۴۱۴۰۸۳).
+              مرکز تخصصی زوج درمان و زوج‌درمانی بالینی مهناز خوینی (کارشناس ارشد روانشناسی بالینی، مسئول فنی کلینیک پیوند امن، عضو سازمان نظام روان‌شناسی و مشاوره ایران با پروانه تخصصی ۱۴۱۴۰۸۳).
             </p>
 
             <div className="flex flex-col gap-2.5 mb-4 max-w-sm">
@@ -82,7 +82,7 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Services Column */}
           <div className="lg:col-span-3">
             <h4 className="text-sm font-black text-white mb-4 relative pb-2 after:content-[''] after:absolute after:bottom-0 after:right-0 after:w-8 after:h-0.5 after:bg-[#E8A58D] after:rounded-full">
-              خدمات تخصصی بالینی
+              خدمات تخصصی زوج درمان
             </h4>
             <ul className="flex flex-col gap-2.5 text-xs text-[#D8D2E5]">
               <li>
@@ -91,7 +91,7 @@ export const Footer: React.FC<FooterProps> = ({
                   onClick={(e) => { e.preventDefault(); onNavigateService('couples-therapy'); }}
                   className="hover:text-[#E8A58D] transition-colors cursor-pointer text-right"
                 >
-                  زوج‌درمانی هیجان‌مدار (EFT)
+                  زوج درمان و زوج‌درمانی هیجان‌مدار (EFT)
                 </a>
               </li>
               <li>

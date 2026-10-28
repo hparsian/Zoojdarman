@@ -19,18 +19,18 @@ export const Hero: React.FC<HeroProps> = ({ onScrollToAssessment, onScrollToTool
             {/* Live Status Pill */}
             <div className="inline-flex items-center gap-2.5 bg-white px-4 py-1.5 rounded-full border border-[#E5E0EA] text-xs font-extrabold text-[#44386B] mb-6 shadow-xs">
               <span className="w-2.5 h-2.5 rounded-full bg-[#8FAF9B] pulse-dot ring-2 ring-[#8FAF9B]/30" />
-              <span>پذیرش مراجع جدید (حضوری تهران / آنلاین سراسر جهان)</span>
+              <span>مرکز تخصصی زوج درمان در تهران و آنلاین سراسر جهان</span>
             </div>
 
             {/* Main Headline */}
             <h1 className="text-[1.95rem] sm:text-[2.4rem] lg:text-[3.15rem] font-black leading-[1.35] text-[#44386B] mb-7 tracking-tight">
-              زوج‌درمانی و مشاوره تخصصی{' '}
-              <span className="text-[#6D5AA8] block sm:inline">روابط عاطفی و زناشویی</span>
+              مرکز تخصصی زوج درمان و زوج‌درمانی بالینی{' '}
+              <span className="text-[#6D5AA8] block sm:inline">حل تعارضات و بازسازی صمیمیت رابطه</span>
             </h1>
 
             {/* Subtitle / Lead Paragraph */}
             <p className="text-base sm:text-lg leading-[1.95] text-[#6F6B78] mb-9 max-w-xl text-justify">
-              پایان دادن به چرخه‌های فرسایشی دعوا، التیام ترومای خیانت، احیای صمیمیت جنسی و تصمیم‌گیری آگاهانه درباره طلاق با رویکرد علمی هیجان‌مدار (EFT) و طرحواره‌درمانی توسط مهناز خوینی، مسئول فنی کلینیک پیوند امن.
+              سامانه رسمی زوج درمان با مهناز خوینی (زوج درمانگر بالینی و مسئول فنی کلینیک پیوند امن، پروانه نظام روانشناسی ۱۴۱۴۰۸۳). پایان دادن به مشاجرات مکرر، بازسازی اعتماد پس از خیانت، درمان طلاق عاطفی و احیای صمیمیت زناشویی با معتبرترین پروتکل‌های علمی هیجان‌مدار (EFT) و گاتمن.
             </p>
 
             {/* Call to Actions */}
@@ -62,7 +62,7 @@ export const Hero: React.FC<HeroProps> = ({ onScrollToAssessment, onScrollToTool
               </div>
               <div className="inline-flex items-center gap-2">
                 <Lock className="w-4 h-4 text-[#5e826b]" />
-                <span>محرمانگی ۱۰۰٪ جلسات بالینی</span>
+                <span>محرمانگی ۱۰۰٪ جلسات زوج درمان</span>
               </div>
               <div className="inline-flex items-center gap-2">
                 <Award className="w-4 h-4 text-[#5e826b]" />
@@ -80,7 +80,7 @@ export const Hero: React.FC<HeroProps> = ({ onScrollToAssessment, onScrollToTool
                   // fallback to jpg if webp fails
                   (e.target as HTMLImageElement).src = '/images/mahnaz-khoini.jpg';
                 }}
-                alt="مهناز خوینی زوج‌درمانگر و مشاور خانواده"
+                alt="مهناز خوینی کارشناس ارشد روانشناسی بالینی و زوج درمانگر مرکز زوج درمان"
                 width={617}
                 height={775}
                 loading="eager"
@@ -95,7 +95,7 @@ export const Hero: React.FC<HeroProps> = ({ onScrollToAssessment, onScrollToTool
                   <ShieldCheck className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="text-xs sm:text-sm font-black text-[#292733]">مهناز خوینی (کارشناس ارشد بالینی)</h4>
+                  <h4 className="text-xs sm:text-sm font-black text-[#292733]">مهناز خوینی (زوج درمانگر بالینی)</h4>
                   <p className="text-[11px] text-[#6F6B78] font-bold">مسئول فنی کلینیک پیوند امن | پروانه ۱۴۱۴۰۸۳</p>
                 </div>
               </div>

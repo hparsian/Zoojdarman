@@ -1,6 +1,6 @@
 {
   "name": "Zoojdarman",
-  "description": "مرکز تخصصی زوج‌درمانی، مشاوره خیانت، طلاق و روابط عاطفی مهناز خوینی",
+  "description": "مرکز تخصصی زوج درمان و زوج‌درمانی، مشاوره خیانت، طلاق و روابط عاطفی مهناز خوینی",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

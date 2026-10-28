@@ -98,8 +98,8 @@ export const Header: React.FC<HeaderProps> = ({
               <span>jdarman.ir</span>
             </div>
             <div className="hidden sm:flex flex-col text-right pr-2 border-r border-[#E5E0EA]" dir="rtl">
-              <span className="text-xs font-black text-[#44386B]">مهناز خوینی</span>
-              <span className="text-[10px] text-[#6F6B78]">زوج‌درمانگر و مشاور خانواده</span>
+              <span className="text-xs font-black text-[#44386B]">مرکز تخصصی زوج درمان</span>
+              <span className="text-[10px] text-[#6F6B78]">مهناز خوینی | زوج درمانگر بالینی</span>
             </div>
           </a>
 
