@@ -647,20 +647,20 @@ export const InteractiveToolsSuite: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-[#FAF8F5] via-[#F2EFF8]/50 to-[#FAF8F5]" id="tools">
-      <div className="container-custom">
+    <section className="relative py-24 bg-gradient-to-b from-[#FAF8F5] via-[#F4EFEA] to-[#FAF8F5] overflow-hidden" id="tools">
+      <div className="container-custom relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 bg-[#FAF8F5] text-[#6D5AA8] px-4 py-1.5 rounded-full border border-[#6D5AA8]/30 text-xs font-black mb-4 shadow-xs">
-            <Sparkles className="w-4 h-4 text-[#E8A58D]" />
-            <span>سامانه هوشمند ارزیابی روانشناسی رابطه</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#8FAF9B]" />
-            <span className="text-[11px] text-[#5e826b]">بیش از ۱۴,۵۰۰ شرکت‌کننده</span>
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-[#A67C2E] uppercase mb-3">
+            <span className="w-6 h-px bg-[#C5A059]" />
+            <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
+            <span>سامانه بالینی ارزیابی آنلاین رابطه</span>
+            <span className="w-6 h-px bg-[#C5A059]" />
           </div>
 
-          <h2 className="text-2xl sm:text-4xl font-black text-[#44386B] mb-4 tracking-tight">
+          <h2 className="text-2xl sm:text-4xl font-black text-[#2A1E35] mb-4 tracking-tight leading-snug">
             تست‌های آنلاین و ابزارهای تشخیصی{' '}
-            <span className="text-[#6D5AA8] block sm:inline">زوج‌درمانی و سنجش رابطه</span>
+            <span className="text-[#C5A059] block sm:inline">زوج‌درمانی و سنجش رابطه</span>
           </h2>
 
           <p className="text-sm sm:text-base text-[#6F6B78] leading-relaxed">
@@ -676,36 +676,40 @@ export const InteractiveToolsSuite: React.FC = () => {
               <button
                 key={test.id}
                 onClick={() => handleResetTest(test.id)}
-                className={`p-5 rounded-2xl text-right transition-all duration-200 border flex flex-col justify-between cursor-pointer relative overflow-hidden ${
+                className={`p-5 rounded-2xl text-right transition-all duration-300 border flex flex-col justify-between cursor-pointer relative overflow-hidden ${
                   isSelected
-                    ? 'bg-white border-[#6D5AA8] shadow-lg ring-2 ring-[#6D5AA8]/20 -translate-y-1'
-                    : 'bg-white/80 border-[#E5E0EA] hover:bg-white hover:border-[#6D5AA8]/40 shadow-xs'
+                    ? 'bg-[#2A1E35] text-white border-[#C5A059]/50 shadow-xl -translate-y-1'
+                    : 'bg-white border-[#E8DFD5] hover:border-[#C5A059]/40 text-[#2A1E35] shadow-xs hover:shadow-md'
                 }`}
               >
                 {/* Top Badge */}
                 <div className="flex items-center justify-between mb-3">
                   <span
-                    className={`text-[10px] font-black px-2.5 py-1 rounded-full ${
+                    className={`text-[10px] font-mono font-bold px-2.5 py-1 rounded-md ${
                       isSelected
-                        ? 'bg-[#6D5AA8] text-white'
-                        : 'bg-[#f2eff8] text-[#6D5AA8]'
+                        ? 'bg-[#C5A059] text-[#1E1527]'
+                        : 'bg-[#FAF8F5] border border-[#E8DFD5] text-[#A67C2E]'
                     }`}
                   >
                     {test.badge}
                   </span>
-                  <span className="text-[11px] text-[#8e8a96] font-medium">{test.timeEstimate}</span>
+                  <span className={`text-[11px] font-medium ${isSelected ? 'text-[#D8D2E5]' : 'text-[#7A7382]'}`}>
+                    {test.timeEstimate}
+                  </span>
                 </div>
 
-                <h3 className="text-sm sm:text-base font-black text-[#292733] mb-2 leading-snug">
+                <h3 className={`text-sm sm:text-base font-black mb-2 leading-snug ${isSelected ? 'text-white' : 'text-[#2A1E35]'}`}>
                   {test.title}
                 </h3>
 
-                <p className="text-xs text-[#6F6B78] leading-relaxed line-clamp-2 mb-4">
+                <p className={`text-xs leading-relaxed line-clamp-2 mb-4 ${isSelected ? 'text-[#D8D2E5]' : 'text-[#6F6B78]'}`}>
                   {test.shortDesc}
                 </p>
 
-                <div className="flex items-center justify-between pt-3 border-t border-[#E5E0EA] text-xs font-bold text-[#6D5AA8]">
-                  <span>{isSelected ? 'در حال اجرا' : 'شروع تست رایگان'}</span>
+                <div className={`flex items-center justify-between pt-3 border-t text-xs font-bold ${
+                  isSelected ? 'border-white/10 text-[#C5A059]' : 'border-[#F0EAE1] text-[#A67C2E]'
+                }`}>
+                  <span>{isSelected ? 'در حال آزمون' : 'شروع تست رایگان'}</span>
                   <ChevronRight className={`w-4 h-4 transition-transform ${isSelected ? 'rotate-90' : ''}`} />
                 </div>
               </button>

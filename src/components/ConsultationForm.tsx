@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Phone, MessageSquare, MapPin, Clock, Mail, Send, CheckCircle, ShieldCheck } from 'lucide-react';
+import { Phone, MessageSquare, MapPin, Clock, Mail, Send, CheckCircle, ShieldCheck, Sparkles, Building2 } from 'lucide-react';
 
 export const ConsultationForm: React.FC = () => {
   const [formData, setFormData] = useState({
     fullname: '',
     phone: '',
     serviceType: '',
-    format: 'حضوری (تهران)',
+    format: 'حضوری (کلینیک تهران)',
     message: '',
   });
 
@@ -42,46 +42,60 @@ export const ConsultationForm: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-[#F2EFF8]" id="contact">
-      <div className="container-custom">
+    <section className="relative py-24 bg-gradient-to-b from-[#FAF8F5] via-[#F4EFEA] to-[#FAF8F5] overflow-hidden" id="contact">
+      <div className="container-custom relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="inline-flex items-center gap-1.5 text-xs font-black bg-[#edf5f0] text-[#5e826b] px-4 py-1.5 rounded-full border border-[#8FAF9B]/30 mb-4">
-            <MessageSquare className="w-3.5 h-3.5" />
-            <span>نوبت‌دهی و پذیرش مراجعان</span>
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-black text-[#44386B] mb-3">
-            درخواست وقت مشاوره و ارزیابی اولیه
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-[#A67C2E] uppercase mb-3">
+            <span className="w-6 h-px bg-[#C5A059]" />
+            <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
+            <span>نوبت‌دهی و پذیرش اختصاصی</span>
+            <span className="w-6 h-px bg-[#C5A059]" />
+          </div>
+
+          <h2 className="text-2xl sm:text-4xl font-black text-[#2A1E35] mb-4 leading-tight">
+            درخواست وقت مشاوره با زوج درمانگر
           </h2>
+
           <p className="text-sm sm:text-base text-[#6F6B78] leading-relaxed">
-            فرم زیر را تکمیل نمایید تا مستقیماً برای هماهنگی جلسه در پیام‌رسان واتساپ هدایت شوید.
+            اطلاعات خود را ثبت کنید تا در سریع‌ترین زمان ممکن برای هماهنگی جلسه در واتساپ پذیرش کلینیک راهنمایی شوید.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start max-w-6xl mx-auto">
           {/* Form Column */}
-          <div className="lg:col-span-7 bg-white p-6 sm:p-10 rounded-3xl border border-[#E5E0EA] shadow-xs">
-            <h3 className="text-lg font-black text-[#44386B] mb-6">
-              مشخصات و زمان پیشنهادی
-            </h3>
+          <div className="lg:col-span-7 bg-white p-7 sm:p-10 rounded-2xl border border-[#E8DFD5] shadow-xl">
+            <div className="flex items-center justify-between pb-5 mb-6 border-b border-[#F0EAE1]">
+              <div>
+                <h3 className="text-base sm:text-lg font-black text-[#2A1E35]">
+                  فرم رزرو جلسه ارزیابی و درمان
+                </h3>
+                <span className="text-xs text-[#7A7382]">جلسات حضوری در تهران و آنلاین در سراسر دنیا</span>
+              </div>
+              <span className="text-[11px] font-mono text-[#A67C2E] bg-[#FAF8F5] border border-[#E8DFD5] px-2.5 py-1 rounded-md">
+                SECURE
+              </span>
+            </div>
 
             {submitted ? (
-              <div className="bg-[#edf5f0] p-6 rounded-2xl border border-[#d8e8dd] text-center my-4">
-                <CheckCircle className="w-10 h-10 text-[#5e826b] mx-auto mb-3" />
-                <h4 className="text-base font-black text-[#292733] mb-2">درخواست شما آماده ارسال است</h4>
-                <p className="text-xs sm:text-sm text-[#6F6B78] leading-relaxed mb-4">
-                  پیام آماده ارسال به واتساپ کلینیک است. همکاران پذیرش در اسرع وقت نوبت شما را هماهنگ خواهند کرد.
+              <div className="bg-[#FAF8F5] p-8 rounded-2xl border border-[#E8DFD5] text-center my-4">
+                <div className="w-12 h-12 rounded-xl bg-[#3E6B56]/10 text-[#3E6B56] flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-6 h-6" />
+                </div>
+                <h4 className="text-base font-black text-[#2A1E35] mb-2">درخواست شما با موفقیت آماده شد</h4>
+                <p className="text-xs sm:text-sm text-[#6F6B78] leading-relaxed mb-6">
+                  اطلاعات جلسه آماده ارسال به کارشناس پذیرش در واتساپ است. نوبت شما ظرف چند ساعت بررسی و تأیید می‌گردد.
                 </p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-3">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                   {lastWaLink && (
                     <a
                       href={lastWaLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#5e826b] hover:bg-[#4d6d58] text-white rounded-full text-xs font-bold transition-all shadow-sm"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#2A1E35] hover:bg-[#1E1527] text-white rounded-xl text-xs font-bold border border-[#C5A059]/40 shadow-md transition-all"
                     >
-                      <MessageSquare className="w-4 h-4" />
-                      <span>باز کردن مستقیم واتساپ</span>
+                      <MessageSquare className="w-4 h-4 text-[#C5A059]" />
+                      <span>اتصال مستقیم به واتساپ نوبت‌دهی</span>
                     </a>
                   )}
                   <button
@@ -89,9 +103,9 @@ export const ConsultationForm: React.FC = () => {
                       setSubmitted(false);
                       setErrorMessage(null);
                     }}
-                    className="text-xs font-bold text-[#6D5AA8] underline cursor-pointer px-3 py-2"
+                    className="text-xs font-bold text-[#A67C2E] hover:underline cursor-pointer px-4 py-3"
                   >
-                    تکمیل مجدد فرم
+                    ویرایش اطلاعات
                   </button>
                 </div>
               </div>
@@ -103,8 +117,8 @@ export const ConsultationForm: React.FC = () => {
                   </div>
                 )}
                 <div>
-                  <label className="block text-xs font-extrabold text-[#292733] mb-1.5">
-                    نام و نام خانوادگی *
+                  <label className="block text-xs font-black text-[#2A1E35] mb-1.5">
+                    نام و نام خانوادگی مراجع *
                   </label>
                   <input
                     type="text"
@@ -112,13 +126,13 @@ export const ConsultationForm: React.FC = () => {
                     value={formData.fullname}
                     onChange={(e) => setFormData({ ...formData, fullname: e.target.value })}
                     placeholder="مثال: مریم کریمی"
-                    className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#E5E0EA] rounded-xl text-xs sm:text-sm font-medium text-[#292733] focus:bg-white focus:border-[#6D5AA8] focus:outline-none"
+                    className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#E8DFD5] rounded-xl text-xs sm:text-sm font-medium text-[#2A1E35] focus:bg-white focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059]/30 focus:outline-none transition-all"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-extrabold text-[#292733] mb-1.5">
-                    شماره تماس همراه *
+                  <label className="block text-xs font-black text-[#2A1E35] mb-1.5">
+                    شماره تماس همراه (جهت هماهنگی پیامکی/واتساپ) *
                   </label>
                   <input
                     type="tel"
@@ -127,70 +141,70 @@ export const ConsultationForm: React.FC = () => {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="۰۹۱۲۳۴۵۶۷۸۹"
-                    className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#E5E0EA] rounded-xl text-xs sm:text-sm font-medium text-[#292733] focus:bg-white focus:border-[#6D5AA8] focus:outline-none text-right"
+                    className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#E8DFD5] rounded-xl text-xs sm:text-sm font-medium text-[#2A1E35] focus:bg-white focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059]/30 focus:outline-none text-right transition-all"
                   />
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-extrabold text-[#292733] mb-1.5">
+                    <label className="block text-xs font-black text-[#2A1E35] mb-1.5">
                       نوع مشاوره درخواستی *
                     </label>
                     <select
                       required
                       value={formData.serviceType}
                       onChange={(e) => setFormData({ ...formData, serviceType: e.target.value })}
-                      className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#E5E0EA] rounded-xl text-xs sm:text-sm font-medium text-[#292733] focus:bg-white focus:border-[#6D5AA8] focus:outline-none cursor-pointer"
+                      className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#E8DFD5] rounded-xl text-xs sm:text-sm font-medium text-[#2A1E35] focus:bg-white focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059]/30 focus:outline-none cursor-pointer transition-all"
                     >
-                      <option value="">-- انتخاب کنید --</option>
-                      <option value="زوج‌درمانی و حل تعارض">زوج‌درمانی و حل تعارض</option>
-                      <option value="مشاوره تخصصی خیانت و بازسازی اعتماد">مشاوره درمان خیانت</option>
-                      <option value="مشاوره طلاق و تصمیم‌گیری آگاهانه">مشاوره طلاق و جدایی</option>
-                      <option value="مشاوره آنلاین (خارج از کشور/شهرستان)">مشاوره آنلاین بین‌المللی</option>
-                      <option value="مشاوره پیش از ازدواج">مشاوره پیش از ازدواج</option>
-                      <option value="طرحواره‌درمانی فردی و روابط">طرحواره‌درمانی روابط</option>
+                      <option value="">-- انتخاب فرمایید --</option>
+                      <option value="زوج‌درمانی و حل تعارض">زوج‌درمانی و حل تعارضات زناشویی</option>
+                      <option value="مشاوره تخصصی خیانت و بازسازی اعتماد">مشاوره درمان خیانت و بازسازی اعتماد</option>
+                      <option value="مشاوره طلاق و تصمیم‌گیری آگاهانه">مشاوره طلاق و تصمیم‌گیری آگاهانه</option>
+                      <option value="مشاوره آنلاین خارج از کشور">مشاوره آنلاین (ایرانیان خارج از کشور)</option>
+                      <option value="مشاوره پیش از ازدواج">مشاوره پیش از ازدواج و ارزیابی تشخیصی</option>
+                      <option value="طرحواره‌درمانی روابط عاطفی">طرحواره‌درمانی فردی و روابط عاطفی</option>
                     </select>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-extrabold text-[#292733] mb-1.5">
+                    <label className="block text-xs font-black text-[#2A1E35] mb-1.5">
                       فرمت برگزاری جلسه
                     </label>
                     <select
                       value={formData.format}
                       onChange={(e) => setFormData({ ...formData, format: e.target.value })}
-                      className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#E5E0EA] rounded-xl text-xs sm:text-sm font-medium text-[#292733] focus:bg-white focus:border-[#6D5AA8] focus:outline-none cursor-pointer"
+                      className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#E8DFD5] rounded-xl text-xs sm:text-sm font-medium text-[#2A1E35] focus:bg-white focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059]/30 focus:outline-none cursor-pointer transition-all"
                     >
-                      <option value="حضوری (کلینیک تهران)">حضوری (کلینیک تهران)</option>
-                      <option value="آنلاین (گوگل میت / واتساپ)">آنلاین (گوگل میت / واتساپ)</option>
+                      <option value="حضوری (کلینیک تهران)">حضوری (کلینیک پیوند امن تهران)</option>
+                      <option value="آنلاین (گوگل میت / واتساپ)">آنلاین (گوگل میت / واتساپ با کیفیت HD)</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-extrabold text-[#292733] mb-1.5">
-                    توضیحات کوتاه درباره موضوع (اختیاری)
+                  <label className="block text-xs font-black text-[#2A1E35] mb-1.5">
+                    توضیحات کوتاه درباره دغدغه اصلی (اختیاری)
                   </label>
                   <textarea
                     rows={3}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="در چند جمله بفرمایید چالش اصلی رابطه‌تان چیست..."
-                    className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#E5E0EA] rounded-xl text-xs sm:text-sm font-medium text-[#292733] focus:bg-white focus:border-[#6D5AA8] focus:outline-none resize-none"
+                    placeholder="به صورت خلاصه بفرمایید مهم‌ترین چالش فعلی رابطه‌تان چیست..."
+                    className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#E8DFD5] rounded-xl text-xs sm:text-sm font-medium text-[#2A1E35] focus:bg-white focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059]/30 focus:outline-none resize-none transition-all"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-4 mt-2 bg-[#6D5AA8] hover:bg-[#44386B] text-white rounded-full font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all cursor-pointer"
+                  className="w-full py-4 mt-2 bg-[#2A1E35] hover:bg-[#1E1527] text-white rounded-xl font-black text-xs sm:text-sm flex items-center justify-center gap-2.5 border border-[#C5A059]/40 shadow-xl hover:shadow-2xl transition-all cursor-pointer group"
                 >
-                  <Send className="w-4 h-4" />
-                  <span>ارسال مستقیم اطلاعات در واتساپ نوبت‌دهی</span>
+                  <Send className="w-4 h-4 text-[#C5A059] group-hover:-translate-x-0.5 transition-transform" />
+                  <span>ثبت اطلاعات و هماهنگی جلسه در واتساپ</span>
                 </button>
 
-                <p className="text-[11px] text-[#8e8a96] text-center mt-2 flex items-center justify-center gap-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#5e826b]" />
-                  <span>اطلاعات شما با حفظ ۱۰۰٪ محرمانگی درمانی منتقل می‌شود.</span>
+                <p className="text-[11px] text-[#7A7382] text-center mt-2 flex items-center justify-center gap-1.5">
+                  <ShieldCheck className="w-4 h-4 text-[#3E6B56]" />
+                  <span>تمام اطلاعات شما تحت رعایت کامل منشور اخلاقی و محرمانگی سازمان نظام روان‌شناسی حفظ می‌شود.</span>
                 </p>
               </form>
             )}
@@ -198,23 +212,41 @@ export const ConsultationForm: React.FC = () => {
 
           {/* Contact Details Column */}
           <div className="lg:col-span-5 flex flex-col gap-4">
-            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#E5E0EA] shadow-xs">
-              <h3 className="text-base font-black text-[#44386B] mb-5">
-                ارتباط مستقیم با کلینیک
-              </h3>
+            <div className="bg-white p-7 sm:p-8 rounded-2xl border border-[#E8DFD5] shadow-lg">
+              <div className="flex items-center gap-2 mb-6 pb-4 border-b border-[#F0EAE1]">
+                <Building2 className="w-5 h-5 text-[#C5A059]" />
+                <h3 className="text-base font-black text-[#2A1E35]">
+                  اطلاعات تماس مستقیم و کلینیک
+                </h3>
+              </div>
 
-              <div className="flex flex-col gap-4 text-xs sm:text-sm">
+              <div className="flex flex-col gap-3.5 text-xs sm:text-sm">
                 <a
                   href="tel:09199087264"
-                  className="flex items-center gap-3 p-3 rounded-2xl bg-[#FAF8F5] hover:bg-[#f2eff8] text-[#292733] transition-colors"
+                  className="flex items-center gap-3.5 p-3.5 rounded-xl bg-[#FAF8F5] hover:bg-[#F4EFEA] text-[#2A1E35] border border-[#E8DFD5] transition-colors"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-white text-[#6D5AA8] flex items-center justify-center shadow-xs shrink-0">
-                    <Phone className="w-4 h-4" />
+                  <div className="w-10 h-10 rounded-lg bg-white text-[#2A1E35] border border-[#E8DFD5] flex items-center justify-center shrink-0">
+                    <Phone className="w-4 h-4 text-[#C5A059]" />
                   </div>
                   <div>
-                    <span className="block text-[11px] text-[#6F6B78] font-bold">تماس تلفنی مستقیم</span>
-                    <span className="font-black text-sm tracking-wide text-[#44386B]" dir="ltr">
+                    <span className="block text-[11px] text-[#7A7382] font-bold">همراه نوبت‌دهی (تماس / پیامک)</span>
+                    <span className="font-black text-sm tracking-wide text-[#2A1E35]" dir="ltr">
                       ۰۹۱۹ ۹۰۸ ۷۲۶۴
+                    </span>
+                  </div>
+                </a>
+
+                <a
+                  href="tel:02144600980"
+                  className="flex items-center gap-3.5 p-3.5 rounded-xl bg-[#FAF8F5] hover:bg-[#F4EFEA] text-[#2A1E35] border border-[#E8DFD5] transition-colors"
+                >
+                  <div className="w-10 h-10 rounded-lg bg-white text-[#2A1E35] border border-[#E8DFD5] flex items-center justify-center shrink-0">
+                    <Phone className="w-4 h-4 text-[#3E6B56]" />
+                  </div>
+                  <div>
+                    <span className="block text-[11px] text-[#7A7382] font-bold">تلفن ثابت کلینیک پیوند امن</span>
+                    <span className="font-black text-sm tracking-wide text-[#2A1E35]" dir="ltr">
+                      ۰۲۱ ۴۴۶۰۰۹۸۰
                     </span>
                   </div>
                 </a>
@@ -223,44 +255,44 @@ export const ConsultationForm: React.FC = () => {
                   href="https://wa.me/989199087264"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 rounded-2xl bg-[#edf5f0] hover:bg-[#d8e8dd] text-[#292733] transition-colors"
+                  className="flex items-center gap-3.5 p-3.5 rounded-xl bg-[#3E6B56]/5 hover:bg-[#3E6B56]/10 text-[#2A1E35] border border-[#3E6B56]/30 transition-colors"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-white text-[#5e826b] flex items-center justify-center shadow-xs shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-white text-[#3E6B56] border border-[#3E6B56]/30 flex items-center justify-center shrink-0">
                     <MessageSquare className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="block text-[11px] text-[#5e826b] font-bold">پشتیبانی واتساپ</span>
-                    <span className="font-black text-xs">ارسال پیام و استعلام نوبت</span>
+                    <span className="block text-[11px] text-[#3E6B56] font-bold">واتساپ مستقیم کلینیک</span>
+                    <span className="font-black text-xs text-[#2A1E35]">پاسخگویی سریع به سوالات مراجعین</span>
                   </div>
                 </a>
 
-                <div className="flex items-center gap-3 p-3 rounded-2xl bg-[#FAF8F5] text-[#292733]">
-                  <div className="w-10 h-10 rounded-xl bg-white text-[#E8A58D] flex items-center justify-center shadow-xs shrink-0">
-                    <MapPin className="w-4 h-4" />
+                <div className="flex items-center gap-3.5 p-3.5 rounded-xl bg-[#FAF8F5] border border-[#E8DFD5] text-[#2A1E35]">
+                  <div className="w-10 h-10 rounded-lg bg-white border border-[#E8DFD5] flex items-center justify-center shrink-0">
+                    <MapPin className="w-4 h-4 text-[#C5A059]" />
                   </div>
                   <div>
-                    <span className="block text-[11px] text-[#6F6B78] font-bold">محل جلسات حضوری</span>
-                    <span className="font-bold text-xs">تهران، منطقه ۲ (کلینیک تخصصی پیوند امن)</span>
+                    <span className="block text-[11px] text-[#7A7382] font-bold">نشانی مراجعات حضوری</span>
+                    <span className="font-bold text-xs text-[#2A1E35]">تهران، منطقه ۲ (کلینیک تخصصی پیوند امن)</span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 p-3 rounded-2xl bg-[#FAF8F5] text-[#292733]">
-                  <div className="w-10 h-10 rounded-xl bg-white text-[#6D5AA8] flex items-center justify-center shadow-xs shrink-0">
-                    <Clock className="w-4 h-4" />
+                <div className="flex items-center gap-3.5 p-3.5 rounded-xl bg-[#FAF8F5] border border-[#E8DFD5] text-[#2A1E35]">
+                  <div className="w-10 h-10 rounded-lg bg-white border border-[#E8DFD5] flex items-center justify-center shrink-0">
+                    <Clock className="w-4 h-4 text-[#7A7382]" />
                   </div>
                   <div>
-                    <span className="block text-[11px] text-[#6F6B78] font-bold">ساعات پاسخگویی</span>
-                    <span className="font-bold text-xs">شنبه تا پنج‌شنبه: ۹:۰۰ الی ۲۱:۰۰</span>
+                    <span className="block text-[11px] text-[#7A7382] font-bold">ساعات فعالیت کلینیک</span>
+                    <span className="font-bold text-xs text-[#2A1E35]">شنبه تا پنج‌شنبه از ساعت ۹:۰۰ الی ۲۱:۰۰</span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 p-3 rounded-2xl bg-[#FAF8F5] text-[#292733]">
-                  <div className="w-10 h-10 rounded-xl bg-white text-[#6F6B78] flex items-center justify-center shadow-xs shrink-0">
-                    <Mail className="w-4 h-4" />
+                <div className="flex items-center gap-3.5 p-3.5 rounded-xl bg-[#FAF8F5] border border-[#E8DFD5] text-[#2A1E35]">
+                  <div className="w-10 h-10 rounded-lg bg-white border border-[#E8DFD5] flex items-center justify-center shrink-0">
+                    <Mail className="w-4 h-4 text-[#7A7382]" />
                   </div>
                   <div>
-                    <span className="block text-[11px] text-[#6F6B78] font-bold">ایمیل مکاتبات</span>
-                    <span className="font-bold text-xs" dir="ltr">Khoini.1988@gmail.com</span>
+                    <span className="block text-[11px] text-[#7A7382] font-bold">مکاتبات علمی و پژوهشی</span>
+                    <span className="font-bold text-xs font-mono" dir="ltr">Khoini.1988@gmail.com</span>
                   </div>
                 </div>
               </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Flame, HeartCrack, Snowflake, Users, Check, MessageSquare, Compass, Lightbulb } from 'lucide-react';
+import { Flame, HeartCrack, Snowflake, Users, Check, MessageSquare, Compass, Lightbulb, Clock, ArrowLeft } from 'lucide-react';
 import { DiagnosisScenario } from '../types';
 
 export const DiagnosticWidget: React.FC = () => {
@@ -12,7 +12,7 @@ export const DiagnosticWidget: React.FC = () => {
       tabSub: 'پروتکل هیجان‌مدار (EFT)',
       iconClass: 'flame',
       title: 'چرخه منفی تعارض و دفاع (پروتکل EFT)',
-      desc: 'در این وضعیت، طرفین در چرخه معیوب «انتقاد - دفاع - کناره‌گیری» گرفتار شده‌اند. زوج‌درمانی هیجان‌مدار با توقف سرزنش‌های سطحی و بیان نیازهای دلبستگی ناگفته، امنیت رابطه را در ۸ الی ۱۲ جلسه بازمی‌گرداند.',
+      desc: 'در این وضعیت، طرفین در چرخه معیوب «انتقاد - دفاع - کناره‌گیری» گرفتار شده‌اند. زوج درمان هیجان‌مدار با توقف سرزنش‌های سطحی و بیان نیازهای دلبستگی ناگفته، امنیت رابطه را در ۸ الی ۱۲ جلسه بازمی‌گرداند.',
       pills: ['مدت معمول: ۸ تا ۱۲ جلسه', 'فرمت: حضوری و آنلاین', 'تمرین‌های اختصاصی هفتگی'],
       msg: 'سلام، بر اساس تست وضعیت رابطه سایت، برای درمان مشاجرات مکرر و قفل شدن گفتگو درخواست نوبت دارم.',
     },
@@ -64,88 +64,95 @@ export const DiagnosticWidget: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-[#F2EFF8]" id="assessment">
+    <section className="py-20 lg:py-28 bg-[#FCFAF8] border-b border-[#E8E2D8]" id="assessment">
       <div className="container-custom">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="inline-flex items-center gap-1.5 text-xs font-black bg-[#fcf1ec] text-[#8e482f] px-4 py-1.5 rounded-full border border-[#E8A58D]/30 mb-4">
-            <Compass className="w-3.5 h-3.5" />
-            <span>راهنمای تشخیصی مراجعان</span>
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <span className="text-[11px] font-black text-[#C5A059] uppercase tracking-wider block mb-2">
+            راهنمای بالینی مراجعان
           </span>
-          <h2 className="text-2xl sm:text-3xl font-black text-[#44386B] mb-3">
+          <h2 className="text-2xl sm:text-4xl font-black text-[#241A35] mb-3 leading-tight">
             وضعیت رابطه شما در کدام مرحله قرار دارد؟
           </h2>
-          <p className="text-sm sm:text-base text-[#6F6B78] leading-relaxed">
+          <p className="text-sm sm:text-base text-[#5E5868] leading-relaxed">
             با انتخاب چالش اصلی رابطه‌تان، رویکرد علمی، طول درمان مورد انتظار و مسیر پیشنهادی را مشاهده کنید.
           </p>
         </div>
 
         {/* Assessment Card */}
-        <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-[#E5E0EA]">
+        <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-[0_10px_35px_-8px_rgba(36,26,53,0.06)] border border-[#E8E2D8]">
           {/* Tabs */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 mb-8">
             {scenarios.map((s, idx) => {
               const active = idx === activeTab;
               return (
                 <button
                   key={s.id}
                   onClick={() => setActiveTab(idx)}
-                  className={`p-4 rounded-2xl text-right transition-all flex flex-col gap-1 cursor-pointer border ${
+                  className={`p-4 rounded-2xl text-right transition-all flex flex-col gap-1.5 cursor-pointer border ${
                     active
-                      ? 'bg-white border-[#6D5AA8] shadow-md ring-2 ring-[#6D5AA8]/20'
-                      : 'bg-[#FAF8F5] border-transparent hover:bg-[#f2eff8]'
+                      ? 'bg-[#241A35] text-white border-[#241A35] shadow-md'
+                      : 'bg-[#FCFAF8] border-[#E8E2D8] hover:bg-[#FAF5EB] text-[#241A35]'
                   }`}
                 >
                   <div
-                    className={`w-9 h-9 rounded-xl flex items-center justify-center mb-1.5 ${
-                      active ? 'bg-[#6D5AA8] text-white' : 'bg-white text-[#6D5AA8] border border-[#E5E0EA]'
+                    className={`w-9 h-9 rounded-xl flex items-center justify-center mb-1 ${
+                      active ? 'bg-white/15 text-[#C5A059]' : 'bg-white text-[#3E2F5B] border border-[#E8E2D8]'
                     }`}
                   >
                     {renderIcon(s.iconClass, 'w-4 h-4')}
                   </div>
-                  <span className="text-sm font-black text-[#292733] leading-snug">{s.tabTitle}</span>
-                  <span className="text-xs text-[#6F6B78] font-medium">{s.tabSub}</span>
+                  <span className={`text-sm font-black leading-snug ${active ? 'text-white' : 'text-[#241A35]'}`}>
+                    {s.tabTitle}
+                  </span>
+                  <span className={`text-xs ${active ? 'text-[#C5A059]' : 'text-[#8A8494]'}`}>
+                    {s.tabSub}
+                  </span>
                 </button>
               );
             })}
           </div>
 
           {/* Tab Content Box */}
-          <div className="bg-[#FAF8F5] rounded-2xl p-6 sm:p-8 border border-[#E5E0EA] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="bg-[#FAF5EB] rounded-2xl p-6 sm:p-8 border border-[#C5A059]/25 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8">
-              <h3 className="text-lg sm:text-xl font-black text-[#44386B] mb-3 flex items-center gap-2">
-                <Lightbulb className="w-5 h-5 text-[#E8A58D]" />
+              <h3 className="text-lg sm:text-xl font-black text-[#241A35] mb-3 flex items-center gap-2">
+                <Lightbulb className="w-5 h-5 text-[#C5A059]" />
                 <span>{current.title}</span>
               </h3>
-              <p className="text-sm sm:text-base text-[#6F6B78] leading-[1.9] mb-6 text-justify">
+              <p className="text-xs sm:text-sm text-[#5E5868] leading-[2] mb-6 text-justify">
                 {current.desc}
               </p>
-              <div className="flex flex-wrap gap-2.5">
+
+              {/* Zero-Pill Clean Metadata (frontend-design constitution) */}
+              <div className="flex flex-wrap items-center gap-2 text-xs font-bold text-[#241A35] pt-3 border-t border-[#C5A059]/20">
                 {current.pills.map((pill, pIdx) => (
-                  <span
-                    key={pIdx}
-                    className="inline-flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-full text-xs font-bold text-[#44386B] border border-[#E5E0EA]"
-                  >
-                    <Check className="w-3.5 h-3.5 text-[#5e826b]" />
-                    <span>{pill}</span>
-                  </span>
+                  <React.Fragment key={pIdx}>
+                    <span className="flex items-center gap-1.5">
+                      <Check className="w-3.5 h-3.5 text-[#4E7A66]" />
+                      <span>{pill}</span>
+                    </span>
+                    {pIdx < current.pills.length - 1 && (
+                      <span className="text-[#C5A059] opacity-60" aria-hidden="true">·</span>
+                    )}
+                  </React.Fragment>
                 ))}
               </div>
             </div>
 
             {/* Action Callout */}
-            <div className="lg:col-span-4 bg-white p-6 rounded-2xl border border-[#E5E0EA] text-center shadow-xs flex flex-col justify-center">
-              <h4 className="text-sm font-black text-[#44386B] mb-2">شروع فرآیند درمان</h4>
-              <p className="text-xs text-[#6F6B78] mb-5 leading-relaxed">
+            <div className="lg:col-span-4 bg-white p-6 rounded-2xl border border-[#E8E2D8] text-center shadow-xs flex flex-col justify-center">
+              <h4 className="text-sm font-black text-[#241A35] mb-1.5">شروع فرآیند درمان</h4>
+              <p className="text-xs text-[#5E5868] mb-5 leading-relaxed">
                 پیام مستقیم آماده برای رزرو نوبت متناسب با وضعیت انتخاب‌شده
               </p>
               <a
                 href={`https://wa.me/989199087264?text=${encodeURIComponent(current.msg)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 bg-[#6D5AA8] hover:bg-[#44386B] text-white font-bold text-xs sm:text-sm py-3 px-4 rounded-full shadow-md transition-all"
+                className="w-full inline-flex items-center justify-center gap-2 bg-[#241A35] hover:bg-[#3E2F5B] text-white font-black text-xs sm:text-sm py-3.5 px-4 rounded-full shadow-md transition-all border border-[#C5A059]/40"
               >
-                <MessageSquare className="w-4 h-4" />
+                <MessageSquare className="w-4 h-4 text-[#C5A059]" />
                 <span>ارسال پیام در واتساپ</span>
               </a>
             </div>
