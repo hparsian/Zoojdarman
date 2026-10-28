@@ -197,18 +197,20 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
     <section className="py-20 bg-white border-t border-[#E5E0EA]" id="seo-hub">
       <div className="container-custom">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 bg-[#edf5f0] text-[#5e826b] px-4 py-1.5 rounded-full border border-[#8FAF9B]/30 text-xs font-black mb-4">
-            <TrendingUp className="w-4 h-4" />
-            <span>پاسخ به سوالات پرتکرار و بیشترین جستجوهای گوگل</span>
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-[#A67C2E] uppercase mb-3">
+            <span className="w-6 h-px bg-[#C5A059]" />
+            <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
+            <span>پاسخ به سوالات پرتکرار و جستجوهای گوگل</span>
+            <span className="w-6 h-px bg-[#C5A059]" />
           </div>
 
-          <h2 className="text-2xl sm:text-4xl font-black text-[#44386B] mb-4">
+          <h2 className="text-2xl sm:text-4xl font-black text-[#2A1E35] mb-4 leading-tight">
             دانشنامه کلمات کلیدی و راهکارهای بالینی{' '}
-            <span className="text-[#6D5AA8] block sm:inline">مرکز تخصصی زوج درمان و زندگی مشترک</span>
+            <span className="text-[#C5A059] block sm:inline">مرکز تخصصی زوج درمان و زندگی مشترک</span>
           </h2>
 
-          <p className="text-sm sm:text-base text-[#6F6B78] leading-relaxed">
+          <p className="text-sm sm:text-base text-[#6F6B78] leading-relaxed max-w-2xl mx-auto">
             پاسخ‌های دقیق، بالینی و کاربردی مهناز خوینی (زوج درمانگر باسابقه تهران) به چالش‌برانگیزترین دغدغه‌های مراجعان در حوزه زوج درمان، ازدواج و خیانت.
           </p>
         </div>
@@ -221,9 +223,9 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="جستجو میان موضوعات پرطرفدار (مثال: خیانت، قهر، سردی، طلاق، دلبستگی، تست...)"
-              className="w-full px-5 py-4 pr-12 bg-[#FAF8F5] border border-[#E5E0EA] rounded-2xl text-xs sm:text-sm font-medium text-[#292733] focus:bg-white focus:border-[#6D5AA8] focus:outline-none shadow-xs"
+              className="w-full px-5 py-4 pr-12 bg-white border border-[#E8DFD5] rounded-xl text-xs sm:text-sm font-medium text-[#2A1E35] focus:bg-white focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059]/30 focus:outline-none shadow-xs transition-all"
             />
-            <Search className="w-5 h-5 text-[#8e8a96] absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Search className="w-5 h-5 text-[#A67C2E] absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
 
           {/* Category Chips */}
@@ -232,10 +234,10 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                   activeCategory === cat.id
-                    ? 'bg-[#6D5AA8] text-white shadow-sm'
-                    : 'bg-[#FAF8F5] text-[#6F6B78] hover:bg-[#f2eff8] border border-[#E5E0EA]'
+                    ? 'bg-[#2A1E35] text-white shadow-md border border-[#C5A059]/40'
+                    : 'bg-white text-[#6F6B78] hover:text-[#2A1E35] hover:border-[#C5A059]/50 border border-[#E8DFD5]'
                 }`}
               >
                 {cat.label}
@@ -269,10 +271,10 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
               return (
                 <div
                   key={topic.id}
-                  className={`rounded-2xl border transition-all overflow-hidden ${
+                  className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
                     isOpen
-                      ? 'bg-white border-[#6D5AA8] shadow-md ring-1 ring-[#6D5AA8]/20'
-                      : 'bg-[#FAF8F5] border-[#E5E0EA] hover:border-[#6D5AA8]/40'
+                      ? 'bg-white border-[#C5A059]/60 shadow-lg ring-1 ring-[#C5A059]/20'
+                      : 'bg-white border-[#E8DFD5] hover:border-[#C5A059]/40 shadow-xs'
                   }`}
                 >
                   {/* Accordion Trigger */}
@@ -280,19 +282,21 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
                     onClick={() => setExpandedTopicId(isOpen ? null : topic.id)}
                     className="w-full p-5 sm:p-6 text-right flex items-center justify-between gap-4 cursor-pointer"
                   >
-                    <div className="flex items-center gap-3 flex-1">
-                      <span className="w-8 h-8 rounded-xl bg-[#f2eff8] text-[#6D5AA8] flex items-center justify-center shrink-0">
+                    <div className="flex items-center gap-3.5 flex-1">
+                      <span className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
+                        isOpen ? 'bg-[#2A1E35] text-[#C5A059]' : 'bg-[#FAF8F5] text-[#2A1E35] border border-[#E8DFD5]'
+                      }`}>
                         <BookOpen className="w-4 h-4" />
                       </span>
                       <div>
-                        <h3 className="text-sm sm:text-base font-black text-[#292733] leading-snug">
+                        <h3 className="text-sm sm:text-base font-black text-[#2A1E35] leading-snug">
                           {topic.query}
                         </h3>
-                        <div className="flex items-center gap-2 mt-1">
-                          <span className="text-[10px] font-bold text-[#5e826b] bg-[#edf5f0] px-2.5 py-0.5 rounded-full">
+                        <div className="flex items-center gap-2 mt-1.5">
+                          <span className="text-[10px] font-mono font-bold text-[#A67C2E] bg-[#FAF8F5] border border-[#E8DFD5] px-2.5 py-0.5 rounded-md">
                             {topic.categoryLabel}
                           </span>
-                          <span className="text-[10px] text-[#8e8a96] font-medium hidden sm:inline">
+                          <span className="text-[10px] text-[#7A7382] font-medium hidden sm:inline">
                             {topic.monthlySearches}
                           </span>
                         </div>
@@ -300,8 +304,8 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
                     </div>
 
                     <div
-                      className={`w-8 h-8 rounded-full bg-white border border-[#E5E0EA] flex items-center justify-center text-[#6D5AA8] shrink-0 transition-transform ${
-                        isOpen ? 'rotate-180 bg-[#6D5AA8] text-white border-transparent' : ''
+                      className={`w-8 h-8 rounded-lg bg-[#FAF8F5] border border-[#E8DFD5] flex items-center justify-center text-[#2A1E35] shrink-0 transition-transform ${
+                        isOpen ? 'rotate-180 bg-[#2A1E35] text-[#C5A059] border-transparent' : ''
                       }`}
                     >
                       <ChevronDown className="w-4 h-4" />
@@ -310,22 +314,22 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
 
                   {/* Accordion Content */}
                   {isOpen && (
-                    <div className="px-5 pb-6 sm:px-6 sm:pb-6 pt-2 border-t border-[#E5E0EA]/60 bg-white">
-                      <p className="text-xs sm:text-sm text-[#292733] leading-relaxed mb-4 text-justify">
+                    <div className="px-5 pb-6 sm:px-6 sm:pb-6 pt-2 border-t border-[#F0EAE1] bg-white">
+                      <p className="text-xs sm:text-sm text-[#5A5265] leading-relaxed mb-4 text-justify">
                         {topic.answerSummary}
                       </p>
 
-                      <div className="bg-[#FAF8F5] p-4 rounded-xl border border-[#E5E0EA] mb-5">
-                        <span className="block text-[11px] font-black text-[#44386B] mb-2">
+                      <div className="bg-[#FAF8F5] p-5 rounded-xl border border-[#E8DFD5] mb-5">
+                        <span className="block text-[11px] font-black text-[#2A1E35] mb-2">
                           نکات کلیدی بالینی:
                         </span>
-                        <ul className="space-y-1.5">
+                        <ul className="space-y-2">
                           {topic.keyPoints.map((point, pIdx) => (
                             <li
                               key={pIdx}
-                              className="text-xs text-[#6F6B78] flex items-start gap-2 leading-relaxed"
+                              className="text-xs text-[#6F6B78] flex items-start gap-2.5 leading-relaxed"
                             >
-                              <CheckCircle2 className="w-3.5 h-3.5 text-[#5e826b] mt-0.5 shrink-0" />
+                              <CheckCircle2 className="w-3.5 h-3.5 text-[#3E6B56] mt-0.5 shrink-0" />
                               <span>{point}</span>
                             </li>
                           ))}
@@ -334,22 +338,22 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
 
                       {/* Action Links */}
                       <div className="flex flex-wrap items-center justify-between gap-3 pt-2 text-xs">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-3">
                           {topic.articleSlug && (
                             <a
                               href={`/articles/${topic.articleSlug}`}
                               onClick={(e) => { e.preventDefault(); onSelectArticle(topic.articleSlug!); }}
-                              className="inline-flex items-center gap-1.5 text-[#6D5AA8] hover:text-[#44386B] font-black hover:underline cursor-pointer"
+                              className="inline-flex items-center gap-1.5 text-[#2A1E35] hover:text-[#C5A059] font-black hover:underline cursor-pointer"
                             >
                               <span>مطالعه مقاله کامل تخصصی</span>
-                              <ArrowRight className="w-3.5 h-3.5 rotate-180" />
+                              <ArrowRight className="w-3.5 h-3.5 rotate-180 text-[#C5A059]" />
                             </a>
                           )}
                           {topic.serviceSlug && (
                             <a
                               href={`/services/${topic.serviceSlug}`}
                               onClick={(e) => { e.preventDefault(); onSelectService(topic.serviceSlug!); }}
-                              className="inline-flex items-center gap-1.5 text-[#5e826b] hover:text-[#4d6d58] font-bold hover:underline cursor-pointer mr-3"
+                              className="inline-flex items-center gap-1.5 text-[#3E6B56] hover:text-[#2A1E35] font-bold hover:underline cursor-pointer"
                             >
                               <span>مشاهده پروتکل خدمت</span>
                             </a>
@@ -362,9 +366,9 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
                           )}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-[#6D5AA8] bg-[#f2eff8] hover:bg-[#6D5AA8] hover:text-white px-3.5 py-1.5 rounded-full font-bold transition-all"
+                          className="inline-flex items-center gap-1.5 text-[#2A1E35] bg-[#FAF8F5] border border-[#E8DFD5] hover:border-[#C5A059] px-3.5 py-1.5 rounded-xl font-bold transition-all"
                         >
-                          <MessageSquare className="w-3.5 h-3.5" />
+                          <MessageSquare className="w-3.5 h-3.5 text-[#C5A059]" />
                           <span>مشاوره اختصاصی این موضوع</span>
                         </a>
                       </div>
