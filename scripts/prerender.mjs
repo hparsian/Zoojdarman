@@ -43,7 +43,7 @@ const sitemapPaths = [...sitemap.matchAll(/<loc>https?:\/\/[^\/<]+(\/[^<]*)<\/lo
 );
 
 // مسیرهای جایگزینی که روتر می‌پذیرد ولی در سایت‌مپ نیستند (لینک‌های قدیمی)
-const aliasPaths = ['/bio', '/treatment-process', '/assessments', '/tests', '/qa', '/appointment'];
+const aliasPaths = ['/bio', '/treatment-process', '/assessments', '/tests', '/qa', '/appointment', '/pricing', '/costs', '/tariffs'];
 
 const paths = [...new Set([...sitemapPaths, ...aliasPaths])];
 
@@ -57,6 +57,7 @@ function routeForPath(p) {
   if (p.startsWith('/services/')) return { type: 'service', slug: p.slice('/services/'.length) };
   if (p.startsWith('/tests/')) return { type: 'singleTest', testSlug: p.slice('/tests/'.length) };
   if (p === '/tools' || p === '/assessments' || p === '/tests') return { type: 'tools' };
+  if (p === '/fees' || p === '/pricing' || p === '/costs' || p === '/tariffs') return { type: 'fees' };
   if (p === '/topics' || p === '/qa') return { type: 'topics' };
   if (p === '/about' || p === '/bio') return { type: 'about' };
   if (p === '/process' || p === '/treatment-process') return { type: 'process' };

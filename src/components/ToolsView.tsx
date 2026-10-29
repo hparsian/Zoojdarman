@@ -28,6 +28,18 @@ export const ToolsView: React.FC<ToolsViewProps> = ({ onBack, onNavigateContact,
       badge: 'پرطرفدارترین',
     },
     {
+      title: 'سنجش تروما و آسیب خیانت (PISD)',
+      slug: 'infidelity-trauma-assessment',
+      desc: 'ارزیابی شدت شوک، رفتارهای وارسی و پتانسیل بازسازی اعتماد',
+      badge: 'اختصاصی خیانت',
+    },
+    {
+      title: 'آمادگی پیش از ازدواج و تناسب عقد',
+      slug: 'premarital-readiness-assessment',
+      desc: 'بررسی ۸ رکن تفاهم: استقلال، امور مالی، رد فلگ‌ها و سبک تعارض',
+      badge: 'ویژه آشنایی',
+    },
+    {
       title: 'پیش‌بینی طلاق عاطفی گاتمن',
       slug: 'gottman-divorce-predictor',
       desc: 'ارزیابی ۴ رفتار مرگبار سرزنش، تحقیر، دفاع و قفل شدن گفتگو',

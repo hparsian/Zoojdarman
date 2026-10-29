@@ -28,6 +28,7 @@ import { SingleTestView } from './components/SingleTestView';
 import { ArticlesArchiveView } from './components/ArticlesArchiveView';
 import { ServicesArchiveView } from './components/ServicesArchiveView';
 import { TopicsView } from './components/TopicsView';
+import { FeesView } from './components/FeesView';
 import { getTestBySlug } from './data/testsData';
 import { AlertCircle } from 'lucide-react';
 import { RouteState } from './types';
@@ -69,6 +70,8 @@ export const App: React.FC = () => {
       setRoute({ type: 'tools' });
     } else if (path === '/topics' || path === '/qa') {
       setRoute({ type: 'topics' });
+    } else if (path === '/fees' || path === '/pricing' || path === '/costs' || path === '/tariffs') {
+      setRoute({ type: 'fees' });
     } else if (path === '/privacy-policy') {
       setRoute({ type: 'privacy' });
     } else {
@@ -163,6 +166,11 @@ export const App: React.FC = () => {
   const navigateToTopics = () => {
     window.history.pushState({}, '', '/topics');
     setRoute({ type: 'topics' });
+  };
+
+  const navigateToFees = () => {
+    window.history.pushState({}, '', '/fees');
+    setRoute({ type: 'fees' });
   };
 
   const navigateToPrivacy = () => {
@@ -278,6 +286,16 @@ export const App: React.FC = () => {
     );
   }
 
+  if (route.type === 'fees') {
+    return (
+      <FeesView
+        onBack={() => navigateToHome('pricing')}
+        onNavigateContact={navigateToContact}
+        onSelectService={navigateToService}
+      />
+    );
+  }
+
   // Render view depending on route
   if (route.type === 'article') {
     const article = getArticleBySlug(route.slug);
@@ -348,6 +366,7 @@ export const App: React.FC = () => {
         onNavigateArticles={navigateToArticles}
         onNavigateServices={navigateToServices}
         onNavigateTopics={navigateToTopics}
+        onNavigateFees={navigateToFees}
       />
 
       <main className="flex-1 home-page">
@@ -389,6 +408,7 @@ export const App: React.FC = () => {
         onNavigateArticles={navigateToArticles}
         onNavigateServices={navigateToServices}
         onNavigateTopics={navigateToTopics}
+        onNavigateFees={navigateToFees}
       />
 
       <FloatingActions />

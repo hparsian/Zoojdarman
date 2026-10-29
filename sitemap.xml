@@ -14,8 +14,26 @@
     <priority>0.95</priority>
   </url>
   <url>
+    <loc>https://zoojdarman.ir/fees</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
     <loc>https://zoojdarman.ir/tests/enrich-marital-satisfaction</loc>
     <lastmod>2026-10-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/tests/infidelity-trauma-assessment</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/tests/premarital-readiness-assessment</loc>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>

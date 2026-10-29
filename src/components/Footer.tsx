@@ -14,6 +14,7 @@ interface FooterProps {
   onNavigateArticles?: () => void;
   onNavigateServices?: () => void;
   onNavigateTopics?: () => void;
+  onNavigateFees?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
@@ -29,6 +30,7 @@ export const Footer: React.FC<FooterProps> = ({
   onNavigateArticles,
   onNavigateServices,
   onNavigateTopics,
+  onNavigateFees,
 }) => {
   return (
     <footer className="relative bg-[#1E1527] text-[#FAF8F5] pt-20 pb-12 overflow-hidden border-t border-[#C5A059]/20">
@@ -258,6 +260,15 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-[#C5A059] transition-colors cursor-pointer text-right block py-1"
                 >
                   پرسش‌های متداول زوجین
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/fees"
+                  onClick={(e) => { e.preventDefault(); onNavigateFees ? onNavigateFees() : onNavigateHome('pricing'); }}
+                  className="hover:text-[#C5A059] transition-colors cursor-pointer text-right block py-1"
+                >
+                  تعرفه مصوب و شرایط بیمه
                 </a>
               </li>
               <li>

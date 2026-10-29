@@ -48,6 +48,7 @@ export type RouteState =
   | { type: 'contact' }
   | { type: 'tools' }
   | { type: 'singleTest'; testSlug: string }
+  | { type: 'fees' }
   | { type: 'topics' }
   | { type: 'privacy' }
   | { type: '404' };
