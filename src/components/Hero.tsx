@@ -75,25 +75,27 @@ export const Hero: React.FC<HeroProps> = ({
           {/* Content Column */}
           <div className="lg:col-span-7 flex flex-col items-start">
             {/* Accreditation Badge */}
-            <div className="inline-flex items-center gap-2.5 bg-white px-4 py-2 rounded-full border border-[#E8E2D8] text-xs font-bold text-[#241A35] mb-6 shadow-xs">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#C5A059] luxury-pulse-gold" />
-              <span>پذیرش مراجعان جدید · حضوری تهران (پیوند امن) و آنلاین بین‌المللی</span>
+            <div className="inline-flex items-center gap-2 bg-white px-3.5 sm:px-4 py-2 rounded-full border border-[#E8E2D8] text-[11px] sm:text-xs font-bold text-[#241A35] mb-4 sm:mb-6 shadow-xs max-w-full">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#C5A059] luxury-pulse-gold shrink-0" />
+              <span>پذیرش مراجعان جدید · حضوری تهران و آنلاین</span>
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-[2.1rem] sm:text-[2.75rem] lg:text-[3.35rem] font-black leading-[1.3] text-[#241A35] mb-6 tracking-tight">
-              مرکز تخصصی زوج درمان و{' '}
-              <span className="text-[#3E2F5B] relative inline-block">
-                زوج‌درمانی بالینی
-                <span className="absolute bottom-1 right-0 left-0 h-[6px] bg-[#C5A059]/30 rounded-full -z-10" />
-              </span>
-              <span className="block text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#5E5868] mt-2">
-                بازسازی اعتماد، دلبستگی امن و صمیمیت پایدار در رابطه
-              </span>
+            <h1 className="text-2xl sm:text-4xl lg:text-[2.75rem] font-black leading-[1.6] sm:leading-[1.4] text-[#241A35] mb-3 sm:mb-4">
+              زوج‌درمان؛{' '}
+              <span className="text-[#3E2F5B] inline-block border-b-4 border-[#C5A059]/40 pb-1">
+                مرکز تخصصی زوج‌درمانی بالینی
+              </span>{' '}
+              و مشاوره زناشویی
             </h1>
 
+            {/* Sub-headline */}
+            <h2 className="text-base sm:text-xl lg:text-2xl font-extrabold text-[#5E5868] leading-[1.8] sm:leading-[1.6] mb-5 sm:mb-6">
+              بازسازی اعتماد، دلبستگی امن و صمیمیت پایدار در رابطه
+            </h2>
+
             {/* Lead Paragraph */}
-            <p className="text-sm sm:text-base leading-[2.1] text-[#5E5868] mb-8 max-w-2xl text-justify">
+            <p className="text-sm sm:text-base leading-[2.1] sm:leading-[2.2] text-[#5E5868] mb-8 max-w-2xl text-right sm:text-justify">
               هدایت شده توسط <strong>مهناز خوینی</strong> (کارشناس ارشد روان‌شناسی بالینی، متخصص زوج درمان با رویکرد هیجان‌مدار EFT و مسئول فنی کلینیک پیوند امن تهران با پروانه نظام روانشناسی ۱۴۱۴۰۸۳). پایان دادن به چرخه‌های فرسایشی دعوا، التیام ترومای خیانت، احیای صمیمیت جنسی و تصمیم‌گیری آگاهانه درباره طلاق با متدهای شواهدنگر جهانی.
             </p>
 
@@ -138,6 +140,7 @@ export const Hero: React.FC<HeroProps> = ({
           {/* Visual Showcase Column */}
           <div className="lg:col-span-5 relative max-w-md mx-auto w-full">
             <div className="relative bg-white p-3.5 sm:p-4 rounded-3xl shadow-[0_20px_50px_-15px_rgba(36,26,53,0.12)] border border-[#E8E2D8]">
+              {/* Photo Frame */}
               <div className="relative overflow-hidden rounded-2xl">
                 <img
                   src="/images/mahnaz-khoini-thumb.webp"
@@ -150,32 +153,45 @@ export const Hero: React.FC<HeroProps> = ({
                   loading="eager"
                   fetchPriority="high"
                   decoding="async"
-                  className="w-full h-[450px] sm:h-[490px] object-cover object-top rounded-2xl hover:scale-[1.02] transition-transform duration-500"
+                  className="w-full h-[380px] sm:h-[460px] object-cover object-top rounded-2xl hover:scale-[1.02] transition-transform duration-500"
                 />
 
-                {/* Subtle Luxury Gradient Overlay at Bottom */}
-                <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#241A35]/80 via-[#241A35]/30 to-transparent pointer-events-none rounded-b-2xl" />
+                {/* Top Badge: License / Credential */}
+                <div className="absolute top-3 right-3 sm:top-3.5 sm:right-3.5 inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#241A35]/85 backdrop-blur-md text-white font-bold rounded-xl text-[11px] sm:text-xs border border-[#C5A059]/40 shadow-lg">
+                  <Award className="w-3.5 h-3.5 text-[#C5A059] shrink-0" />
+                  <span>پروانه نظام روان‌شناسی ۱۴۱۴۰۸۳</span>
+                </div>
 
-                {/* Embedded Prestige Tag */}
-                <div className="absolute bottom-4 right-4 left-4 flex items-center justify-between text-white text-xs">
-                  <div>
-                    <span className="block font-black text-sm text-[#FAF5EB]">مهناز خوینی</span>
-                    <span className="text-[11px] text-white/80">زوج درمانگر بالینی و مسئول فنی کلینیک</span>
+                {/* Subtle Luxury Gradient Overlay at Bottom for Clinician Identity */}
+                <div className="absolute inset-x-0 bottom-0 pt-16 pb-3.5 px-4 bg-gradient-to-t from-[#241A35]/95 via-[#241A35]/65 to-transparent pointer-events-none rounded-b-2xl">
+                  <div className="flex items-end justify-between text-white gap-2">
+                    <div>
+                      <span className="block font-black text-base sm:text-lg text-[#FAF5EB] leading-tight mb-0.5">
+                        مهناز خوینی
+                      </span>
+                      <span className="text-[11px] sm:text-xs text-white/85 block">
+                        کارشناس ارشد روان‌شناسی بالینی و زوج درمانگر
+                      </span>
+                    </div>
+                    <span className="px-2.5 py-1 bg-[#C5A059] text-[#241A35] font-black rounded-lg text-[10px] sm:text-[11px] shrink-0 shadow-xs">
+                      رویکرد EFT
+                    </span>
                   </div>
-                  <span className="px-2.5 py-1 bg-[#C5A059] text-[#241A35] font-black rounded-lg text-[10px]">
-                    پروانه ۱۴۱۴۰۸۳
-                  </span>
                 </div>
               </div>
 
-              {/* Floating Credibility Pill */}
-              <div className="absolute -bottom-6 right-3 left-3 sm:right-6 sm:left-6 bg-[#241A35] text-white rounded-2xl p-4 shadow-xl border border-[#C5A059]/30 flex items-center gap-3.5">
+              {/* Clinic Accreditation Bar (Positioned cleanly below image in flow - no overlap) */}
+              <div className="mt-3.5 bg-[#241A35] text-white rounded-2xl p-3 sm:p-3.5 shadow-md border border-[#C5A059]/30 flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-[#C5A059]/20 text-[#C5A059] flex items-center justify-center shrink-0">
-                  <HeartHandshake className="w-5 h-5" />
+                  <HeartHandshake className="w-5 h-5 text-[#C5A059]" />
                 </div>
-                <div>
-                  <h4 className="text-xs sm:text-sm font-black text-[#FAF5EB]">کلینیک تخصصی پیوند امن تهران</h4>
-                  <p className="text-[11px] text-white/70">مرکز تخصصی زوج درمان، حل تعارضات و مشاوره خانواده</p>
+                <div className="min-w-0">
+                  <h4 className="text-xs sm:text-sm font-black text-[#FAF5EB] truncate">
+                    کلینیک تخصصی پیوند امن تهران
+                  </h4>
+                  <p className="text-[10px] sm:text-[11px] text-white/75 truncate">
+                    مرکز تخصصی زوج درمان، حل تعارضات و مشاوره خانواده
+                  </p>
                 </div>
               </div>
             </div>
