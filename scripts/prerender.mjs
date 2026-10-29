@@ -33,7 +33,10 @@ const shell = fs.readFileSync(shellPath, 'utf8');
 
 /* ---------- 1) فهرست مسیرها: سایت‌مپ + aliasهای روتر ---------- */
 
-const sitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
+const sitemapFile = fs.existsSync(path.join(root, 'public', 'sitemap.xml'))
+  ? path.join(root, 'public', 'sitemap.xml')
+  : path.join(root, 'sitemap.xml');
+const sitemap = fs.readFileSync(sitemapFile, 'utf8');
 // توجه: بخش میزبان باید بدون اسلش باشد تا greedy بودن regex مسیر کامل را نگیرد
 const sitemapPaths = [...sitemap.matchAll(/<loc>https?:\/\/[^\/<]+(\/[^<]*)<\/loc>/g)].map(
   (m) => m[1] || '/'
@@ -142,6 +145,19 @@ try {
     fs.writeFileSync(path.join(distDir, '404.html'), dom.serialize(), 'utf8');
     dom.window.close();
     written++;
+  }
+
+  /* ---------- 5) اطمینان از وجود sitemap.xml و robots.txt در dist ---------- */
+  const sitemapDest = path.join(distDir, 'sitemap.xml');
+  if (!fs.existsSync(sitemapDest) && fs.existsSync(sitemapFile)) {
+    fs.copyFileSync(sitemapFile, sitemapDest);
+  }
+  const robotsSrc = fs.existsSync(path.join(root, 'public', 'robots.txt'))
+    ? path.join(root, 'public', 'robots.txt')
+    : path.join(root, 'robots.txt');
+  const robotsDest = path.join(distDir, 'robots.txt');
+  if (!fs.existsSync(robotsDest) && fs.existsSync(robotsSrc)) {
+    fs.copyFileSync(robotsSrc, robotsDest);
   }
 
   console.log(`[prerender] ${written} فایل HTML ساخته شد (${skipped} مورد رد شد).`);
