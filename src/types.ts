@@ -50,5 +50,6 @@ export type RouteState =
   | { type: 'singleTest'; testSlug: string }
   | { type: 'fees' }
   | { type: 'topics' }
+  | { type: 'bestTherapist' }
   | { type: 'privacy' }
   | { type: '404' };

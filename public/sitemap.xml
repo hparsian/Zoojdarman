@@ -3,9 +3,15 @@
   <!-- صفحه اصلی و صفحات اختصاصی کلینیک -->
   <url>
     <loc>https://zoojdarman.ir/</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/best-couples-therapist-tehran</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
   </url>
   <url>
     <loc>https://zoojdarman.ir/tools</loc>
@@ -142,7 +148,37 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- ۴۲ مقاله تخصصی کلینیک -->
+  <!-- مقالات تخصصی با کلمات کلیدی پرجستجوی گوگل -->
+  <url>
+    <loc>https://zoojdarman.ir/articles/what-is-couples-therapy</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/good-couples-therapist-in-tehran</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/online-couples-therapist</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/couples-therapy-shiraz</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://zoojdarman.ir/articles/couples-therapy-mashhad</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
   <url>
     <loc>https://zoojdarman.ir/articles/anger-management-in-marriage</loc>
     <lastmod>2026-08-10</lastmod>

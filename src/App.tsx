@@ -29,6 +29,7 @@ import { ArticlesArchiveView } from './components/ArticlesArchiveView';
 import { ServicesArchiveView } from './components/ServicesArchiveView';
 import { TopicsView } from './components/TopicsView';
 import { FeesView } from './components/FeesView';
+import { BestTherapistView } from './components/BestTherapistView';
 import { getTestBySlug } from './data/testsData';
 import { AlertCircle } from 'lucide-react';
 import { RouteState } from './types';
@@ -72,6 +73,12 @@ export const App: React.FC = () => {
       setRoute({ type: 'topics' });
     } else if (path === '/fees' || path === '/pricing' || path === '/costs' || path === '/tariffs') {
       setRoute({ type: 'fees' });
+    } else if (
+      path === '/best-couples-therapist-tehran' ||
+      path === '/best-couples-therapist' ||
+      path === '/best-couples-therapist-tehran-online'
+    ) {
+      setRoute({ type: 'bestTherapist' });
     } else if (path === '/privacy-policy') {
       setRoute({ type: 'privacy' });
     } else {
@@ -171,6 +178,11 @@ export const App: React.FC = () => {
   const navigateToFees = () => {
     window.history.pushState({}, '', '/fees');
     setRoute({ type: 'fees' });
+  };
+
+  const navigateToBestTherapist = () => {
+    window.history.pushState({}, '', '/best-couples-therapist-tehran');
+    setRoute({ type: 'bestTherapist' });
   };
 
   const navigateToPrivacy = () => {
@@ -344,6 +356,18 @@ export const App: React.FC = () => {
       <ServiceView
         service={service}
         onBack={() => navigateToHome('services')}
+      />
+    );
+  }
+
+  if (route.type === 'bestTherapist') {
+    return (
+      <BestTherapistView
+        onBack={() => navigateToHome()}
+        onNavigateContact={navigateToContact}
+        onNavigateTools={navigateToTools}
+        onSelectService={navigateToService}
+        onSelectArticle={navigateToArticle}
       />
     );
   }

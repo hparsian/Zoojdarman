@@ -5,13 +5,13 @@ import {
   Sparkles,
   CheckCircle2,
   AlertTriangle,
-  Flame,
   ArrowLeft,
-  Users,
-  Compass,
-  FileText,
   BadgeCheck,
-  HelpCircle
+  MapPin,
+  Video,
+  Search,
+  Building2,
+  Compass
 } from 'lucide-react';
 
 interface CouplesTherapyGuideProps {
@@ -25,7 +25,7 @@ export const CouplesTherapyGuideSection: React.FC<CouplesTherapyGuideProps> = ({
   onNavigateService,
   onNavigateContact,
 }) => {
-  const [activeTab, setActiveTab] = useState<'what' | 'signs' | 'methods' | 'therapist'>('what');
+  const [activeTab, setActiveTab] = useState<'what' | 'signs' | 'methods' | 'therapist' | 'cities'>('what');
 
   const signsList = [
     {
@@ -71,23 +71,23 @@ export const CouplesTherapyGuideSection: React.FC<CouplesTherapyGuideProps> = ({
     <section className="py-20 bg-white border-t border-[#E5E0EA]" id="zooj-darman-guide">
       <div className="container-custom">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <div className="inline-flex items-center gap-2 bg-[#f2eff8] text-[#6D5AA8] px-4 py-1.5 rounded-full border border-[#6D5AA8]/25 text-xs font-black mb-4">
             <HeartHandshake className="w-4 h-4 text-[#6D5AA8]" />
-            <span>دانشنامه تخصصی مرکز زوج درمان</span>
+            <span>دانشنامه جامع بالینی مرکز زوج درمان</span>
           </div>
 
           <h2 className="text-2xl sm:text-4xl font-black text-[#44386B] mb-4 leading-tight">
-            زوج درمان چیست و چگونه زندگی مشترک را نجات می‌دهد؟
+            زوج درمانی چیست و چه زمانی به یک زوج درمانگر خوب نیاز داریم؟
           </h2>
 
           <p className="text-sm sm:text-base text-[#6F6B78] leading-relaxed text-justify sm:text-center">
-            راهنمای جامع بالینی برای شناخت نقش <strong>زوج درمانگر متخصص</strong>، روش‌های نوین زوج درمان و زمان طلایی مداخله پیش از رسیدن به طلاق عاطفی یا جدایی رسمی.
+            راهنمای کامل شناخت <strong>نقش زوج درمانگر</strong>، معیارهای انتخاب <strong>زوج درمانگر خوب در تهران، شیراز، مشهد و آنلاین</strong>، و پروتکل‌های روز جهانی برای نجات زندگی مشترک.
           </p>
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5 max-w-2xl mx-auto mb-10">
+        <div className="flex flex-wrap items-center justify-center gap-2.5 max-w-3xl mx-auto mb-10">
           <button
             onClick={() => setActiveTab('what')}
             className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-black transition-all cursor-pointer ${
@@ -96,7 +96,7 @@ export const CouplesTherapyGuideSection: React.FC<CouplesTherapyGuideProps> = ({
                 : 'bg-[#FAF8F5] text-[#6F6B78] hover:bg-[#f2eff8] border border-[#E5E0EA]'
             }`}
           >
-            زوج درمان چیست؟
+            زوج درمانی چیست؟
           </button>
           <button
             onClick={() => setActiveTab('signs')}
@@ -128,6 +128,16 @@ export const CouplesTherapyGuideSection: React.FC<CouplesTherapyGuideProps> = ({
           >
             ویژگی‌های زوج درمانگر خوب
           </button>
+          <button
+            onClick={() => setActiveTab('cities')}
+            className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-black transition-all cursor-pointer ${
+              activeTab === 'cities'
+                ? 'bg-[#6D5AA8] text-white shadow-md'
+                : 'bg-[#FAF8F5] text-[#6F6B78] hover:bg-[#f2eff8] border border-[#E5E0EA]'
+            }`}
+          >
+            تهران، شیراز، مشهد و آنلاین
+          </button>
         </div>
 
         {/* Tab Content Display */}
@@ -139,10 +149,10 @@ export const CouplesTherapyGuideSection: React.FC<CouplesTherapyGuideProps> = ({
                   تعریف علمی و بالینی
                 </span>
                 <h3 className="text-xl sm:text-2xl font-black text-[#44386B]">
-                  تعریف تخصصی زوج درمان در روانشناسی رابطه
+                  تعریف تخصصی زوج درمانی در روانشناسی معاصر
                 </h3>
                 <p className="text-sm text-[#292733] leading-relaxed text-justify">
-                  <strong>زوج درمان (Couples Therapy)</strong> یکی از شاخه‌های تخصصی روانشناسی بالینی است که در آن یک درمانگر دارای صلاحیت بالینی، نه به عنوان قاضی یا داور، بلکه به عنوان یک تسهیل‌گر بی‌طرف به بررسی تعاملات، الگوهای ناخودآگاه و آسیب‌های دلبستگی بین دو شریک عاطفی می‌پردازد.
+                  <strong>زوج درمانی (Couples Therapy)</strong> یکی از شاخه‌های تخصصی روانشناسی بالینی است که در آن درمانگر دارای صلاحیت بالینی، نه به عنوان قاضی یا داور، بلکه به عنوان یک تسهیل‌گر بی‌طرف به بررسی تعاملات، الگوهای ناخودآگاه و آسیب‌های دلبستگی بین دو شریک عاطفی می‌پردازد.
                 </p>
                 <p className="text-sm text-[#6F6B78] leading-relaxed text-justify">
                   برخلاف مشاوره‌های سطحی و توصیه‌های عامیانه، در جلسات زوج درمان تمرکز بر مقصر شناختن یکی از طرفین نیست؛ بلکه «چرخه مخرب ارتباطی» به عنوان دشمن مشترک رابطه شناخته شده و مهارت‌های گفتگوی ایمن، تنظیم هیجان و بازسازی دلبستگی جایگزین قهر و جنگ قدرت می‌شود.
@@ -268,7 +278,7 @@ export const CouplesTherapyGuideSection: React.FC<CouplesTherapyGuideProps> = ({
                   </li>
                   <li className="flex items-center gap-2 font-bold text-[#292733]">
                     <BadgeCheck className="w-4 h-4 text-[#5e826b] shrink-0" />
-                    <span>فضایی کاملاً امن، بدون سوگیری جنسیتی و بدون قضاوت اخلاقی فراهم می‌کند.</span>
+                    <span>فضایی کاملاً امن، بدون سوگیری جنسیتی و بدون قضاود اخلاقی فراهم می‌کند.</span>
                   </li>
                 </ul>
               </div>
@@ -286,6 +296,90 @@ export const CouplesTherapyGuideSection: React.FC<CouplesTherapyGuideProps> = ({
                 >
                   درخواست رزرو وقت جلسه (حضوری تهران / آنلاین)
                 </button>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'cities' && (
+            <div className="space-y-6">
+              <div className="max-w-2xl">
+                <span className="text-xs font-black text-[#A67C2E] bg-[#FAF5EB] px-3 py-1 rounded-full border border-[#C5A059]/30 inline-block mb-2">
+                  دسترسی منطقه‌ای و آنلاین
+                </span>
+                <h3 className="text-xl sm:text-2xl font-black text-[#44386B] mb-2">
+                  خدمات زوج درمانی در تهران، شیراز، مشهد و سراسر کشور
+                </h3>
+                <p className="text-xs sm:text-sm text-[#6F6B78] leading-relaxed">
+                  تفاوت جغرافیایی مانع بهره‌مندی از خدمات تخصصی درجه‌یک نیست. چه در تهران سکونت داشته باشید و چه در شیراز یا مشهد، امکان رزرو جلسات حضوری یا آنلاین با حفظ بالاترین استانداردهای بالینی فراهم است.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                {/* Tehran */}
+                <div className="bg-white p-6 rounded-2xl border border-[#E5E0EA] shadow-xs flex flex-col justify-between">
+                  <div>
+                    <div className="w-10 h-10 rounded-xl bg-[#F2EEF8] text-[#6D5AA8] flex items-center justify-center mb-3">
+                      <Building2 className="w-5 h-5" />
+                    </div>
+                    <h4 className="text-base font-black text-[#2A1E35] mb-2">
+                      زوج درمانگر خوب در تهران
+                    </h4>
+                    <p className="text-xs text-[#6F6B78] leading-relaxed mb-4 text-justify">
+                      جلسات حضوری در کلینیک تخصصی پیوند امن غرب تهران (صادقیه، پونک، اشرفی اصفهانی، سعادت‌آباد) با رزرو قبلی.
+                    </p>
+                  </div>
+                  <a
+                    href="/articles/good-couples-therapist-in-tehran"
+                    className="text-xs font-bold text-[#6D5AA8] hover:text-[#44386B] flex items-center gap-1 mt-2"
+                  >
+                    <span>اطلاعات کلینیک تهران و انتخاب درمانگر</span>
+                    <ArrowLeft className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+
+                {/* Shiraz */}
+                <div className="bg-white p-6 rounded-2xl border border-[#E5E0EA] shadow-xs flex flex-col justify-between">
+                  <div>
+                    <div className="w-10 h-10 rounded-xl bg-[#FAF5EB] text-[#C5A059] flex items-center justify-center mb-3">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <h4 className="text-base font-black text-[#2A1E35] mb-2">
+                      زوج درمانگر شیراز (آنلاین)
+                    </h4>
+                    <p className="text-xs text-[#6F6B78] leading-relaxed mb-4 text-justify">
+                      مشاوره تصویری بدون افشای حریم خصوصی برای هم‌وطنان در شیراز و استان فارس با پروتکل‌های پیشرفته EFT.
+                    </p>
+                  </div>
+                  <a
+                    href="/articles/couples-therapy-shiraz"
+                    className="text-xs font-bold text-[#C5A059] hover:text-[#A67C2E] flex items-center gap-1 mt-2"
+                  >
+                    <span>راهنمای زوج درمانی شیراز</span>
+                    <ArrowLeft className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+
+                {/* Mashhad */}
+                <div className="bg-white p-6 rounded-2xl border border-[#E5E0EA] shadow-xs flex flex-col justify-between">
+                  <div>
+                    <div className="w-10 h-10 rounded-xl bg-[#EEF5F1] text-[#3E6B56] flex items-center justify-center mb-3">
+                      <Video className="w-5 h-5" />
+                    </div>
+                    <h4 className="text-base font-black text-[#2A1E35] mb-2">
+                      زوج درمانگر مشهد (آنلاین)
+                    </h4>
+                    <p className="text-xs text-[#6F6B78] leading-relaxed mb-4 text-justify">
+                      فضایی خنثی، بدون تعصب و کاملاً علمی برای حل تعارضات زناشویی، خیانت و طلاق عاطفی در مشهد و خراسان.
+                    </p>
+                  </div>
+                  <a
+                    href="/articles/couples-therapy-mashhad"
+                    className="text-xs font-bold text-[#3E6B56] hover:text-[#2A1E35] flex items-center gap-1 mt-2"
+                  >
+                    <span>راهنمای زوج درمانی مشهد</span>
+                    <ArrowLeft className="w-3.5 h-3.5" />
+                  </a>
+                </div>
               </div>
             </div>
           )}

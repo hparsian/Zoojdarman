@@ -9,23 +9,24 @@ import {
   CheckCircle2,
   ChevronDown,
   MessageSquare,
-  Compass,
-  HeartCrack,
-  Flame,
-  ShieldAlert,
-  Users
+  Globe2,
+  MapPin,
+  ShieldCheck,
+  Award,
+  Video
 } from 'lucide-react';
 
 interface SeoKeywordTopic {
   id: string;
   query: string;
-  category: 'infidelity' | 'conflict' | 'intimacy' | 'divorce' | 'premarital' | 'methods';
+  category: 'google-trends' | 'infidelity' | 'conflict' | 'intimacy' | 'divorce' | 'premarital' | 'methods';
   categoryLabel: string;
   monthlySearches: string;
   answerSummary: string;
   keyPoints: string[];
   articleSlug?: string;
   serviceSlug?: string;
+  isGoogleTrending?: boolean;
 }
 
 interface KeywordsHubSectionProps {
@@ -41,24 +42,156 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState<string>('all');
-  const [expandedTopicId, setExpandedTopicId] = useState<string | null>('q-1');
+  const [expandedTopicId, setExpandedTopicId] = useState<string | null>('q-g1');
+
+  // Exact Google Search Suggestions from user screenshot
+  const googleTopKeywords = [
+    { label: 'زوج درمانگر', query: 'زوج درمانگر' },
+    { label: 'زوج درمانگر خوب در تهران', query: 'زوج درمانگر خوب در تهران' },
+    { label: 'زوج درمانی', query: 'زوج درمانی' },
+    { label: 'زوج درمانگر آنلاین', query: 'زوج درمانگر آنلاین' },
+    { label: 'زوج درمانگر خوب', query: 'زوج درمانگر خوب' },
+    { label: 'زوج درمانگر شیراز', query: 'زوج درمانگر شیراز' },
+    { label: 'زوج درمانی چیست', query: 'زوج درمانی چیست' },
+    { label: 'زوج درمانگر مشهد', query: 'زوج درمانگر مشهد' },
+  ];
 
   const topics: SeoKeywordTopic[] = [
     {
-      id: 'q-1',
-      query: 'زوج درمان چیست و چه زمانی باید به زوج درمانگر مراجعه کرد؟',
-      category: 'methods',
-      categoryLabel: 'اصول زوج درمان',
-      monthlySearches: '۶۵,۰۰۰+ جستجو در ماه',
+      id: 'q-g1',
+      query: 'زوج درمانی چیست و چه زمانی به زوج درمانگر مراجعه کنیم؟',
+      category: 'google-trends',
+      categoryLabel: 'ترند گوگل: زوج درمانی چیست',
+      monthlySearches: '۹۵,۰۰۰+ جستجو در ماه',
+      isGoogleTrending: true,
       answerSummary:
-        'زوج درمان فرآیندی تخصصی در روانشناسی بالینی است که بر چرخه تعاملی بین همسران تمرکز دارد نه مقصر دانستن یک نفر. اگر مشاجرات شما مکرر شده، قهرها بیش از ۲۴ ساعت طول می‌کشد، صمیمیت جنسی کاهش یافته، خیانت رخ داده یا احساس می‌کنید مثل دو غریبه زیر یک سقف زندگی می‌کنید، زمان طلایی مراجعه به مرکز زوج درمان و دریافت کمک حرفه‌ای است.',
+        'زوج درمانی (Couples Therapy) شاخه‌ای تخصصی از روانشناسی بالینی است که در آن درمانگر به جای مقصر دانستن زن یا شوهر، چرخه تعاملی و آسیب‌های دلبستگی بین دو طرف را هدف قرار می‌دهد. اگر دعواهای شما بیش از ۲۴ ساعت به قهر می‌انجامد، صمیمیت جنسی از بین رفته یا دچار طلاق عاطفی شده‌اید، مداخله بهنگام زوج درمانگر از فروپاشی رابطه جلوگیری می‌کند.',
       keyPoints: [
-        'رویکرد علمی زوج درمان هیجان‌مدار (EFT) با ۸ الی ۱۲ جلسه امنیت عاطفی را احیا می‌کند.',
-        'مراجعه بهنگام به زوج درمانگر مانع از تبدیل نارضایتی سطحی به طلاق عاطفی و جدایی می‌شود.',
-        'جلسات زوج درمان هم به صورت دونفره (زوجی) و هم در صورت نیاز فردی برگزار می‌شود.',
+        'رویکرد علمی هیجان‌مدار (EFT) با اثربخشی ۷۵٪ پیوند امن را احیا می‌کند.',
+        'تفاوت بنیادین با پادرمیانی اطرافیان: بی‌طرفی ۱۰۰٪ بالینی و رویکرد شواهدنگر.',
+        'طول دوره استاندارد معمولاً بین ۸ تا ۱۶ جلسه هفتگی است.',
       ],
-      articleSlug: 'couples-therapy-approaches-comparison',
+      articleSlug: 'what-is-couples-therapy',
       serviceSlug: 'couples-therapy',
+    },
+    {
+      id: 'q-g2',
+      query: 'زوج درمانگر خوب در تهران کیست و چه ویژگی‌هایی دارد؟',
+      category: 'google-trends',
+      categoryLabel: 'ترند گوگل: زوج درمانگر تهران',
+      monthlySearches: '۸۸,۰۰۰+ جستجو در ماه',
+      isGoogleTrending: true,
+      answerSummary:
+        'یک زوج درمانگر خوب در تهران باید دارای مدرک کارشناسی ارشد یا دکتری روانشناسی بالینی، پروانه معتبر اشتغال تخصصی از سازمان نظام روانشناسی (مانند پروانه ۱۴۱۴۰۸۳ مهناز خوینی) و گواهینامه‌های رسمی دوره‌های بین‌المللی EFT و گاتمن باشد. مرکز تخصصی زوج درمان پیوند امن در منطقه ۲ غرب تهران محیطی کاملاً آرام، محرمانه و بدون قضاوت را برای زوجین فراهم نموده است.',
+      keyPoints: [
+        'استعلام مستقیم پروانه اشتغال تخصصی در سامانه سازمان نظام روانشناسی.',
+        'دسترسی عالی از غرب، شمال و مرکز تهران (صادقیه، اشرفی، پونک، سعادت‌آباد).',
+        'امکان رزرو جلسات حضوری یا آنلاین با پروتکل‌های یکپارچه بالینی.',
+      ],
+      articleSlug: 'good-couples-therapist-in-tehran',
+      serviceSlug: 'couples-therapy',
+    },
+    {
+      id: 'q-g3',
+      query: 'زوج درمانگر آنلاین؛ مشاوره تصویری غیرحضوری در سراسر ایران و جهان',
+      category: 'google-trends',
+      categoryLabel: 'ترند گوگل: زوج درمانگر آنلاین',
+      monthlySearches: '۷۲,۰۰۰+ جستجو در ماه',
+      isGoogleTrending: true,
+      answerSummary:
+        'پژوهش‌های بالینی انجمن روانشناسی آمریکا (APA) ثابت کرده‌اند جلسات آنلاین زوج درمانی تصویری با رویکرد EFT اثربخشی کاملاً برابری با جلسات حضوری دارند. این خدمت برای زوج‌های پرمشغله، هم‌وطنان در شهرهای مختلف ایران و ایرانیان مقیم خارج از کشور با تطبیق دقیق منطقه زمانی و در بستر امن رمزنگاری‌شده برگزار می‌شود.',
+      keyPoints: [
+        'حذف اتلاف وقت در ترافیک و امکان حضور از محیط راحت و طبیعی منزل.',
+        'امکان برگزاری تماس تصویری سه‌طرفه در صورت حضور یکی از زوجین در شهر دیگر.',
+        'پوشش کامل ایرانیان خارج از کشور در کانادا، اروپا، آمریکا و استرالیا.',
+      ],
+      articleSlug: 'online-couples-therapist',
+      serviceSlug: 'online-counseling',
+    },
+    {
+      id: 'q-g4',
+      query: 'ویژگی‌های یک زوج درمانگر خوب؛ چطور درمانگر مناسب را انتخاب کنیم؟',
+      category: 'google-trends',
+      categoryLabel: 'ترند گوگل: زوج درمانگر خوب',
+      monthlySearches: '۶۸,۰۰۰+ جستجو در ماه',
+      isGoogleTrending: true,
+      answerSummary:
+        'یک زوج درمانگر خوب هرگز در جایگاه قاضی یا داور نمی‌نشیند، از نصیحت‌های سطحی پرهیز می‌کند، تعصبات جنسیتی ندارد و مجهز به پروتکل‌های درمانی استاندارد است. او با ایجاد فضایی که هر دو طرف احساس شنیده شدن کنند، به زوجین کمک می‌کند چرخه منفی مشاجرات را متوقف سازند.',
+      keyPoints: [
+        'بی‌طرفی مطلق و هدایت جلسه به سمت گفتگوهای عمیق به جای جنگ قدرت.',
+        'مهارت در بحران‌زدایی فوری پس از کشف خیانت یا تصمیم‌های شتاب‌زده طلاق.',
+        'تعیین تکالیف خانگی هدفمند برای بازسازی گام‌به‌گام صمیمیت.',
+      ],
+      articleSlug: 'good-couples-therapist-in-tehran',
+      serviceSlug: 'couples-therapy',
+    },
+    {
+      id: 'q-g5',
+      query: 'زوج درمانگر شیراز؛ راهنمای انتخاب متخصص و مشاوره آنلاین برای شیراز',
+      category: 'google-trends',
+      categoryLabel: 'ترند گوگل: زوج درمانگر شیراز',
+      monthlySearches: '۴۵,۰۰۰+ جستجو در ماه',
+      isGoogleTrending: true,
+      answerSummary:
+        'زوج‌های ساکن شیراز و استان فارس می‌توانند به سادگی و بدون نیاز به سفر به پایتخت، از طریق جلسات آنلاین تصویری با مهناز خوینی (زوج درمانگر باسابقه تهران) ارتباط برقرار کنند. این شیوه علاوه بر دسترسی به بالاترین سطح استانداردهای EFT، نگرانی از برخورد تصادفی با آشنایان در کلینیک‌های محلی را برطرف ساخته و حریم خصوصی ۱۰۰٪ را تضمین می‌کند.',
+      keyPoints: [
+        'حفظ کامل حریم خصوصی و عدم افشای اسرار در محافل خانوادگی.',
+        'درک بالینی ظرافت‌های فرهنگی و بافت خانواده‌های اصیل شیرازی.',
+        'هماهنگی سریع نوبت جلسات در روزهای زوج و فرد متناسب با زمان مراجعان.',
+      ],
+      articleSlug: 'couples-therapy-shiraz',
+      serviceSlug: 'online-counseling',
+    },
+    {
+      id: 'q-g6',
+      query: 'زوج درمانگر مشهد؛ مشاوره تخصصی زوج درمانی و خانواده در مشهد',
+      category: 'google-trends',
+      categoryLabel: 'ترند گوگل: زوج درمانگر مشهد',
+      monthlySearches: '۴۸,۰۰۰+ جستجو در ماه',
+      isGoogleTrending: true,
+      answerSummary:
+        'در کلان‌شهر مشهد، تعارض میان ارزش‌های سنتی و سبک زندگی مدرن و دغدغه‌های استقلال خانواده جوانان از شایع‌ترین عوامل اختلاف است. مراجعان مشهد می‌توانند از خدمات زوج درمانی آنلاین مرکز مهناز خوینی برای حل تعارضات زناشویی، مشاوره خیانت، درمان طلاق عاطفی و سکس‌تراپی بدون پیش‌داوری بهره‌مند شوند.',
+      keyPoints: [
+        'فضایی بدون سوگیری‌های تعصب‌آمیز و کاملاً متمرکز بر علم روانشناسی رابطه.',
+        'بررسی دقیق چالش‌های رابطه زناشویی و سکس‌تراپی با رعایت کامل موازین اخلاقی.',
+        'امکان بهره‌مندی زوجین در سراسر استان خراسان رضوی و شمالی.',
+      ],
+      articleSlug: 'couples-therapy-mashhad',
+      serviceSlug: 'online-counseling',
+    },
+    {
+      id: 'q-g7',
+      query: 'زوج درمانی چیست و چند جلسه طول می‌کشد؟',
+      category: 'methods',
+      categoryLabel: 'اصول زوج درمانی',
+      monthlySearches: '۵۶,۰۰۰+ جستجو در ماه',
+      isGoogleTrending: true,
+      answerSummary:
+        'جلسات استاندارد زوج درمانی معمولاً بین ۸ تا ۱۶ جلسه هفتگی ۶۰ تا ۹۰ دقیقه‌ای زمان می‌برد. مراحل شامل ارزیابی اولیه، مصاحبه‌های فردی با هر یک از همسران، توافق بر سر اهداف درمانی، مداخله هیجانی EFT و در نهایت تثبیت مهارت‌های حل تعارض برای تضمین پایداری زندگی مشترک است.',
+      keyPoints: [
+        'جلسات اول به سنجش بالینی و کشف زیربنای تعارضات اختصاص دارد.',
+        'آموزش خنثی‌سازی ۴ سوارکار طلاق جان گاتمن در دعواها.',
+        'جلسات تثبیت نهایی مانع از بازگشت به رفتارهای فرساینده کهنه می‌شود.',
+      ],
+      articleSlug: 'what-is-couples-therapy',
+      serviceSlug: 'couples-therapy',
+    },
+    {
+      id: 'q-g8',
+      query: 'نقش زوج درمانگر در نجات رابطه در آستانه جدایی و بازسازی عشق',
+      category: 'divorce',
+      categoryLabel: 'طلاق عاطفی و پیشگیری',
+      monthlySearches: '۵۲,۰۰۰+ جستجو در ماه',
+      isGoogleTrending: true,
+      answerSummary:
+        'یک زوج درمانگر متخصص با ایجاد حریم امن مکالمه، به زوج‌ها کمک می‌کند فراتر از خشم و داد و بیداد، ریشه‌های دلبستگی آسیب‌دیده و نیاز به دیده شدن را به زبان بیاورند. تجربه نشان می‌دهد در بیش از ۷۰٪ مواردی که هر دو نفر تمایل حداقلی برای کار روی رابطه دارند، شعله صمیمیت مجدداً روشن می‌شود.',
+      keyPoints: [
+        'تشخیص افتراقی بین بحران‌های قابل ترمیم و آسیب‌های روابط سمی نامتقارن.',
+        'تمرین مکالمات آسیب‌پذیر و کاهش کورتیزول و ضربان قلب در تعارضات.',
+        'در صورت لزوم، هدایت به سمت طلاق آگاهانه و کاهش تروما برای زوج و فرزندان.',
+      ],
+      articleSlug: 'deciding-about-divorce',
+      serviceSlug: 'divorce-counseling',
     },
     {
       id: 'q-2',
@@ -140,53 +273,38 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
       articleSlug: 'premarital-psychological-tests',
       serviceSlug: 'premarital-counseling',
     },
-    {
-      id: 'q-7',
-      query: 'چگونه با دخالت خانواده همسر برخورد کنیم بدون اینکه دعوا شود؟',
-      category: 'conflict',
-      categoryLabel: 'حل دعوا و گفتگو',
-      monthlySearches: '۴۱,۰۰۰+ جستجو در ماه',
-      answerSummary:
-        'قانون طلایی در روابط زناشویی این است: هر فرد باید مرز خانواده پدری خود را با احترام مدیریت کند. وقتی زن یا شوهر به عنوان سپر دفاعی عمل نکند، طرف مقابل احساس بی‌پناهی کرده و تنش‌ها به اتاق خواب و زندگی مشترک کشیده می‌شود.',
-      keyPoints: [
-        'اولین وفاداری عاطفی پس از عقد متعلق به همسر است نه خانواده پدری.',
-        'حفظ حریم خصوصی: مسائل مالی، مشاجرات و اسرار نباید به بیرون درز کند.',
-        'مرزبندی با محبت و ادب بدون بی‌احترامی به بزرگترها.',
-      ],
-      articleSlug: 'family-interference-boundaries',
-      serviceSlug: 'relationship-patterns-therapy',
-    },
-    {
-      id: 'q-8',
-      query: 'تست‌های آنلاین روانشناسی رابطه چقدر دقت علمی دارند؟',
-      category: 'methods',
-      categoryLabel: 'اصول زوج‌درمانی',
-      monthlySearches: '۳۴,۰۰۰+ جستجو در ماه',
-      answerSummary:
-        'تست‌های استاندارد مانند انریچ (ENRICH) و شاخص ۴ سوارکار گاتمن دارای روایی بالینی بالای ۸۵٪ هستند و وضعیت فعلی رضایت و خطر رابطه را به وضوح نشان می‌دهند. این تست‌ها نقطه شروع فوق‌العاده‌ای برای خودآگاهی و شروع گفتگوی ترمیمی هستند.',
-      keyPoints: [
-        'آزمون‌های آنلاین سامانه زوج‌درمان بر پایه مقیاس‌های استاندارد طراحی شده‌اند.',
-        'امکان مقایسه نمره خود با همسر برای پیدا کردن نقاط اختلاف.',
-        'نتیجه به عنوان پیش‌ارزیابی به روانشناس در جلسه مشاوره کمک می‌کند.',
-      ],
-      articleSlug: 'signs-marriage-is-over-test',
-      serviceSlug: 'couples-therapy',
-    },
   ];
 
   const categories = [
-    { id: 'all', label: 'همه موضوعات پرجستجو' },
+    { id: 'all', label: 'همه موضوعات' },
+    { id: 'google-trends', label: '⭐ ترندهای برتر گوگل (پرجستجو)' },
     { id: 'infidelity', label: 'خیانت و بازسازی اعتماد' },
     { id: 'conflict', label: 'دعوا، قهر و حل اختلاف' },
     { id: 'intimacy', label: 'سردی عاطفی و سکس‌تراپی' },
     { id: 'divorce', label: 'طلاق عاطفی و جدایی' },
     { id: 'premarital', label: 'مشاوره پیش از ازدواج' },
-    { id: 'methods', label: 'رویکردها و تست‌های بالینی' },
+    { id: 'methods', label: 'رویکردها و اصول بالینی' },
   ];
+
+  const handleChipClick = (keyword: string) => {
+    setSearchTerm(keyword);
+    setActiveCategory('all');
+    // find matched topic
+    const matched = topics.find(
+      (t) =>
+        t.query.includes(keyword) ||
+        t.categoryLabel.includes(keyword) ||
+        (t.articleSlug && t.articleSlug.includes(keyword))
+    );
+    if (matched) {
+      setExpandedTopicId(matched.id);
+    }
+  };
 
   const filteredTopics = topics.filter((t) => {
     const matchesCategory = activeCategory === 'all' || t.category === activeCategory;
     const matchesSearch =
+      searchTerm === '' ||
       t.query.toLowerCase().includes(searchTerm.toLowerCase()) ||
       t.answerSummary.toLowerCase().includes(searchTerm.toLowerCase()) ||
       t.categoryLabel.toLowerCase().includes(searchTerm.toLowerCase());
@@ -197,35 +315,69 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
     <section className="py-20 bg-white border-t border-[#E5E0EA]" id="seo-hub">
       <div className="container-custom">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-[#A67C2E] uppercase mb-3">
-            <span className="w-6 h-px bg-[#C5A059]" />
+        <div className="text-center max-w-3xl mx-auto mb-10">
+          <div className="inline-flex items-center gap-2 text-xs font-black tracking-widest text-[#A67C2E] uppercase mb-3 bg-[#FAF5EB] px-3.5 py-1.5 rounded-full border border-[#C5A059]/30">
             <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
-            <span>پاسخ به سوالات پرتکرار و جستجوهای گوگل</span>
-            <span className="w-6 h-px bg-[#C5A059]" />
+            <span>پاسخ بالینی به پرجستجوترین کلمات گوگل</span>
           </div>
 
           <h2 className="text-2xl sm:text-4xl font-black text-[#2A1E35] mb-4 leading-tight">
-            دانشنامه کلمات کلیدی و راهکارهای بالینی{' '}
-            <span className="text-[#C5A059] block sm:inline">مرکز تخصصی زوج درمان و زندگی مشترک</span>
+            دانشنامه کلمات کلیدی و جستجوهای پرطرفدار{' '}
+            <span className="text-[#6D5AA8] block sm:inline">مرکز تخصصی زوج درمان و زوج‌درمانی</span>
           </h2>
 
           <p className="text-sm sm:text-base text-[#6F6B78] leading-relaxed max-w-2xl mx-auto">
-            پاسخ‌های دقیق، بالینی و کاربردی مهناز خوینی (زوج درمانگر باسابقه تهران) به چالش‌برانگیزترین دغدغه‌های مراجعان در حوزه زوج درمان، ازدواج و خیانت.
+            پاسخ‌های تحلیلی و مستند مهناز خوینی (زوج درمانگر باسابقه بالینی، پروانه نظام روانشناسی ۱۴۱۴۰۸۳) به کلیدی‌ترین دغدغه‌های مراجعان در تهران، شهرستان‌ها و آنلاین سراسر جهان.
           </p>
         </div>
 
+        {/* Google Autocomplete Suggestions Bar */}
+        <div className="max-w-4xl mx-auto mb-8 bg-[#FAF8F5] p-5 sm:p-6 rounded-3xl border border-[#E8DFD5] shadow-xs">
+          <div className="flex items-center gap-2 mb-3.5 text-xs font-black text-[#2A1E35]">
+            <TrendingUp className="w-4 h-4 text-[#C5A059]" />
+            <span>پیشنهادات برتر سرچ گوگل برای عبارت «زوج درمان»:</span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            {googleTopKeywords.map((item, idx) => {
+              const isSelected = searchTerm === item.query;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => handleChipClick(item.query)}
+                  className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                    isSelected
+                      ? 'bg-[#6D5AA8] text-white shadow-sm ring-2 ring-[#6D5AA8]/30'
+                      : 'bg-white hover:bg-[#F2EEF8] text-[#3E2F5B] border border-[#E8DFD5] hover:border-[#6D5AA8]/40'
+                  }`}
+                >
+                  <Search className="w-3 h-3 text-[#A67C2E]" />
+                  <span>{item.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
         {/* Search & Filter Bar */}
-        <div className="max-w-3xl mx-auto mb-10">
+        <div className="max-w-4xl mx-auto mb-10">
           <div className="relative mb-5">
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="جستجو میان موضوعات پرطرفدار (مثال: خیانت، قهر، سردی، طلاق، دلبستگی، تست...)"
-              className="w-full px-5 py-4 pr-12 bg-white border border-[#E8DFD5] rounded-xl text-xs sm:text-sm font-medium text-[#2A1E35] focus:bg-white focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059]/30 focus:outline-none shadow-xs transition-all"
+              placeholder="جستجوی مستقیم سوال یا کلمه کلیدی (مثال: زوج درمانگر خوب در تهران، زوج درمانی چیست، آنلاین، شیراز، مشهد...)"
+              className="w-full px-5 py-4 pr-12 bg-white border border-[#E8DFD5] rounded-xl text-xs sm:text-sm font-medium text-[#2A1E35] focus:bg-white focus:border-[#6D5AA8] focus:ring-2 focus:ring-[#6D5AA8]/20 focus:outline-none shadow-xs transition-all"
             />
-            <Search className="w-5 h-5 text-[#A67C2E] absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Search className="w-5 h-5 text-[#6D5AA8] absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+            {searchTerm && (
+              <button
+                onClick={() => setSearchTerm('')}
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-xs font-bold text-[#8A8494] hover:text-[#2A1E35] cursor-pointer"
+              >
+                پاک کردن
+              </button>
+            )}
           </div>
 
           {/* Category Chips */}
@@ -237,7 +389,7 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
                 className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                   activeCategory === cat.id
                     ? 'bg-[#2A1E35] text-white shadow-md border border-[#C5A059]/40'
-                    : 'bg-white text-[#6F6B78] hover:text-[#2A1E35] hover:border-[#C5A059]/50 border border-[#E8DFD5]'
+                    : 'bg-white text-[#6F6B78] hover:text-[#2A1E35] hover:border-[#6D5AA8]/40 border border-[#E8DFD5]'
                 }`}
               >
                 {cat.label}
@@ -253,7 +405,7 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
               <HelpCircle className="w-12 h-12 text-[#8e8a96] mx-auto mb-3" />
               <h3 className="text-base font-black text-[#292733] mb-1">موضوعی با این عبارت یافت نشد</h3>
               <p className="text-xs text-[#6F6B78] mb-4">
-                می‌توانید کلمه دیگری را جستجو کنید یا از ابزارهای آنلاین ارزیابی ما استفاده کنید.
+                می‌توانید کلمه دیگری را جستجو کنید یا از ابزارهای آنلاین ارزیابی ما استفاده نمایید.
               </p>
               <button
                 onClick={() => {
@@ -262,7 +414,7 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
                 }}
                 className="text-xs font-bold text-[#6D5AA8] underline cursor-pointer"
               >
-                مشاهده همه موضوعات
+                مشاهده همه کلمات و پرسش‌ها
               </button>
             </div>
           ) : (
@@ -273,8 +425,8 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
                   key={topic.id}
                   className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
                     isOpen
-                      ? 'bg-white border-[#C5A059]/60 shadow-lg ring-1 ring-[#C5A059]/20'
-                      : 'bg-white border-[#E8DFD5] hover:border-[#C5A059]/40 shadow-xs'
+                      ? 'bg-white border-[#6D5AA8]/50 shadow-md ring-1 ring-[#6D5AA8]/15'
+                      : 'bg-white border-[#E8DFD5] hover:border-[#6D5AA8]/30 shadow-xs'
                   }`}
                 >
                   {/* Accordion Trigger */}
@@ -283,17 +435,28 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
                     className="w-full p-5 sm:p-6 text-right flex items-center justify-between gap-4 cursor-pointer"
                   >
                     <div className="flex items-center gap-3.5 flex-1">
-                      <span className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
-                        isOpen ? 'bg-[#2A1E35] text-[#C5A059]' : 'bg-[#FAF8F5] text-[#2A1E35] border border-[#E8DFD5]'
-                      }`}>
+                      <span
+                        className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
+                          isOpen
+                            ? 'bg-[#2A1E35] text-[#C5A059]'
+                            : 'bg-[#FAF8F5] text-[#2A1E35] border border-[#E8DFD5]'
+                        }`}
+                      >
                         <BookOpen className="w-4 h-4" />
                       </span>
                       <div>
-                        <h3 className="text-sm sm:text-base font-black text-[#2A1E35] leading-snug">
-                          {topic.query}
-                        </h3>
-                        <div className="flex items-center gap-2 mt-1.5">
-                          <span className="text-[10px] font-mono font-bold text-[#A67C2E] bg-[#FAF8F5] border border-[#E8DFD5] px-2.5 py-0.5 rounded-md">
+                        <div className="flex items-center gap-2 flex-wrap mb-1">
+                          <h3 className="text-sm sm:text-base font-black text-[#2A1E35] leading-snug">
+                            {topic.query}
+                          </h3>
+                          {topic.isGoogleTrending && (
+                            <span className="text-[10px] font-black bg-[#FAF5EB] text-[#A67C2E] border border-[#C5A059]/40 px-2 py-0.5 rounded-md">
+                              ترند گوگل
+                            </span>
+                          )}
+                        </div>
+                        <div className="flex items-center gap-2 mt-1">
+                          <span className="text-[10px] font-mono font-bold text-[#6D5AA8] bg-[#F2EEF8] border border-[#6D5AA8]/20 px-2.5 py-0.5 rounded-md">
                             {topic.categoryLabel}
                           </span>
                           <span className="text-[10px] text-[#7A7382] font-medium hidden sm:inline">
@@ -321,7 +484,7 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
 
                       <div className="bg-[#FAF8F5] p-5 rounded-xl border border-[#E8DFD5] mb-5">
                         <span className="block text-[11px] font-black text-[#2A1E35] mb-2">
-                          نکات کلیدی بالینی:
+                          نکات کلیدی و راهنمای بالینی:
                         </span>
                         <ul className="space-y-2">
                           {topic.keyPoints.map((point, pIdx) => (
@@ -342,17 +505,23 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
                           {topic.articleSlug && (
                             <a
                               href={`/articles/${topic.articleSlug}`}
-                              onClick={(e) => { e.preventDefault(); onSelectArticle(topic.articleSlug!); }}
-                              className="inline-flex items-center gap-1.5 text-[#2A1E35] hover:text-[#C5A059] font-black hover:underline cursor-pointer"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                onSelectArticle(topic.articleSlug!);
+                              }}
+                              className="inline-flex items-center gap-1.5 text-[#6D5AA8] hover:text-[#44386B] font-black hover:underline cursor-pointer"
                             >
                               <span>مطالعه مقاله کامل تخصصی</span>
-                              <ArrowRight className="w-3.5 h-3.5 rotate-180 text-[#C5A059]" />
+                              <ArrowRight className="w-3.5 h-3.5 rotate-180 text-[#6D5AA8]" />
                             </a>
                           )}
                           {topic.serviceSlug && (
                             <a
                               href={`/services/${topic.serviceSlug}`}
-                              onClick={(e) => { e.preventDefault(); onSelectService(topic.serviceSlug!); }}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                onSelectService(topic.serviceSlug!);
+                              }}
                               className="inline-flex items-center gap-1.5 text-[#3E6B56] hover:text-[#2A1E35] font-bold hover:underline cursor-pointer"
                             >
                               <span>مشاهده پروتکل خدمت</span>
@@ -362,14 +531,14 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
 
                         <a
                           href={`https://wa.me/989199087264?text=${encodeURIComponent(
-                            `سلام، درباره موضوع «${topic.query}» در سایت مطالعه کردم و برای مشاوره با خانم خوینی درخواست نوبت دارم.`
+                            `سلام، درباره موضوع «${topic.query}» در سایت مطالعه کردم و برای نوبت مشاوره با خانم خوینی درخواست دارم.`
                           )}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-[#2A1E35] bg-[#FAF8F5] border border-[#E8DFD5] hover:border-[#C5A059] px-3.5 py-1.5 rounded-xl font-bold transition-all"
+                          className="inline-flex items-center gap-1.5 text-[#2A1E35] bg-[#FAF8F5] border border-[#E8DFD5] hover:border-[#6D5AA8] px-3.5 py-1.5 rounded-xl font-bold transition-all"
                         >
-                          <MessageSquare className="w-3.5 h-3.5 text-[#C5A059]" />
-                          <span>مشاوره اختصاصی این موضوع</span>
+                          <MessageSquare className="w-3.5 h-3.5 text-[#6D5AA8]" />
+                          <span>رزرو نوبت مشاوره (حضوری / آنلاین)</span>
                         </a>
                       </div>
                     </div>
@@ -381,25 +550,25 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
         </div>
 
         {/* Banner linking to tools */}
-        <div className="bg-gradient-to-r from-[#44386B] to-[#6D5AA8] rounded-3xl p-6 sm:p-10 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="bg-gradient-to-r from-[#3E2F5B] to-[#5E4B82] rounded-3xl p-6 sm:p-10 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="max-w-xl text-right">
             <span className="inline-block bg-white/20 text-white text-[11px] font-black px-3 py-1 rounded-full mb-3 backdrop-blur-xs">
-              ابزار خودسنجی هوشمند
+              سنجش علمی رابطه آنلاین
             </span>
             <h3 className="text-xl sm:text-2xl font-black mb-2">
-              هنوز مطمئن نیستید رابطه شما در چه سطحی از ریسک قرار دارد؟
+              آیا رابطه شما نیازمند مداخله زوج درمانگر است؟
             </h3>
-            <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
-              با شرکت در تست آنلاین رایگان سلامت رابطه انریچ، کارنامه بالینی تفکیکی خود را دریافت نموده و ریشه تعارضات را شناسایی کنید.
+            <p className="text-xs sm:text-sm text-white/85 leading-relaxed">
+              با شرکت در تست آنلاین رایگان سلامت رابطه انریچ (ENRICH) و شاخص طلاق گاتمن، کارنامه بالینی تفکیکی خود را در کمتر از ۳ دقیقه دریافت نمایید.
             </p>
           </div>
 
           <button
             onClick={onScrollToTools}
-            className="w-full md:w-auto px-7 py-4 bg-white hover:bg-[#FAF8F5] text-[#44386B] rounded-full font-black text-xs sm:text-sm shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 shrink-0 cursor-pointer"
+            className="w-full md:w-auto px-7 py-4 bg-white hover:bg-[#FAF8F5] text-[#3E2F5B] rounded-full font-black text-xs sm:text-sm shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 shrink-0 cursor-pointer"
           >
-            <Sparkles className="w-4 h-4 text-[#E8A58D]" />
-            <span>شروع تست رایگان رابطه (۳ دقیقه)</span>
+            <Sparkles className="w-4 h-4 text-[#C5A059]" />
+            <span>شروع تست آنلاین سلامت رابطه (رایگان)</span>
           </button>
         </div>
       </div>

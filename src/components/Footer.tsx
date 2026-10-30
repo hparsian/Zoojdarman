@@ -218,6 +218,14 @@ export const Footer: React.FC<FooterProps> = ({
             <ul className="flex flex-col gap-2.5 text-xs text-[#D8D2E5]">
               <li>
                 <a
+                  href="/best-couples-therapist-tehran"
+                  className="hover:text-[#C5A059] text-white font-bold transition-colors cursor-pointer text-right block py-1"
+                >
+                  بهترین زوج درمانگر تهران و آنلاین
+                </a>
+              </li>
+              <li>
+                <a
                   href="/tools"
                   onClick={(e) => { e.preventDefault(); onNavigateTools ? onNavigateTools() : onNavigateHome('tools'); }}
                   className="hover:text-[#C5A059] text-[#C5A059] font-bold transition-colors cursor-pointer text-right block py-1 flex items-center gap-1.5"
