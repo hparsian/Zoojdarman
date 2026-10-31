@@ -44,16 +44,49 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [expandedTopicId, setExpandedTopicId] = useState<string | null>('q-g1');
 
-  // Exact Google Search Suggestions from user screenshot
-  const googleTopKeywords = [
-    { label: 'زوج درمانگر', query: 'زوج درمانگر' },
-    { label: 'زوج درمانگر خوب در تهران', query: 'زوج درمانگر خوب در تهران' },
-    { label: 'زوج درمانی', query: 'زوج درمانی' },
-    { label: 'زوج درمانگر آنلاین', query: 'زوج درمانگر آنلاین' },
-    { label: 'زوج درمانگر خوب', query: 'زوج درمانگر خوب' },
-    { label: 'زوج درمانگر شیراز', query: 'زوج درمانگر شیراز' },
-    { label: 'زوج درمانی چیست', query: 'زوج درمانی چیست' },
-    { label: 'زوج درمانگر مشهد', query: 'زوج درمانگر مشهد' },
+  // Exact Google Search Suggestions from user screenshots
+  const googleKeywordGroups = [
+    {
+      label: 'زوج درمان',
+      keywords: [
+        'زوج درمانگر',
+        'زوج درمانگر خوب در تهران',
+        'زوج درمانی',
+        'زوج درمانگر آنلاین',
+        'زوج درمانگر خوب',
+        'زوج درمانگر شیراز',
+        'زوج درمانی چیست',
+        'زوج درمانگر مشهد',
+      ],
+    },
+    {
+      label: 'مشاوره خیانت',
+      keywords: [
+        'مشاوره خیانت',
+        'مشاوره خیانت پرسش و پاسخ',
+        'مشاوره خیانت زن',
+        'مشاوره خیانت همسر',
+        'مشاوره خیانت مرد به زن',
+        'مشاوره خیانت زن به شوهر',
+        'مشاوره خیانت در مشهد',
+        'مشاوره خیانت تلفنی رایگان',
+      ],
+    },
+    {
+      label: 'مشاوره و روانشناس',
+      keywords: [
+        'روانشناس',
+        'روانشناس آنلاین',
+        'روانشناسی بالینی',
+        'روانشناسی بالینی چیست',
+        'مشاوره',
+        'مشاوره آنلاین',
+        'مشاوره روانشناسی',
+        'مشاوره روانشناسی آنلاین',
+        'مشاوره رایگان',
+        'مشاوره تلفنی رایگان',
+      ],
+    },
   ];
 
   const topics: SeoKeywordTopic[] = [
@@ -273,6 +306,123 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
       articleSlug: 'premarital-psychological-tests',
       serviceSlug: 'premarital-counseling',
     },
+    {
+      id: 'q-g9',
+      query: 'مشاوره خیانت پرسش و پاسخ؛ ۲۰ سوال پرتکرار درباره مشاوره خیانت',
+      category: 'google-trends',
+      categoryLabel: 'ترند گوگل: مشاوره خیانت',
+      monthlySearches: '۵۵,۰۰۰+ جستجو در ماه',
+      isGoogleTrending: true,
+      answerSummary:
+        'مشاوره خیانت پرسش و پاسخ، پاسخ صریح به سوالاتی است که در روزهای اول پس از افشا پیش می‌آید: آیا باید بخشید، چطور دوباره اعتماد کرد، آیا ارتباط با فرد سوم باید کاملاً قطع شود، چند جلسه طول می‌کشد و اگر همسر نیامد چه کنیم. پروتکل سه‌مرحله‌ای مرکز ما شامل تثبیت بحران، کالبدشکافی بدون سرزنش و بازسازی شفافیت یا تصمیم آگاهانه است.',
+      keyPoints: [
+        'تست ارزیابی ترومای خیانت (PISSD) و تست انریچ رضایت زناشویی رایگان و فوری است.',
+        'ریشه خیانت معمولاً فاصله عاطفی کهنه است، نه «عشق تازه»؛ درمان هم همین ریشه را هدف می‌گیرد.',
+        'رازداری کامل بر اساس سوگندنامه درمانی و مقررات نظام روان‌شناسی تضمین می‌شود.',
+      ],
+      articleSlug: 'infidelity-counseling-questions',
+      serviceSlug: 'infidelity-counseling',
+    },
+    {
+      id: 'q-g10',
+      query: 'مشاوره خیانت زن به شوهر؛ دلایل، نشانه‌ها و مسیر بازسازی اعتماد',
+      category: 'google-trends',
+      categoryLabel: 'ترند گوگل: مشاوره خیانت زن',
+      monthlySearches: '۳۱,۰۰۰+ جستجو در ماه',
+      isGoogleTrending: true,
+      answerSummary:
+        'در مشاوره خیانت زن به شوهر معمولاً با الگوی کمبود توجه عاطفی مزمن و فاصله هیجانی ماه‌ها یا سال‌ها روبه‌رو هستیم؛ یعنی نیازهای ناگفته در جای دیگری شنیده شده است. این توضیح، توجیه نیست بلکه راهنمای درمان است تا فرآیند به سمت رفع ریشه‌ای مشکل و بازسازی اعتماد برود، نه صرف سرزنش یک‌طرفه.',
+      keyPoints: [
+        'قطع کامل و اثبات‌شده ارتباط با فرد سوم پیش از شروع مرحله بازسازی الزامی است.',
+        'بازگشت اعتماد بین ۶ تا ۱۸ ماه زمان می‌برد و به شفافیت داوطلبانه بستگی دارد.',
+        'امکان شروع درمان به‌صورت انفرادی حتی وقتی همسر هنوز آمادگی ندارد.',
+      ],
+      articleSlug: 'wife-infidelity-to-husband',
+      serviceSlug: 'infidelity-counseling',
+    },
+    {
+      id: 'q-g11',
+      query: 'مشاوره خیانت مرد به زن و مشاوره خیانت همسر؛ از شوک اولیه تا بازسازی',
+      category: 'google-trends',
+      categoryLabel: 'ترند گوگل: مشاوره خیانت همسر',
+      monthlySearches: '۲۸,۰۰۰+ جستجو در ماه',
+      isGoogleTrending: true,
+      answerSummary:
+        'مشاوره خیانت مرد به زن بیشتر با الگوهای ریسک‌پذیری، تعارض حل‌نشده رضایت جنسی یا وابستگی به توجه بیرونی سروکار دارد. در هر دو حالت زن و شوهر، پروتکل سه‌مرحله‌ای یکسان است: تثبیت شوک روزهای اول، فهم چرخه تعاملی بدون سرزنش و سپس تصمیم برای بازسازی یا جدایی آگاهانه.',
+      keyPoints: [
+        'در ۶ اقدام حیاتی روزهای اول نباید پیام عمومی ارسال یا تصمیم جدایی شتاب‌زده گرفته شود.',
+        'تفاوت جنسیتی در شدت تقصیر نیست، بلکه در مسیر رسیدن به بحران است.',
+        'بازسازی رابطه پس از خیانت تنها در صورت قطع کامل رابطه با فرد سوم ممکن است.',
+      ],
+      articleSlug: 'husband-infidelity-to-wife',
+      serviceSlug: 'infidelity-counseling',
+    },
+    {
+      id: 'q-g12',
+      query: 'مشاوره خیانت تلفنی رایگان و مشاوره خیانت در مشهد؛ چطور انجام می‌شود؟',
+      category: 'google-trends',
+      categoryLabel: 'ترند گوگل: مشاوره خیانت تلفنی',
+      monthlySearches: '۲۴,۰۰۰+ جستجو در ماه',
+      isGoogleTrending: true,
+      answerSummary:
+        'گفتگوی اولیه هماهنگی نوبت از طریق واتساپ و همه آزمون‌های آنلاین سایت رایگان‌اند؛ جلسات تخصصی مشاوره خیانت تلفنی یا تصویری بر اساس تعرفه مصوب سازمان نظام روان‌شناسی محاسبه می‌شوند. مراجعان مشهد و سایر شهرها می‌توانند بدون سفر به تهران، همان پروتکل تهران را به‌صورت آنلاین تصویری دریافت کنند.',
+      keyPoints: [
+        'جلسه تلفنی/تصویری دقیقاً مانند جلسه حضوری محرمانه و دارای قرارداد درمانی است.',
+        'برای مراجعان مشهد، شیراز و شهرستان‌ها نیازی به سفر و رفت‌وآمد نیست.',
+        'پژوهش‌های APA اثربخشی جلسات آنلاین را برابر با جلسات حضوری نشان می‌دهد.',
+      ],
+      articleSlug: 'phone-online-infidelity-counseling',
+      serviceSlug: 'infidelity-counseling',
+    },
+    {
+      id: 'q-g13',
+      query: 'روانشناسی بالینی چیست و تفاوت آن با روان‌پزشکی چهقدر است؟',
+      category: 'google-trends',
+      categoryLabel: 'ترند گوگل: روانشناسی بالینی',
+      monthlySearches: '۴۰,۰۰۰+ جستجو در ماه',
+      isGoogleTrending: true,
+      answerSummary:
+        'روانشناسی بالینی شاخه‌ای کاربردی از روان‌شناسی است که ارزیابی روان‌سنجی و روان‌درمانی اختلالات روانی، هیجانی و رفتاری را بر عهده دارد. روانشناس بالینی با گفتگو درمانی و پروتکل‌هایی مانند CBT و EFT کار می‌کند و نسخه دارو نمی‌نویسد؛ دارودرمانی در حوزه روان‌پزشک است و در موارد شدید همکاری هر دو توصیه می‌شود.',
+      keyPoints: [
+        'اشغال بالینی در ایران نیازمند ارشد یا دکتری تخصصی و پروانه نظام روان‌شناسی است.',
+        'روانشناسی بالینی پایه علمی زوج‌درمانی، درمان خیانت و سکس‌تراپی است.',
+        'ابزارهای روان‌سنجی مانند MMPI و NEO برای تشخیص دقیق به کار می‌روند.',
+      ],
+      articleSlug: 'clinical-psychology',
+    },
+    {
+      id: 'q-g14',
+      query: 'روانشناس آنلاین و مشاوره روانشناسی آنلاین؛ چطور یک متخصص معتبر انتخاب کنیم؟',
+      category: 'google-trends',
+      categoryLabel: 'ترند گوگل: مشاوره روانشناسی آنلاین',
+      monthlySearches: '۳۵,۰۰۰+ جستجو در ماه',
+      isGoogleTrending: true,
+      answerSummary:
+        'مشاوره روانشناسی آنلاین همان جلسه ارزیابی و درمان است که در بستر تماس تصویری امن برگزار می‌شود و برای مراجعان شهرستان‌ها و ایرانیان خارج از کشور ایده‌آل است. برای انتخاب روانشناس آنلاین معتبر سه معیار را بسنجید: مدرک تخصصی معتبر، پروانه اشتغال قابل استعلام و تجربه مشخص دقیقاً در همان مشکلی که دارید.',
+      keyPoints: [
+        'پژوهش‌های APA اثربخشی روان‌درمانی آنلاین را برابر با جلسه حضوری نشان می‌دهد.',
+        'امکان برگزاری جلسه مشترک زوجین حتی در دو شهر یا دو کشور مختلف.',
+        'تست‌های آنلاین رایگان سایت نقطه شروع خوبی پیش از اولین جلسه است.',
+      ],
+      articleSlug: 'clinical-psychology',
+      serviceSlug: 'online-counseling',
+    },
+    {
+      id: 'q-g15',
+      query: 'مشاوره رایگان، مشاوره تلفنی رایگان و مشاوره آنلاین؛ چه چیزی واقعاً رایگان است؟',
+      category: 'google-trends',
+      categoryLabel: 'ترند گوگل: مشاوره رایگان',
+      monthlySearches: '۴۷,۰۰۰+ جستجو در ماه',
+      isGoogleTrending: true,
+      answerSummary:
+        'در این مرکز، گفتگوی اولیه هماهنگی نوبت در واتساپ و مجموعه کامل آزمون‌های آنلاین روان‌شناسی رابطه (انریچ، سبک دلبستگی، ۵ زبان عشق، شاخص طلاق گاتمن و ارزیابی ترومای خیانت) کاملاً رایگان است. جلسات درمانی تخصصی اما تعرفه‌دار هستند، چون زمان متخصص بالینی صرف می‌شود؛ نرخ مصوب به‌صورت شفاف در صفحه تعرفه اعلام شده است.',
+      keyPoints: [
+        'رایگان: تست‌های آنلاین با تحلیل فوری + گفتگوی اولیه نوبت‌دهی در واتساپ.',
+        'تعرفه‌دار: جلسات حضوری و آنلاین بر اساس تعرفه مصوب سازمان نظام روان‌شناسی.',
+        'پیش از پرداخت هر هزینه‌ای می‌توانید از نتیجه تست آنلاین و گفتگوی اولیه استفاده کنید.',
+      ],
+      articleSlug: 'clinical-psychology',
+    },
   ];
 
   const categories = [
@@ -333,29 +483,38 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
 
         {/* Google Autocomplete Suggestions Bar */}
         <div className="max-w-4xl mx-auto mb-8 bg-[#FAF8F5] p-5 sm:p-6 rounded-3xl border border-[#E8DFD5] shadow-xs">
-          <div className="flex items-center gap-2 mb-3.5 text-xs font-black text-[#2A1E35]">
+          <div className="flex items-center gap-2 mb-4 text-xs font-black text-[#2A1E35]">
             <TrendingUp className="w-4 h-4 text-[#C5A059]" />
-            <span>پیشنهادات برتر سرچ گوگل برای عبارت «زوج درمان»:</span>
+            <span>پیشنهادات برتر سرچ گوگل برای عبارات پرستیجی حوزه روابط:</span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
-            {googleTopKeywords.map((item, idx) => {
-              const isSelected = searchTerm === item.query;
-              return (
-                <button
-                  key={idx}
-                  onClick={() => handleChipClick(item.query)}
-                  className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                    isSelected
-                      ? 'bg-[#6D5AA8] text-white shadow-sm ring-2 ring-[#6D5AA8]/30'
-                      : 'bg-white hover:bg-[#F2EEF8] text-[#3E2F5B] border border-[#E8DFD5] hover:border-[#6D5AA8]/40'
-                  }`}
-                >
-                  <Search className="w-3 h-3 text-[#A67C2E]" />
-                  <span>{item.label}</span>
-                </button>
-              );
-            })}
+          <div className="space-y-4">
+            {googleKeywordGroups.map((group) => (
+              <div key={group.label}>
+                <span className="block text-[11px] font-black text-[#6D5AA8] mb-2">
+                  عبارت «{group.label}»
+                </span>
+                <div className="flex flex-wrap items-center gap-2">
+                  {group.keywords.map((keyword) => {
+                    const isSelected = searchTerm === keyword;
+                    return (
+                      <button
+                        key={keyword}
+                        onClick={() => handleChipClick(keyword)}
+                        className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                          isSelected
+                            ? 'bg-[#6D5AA8] text-white shadow-sm ring-2 ring-[#6D5AA8]/30'
+                            : 'bg-white hover:bg-[#F2EEF8] text-[#3E2F5B] border border-[#E8DFD5] hover:border-[#6D5AA8]/40'
+                        }`}
+                      >
+                        <Search className="w-3 h-3 text-[#A67C2E]" />
+                        <span>{keyword}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
