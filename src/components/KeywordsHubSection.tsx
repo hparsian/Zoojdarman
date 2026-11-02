@@ -128,7 +128,7 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
       query: 'زوج درمانی چیست و چه زمانی به زوج درمانگر مراجعه کنیم؟',
       cluster: 'couples',
       clusterLabel: 'زوج درمانی چیست',
-      badge: 'ترند برتر گوگل',
+      badge: 'پرسش پرتکرار مراجعان',
       monthlySearches: '۹۵,۰۰۰+ جستجو در ماه',
       isExactGoogleSuggestion: true,
       answerSummary:
@@ -493,28 +493,28 @@ export const KeywordsHubSection: React.FC<KeywordsHubSectionProps> = ({
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 text-xs font-black tracking-widest text-[#9E7D36] uppercase mb-3 bg-[#FAF5EB] px-4 py-1.5 rounded-full border border-[#C5A059]/40">
             <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
-            <span>دانشنامه جامع سئو و رتبه ۱ گوگل</span>
+            <span>دانشنامه جامع و راهنمای بالینی مراجعان</span>
           </div>
 
           <h2 className="text-2xl sm:text-4xl font-black text-[#241A35] mb-4 leading-tight">
-            پاسخ بالینی به پرجستجوترین کلمات گوگل در{' '}
+            پاسخ بالینی به پرتکرارترین پرسش‌ها و دغدغه‌های مراجعان در{' '}
             <span className="text-[#3E2F5B] block sm:inline">سامانه تخصصی زوج‌درمان</span>
           </h2>
 
           <p className="text-sm sm:text-base text-[#5E5868] leading-relaxed max-w-2xl mx-auto">
-            تحلیل مستند مهناز خوینی (کارشناس ارشد روانشناسی بالینی، پروانه اشتغال تخصصی ۱۴۱۴۰۸۳) برای عبارات پرتکرار مراجعان در تهران، مشهد، شیراز و جلسات آنلاین سراسر جهان.
+            تحلیل مستند مهناز خوینی (کارشناس ارشد روانشناسی بالینی، پروانه اشتغال تخصصی ۱۴۱۴۰۸۳) برای دغدغه‌های پرتکرار مراجعان در تهران، مشهد، شیراز و جلسات آنلاین سراسر جهان.
           </p>
         </div>
 
-        {/* 4 Pillars Google Autocomplete Box (Exact match with user screenshots) */}
+        {/* 4 Pillars Topics Box */}
         <div className="max-w-4xl mx-auto mb-10 space-y-4">
           <div className="bg-white p-5 sm:p-7 rounded-3xl border border-[#E8DFD5] shadow-xs">
             <div className="flex items-center justify-between flex-wrap gap-2 mb-4 pb-3 border-b border-[#F0EAE1]">
               <div className="flex items-center gap-2 text-xs sm:text-sm font-black text-[#241A35]">
                 <TrendingUp className="w-4 h-4 text-[#C5A059]" />
-                <span>کلمات کلیدی پرتکرار سرچ گوگل (موجود در عکس‌ها):</span>
+                <span>دسته‌بندی موضوعات و پرسش‌های پرمراجعه:</span>
               </div>
-              <span className="text-[11px] text-[#8A8494] font-medium">برای مشاهده پاسخ بالینی روی هر کلمه کلیک کنید</span>
+              <span className="text-[11px] text-[#8A8494] font-medium">برای مشاهده پاسخ بالینی روی هر موضوع کلیک کنید</span>
             </div>
 
             {/* Pillar Grid Tabs */}
