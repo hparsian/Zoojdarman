@@ -99,41 +99,6 @@ export const Hero: React.FC<HeroProps> = ({
               هدایت شده توسط <strong>مهناز خوینی</strong> (کارشناس ارشد روان‌شناسی بالینی، متخصص زوج درمان با رویکرد هیجان‌مدار EFT و مسئول فنی کلینیک پیوند امن تهران با پروانه نظام روانشناسی ۱۴۱۴۰۸۳). پایان دادن به چرخه‌های فرسایشی دعوا، التیام ترومای خیانت، احیای صمیمیت جنسی و تصمیم‌گیری آگاهانه درباره طلاق با متدهای شواهدنگر جهانی.
             </p>
 
-            {/* Quick Keyword Links for Google SEO and instant visitor navigation */}
-            <div className="flex flex-wrap items-center gap-2 mb-7 text-xs">
-              <span className="text-[#8A8494] font-bold text-[11px] ml-1">دسترسی سریع:</span>
-              <a
-                href="/best-couples-therapist-tehran"
-                className="px-2.5 py-1 bg-[#F2EEF8] hover:bg-[#3E2F5B] text-[#3E2F5B] hover:text-white border border-[#6D5AA8]/30 rounded-lg font-black text-[11px] transition-all"
-              >
-                ⭐ بهترین زوج درمانگر تهران و آنلاین
-              </a>
-              <a
-                href="/articles/what-is-couples-therapy"
-                className="px-2.5 py-1 bg-white hover:bg-[#F2EEF8] text-[#3E2F5B] border border-[#E8E2D8] hover:border-[#6D5AA8]/40 rounded-lg font-bold text-[11px] transition-colors"
-              >
-                زوج درمانی چیست؟
-              </a>
-              <a
-                href="/articles/online-couples-therapist"
-                className="px-2.5 py-1 bg-white hover:bg-[#F2EEF8] text-[#3E2F5B] border border-[#E8E2D8] hover:border-[#6D5AA8]/40 rounded-lg font-bold text-[11px] transition-colors"
-              >
-                زوج درمانگر آنلاین
-              </a>
-              <a
-                href="/articles/couples-therapy-shiraz"
-                className="px-2.5 py-1 bg-white hover:bg-[#FAF5EB] text-[#A67C2E] border border-[#E8E2D8] hover:border-[#C5A059]/40 rounded-lg font-bold text-[11px] transition-colors"
-              >
-                زوج درمانگر شیراز
-              </a>
-              <a
-                href="/articles/couples-therapy-mashhad"
-                className="px-2.5 py-1 bg-white hover:bg-[#EEF5F1] text-[#3E6B56] border border-[#E8E2D8] hover:border-[#3E6B56]/40 rounded-lg font-bold text-[11px] transition-colors"
-              >
-                زوج درمانگر مشهد
-              </a>
-            </div>
-
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-4 mb-10 w-full sm:w-auto">
               <button
