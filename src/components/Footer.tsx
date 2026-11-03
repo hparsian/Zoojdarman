@@ -301,6 +301,76 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
         </div>
 
+        {/* Semantic Keyword Hub & City Quick Links for SEO */}
+        <div className="pt-10 pb-8 border-t border-white/10 mb-8">
+          <div className="flex items-center gap-2 text-xs font-bold tracking-wider text-[#C5A059] uppercase mb-4">
+            <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
+            <span>پایگاه موضوعی و دسترسی سریع به کلمات کلیدی پرجستجوی سامانه زوج‌درمان</span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2 text-[11px] text-[#BDB6CB] leading-relaxed">
+            <span className="text-[#E8DFD5] font-bold">مراکز و شهرها:</span>
+            <a href="/best-couples-therapist-tehran" className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">زوج درمان خوب در تهران</a>
+            <span>•</span>
+            <a href="/articles/good-couples-therapist-in-tehran" onClick={(e) => { e.preventDefault(); onNavigateArticle('good-couples-therapist-in-tehran'); }} className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">زوج درمان تهران</a>
+            <span>•</span>
+            <a href="/articles/couples-therapy-karaj" onClick={(e) => { e.preventDefault(); onNavigateArticle('couples-therapy-karaj'); }} className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">زوج درمان خوب در کرج</a>
+            <span>•</span>
+            <a href="/articles/couples-therapy-esfahan" onClick={(e) => { e.preventDefault(); onNavigateArticle('couples-therapy-esfahan'); }} className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">زوج درمان اصفهان</a>
+            <span>•</span>
+            <a href="/articles/couples-therapy-kerman" onClick={(e) => { e.preventDefault(); onNavigateArticle('couples-therapy-kerman'); }} className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">زوج درمان کرمان</a>
+            <span>•</span>
+            <a href="/articles/couples-therapy-shiraz" onClick={(e) => { e.preventDefault(); onNavigateArticle('couples-therapy-shiraz'); }} className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">زوج درمانگر شیراز</a>
+            <span>•</span>
+            <a href="/articles/couples-therapy-mashhad" onClick={(e) => { e.preventDefault(); onNavigateArticle('couples-therapy-mashhad'); }} className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">زوج درمانگر مشهد</a>
+            <span>•</span>
+            <a href="/articles/online-couples-therapist" onClick={(e) => { e.preventDefault(); onNavigateArticle('online-couples-therapist'); }} className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">زوج درمانگر آنلاین</a>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2 text-[11px] text-[#BDB6CB] leading-relaxed mt-3">
+            <span className="text-[#E8DFD5] font-bold">خیانت و بحران رابطه:</span>
+            <a href="/articles/infidelity-counseling-qa" onClick={(e) => { e.preventDefault(); onNavigateArticle('infidelity-counseling-qa'); }} className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">مشاوره خیانت پرسش و پاسخ</a>
+            <span>•</span>
+            <a href="/articles/husband-infidelity-to-wife" onClick={(e) => { e.preventDefault(); onNavigateArticle('husband-infidelity-to-wife'); }} className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">مشاوره خیانت مرد به زن</a>
+            <span>•</span>
+            <a href="/articles/wife-infidelity-to-husband" onClick={(e) => { e.preventDefault(); onNavigateArticle('wife-infidelity-to-husband'); }} className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">مشاوره خیانت زن به شوهر</a>
+            <span>•</span>
+            <a href="/articles/infidelity-counseling-mashhad" onClick={(e) => { e.preventDefault(); onNavigateArticle('infidelity-counseling-mashhad'); }} className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">مشاوره خیانت در مشهد</a>
+            <span>•</span>
+            <a href="/articles/free-infidelity-phone-counseling" onClick={(e) => { e.preventDefault(); onNavigateArticle('free-infidelity-phone-counseling'); }} className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">مشاوره خیانت تلفنی رایگان</a>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2 text-[11px] text-[#BDB6CB] leading-relaxed mt-3">
+            <span className="text-[#E8DFD5] font-bold">تست‌های آنلاین روانشناسی رابطه:</span>
+            <a href="/tests/enrich-marital-satisfaction" className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">تست رضایت زناشویی انریچ</a>
+            <span>•</span>
+            <a href="/tests/gottman-divorce-predictor" className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">شاخص ۴ سوارکار طلاق گاتمن</a>
+            <span>•</span>
+            <a href="/tests/infidelity-trauma-assessment" className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">تست ترومای خیانت PISD</a>
+            <span>•</span>
+            <a href="/tests/attachment-style-in-relationships" className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">تست سبک دلبستگی رابطه</a>
+            <span>•</span>
+            <a href="/tests/five-love-languages" className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">تست ۵ زبان عشق چپمن</a>
+            <span>•</span>
+            <a href="/tests/premarital-readiness-assessment" className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">تست آمادگی ازدواج</a>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2 text-[11px] text-[#BDB6CB] leading-relaxed mt-3">
+            <span className="text-[#E8DFD5] font-bold">دانشنامه بالینی:</span>
+            <a href="/articles/what-is-couples-therapy" onClick={(e) => { e.preventDefault(); onNavigateArticle('what-is-couples-therapy'); }} className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">زوج درمانی چیست</a>
+            <span>•</span>
+            <a href="/articles/what-is-clinical-psychology" onClick={(e) => { e.preventDefault(); onNavigateArticle('what-is-clinical-psychology'); }} className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">روانشناسی بالینی چیست</a>
+            <span>•</span>
+            <a href="/articles/online-psychologist-selection-guide" onClick={(e) => { e.preventDefault(); onNavigateArticle('online-psychologist-selection-guide'); }} className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">روانشناس آنلاین معتبر</a>
+            <span>•</span>
+            <a href="/articles/psychology-of-money-in-marriage" onClick={(e) => { e.preventDefault(); onNavigateArticle('psychology-of-money-in-marriage'); }} className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">روانشناسی پول در ازدواج</a>
+            <span>•</span>
+            <a href="/articles/emotionally-focused-therapy-eft" onClick={(e) => { e.preventDefault(); onNavigateArticle('emotionally-focused-therapy-eft'); }} className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">زوج درمانی هیجان‌مدار EFT</a>
+            <span>•</span>
+            <a href="/fees" onClick={(e) => { e.preventDefault(); onNavigateFees ? onNavigateFees() : onNavigateHome('pricing'); }} className="hover:text-[#C5A059] underline decoration-[#C5A059]/40 underline-offset-4">هزینه و تعرفه هر جلسه زوج درمانی</a>
+          </div>
+        </div>
+
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#A8A1B5]">
           <p>© کلیه حقوق مادی و معنوی برای پلتفرم zoojdarman.ir و مهناز خوینی محفوظ است.</p>

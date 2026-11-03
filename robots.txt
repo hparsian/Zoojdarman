@@ -1,4 +1,17 @@
 User-agent: *
 Allow: /
 
+# Googlebot & Major Search Engines
+User-agent: Googlebot
+Allow: /
+Allow: /articles
+Allow: /services
+Allow: /tools
+Allow: /tests/
+Allow: /fees
+Allow: /faq
+Allow: /about
+Allow: /best-couples-therapist-tehran
+
+Host: https://zoojdarman.ir
 Sitemap: https://zoojdarman.ir/sitemap.xml

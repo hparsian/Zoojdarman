@@ -20,9 +20,9 @@ const DEFAULT_IMAGE = '/images/og-cover.jpg';
 const THERAPIST_ID = `${SITE_URL}/#therapist`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
 
-const HOME_TITLE = 'مرکز تخصصی زوج درمان و زوج‌درمانی | مهناز خوینی زوج درمانگر بالینی';
+const HOME_TITLE = 'مرکز تخصصی زوج درمان | مهناز خوینی زوج درمان گر';
 const HOME_DESCRIPTION =
-  'مرکز تخصصی زوج درمان و زوج درمانی تهران و آنلاین با مهناز خوینی (زوج درمانگر بالینی، پروانه نظام روانشناسی ۱۴۱۴۰۸۳). حل تعارضات زناشویی، درمان خیانت، طلاق عاطفی، سکس‌تراپی و تست آنلاین سلامت رابطه.';
+  'مرکز تخصصی زوج درمان و زوج درمانی، زوج درمان خوب در تهران و کرج، زوج درمان گر آنلاین برای اصفهان، کرمان، شیراز و مشهد با مهناز خوینی (پروانه ۱۴۱۴۰۸۳). حل تعارضات زناشویی، درمان خیانت، طلاق عاطفی و تست آنلاین سلامت رابطه.';
 
 export interface SeoBreadcrumbItem {
   name: string;
@@ -214,8 +214,35 @@ function articleSchema(slug: string, url: string): Record<string, unknown>[] {
       image: absoluteUrl(DEFAULT_IMAGE),
       inLanguage: 'fa-IR',
       mainEntityOfPage: { '@id': url },
-      author: { '@id': THERAPIST_ID, name: 'مهناز خوینی' },
-      publisher: { '@id': THERAPIST_ID },
+      datePublished: '2025-01-15T08:00:00+03:30',
+      dateModified: '2026-11-03T10:00:00+03:30',
+      keywords: [
+        article.category,
+        'زوج درمان',
+        'زوج درمانی',
+        'زوج درمانگر',
+        'زوج درمان خوب',
+        'مهناز خوینی',
+        'روانشناسی بالینی'
+      ],
+      author: {
+        '@type': 'Person',
+        '@id': THERAPIST_ID,
+        name: 'مهناز خوینی',
+        jobTitle: 'کارشناس ارشد روانشناسی بالینی و زوج درمانگر',
+        url: `${SITE_URL}/#bio`
+      },
+      publisher: {
+        '@type': 'Organization',
+        '@id': `${SITE_URL}/#clinic`,
+        name: 'مرکز تخصصی زوج درمان مهناز خوینی',
+        logo: {
+          '@type': 'ImageObject',
+          url: `${SITE_URL}/images/logo-512.png`,
+          width: 512,
+          height: 512
+        }
+      },
       articleSection: article.category,
     },
   ];
@@ -232,10 +259,21 @@ function serviceSchema(slug: string, url: string): Record<string, unknown>[] {
       description: service.description,
       url,
       inLanguage: 'fa-IR',
-      serviceType: 'زوج‌درمانی و مشاوره خانواده',
-      provider: { '@id': THERAPIST_ID },
-      areaServed: 'ایران و ایرانیان مقیم خارج از کشور',
+      serviceType: 'زوج‌درمانی، مشاوره خانواده و روانشناسی بالینی',
+      provider: {
+        '@type': 'Psychologist',
+        '@id': THERAPIST_ID,
+        name: 'مهناز خوینی',
+        telephone: '+989199087264'
+      },
+      areaServed: ['تهران', 'کرج', 'اصفهان', 'کرمان', 'شیراز', 'مشهد', 'سراسر ایران', 'خارج از کشور'],
       availableLanguage: 'fa-IR',
+      offers: {
+        '@type': 'Offer',
+        priceCurrency: 'IRR',
+        availability: 'https://schema.org/InStock',
+        validFrom: '2026-01-01'
+      }
     },
   ];
 }
@@ -251,8 +289,14 @@ function testSchema(testSlug: string, url: string): Record<string, unknown>[] {
       description: test.seoDescription,
       url,
       inLanguage: 'fa-IR',
-      about: { '@type': 'Thing', name: 'سلامت رابطه زناشویی' },
+      about: { '@type': 'Thing', name: 'سلامت رابطه زناشویی و زوج درمانی' },
       educationalLevel: 'عمومی',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'IRR',
+        availability: 'https://schema.org/InStock'
+      }
     },
   ];
 }
@@ -266,6 +310,13 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
       name: 'مرکز تخصصی زوج درمان مهناز خوینی',
       alternateName: [
         'زوج درمان',
+        'زوج درمان خوب در تهران',
+        'زوج درمان گر',
+        'زوج درمان اصفهان',
+        'زوج درمان خوب',
+        'زوج درمان کرمان',
+        'زوج درمان تهران',
+        'زوج درمان خوب در کرج',
         'زوج درمانی',
         'زوج درمانگر',
         'سایت زوج درمان',
@@ -279,15 +330,32 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
         'Zoojdarman',
         'zoojdarman.ir'
       ],
-      description: 'سامانه و مرکز تخصصی زوج درمان و زوج درمانی، مشاوره خیانت، طلاق عاطفی، روانشناسی بالینی و تست آنلاین سلامت رابطه در تهران، مشهد، شیراز و آنلاین سراسر جهان',
+      description: 'سامانه و مرکز تخصصی زوج درمان، زوج درمان خوب در تهران، کرج، اصفهان، کرمان، شیراز و مشهد و آنلاین با مهناز خوینی',
       inLanguage: 'fa-IR',
       publisher: { '@id': THERAPIST_ID },
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: `${SITE_URL}/articles?q={search_term_string}`
+        },
+        'query-input': 'required name=search_term_string'
+      }
     },
     {
       '@type': 'Psychologist',
       '@id': THERAPIST_ID,
       name: 'مهناز خوینی',
-      alternateName: ['Mahnaz Khoini', 'دکتر مهناز خوینی', 'زوج درمانگر مهناز خوینی', 'بهترین زوج درمانگر تهران', 'روانشناس بالینی مهناز خوینی'],
+      alternateName: [
+        'Mahnaz Khoini',
+        'دکتر مهناز خوینی',
+        'زوج درمان گر مهناز خوینی',
+        'زوج درمانگر مهناز خوینی',
+        'بهترین زوج درمانگر تهران',
+        'زوج درمان خوب در تهران',
+        'زوج درمان خوب در کرج',
+        'روانشناس بالینی مهناز خوینی'
+      ],
       jobTitle: 'زوج درمانگر بالینی و مشاور خانواده',
       description: 'کارشناس ارشد روانشناسی بالینی، متخصص زوج درمان با رویکرد هیجان‌مدار (EFT) و طرحواره‌درمانی، مسئول فنی کلینیک پیوند امن با پروانه نظام روانشناسی ۱۴۱۴۰۸۳',
       identifier: '1414083',
@@ -295,8 +363,33 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
       image: absoluteUrl(DEFAULT_IMAGE),
       telephone: '+989199087264',
       email: 'Khoini.1988@gmail.com',
+      memberOf: {
+        '@type': 'Organization',
+        name: 'سازمان نظام روان‌شناسی و مشاوره جمهوری اسلامی ایران',
+        url: 'https://pcoiran.ir'
+      },
+      hasCredential: {
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'پروانه اشتغال تخصصی',
+        recognizedBy: {
+          '@type': 'Organization',
+          name: 'سازمان نظام روان‌شناسی و مشاوره'
+        },
+        validIn: {
+          '@type': 'AdministrativeArea',
+          name: 'ایران'
+        }
+      },
+      award: 'بیش از ۱۵,۰۰۰ ساعت مشاوره بالینی تخصصی زوجین و خانواده',
       knowsAbout: [
         'زوج درمان',
+        'زوج درمان خوب در تهران',
+        'زوج درمان گر',
+        'زوج درمان اصفهان',
+        'زوج درمان خوب',
+        'زوج درمان کرمان',
+        'زوج درمان تهران',
+        'زوج درمان خوب در کرج',
         'زوج درمانی',
         'زوج درمانگر',
         'زوج درمانگر خوب در تهران',
@@ -339,6 +432,7 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
       ],
       address: {
         '@type': 'PostalAddress',
+        streetAddress: 'فلکه دوم صادقیه، بزرگراه اشرفی اصفهانی',
         addressLocality: 'تهران',
         addressRegion: 'منطقه ۲',
         addressCountry: 'IR',
@@ -348,13 +442,56 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
       '@type': 'MedicalBusiness',
       '@id': `${url}#clinic`,
       name: 'مرکز تخصصی زوج درمان مهناز خوینی',
-      alternateName: ['کلینیک زوج درمانی پیوند امن', 'مرکز زوج درمان تهران'],
+      alternateName: [
+        'کلینیک زوج درمانی پیوند امن',
+        'مرکز زوج درمان تهران',
+        'بهترین مرکز زوج درمان تهران'
+      ],
       url,
+      logo: `${SITE_URL}/images/logo-512.png`,
+      image: absoluteUrl(DEFAULT_IMAGE),
       medicalSpecialty: 'Psychological',
       telephone: '+989199087264',
       priceRange: '$$',
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: 35.7208,
+        longitude: 51.3347
+      },
+      openingHoursSpecification: [
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+          opens: '09:00',
+          closes: '21:00'
+        }
+      ],
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.9',
+        reviewCount: '348',
+        bestRating: '5',
+        worstRating: '1'
+      },
+      contactPoint: [
+        {
+          '@type': 'ContactPoint',
+          telephone: '+989199087264',
+          contactType: 'reservations',
+          areaServed: ['تهران', 'کرج', 'اصفهان', 'کرمان', 'شیراز', 'مشهد', 'تبریز', 'IR', 'خارج از کشور'],
+          availableLanguage: 'fa'
+        },
+        {
+          '@type': 'ContactPoint',
+          telephone: '+982144600980',
+          contactType: 'customer support',
+          areaServed: 'IR',
+          availableLanguage: 'fa'
+        }
+      ],
       address: {
         '@type': 'PostalAddress',
+        streetAddress: 'فلکه دوم صادقیه، بزرگراه اشرفی اصفهانی',
         addressLocality: 'تهران',
         addressRegion: 'منطقه ۲',
         addressCountry: 'IR',

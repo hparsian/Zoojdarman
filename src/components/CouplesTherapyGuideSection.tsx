@@ -307,14 +307,14 @@ export const CouplesTherapyGuideSection: React.FC<CouplesTherapyGuideProps> = ({
                   دسترسی منطقه‌ای و آنلاین
                 </span>
                 <h3 className="text-xl sm:text-2xl font-black text-[#44386B] mb-2">
-                  خدمات زوج درمانی در تهران، شیراز، مشهد و سراسر کشور
+                  خدمات زوج درمان در تهران، کرج، اصفهان، کرمان و سراسر کشور
                 </h3>
                 <p className="text-xs sm:text-sm text-[#6F6B78] leading-relaxed">
-                  تفاوت جغرافیایی مانع بهره‌مندی از خدمات تخصصی درجه‌یک نیست. چه در تهران سکونت داشته باشید و چه در شیراز یا مشهد، امکان رزرو جلسات حضوری یا آنلاین با حفظ بالاترین استانداردهای بالینی فراهم است.
+                  تفاوت جغرافیایی مانع بهره‌مندی از خدمات تخصصی درجه‌یک نیست. چه در تهران و کرج سکونت داشته باشید و چه در اصفهان، کرمان، شیراز یا مشهد، امکان رزرو جلسات حضوری یا آنلاین با حفظ بالاترین استانداردهای بالینی فراهم است.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {/* Tehran */}
                 <div className="bg-white p-6 rounded-2xl border border-[#E5E0EA] shadow-xs flex flex-col justify-between">
                   <div>
@@ -322,7 +322,7 @@ export const CouplesTherapyGuideSection: React.FC<CouplesTherapyGuideProps> = ({
                       <Building2 className="w-5 h-5" />
                     </div>
                     <h4 className="text-base font-black text-[#2A1E35] mb-2">
-                      زوج درمانگر خوب در تهران
+                      زوج درمان خوب در تهران
                     </h4>
                     <p className="text-xs text-[#6F6B78] leading-relaxed mb-4 text-justify">
                       جلسات حضوری در کلینیک تخصصی پیوند امن غرب تهران (صادقیه، پونک، اشرفی اصفهانی، سعادت‌آباد) با رزرو قبلی.
@@ -337,6 +337,72 @@ export const CouplesTherapyGuideSection: React.FC<CouplesTherapyGuideProps> = ({
                   </a>
                 </div>
 
+                {/* Karaj */}
+                <div className="bg-white p-6 rounded-2xl border border-[#E5E0EA] shadow-xs flex flex-col justify-between">
+                  <div>
+                    <div className="w-10 h-10 rounded-xl bg-[#FAF5EB] text-[#C5A059] flex items-center justify-center mb-3">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <h4 className="text-base font-black text-[#2A1E35] mb-2">
+                      زوج درمان خوب در کرج
+                    </h4>
+                    <p className="text-xs text-[#6F6B78] leading-relaxed mb-4 text-justify">
+                      دسترسی سریع بزرگراهی و مترو از کرج، عظیمیه، گوهردشت و مهرشهر به کلینیک غرب تهران یا جلسات آنلاین هفتگی.
+                    </p>
+                  </div>
+                  <a
+                    href="/articles/couples-therapy-karaj"
+                    className="text-xs font-bold text-[#C5A059] hover:text-[#A67C2E] flex items-center gap-1 mt-2"
+                  >
+                    <span>راهنمای زوج درمان کرج و البرز</span>
+                    <ArrowLeft className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+
+                {/* Esfahan */}
+                <div className="bg-white p-6 rounded-2xl border border-[#E5E0EA] shadow-xs flex flex-col justify-between">
+                  <div>
+                    <div className="w-10 h-10 rounded-xl bg-[#EEF5F1] text-[#3E6B56] flex items-center justify-center mb-3">
+                      <Video className="w-5 h-5" />
+                    </div>
+                    <h4 className="text-base font-black text-[#2A1E35] mb-2">
+                      زوج درمان اصفهان
+                    </h4>
+                    <p className="text-xs text-[#6F6B78] leading-relaxed mb-4 text-justify">
+                      جلسات آنلاین تصویری محرمانه برای خانواده‌های اصفهان با حفظ کامل حریم خصوصی و بالاترین کیفیت پروتکل‌های EFT.
+                    </p>
+                  </div>
+                  <a
+                    href="/articles/couples-therapy-esfahan"
+                    className="text-xs font-bold text-[#3E6B56] hover:text-[#2A1E35] flex items-center gap-1 mt-2"
+                  >
+                    <span>راهنمای زوج درمانی اصفهان</span>
+                    <ArrowLeft className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+
+                {/* Kerman */}
+                <div className="bg-white p-6 rounded-2xl border border-[#E5E0EA] shadow-xs flex flex-col justify-between">
+                  <div>
+                    <div className="w-10 h-10 rounded-xl bg-[#FBF1ED] text-[#D9846A] flex items-center justify-center mb-3">
+                      <Compass className="w-5 h-5" />
+                    </div>
+                    <h4 className="text-base font-black text-[#2A1E35] mb-2">
+                      زوج درمان کرمان
+                    </h4>
+                    <p className="text-xs text-[#6F6B78] leading-relaxed mb-4 text-justify">
+                      مشاوره تخصصی زوجین و حل ریشه‌ای خیانت و طلاق عاطفی برای مراجعان کرمان و رفسنجان بدون نیاز به سفر پرهزینه.
+                    </p>
+                  </div>
+                  <a
+                    href="/articles/couples-therapy-kerman"
+                    className="text-xs font-bold text-[#D9846A] hover:text-[#2A1E35] flex items-center gap-1 mt-2"
+                  >
+                    <span>راهنمای زوج درمانی کرمان</span>
+                    <ArrowLeft className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+
                 {/* Shiraz */}
                 <div className="bg-white p-6 rounded-2xl border border-[#E5E0EA] shadow-xs flex flex-col justify-between">
                   <div>
@@ -344,7 +410,7 @@ export const CouplesTherapyGuideSection: React.FC<CouplesTherapyGuideProps> = ({
                       <MapPin className="w-5 h-5" />
                     </div>
                     <h4 className="text-base font-black text-[#2A1E35] mb-2">
-                      زوج درمانگر شیراز (آنلاین)
+                      زوج درمانگر شیراز
                     </h4>
                     <p className="text-xs text-[#6F6B78] leading-relaxed mb-4 text-justify">
                       مشاوره تصویری بدون افشای حریم خصوصی برای هم‌وطنان در شیراز و استان فارس با پروتکل‌های پیشرفته EFT.
@@ -366,7 +432,7 @@ export const CouplesTherapyGuideSection: React.FC<CouplesTherapyGuideProps> = ({
                       <Video className="w-5 h-5" />
                     </div>
                     <h4 className="text-base font-black text-[#2A1E35] mb-2">
-                      زوج درمانگر مشهد (آنلاین)
+                      زوج درمانگر مشهد
                     </h4>
                     <p className="text-xs text-[#6F6B78] leading-relaxed mb-4 text-justify">
                       فضایی خنثی، بدون تعصب و کاملاً علمی برای حل تعارضات زناشویی، خیانت و طلاق عاطفی در مشهد و خراسان.
