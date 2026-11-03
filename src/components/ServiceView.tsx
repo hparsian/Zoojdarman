@@ -3,6 +3,9 @@ import { ServiceItem } from '../types';
 import { registerFaqSchema } from '../seo';
 import { ArrowRight, MessageSquare, CheckCircle2, ShieldCheck, HelpCircle } from 'lucide-react';
 
+import { SocialShareButtons } from './SocialShareButtons';
+import { getServiceSocialMeta } from '../utils/socialShareSeo';
+
 interface ServiceViewProps {
   service: ServiceItem;
   onBack: () => void;
@@ -15,6 +18,8 @@ export const ServiceView: React.FC<ServiceViewProps> = ({ service, onBack }) => 
 
   // داده‌های ساختاریافته پرسش‌وپاسخ خدمت (JSON-LD)
   useEffect(() => registerFaqSchema(service.faqs), [service]);
+
+  const socialMeta = getServiceSocialMeta(service);
 
   return (
     <div className="bg-[#FAF8F5] min-h-screen pb-24">
@@ -64,9 +69,14 @@ export const ServiceView: React.FC<ServiceViewProps> = ({ service, onBack }) => 
         </h1>
 
         {/* Description */}
-        <p className="text-sm sm:text-base text-[#6F6B78] leading-relaxed mb-8 text-justify">
+        <p className="text-sm sm:text-base text-[#6F6B78] leading-relaxed mb-6 text-justify">
           {service.description}
         </p>
+
+        {/* Social Share Buttons */}
+        <div className="mb-8">
+          <SocialShareButtons meta={socialMeta} />
+        </div>
 
         {/* Trust Badges */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10">

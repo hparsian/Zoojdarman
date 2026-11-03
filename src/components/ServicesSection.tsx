@@ -64,10 +64,21 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                   <Sparkles className="w-3 h-3" />
                   <span>پروتکل طلایی مرکز زوج درمان</span>
                 </span>
-                <span className="text-xs text-white/70 font-bold flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-[#C5A059]" />
-                  <span>جلسات ۶۰ تا ۹۰ دقیقه‌ای</span>
-                </span>
+                <div className="flex items-center gap-2">
+                  <img
+                    src="/images/mahnaz-khoini-thumb.webp"
+                    alt="مهناز خوینی"
+                    loading="lazy"
+                    decoding="async"
+                    width={28}
+                    height={28}
+                    className="w-7 h-7 rounded-full object-cover border border-[#C5A059]"
+                  />
+                  <span className="text-xs text-white/90 font-bold flex items-center gap-1.5">
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#C5A059]" />
+                    <span>نظارت بالینی مهناز خوینی</span>
+                  </span>
+                </div>
               </div>
 
               <h3 className="text-xl sm:text-3xl font-black text-[#FAF5EB] mb-4 leading-snug">

@@ -4,6 +4,9 @@ import { getRelatedArticles } from '../data/articles';
 import { registerFaqSchema } from '../seo';
 import { ArrowRight, Clock, Calendar, User, Lightbulb, MessageSquare, ChevronDown, BookOpen } from 'lucide-react';
 
+import { SocialShareButtons } from './SocialShareButtons';
+import { getArticleSocialMeta } from '../utils/socialShareSeo';
+
 interface ArticleViewProps {
   article: Article;
   onBack: () => void;
@@ -19,6 +22,8 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onBack, onSel
 
   // داده‌های ساختاریافته پرسش‌وپاسخ مقاله (JSON-LD)
   useEffect(() => registerFaqSchema(article.faqs), [article]);
+
+  const socialMeta = getArticleSocialMeta(article);
 
   return (
     <div className="bg-[#FAF8F5] min-h-screen pb-24">
@@ -68,7 +73,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onBack, onSel
         </h1>
 
         {/* Meta Bar */}
-        <div className="flex flex-wrap items-center gap-5 text-xs text-[#6F6B78] pb-6 mb-8 border-b border-[#E5E0EA]">
+        <div className="flex flex-wrap items-center gap-5 text-xs text-[#6F6B78] pb-6 mb-6 border-b border-[#E5E0EA]">
           <span className="flex items-center gap-1.5 font-bold">
             <User className="w-4 h-4 text-[#6D5AA8]" />
             <span>مهناز خوینی (زوج‌درمانگر بالینی)</span>
@@ -81,6 +86,11 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onBack, onSel
             <Calendar className="w-4 h-4 text-[#E8A58D]" />
             <span>به‌روزرسانی: {article.updatedAt}</span>
           </span>
+        </div>
+
+        {/* Dynamic Open Graph / Twitter Cards Social Share Buttons Bar */}
+        <div className="mb-8">
+          <SocialShareButtons meta={socialMeta} />
         </div>
 
         {/* Key Takeaways if available */}

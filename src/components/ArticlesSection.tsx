@@ -127,9 +127,23 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({ onSelectArticl
               className="bg-white rounded-2xl p-6 sm:p-7 border border-[#E8DFD5] hover:border-[#C5A059]/60 shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between cursor-pointer group"
             >
               <div>
-                <span className="inline-block bg-[#FAF8F5] border border-[#E8DFD5] text-[#A67C2E] text-[11px] font-mono font-bold px-3 py-1 rounded-md mb-3.5">
-                  {art.category}
-                </span>
+                <div className="flex items-center justify-between gap-2 mb-3.5">
+                  <span className="inline-block bg-[#FAF8F5] border border-[#E8DFD5] text-[#A67C2E] text-[11px] font-mono font-bold px-3 py-1 rounded-md">
+                    {art.category}
+                  </span>
+                  <div className="flex items-center gap-1.5 text-[11px] text-[#7A7382]">
+                    <img
+                      src="/images/mahnaz-khoini-thumb.webp"
+                      alt="مهناز خوینی"
+                      loading="lazy"
+                      decoding="async"
+                      width={24}
+                      height={24}
+                      className="w-6 h-6 rounded-full object-cover border border-[#C5A059]/40"
+                    />
+                    <span className="font-bold text-[#2A1E35]">مهناز خوینی</span>
+                  </div>
+                </div>
 
                 <h3 className="text-base sm:text-lg font-black text-[#2A1E35] group-hover:text-[#44386B] transition-colors leading-snug mb-3">
                   <a
