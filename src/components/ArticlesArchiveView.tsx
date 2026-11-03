@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { articles } from '../data/articles';
+import { ProfessionalCredentialsSummaryCard } from './ProfessionalCredentialsSummaryCard';
 import { Article } from '../types';
 import {
   ArrowRight,
@@ -90,6 +91,8 @@ export const ArticlesArchiveView: React.FC<ArticlesArchiveViewProps> = ({
             مجموعه کامل مقالات علمی با راهکارهای کاربردی برای حل تعارضات زناشویی، بازسازی اعتماد پس از خیانت و احیای صمیمیت.
           </p>
         </div>
+
+        <ProfessionalCredentialsSummaryCard />
 
         {/* Search & Category Filter */}
         <div className="max-w-2xl mx-auto mb-12">
