@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { services } from '../data/services';
+import { ProfessionalCredentialsSummaryCard } from './ProfessionalCredentialsSummaryCard';
 import {
   ArrowRight,
   ShieldCheck,
@@ -68,7 +69,7 @@ export const ServicesArchiveView: React.FC<ServicesArchiveViewProps> = ({
         </nav>
 
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
+        <div className="text-center max-w-2xl mx-auto mb-8">
           <span className="inline-block bg-[#edf5f0] text-[#5e826b] text-xs font-black px-4 py-1.5 rounded-full mb-3 border border-[#8FAF9B]/30">
             پروتکل‌های بالینی مبتنی بر شواهد
           </span>
@@ -79,6 +80,8 @@ export const ServicesArchiveView: React.FC<ServicesArchiveViewProps> = ({
             رویکردهای بالینی استاندارد با جلسات حضوری در کلینیک پیوند امن (تهران) و جلسات آنلاین برای مراجعان سراسر جهان.
           </p>
         </div>
+
+        <ProfessionalCredentialsSummaryCard />
 
         {/* Services List */}
         <div className="space-y-6 mb-16">

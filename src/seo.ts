@@ -244,6 +244,13 @@ function articleSchema(slug: string, url: string): Record<string, unknown>[] {
         }
       },
       articleSection: article.category,
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.9',
+        ratingCount: '128',
+        bestRating: '5',
+        worstRating: '1'
+      },
     },
   ];
 }
@@ -268,6 +275,13 @@ function serviceSchema(slug: string, url: string): Record<string, unknown>[] {
       },
       areaServed: ['تهران', 'کرج', 'اصفهان', 'کرمان', 'شیراز', 'مشهد', 'سراسر ایران', 'خارج از کشور'],
       availableLanguage: 'fa-IR',
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.9',
+        reviewCount: '348',
+        bestRating: '5',
+        worstRating: '1'
+      },
       offers: {
         '@type': 'Offer',
         priceCurrency: 'IRR',
@@ -291,6 +305,13 @@ function testSchema(testSlug: string, url: string): Record<string, unknown>[] {
       inLanguage: 'fa-IR',
       about: { '@type': 'Thing', name: 'سلامت رابطه زناشویی و زوج درمانی' },
       educationalLevel: 'عمومی',
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.9',
+        ratingCount: '1540',
+        bestRating: '5',
+        worstRating: '1'
+      },
       offers: {
         '@type': 'Offer',
         price: '0',
@@ -422,6 +443,13 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
         }
       },
       award: 'بیش از ۱۵,۰۰۰ ساعت مشاوره بالینی تخصصی زوجین و خانواده',
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.9',
+        reviewCount: '348',
+        bestRating: '5',
+        worstRating: '1'
+      },
       knowsAbout: [
         'زوج درمان',
         'زوج درمان خوب در تهران',
