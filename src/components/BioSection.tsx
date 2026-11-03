@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShieldCheck, GraduationCap, Award, BookOpen, MessageSquare, CheckCircle2, Sparkles, FileCheck2 } from 'lucide-react';
+import { SeoCertificationSummaryCard } from './SeoCertificationSummaryCard';
 
 export const BioSection: React.FC = () => {
   const credentials = [
@@ -122,28 +123,33 @@ export const BioSection: React.FC = () => {
               })}
             </div>
 
-            {/* Direct CTA */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
-              <a
-                href="https://wa.me/989199087264?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D9%87%D9%85%D8%A7%D9%87%D9%86%DA%AF%DB%8C%20%D8%AC%D9%84%D8%B3%D9%87%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%A8%D8%A7%20%D8%B3%D8%B1%DA%A9%D8%A7%D8%B1%20%D8%AE%D8%A7%D9%86%D9%85%20%D8%AE%D9%88%DB%8C%D9%86%DB%8C%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%87%D9%85."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 bg-[#2A1E35] hover:bg-[#1E1527] text-white text-xs sm:text-sm font-black px-7 py-4 rounded-xl border border-[#C5A059]/40 shadow-xl hover:shadow-2xl transition-all"
-              >
-                <MessageSquare className="w-4 h-4 text-[#C5A059]" />
-                <span>هماهنگی جلسه با زوج درمانگر مهناز خوینی در واتساپ</span>
-              </a>
+              {/* Direct CTA */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+                <a
+                  href="https://wa.me/989199087264?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D9%87%D9%85%D8%A7%D9%87%D9%86%DA%AF%DB%8C%20%D8%AC%D9%84%D8%B3%D9%87%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%A8%D8%A7%20%D8%B3%D8%B1%DA%A9%D8%A7%D8%B1%20%D8%AE%D8%A7%D9%86%D9%85%20%D8%AE%D9%88%DB%8C%D9%86%DB%8C%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%87%D9%85."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2.5 bg-[#2A1E35] hover:bg-[#1E1527] text-white text-xs sm:text-sm font-black px-7 py-4 rounded-xl border border-[#C5A059]/40 shadow-xl hover:shadow-2xl transition-all"
+                >
+                  <MessageSquare className="w-4 h-4 text-[#C5A059]" />
+                  <span>هماهنگی جلسه با زوج درمانگر مهناز خوینی در واتساپ</span>
+                </a>
 
-              <a
-                href="tel:02144600980"
-                className="inline-flex items-center justify-center gap-2 px-5 py-4 rounded-xl bg-white border border-[#E8DFD5] hover:border-[#C5A059] text-[#2A1E35] text-xs font-bold transition-all"
-              >
-                <span>تماس کلینیک: ۴۴۶۰۰۹۸۰-۰۲۱</span>
-              </a>
+                <a
+                  href="tel:02144600980"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-4 rounded-xl bg-white border border-[#E8DFD5] hover:border-[#C5A059] text-[#2A1E35] text-xs font-bold transition-all"
+                >
+                  <span>تماس کلینیک: ۴۴۶۰۰۹۸۰-۰۲۱</span>
+                </a>
+              </div>
             </div>
           </div>
+
+          {/* SEO & Schema.org Certification Summary Card */}
+          <div className="mt-16">
+            <SeoCertificationSummaryCard />
+          </div>
         </div>
-      </div>
-    </section>
-  );
-};
+      </section>
+    );
+  };

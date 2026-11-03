@@ -19,6 +19,7 @@ import {
   Compass,
   AlertTriangle
 } from 'lucide-react';
+import { SeoCertificationSummaryCard } from './SeoCertificationSummaryCard';
 
 interface BestTherapistViewProps {
   onBack: () => void;
@@ -329,6 +330,11 @@ export const BestTherapistView: React.FC<BestTherapistViewProps> = ({
               </tbody>
             </table>
           </div>
+        </div>
+
+        {/* SEO & Schema.org Certification Summary Card */}
+        <div className="mb-12">
+          <SeoCertificationSummaryCard />
         </div>
 
         {/* Section 4: Physical Clinic in Tehran West */}

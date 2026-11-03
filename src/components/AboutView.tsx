@@ -15,6 +15,8 @@ import {
   Sparkles
 } from 'lucide-react';
 
+import { SeoCertificationSummaryCard } from './SeoCertificationSummaryCard';
+
 interface AboutViewProps {
   onBack: () => void;
   onNavigateContact: () => void;
@@ -156,7 +158,7 @@ export const AboutView: React.FC<AboutViewProps> = ({
           </div>
 
           {/* Card 2: Specialized Clinical Training */}
-          <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#E5E0EA] shadow-xs">
+          <div className="bg-[#FAF8F5] p-6 sm:p-8 rounded-3xl border border-[#E5E0EA] shadow-xs">
             <div className="w-10 h-10 rounded-2xl bg-[#f2eff8] text-[#6D5AA8] flex items-center justify-center mb-4">
               <Award className="w-5 h-5" />
             </div>
@@ -182,6 +184,11 @@ export const AboutView: React.FC<AboutViewProps> = ({
               </li>
             </ul>
           </div>
+        </div>
+
+        {/* SEO & Schema.org Certification Summary Card */}
+        <div className="mb-12">
+          <SeoCertificationSummaryCard />
         </div>
 
         {/* Treatment Philosophy */}

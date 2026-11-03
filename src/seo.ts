@@ -538,6 +538,48 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
         addressCountry: 'IR',
       },
     },
+    {
+      '@type': 'ItemList',
+      '@id': `${url}#sitelinks`,
+      name: 'خدمات و تخصص‌های اصلی مرکز زوج درمان',
+      itemListElement: [
+        {
+          '@type': 'SiteNavigationElement',
+          position: 1,
+          name: 'زوج درمانگر در تهران (حضوری)',
+          description: 'جلسات تخصصی زوج درمانی حضوری در کلینیک غرب تهران با مهناز خوینی',
+          url: `${SITE_URL}/services/couples-therapy`
+        },
+        {
+          '@type': 'SiteNavigationElement',
+          position: 2,
+          name: 'مشاوره آنلاین خیانت زناشویی',
+          description: 'مدیریت شوک خیانت، ترمیم اعتماد و تصمیم‌گیری آگاهانه آنلاین',
+          url: `${SITE_URL}/services/infidelity-counseling`
+        },
+        {
+          '@type': 'SiteNavigationElement',
+          position: 3,
+          name: 'تست زوج درمانی آنلاین',
+          description: 'خودسنجی آنلاین انریچ، ترومای خیانت، سبک دلبستگی و ۵ زبان عشق',
+          url: `${SITE_URL}/tools`
+        },
+        {
+          '@type': 'SiteNavigationElement',
+          position: 4,
+          name: 'تعرفه و هزینه جلسات ۱۴۰۴',
+          description: 'تعرفه مصوب نظام روانشناسی، بیمه تکمیلی و ماشین‌حساب تخمین',
+          url: `${SITE_URL}/fees`
+        },
+        {
+          '@type': 'SiteNavigationElement',
+          position: 5,
+          name: 'بانک مقالات تخصصی رابطه',
+          description: 'راهنماهای تحلیلی زوج‌درمانی، طلاق عاطفی، حل تعارض و دلبستگی',
+          url: `${SITE_URL}/articles`
+        }
+      ]
+    }
   ];
 }
 
