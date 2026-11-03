@@ -37,50 +37,57 @@ export const ProfessionalCredentialsSummaryCard: React.FC = () => {
   const [summary, setSummary] = useState<CredentialSummary | null>(null);
 
   useEffect(() => {
-    const scripts = Array.from(
-      document.querySelectorAll<HTMLScriptElement>('script[type="application/ld+json"]')
-    );
+    const readStructuredData = () => {
+      const scripts = Array.from(
+        document.querySelectorAll<HTMLScriptElement>('script[type="application/ld+json"]')
+      );
 
-    for (const script of scripts) {
-      try {
-        const nodes = flattenNodes(JSON.parse(script.textContent || ''));
-        const person = nodes.find((node) => {
-          const types = Array.isArray(node['@type']) ? node['@type'] : [node['@type']];
-          return types.some((type) => type === 'Psychologist' || type === 'Person');
-        });
-        if (!person) continue;
+      for (const script of scripts) {
+        try {
+          const nodes = flattenNodes(JSON.parse(script.textContent || ''));
+          const people = nodes.filter((node) => {
+            const types = Array.isArray(node['@type']) ? node['@type'] : [node['@type']];
+            return types.some((type) => type === 'Psychologist' || type === 'Person');
+          });
+          // Prefer the full route-specific SEO graph, which contains hasCredential.
+          const person = people.find((node) => Boolean(node.hasCredential)) || people[0];
+          if (!person) continue;
 
-        const credentialValue = person.hasCredential;
-        const credential = Array.isArray(credentialValue)
-          ? credentialValue[0]
-          : credentialValue;
-        const credentialNode =
-          credential && typeof credential === 'object'
-            ? (credential as JsonLdNode)
-            : {};
+          const credentialValue = person.hasCredential;
+          const credential = Array.isArray(credentialValue) ? credentialValue[0] : credentialValue;
+          const credentialNode =
+            credential && typeof credential === 'object' ? (credential as JsonLdNode) : {};
 
-        const licenseNumber = asText(person.identifier);
-        const credentialTitle = asText(credentialNode.credentialCategory);
-        const issuer = asText(credentialNode.recognizedBy);
-        const description = asText(person.description);
-        const educationMatch = description.match(/کارشناس ارشد[^،؛.]*/);
+          const licenseNumber = asText(person.identifier);
+          const credentialTitle = asText(credentialNode.credentialCategory);
+          const issuer = asText(credentialNode.recognizedBy);
+          const description = asText(person.description);
+          const educationMatch = description.match(/کارشناس ارشد[^،؛.]*/);
 
-        if (!licenseNumber && !credentialTitle && !educationMatch) continue;
+          if (!licenseNumber && !credentialTitle && !educationMatch) continue;
 
-        setSummary({
-          name: asText(person.name) || 'مهناز خوینی',
-          role: asText(person.jobTitle) || 'زوج‌درمانگر بالینی و مشاور خانواده',
-          licenseNumber,
-          credentialTitle,
-          issuer,
-          education: educationMatch?.[0] || '',
-          profileUrl: asText(person.url) || '/about',
-        });
-        return;
-      } catch {
-        // Ignore invalid JSON-LD blocks and continue with the next block.
+          setSummary({
+            name: asText(person.name) || 'مهناز خوینی',
+            role: asText(person.jobTitle) || 'زوج‌درمانگر بالینی و مشاور خانواده',
+            licenseNumber,
+            credentialTitle,
+            issuer,
+            education: educationMatch?.[0] || '',
+            profileUrl: asText(person.url) || '/about',
+          });
+          return;
+        } catch {
+          // Ignore invalid JSON-LD blocks and continue with the next block.
+        }
       }
-    }
+    };
+
+    readStructuredData();
+    // Route SEO data is applied by the parent after child effects; observe the
+    // head so the card refreshes when the route-specific JSON-LD is injected.
+    const observer = new MutationObserver(readStructuredData);
+    observer.observe(document.head, { childList: true, subtree: true, characterData: true });
+    return () => observer.disconnect();
   }, []);
 
   if (!summary) return null;
