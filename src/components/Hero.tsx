@@ -164,10 +164,10 @@ export const Hero: React.FC<HeroProps> = ({
           </div>
 
           {/* Visual Showcase Column */}
-          <div className="lg:col-span-5 relative max-w-sm sm:max-w-md mx-auto w-full mt-2 lg:mt-0">
-            <div className="relative bg-white p-2.5 sm:p-4 rounded-2xl sm:rounded-3xl shadow-[0_15px_40px_-15px_rgba(36,26,53,0.12)] border border-[#E8E2D8]">
+          <div className="lg:col-span-5 relative max-w-md lg:max-w-none mx-auto w-full mt-4 lg:mt-0">
+            <div className="relative bg-white p-3 sm:p-4 rounded-3xl shadow-[0_20px_50px_-15px_rgba(36,26,53,0.14)] border border-[#E8E2D8]">
               {/* Photo Frame */}
-              <div className="relative overflow-hidden rounded-xl sm:rounded-2xl">
+              <div className="relative overflow-hidden rounded-2xl">
                 <img
                   src="/images/mahnaz-khoini-thumb.webp"
                   onError={(e) => {
@@ -179,7 +179,7 @@ export const Hero: React.FC<HeroProps> = ({
                   loading="eager"
                   fetchPriority="high"
                   decoding="async"
-                  className="w-full h-[320px] sm:h-[460px] object-cover object-top rounded-xl sm:rounded-2xl hover:scale-[1.02] transition-transform duration-500"
+                  className="w-full h-[450px] sm:h-[500px] lg:h-[540px] object-cover object-top rounded-2xl hover:scale-[1.02] transition-transform duration-500"
                 />
 
                 {/* Top Badge: License / Credential */}
@@ -189,17 +189,17 @@ export const Hero: React.FC<HeroProps> = ({
                 </div>
 
                 {/* Subtle Luxury Gradient Overlay at Bottom for Clinician Identity */}
-                <div className="absolute inset-x-0 bottom-0 pt-14 pb-3 px-3.5 sm:pb-3.5 sm:px-4 bg-gradient-to-t from-[#241A35]/95 via-[#241A35]/65 to-transparent pointer-events-none rounded-b-xl sm:rounded-b-2xl">
+                <div className="absolute inset-x-0 bottom-0 pt-20 pb-4 px-4 bg-gradient-to-t from-[#241A35]/95 via-[#241A35]/65 to-transparent pointer-events-none rounded-b-2xl">
                   <div className="flex items-end justify-between text-white gap-2">
                     <div>
-                      <span className="block font-black text-sm sm:text-lg text-[#FAF5EB] leading-tight mb-0.5">
+                      <span className="block font-black text-base sm:text-lg text-[#FAF5EB] leading-tight mb-0.5">
                         مهناز خوینی
                       </span>
-                      <span className="text-[10px] sm:text-xs text-white/85 block">
+                      <span className="text-xs text-white/85 block">
                         کارشناس ارشد روان‌شناسی بالینی و زوج درمانگر
                       </span>
                     </div>
-                    <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 bg-[#C5A059] text-[#241A35] font-black rounded-md sm:rounded-lg text-[9px] sm:text-[11px] shrink-0 shadow-xs">
+                    <span className="px-2.5 py-1 bg-[#C5A059] text-[#241A35] font-black rounded-lg text-[10px] sm:text-[11px] shrink-0 shadow-xs">
                       رویکرد EFT
                     </span>
                   </div>
