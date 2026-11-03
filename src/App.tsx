@@ -34,9 +34,11 @@ import { getTestBySlug } from './data/testsData';
 import { AlertCircle } from 'lucide-react';
 import { RouteState } from './types';
 import { applySeo, seoForRoute } from './seo';
+import { BrandPreloader } from './components/BrandPreloader';
 
 export const App: React.FC = () => {
   const [route, setRoute] = useState<RouteState>({ type: 'home' });
+  const [showPreloader, setShowPreloader] = useState(true);
 
   // Parse path on initial load & popstate
   const parsePath = () => {
@@ -191,251 +193,259 @@ export const App: React.FC = () => {
   };
 
   // Render view depending on route
-  if (route.type === 'singleTest') {
-    const currentTest = getTestBySlug(route.testSlug);
-    if (!currentTest) {
+  const renderContent = () => {
+    if (route.type === 'singleTest') {
+      const currentTest = getTestBySlug(route.testSlug);
+      if (!currentTest) {
+        return (
+          <div className="min-h-screen bg-[#FAF8F5] flex flex-col items-center justify-center p-6 text-center">
+            <AlertCircle className="w-16 h-16 text-[#6D5AA8] mb-4" />
+            <h1 className="text-2xl font-black text-[#44386B] mb-2">آزمون مورد نظر یافت نشد</h1>
+            <p className="text-sm text-[#6F6B78] mb-6">آدرس آزمون تغییر کرده یا به صفحه دیگری منتقل شده است.</p>
+            <button
+              onClick={() => navigateToTools()}
+              className="px-6 py-3 bg-[#6D5AA8] text-white rounded-full font-bold text-xs cursor-pointer"
+            >
+              مشاهده سایر آزمون‌های رابطه
+            </button>
+          </div>
+        );
+      }
       return (
-        <div className="min-h-screen bg-[#FAF8F5] flex flex-col items-center justify-center p-6 text-center">
-          <AlertCircle className="w-16 h-16 text-[#6D5AA8] mb-4" />
-          <h1 className="text-2xl font-black text-[#44386B] mb-2">آزمون مورد نظر یافت نشد</h1>
-          <p className="text-sm text-[#6F6B78] mb-6">آدرس آزمون تغییر کرده یا به صفحه دیگری منتقل شده است.</p>
-          <button
-            onClick={() => navigateToTools()}
-            className="px-6 py-3 bg-[#6D5AA8] text-white rounded-full font-bold text-xs cursor-pointer"
-          >
-            مشاهده سایر آزمون‌های رابطه
-          </button>
-        </div>
-      );
-    }
-    return (
-      <SingleTestView
-        test={currentTest}
-        onBack={navigateToTools}
-        onSelectOtherTest={navigateToSingleTest}
-        onNavigateContact={navigateToContact}
-      />
-    );
-  }
-  if (route.type === 'articles') {
-    return (
-      <ArticlesArchiveView
-        onBack={() => navigateToHome('articles')}
-        onSelectArticle={navigateToArticle}
-        onNavigateTools={navigateToTools}
-      />
-    );
-  }
-
-  if (route.type === 'services') {
-    return (
-      <ServicesArchiveView
-        onBack={() => navigateToHome('services')}
-        onSelectService={navigateToService}
-        onNavigateContact={navigateToContact}
-        onNavigateTools={navigateToTools}
-      />
-    );
-  }
-
-  if (route.type === 'about') {
-    return (
-      <AboutView
-        onBack={() => navigateToHome('bio')}
-        onNavigateContact={navigateToContact}
-        onNavigateTools={navigateToTools}
-      />
-    );
-  }
-
-  if (route.type === 'process') {
-    return (
-      <ProcessView
-        onBack={() => navigateToHome('process')}
-        onNavigateContact={navigateToContact}
-        onNavigateTools={navigateToTools}
-      />
-    );
-  }
-
-  if (route.type === 'faq') {
-    return (
-      <FaqView
-        onBack={() => navigateToHome('faq')}
-        onNavigateContact={navigateToContact}
-        onNavigateTools={navigateToTools}
-      />
-    );
-  }
-
-  if (route.type === 'contact') {
-    return (
-      <ContactView
-        onBack={() => navigateToHome('contact')}
-        onNavigateTools={navigateToTools}
-      />
-    );
-  }
-
-  if (route.type === 'tools') {
-    return (
-      <ToolsView
-        onBack={() => navigateToHome('tools')}
-        onNavigateContact={navigateToContact}
-        onSelectTest={navigateToSingleTest}
-      />
-    );
-  }
-
-  if (route.type === 'topics') {
-    return (
-      <TopicsView
-        onBack={() => navigateToHome('seo-hub')}
-        onSelectArticle={navigateToArticle}
-        onSelectService={navigateToService}
-        onNavigateTools={navigateToTools}
-      />
-    );
-  }
-
-  if (route.type === 'fees') {
-    return (
-      <FeesView
-        onBack={() => navigateToHome('pricing')}
-        onNavigateContact={navigateToContact}
-        onSelectService={navigateToService}
-      />
-    );
-  }
-
-  // Render view depending on route
-  if (route.type === 'article') {
-    const article = getArticleBySlug(route.slug);
-    if (!article) {
-      return (
-        <div className="min-h-screen bg-[#FAF8F5] flex flex-col items-center justify-center p-6 text-center">
-          <AlertCircle className="w-16 h-16 text-[#6D5AA8] mb-4" />
-          <h1 className="text-2xl font-black text-[#44386B] mb-2">مقاله مورد نظر یافت نشد</h1>
-          <p className="text-sm text-[#6F6B78] mb-6">احتمالاً آدرس مقاله تغییر کرده یا به صفحه دیگری منتقل شده است.</p>
-          <button
-            onClick={() => navigateToHome('articles')}
-            className="px-6 py-3 bg-[#6D5AA8] text-white rounded-full font-bold text-xs"
-          >
-            مشاهده سایر مقالات
-          </button>
-        </div>
-      );
-    }
-    return (
-      <ArticleView
-        article={article}
-        onBack={() => navigateToHome('articles')}
-        onSelectArticle={navigateToArticle}
-      />
-    );
-  }
-
-  if (route.type === 'service') {
-    const service = getServiceBySlug(route.slug);
-    if (!service) {
-      return (
-        <div className="min-h-screen bg-[#FAF8F5] flex flex-col items-center justify-center p-6 text-center">
-          <AlertCircle className="w-16 h-16 text-[#6D5AA8] mb-4" />
-          <h1 className="text-2xl font-black text-[#44386B] mb-2">خدمت مورد نظر یافت نشد</h1>
-          <p className="text-sm text-[#6F6B78] mb-6">صفحه مورد نظر در حال حاضر در دسترس نیست.</p>
-          <button
-            onClick={() => navigateToHome('services')}
-            className="px-6 py-3 bg-[#6D5AA8] text-white rounded-full font-bold text-xs"
-          >
-            مشاهده خدمات تخصصی
-          </button>
-        </div>
-      );
-    }
-    return (
-      <ServiceView
-        service={service}
-        onBack={() => navigateToHome('services')}
-      />
-    );
-  }
-
-  if (route.type === 'bestTherapist') {
-    return (
-      <BestTherapistView
-        onBack={() => navigateToHome()}
-        onNavigateContact={navigateToContact}
-        onNavigateTools={navigateToTools}
-        onSelectService={navigateToService}
-        onSelectArticle={navigateToArticle}
-      />
-    );
-  }
-
-  if (route.type === 'privacy') {
-    return <PrivacyPolicyView onBack={() => navigateToHome()} />;
-  }
-
-  // Home Page
-  return (
-    <div className="min-h-screen bg-[#FAF8F5] text-[#292733] flex flex-col">
-      <Header
-        onNavigateHome={navigateToHome}
-        onNavigatePrivacy={navigateToPrivacy}
-        onNavigateAbout={navigateToAbout}
-        onNavigateProcess={navigateToProcess}
-        onNavigateFaq={navigateToFaq}
-        onNavigateContact={navigateToContact}
-        onNavigateTools={navigateToTools}
-        onNavigateArticles={navigateToArticles}
-        onNavigateServices={navigateToServices}
-        onNavigateTopics={navigateToTopics}
-        onNavigateFees={navigateToFees}
-      />
-
-      <main className="flex-1 home-page">
-        <Hero
-          onScrollToAssessment={() => scrollToSection('assessment')}
-          onScrollToTools={() => scrollToSection('tools')}
-        />
-        <Stats />
-        <InteractiveToolsSuite />
-        <ServicesSection onSelectService={navigateToService} />
-        <CouplesTherapyGuideSection
-          onScrollToTools={() => scrollToSection('tools')}
-          onNavigateService={navigateToService}
+        <SingleTestView
+          test={currentTest}
+          onBack={navigateToTools}
+          onSelectOtherTest={navigateToSingleTest}
           onNavigateContact={navigateToContact}
         />
-        <ProcessSection />
-        <DiagnosticWidget />
-        <KeywordsHubSection
+      );
+    }
+    if (route.type === 'articles') {
+      return (
+        <ArticlesArchiveView
+          onBack={() => navigateToHome('articles')}
+          onSelectArticle={navigateToArticle}
+          onNavigateTools={navigateToTools}
+        />
+      );
+    }
+
+    if (route.type === 'services') {
+      return (
+        <ServicesArchiveView
+          onBack={() => navigateToHome('services')}
+          onSelectService={navigateToService}
+          onNavigateContact={navigateToContact}
+          onNavigateTools={navigateToTools}
+        />
+      );
+    }
+
+    if (route.type === 'about') {
+      return (
+        <AboutView
+          onBack={() => navigateToHome('bio')}
+          onNavigateContact={navigateToContact}
+          onNavigateTools={navigateToTools}
+        />
+      );
+    }
+
+    if (route.type === 'process') {
+      return (
+        <ProcessView
+          onBack={() => navigateToHome('process')}
+          onNavigateContact={navigateToContact}
+          onNavigateTools={navigateToTools}
+        />
+      );
+    }
+
+    if (route.type === 'faq') {
+      return (
+        <FaqView
+          onBack={() => navigateToHome('faq')}
+          onNavigateContact={navigateToContact}
+          onNavigateTools={navigateToTools}
+        />
+      );
+    }
+
+    if (route.type === 'contact') {
+      return (
+        <ContactView
+          onBack={() => navigateToHome('contact')}
+          onNavigateTools={navigateToTools}
+        />
+      );
+    }
+
+    if (route.type === 'tools') {
+      return (
+        <ToolsView
+          onBack={() => navigateToHome('tools')}
+          onNavigateContact={navigateToContact}
+          onSelectTest={navigateToSingleTest}
+        />
+      );
+    }
+
+    if (route.type === 'topics') {
+      return (
+        <TopicsView
+          onBack={() => navigateToHome('seo-hub')}
           onSelectArticle={navigateToArticle}
           onSelectService={navigateToService}
-          onScrollToTools={() => scrollToSection('tools')}
+          onNavigateTools={navigateToTools}
         />
-        <BioSection />
-        <ArticlesSection onSelectArticle={navigateToArticle} />
-        <FaqSection />
-        <ConsultationForm />
-      </main>
+      );
+    }
 
-      <Footer
-        onNavigateHome={navigateToHome}
-        onNavigateService={navigateToService}
-        onNavigateArticle={navigateToArticle}
-        onNavigatePrivacy={navigateToPrivacy}
-        onNavigateAbout={navigateToAbout}
-        onNavigateProcess={navigateToProcess}
-        onNavigateFaq={navigateToFaq}
-        onNavigateContact={navigateToContact}
-        onNavigateTools={navigateToTools}
-        onNavigateArticles={navigateToArticles}
-        onNavigateServices={navigateToServices}
-        onNavigateTopics={navigateToTopics}
-        onNavigateFees={navigateToFees}
-      />
+    if (route.type === 'fees') {
+      return (
+        <FeesView
+          onBack={() => navigateToHome('pricing')}
+          onNavigateContact={navigateToContact}
+          onSelectService={navigateToService}
+        />
+      );
+    }
 
-      <FloatingActions />
-    </div>
+    if (route.type === 'article') {
+      const article = getArticleBySlug(route.slug);
+      if (!article) {
+        return (
+          <div className="min-h-screen bg-[#FAF8F5] flex flex-col items-center justify-center p-6 text-center">
+            <AlertCircle className="w-16 h-16 text-[#6D5AA8] mb-4" />
+            <h1 className="text-2xl font-black text-[#44386B] mb-2">مقاله مورد نظر یافت نشد</h1>
+            <p className="text-sm text-[#6F6B78] mb-6">احتمالاً آدرس مقاله تغییر کرده یا به صفحه دیگری منتقل شده است.</p>
+            <button
+              onClick={() => navigateToHome('articles')}
+              className="px-6 py-3 bg-[#6D5AA8] text-white rounded-full font-bold text-xs"
+            >
+              مشاهده سایر مقالات
+            </button>
+          </div>
+        );
+      }
+      return (
+        <ArticleView
+          article={article}
+          onBack={() => navigateToHome('articles')}
+          onSelectArticle={navigateToArticle}
+        />
+      );
+    }
+
+    if (route.type === 'service') {
+      const service = getServiceBySlug(route.slug);
+      if (!service) {
+        return (
+          <div className="min-h-screen bg-[#FAF8F5] flex flex-col items-center justify-center p-6 text-center">
+            <AlertCircle className="w-16 h-16 text-[#6D5AA8] mb-4" />
+            <h1 className="text-2xl font-black text-[#44386B] mb-2">خدمت مورد نظر یافت نشد</h1>
+            <p className="text-sm text-[#6F6B78] mb-6">صفحه مورد نظر در حال حاضر در دسترس نیست.</p>
+            <button
+              onClick={() => navigateToHome('services')}
+              className="px-6 py-3 bg-[#6D5AA8] text-white rounded-full font-bold text-xs"
+            >
+              مشاهده خدمات تخصصی
+            </button>
+          </div>
+        );
+      }
+      return (
+        <ServiceView
+          service={service}
+          onBack={() => navigateToHome('services')}
+        />
+      );
+    }
+
+    if (route.type === 'bestTherapist') {
+      return (
+        <BestTherapistView
+          onBack={() => navigateToHome()}
+          onNavigateContact={navigateToContact}
+          onNavigateTools={navigateToTools}
+          onSelectService={navigateToService}
+          onSelectArticle={navigateToArticle}
+        />
+      );
+    }
+
+    if (route.type === 'privacy') {
+      return <PrivacyPolicyView onBack={() => navigateToHome()} />;
+    }
+
+    // Home Page
+    return (
+      <div className="min-h-screen bg-[#FAF8F5] text-[#292733] flex flex-col">
+        <Header
+          onNavigateHome={navigateToHome}
+          onNavigatePrivacy={navigateToPrivacy}
+          onNavigateAbout={navigateToAbout}
+          onNavigateProcess={navigateToProcess}
+          onNavigateFaq={navigateToFaq}
+          onNavigateContact={navigateToContact}
+          onNavigateTools={navigateToTools}
+          onNavigateArticles={navigateToArticles}
+          onNavigateServices={navigateToServices}
+          onNavigateTopics={navigateToTopics}
+          onNavigateFees={navigateToFees}
+        />
+
+        <main className="flex-1 home-page">
+          <Hero
+            onScrollToAssessment={() => scrollToSection('assessment')}
+            onScrollToTools={() => scrollToSection('tools')}
+          />
+          <Stats />
+          <InteractiveToolsSuite />
+          <ServicesSection onSelectService={navigateToService} />
+          <CouplesTherapyGuideSection
+            onScrollToTools={() => scrollToSection('tools')}
+            onNavigateService={navigateToService}
+            onNavigateContact={navigateToContact}
+          />
+          <ProcessSection />
+          <DiagnosticWidget />
+          <KeywordsHubSection
+            onSelectArticle={navigateToArticle}
+            onSelectService={navigateToService}
+            onScrollToTools={() => scrollToSection('tools')}
+          />
+          <BioSection />
+          <ArticlesSection onSelectArticle={navigateToArticle} />
+          <FaqSection />
+          <ConsultationForm />
+        </main>
+
+        <Footer
+          onNavigateHome={navigateToHome}
+          onNavigateService={navigateToService}
+          onNavigateArticle={navigateToArticle}
+          onNavigatePrivacy={navigateToPrivacy}
+          onNavigateAbout={navigateToAbout}
+          onNavigateProcess={navigateToProcess}
+          onNavigateFaq={navigateToFaq}
+          onNavigateContact={navigateToContact}
+          onNavigateTools={navigateToTools}
+          onNavigateArticles={navigateToArticles}
+          onNavigateServices={navigateToServices}
+          onNavigateTopics={navigateToTopics}
+          onNavigateFees={navigateToFees}
+        />
+
+        <FloatingActions />
+      </div>
+    );
+  };
+
+  return (
+    <>
+      {showPreloader && <BrandPreloader onFinish={() => setShowPreloader(false)} />}
+      {renderContent()}
+    </>
   );
 };

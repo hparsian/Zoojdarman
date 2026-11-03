@@ -105,8 +105,10 @@ export const Hero: React.FC<HeroProps> = ({
             <h1 className="text-2xl sm:text-4xl lg:text-[2.85rem] font-black leading-[1.35] sm:leading-[1.35] text-[#241A35] mb-2.5 sm:mb-4">
               <span className="block sm:inline">
                 مرکز تخصصی{' '}
-                <span className="text-[#3E2F5B] inline-block border-b-2 sm:border-b-4 border-[#C5A059]/40 pb-0.5 sm:pb-1">
-                  زوج درمان
+                <span className="relative inline-block border-b-2 sm:border-b-4 border-[#C5A059]/50 pb-0.5 sm:pb-1">
+                  <span className="animate-shimmer-subtle inline-block font-black">
+                    زوج درمان
+                  </span>
                 </span>
               </span>
               <span className="hidden sm:inline text-[#C5A059] font-light mx-2">|</span>
