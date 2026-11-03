@@ -76,6 +76,16 @@ export const Footer: React.FC<FooterProps> = ({
               </a>
 
               <a
+                href="https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2.5 text-xs font-bold text-[#E8DFD5] hover:text-[#C5A059] transition-colors p-2.5 rounded-xl bg-white/5 border border-white/10"
+              >
+                <MapPin className="w-4 h-4 text-[#C5A059] shrink-0" />
+                <span>مسیریابی کلینیک در گوگل مپ (Google Maps)</span>
+              </a>
+
+              <a
                 href="https://peyvandamn.ir"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -393,10 +403,15 @@ export const Footer: React.FC<FooterProps> = ({
               peyvandamn.ir
             </a>
             <span>•</span>
-            <span className="flex items-center gap-1">
+            <a
+              href="https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 hover:text-[#C5A059] transition-colors"
+            >
               <MapPin className="w-3.5 h-3.5 text-[#C5A059]" />
-              <span>تهران، منطقه ۲ (کلینیک پیوند امن)</span>
-            </span>
+              <span>تهران، منطقه ۲ (نقشه گوگل مپ)</span>
+            </a>
           </div>
         </div>
       </div>

@@ -495,10 +495,12 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
         'سکس تراپی'
       ],
       sameAs: [
+        'https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA',
         'https://peyvandamn.ir',
         'https://instagram.com/mahnaz.khoini',
         'https://t.me/MKHOINI'
       ],
+      hasMap: 'https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA',
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'فلکه دوم صادقیه، بزرگراه اشرفی اصفهانی',
@@ -517,6 +519,11 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
         'بهترین مرکز زوج درمان تهران'
       ],
       url,
+      hasMap: 'https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA',
+      sameAs: [
+        'https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA',
+        'https://peyvandamn.ir'
+      ],
       logo: `${SITE_URL}/images/logo-512.png`,
       image: absoluteUrl(DEFAULT_IMAGE),
       medicalSpecialty: 'Psychological',

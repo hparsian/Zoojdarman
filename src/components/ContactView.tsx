@@ -157,6 +157,18 @@ export const ContactView: React.FC<ContactViewProps> = ({ onBack, onNavigateTool
               <p>
                 <strong>پروانه رسمی نظام:</strong> ۱۴۱۴۰۸۳ (خانم مهناز خوینی، مسئول فنی)
               </p>
+
+              <div className="pt-2">
+                <a
+                  href="https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#4285F4] hover:bg-[#3367D6] text-white text-xs font-bold rounded-xl shadow-xs transition-all cursor-pointer"
+                >
+                  <MapPin className="w-4 h-4 text-white" />
+                  <span>مسیریابی هوشمند روی گوگل مپ (Google Maps)</span>
+                </a>
+              </div>
             </div>
 
             <div className="space-y-3 bg-[#FAF8F5] p-4 rounded-2xl border border-[#E5E0EA]">
@@ -169,6 +181,9 @@ export const ContactView: React.FC<ContactViewProps> = ({ onBack, onNavigateTool
                 <li>پنج‌شنبه‌ها: ۹:۰۰ صبح الی ۱۸:۰۰ عصر</li>
                 <li>جمعه‌ها و ایام تعطیل رسمی: پذیرش آنلاین با هماهنگی قبلی</li>
               </ul>
+              <div className="pt-2 border-t border-[#E5E0EA] text-[11px] text-[#6F6B78]">
+                موقعیت کلینیک در نقشه گوگل ثبت و اعتبارسنجی شده است.
+              </div>
             </div>
           </div>
         </div>

@@ -45,6 +45,11 @@ export const SeoCertificationSummaryCard: React.FC<SeoCertificationSummaryCardPr
         },
         "award": "بیش از ۱۵,۰۰0 ساعت مشاوره بالینی تخصصی زوجین",
         "telephone": "+989199087264",
+        "hasMap": "https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA",
+        "sameAs": [
+          "https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA",
+          "https://peyvandamn.ir"
+        ],
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "فلکه دوم صادقیه، بزرگراه اشرفی اصفهانی",
@@ -58,6 +63,7 @@ export const SeoCertificationSummaryCard: React.FC<SeoCertificationSummaryCardPr
         "@id": "https://zoojdarman.ir/#clinic",
         "name": "مرکز تخصصی زوج درمان مهناز خوینی (کلینیک پیوند امن)",
         "url": "https://zoojdarman.ir",
+        "hasMap": "https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA",
         "medicalSpecialty": "Psychological",
         "priceRange": "$$",
         "aggregateRating": {
