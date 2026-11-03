@@ -30,6 +30,8 @@ import { ServicesArchiveView } from './components/ServicesArchiveView';
 import { TopicsView } from './components/TopicsView';
 import { FeesView } from './components/FeesView';
 import { BestTherapistView } from './components/BestTherapistView';
+import { VideosSection } from './components/VideosSection';
+import { VideosView } from './components/VideosView';
 import { getTestBySlug } from './data/testsData';
 import { AlertCircle } from 'lucide-react';
 import { RouteState } from './types';
@@ -83,6 +85,8 @@ export const App: React.FC = () => {
       setRoute({ type: 'bestTherapist' });
     } else if (path === '/privacy-policy') {
       setRoute({ type: 'privacy' });
+    } else if (path === '/videos' || path === '/media' || path === '/aparat' || path === '/youtube') {
+      setRoute({ type: 'videos' });
     } else {
       setRoute({ type: 'home', section: hash || undefined });
     }
@@ -99,7 +103,7 @@ export const App: React.FC = () => {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // به‌روزرسانی متا سئو (عنوان، توضیحات، canonical، OG و JSON-LD) برای هر مسیر
+  // بهروزرسانی متا سئو (عنوان، توضیحات، canonical، OG و JSON-LD) برای هر مسیر
   useEffect(() => {
     applySeo(seoForRoute(route));
   }, [route]);
@@ -185,6 +189,11 @@ export const App: React.FC = () => {
   const navigateToBestTherapist = () => {
     window.history.pushState({}, '', '/best-couples-therapist-tehran');
     setRoute({ type: 'bestTherapist' });
+  };
+
+  const navigateToVideos = () => {
+    window.history.pushState({}, '', '/videos');
+    setRoute({ type: 'videos' });
   };
 
   const navigateToPrivacy = () => {
@@ -374,6 +383,16 @@ export const App: React.FC = () => {
       );
     }
 
+    if (route.type === 'videos') {
+      return (
+        <VideosView
+          onNavigateHome={() => navigateToHome()}
+          onNavigateContact={navigateToContact}
+          onNavigateTools={navigateToTools}
+        />
+      );
+    }
+
     if (route.type === 'privacy') {
       return <PrivacyPolicyView onBack={() => navigateToHome()} />;
     }
@@ -393,6 +412,7 @@ export const App: React.FC = () => {
           onNavigateServices={navigateToServices}
           onNavigateTopics={navigateToTopics}
           onNavigateFees={navigateToFees}
+          onNavigateVideos={navigateToVideos}
         />
 
         <main className="flex-1 home-page">
@@ -403,6 +423,11 @@ export const App: React.FC = () => {
           <Stats />
           <InteractiveToolsSuite />
           <ServicesSection onSelectService={navigateToService} />
+          <VideosSection
+            onNavigateContact={navigateToContact}
+            onNavigateVideos={navigateToVideos}
+            limit={6}
+          />
           <CouplesTherapyGuideSection
             onScrollToTools={() => scrollToSection('tools')}
             onNavigateService={navigateToService}
@@ -435,6 +460,7 @@ export const App: React.FC = () => {
           onNavigateServices={navigateToServices}
           onNavigateTopics={navigateToTopics}
           onNavigateFees={navigateToFees}
+          onNavigateVideos={navigateToVideos}
         />
 
         <FloatingActions />

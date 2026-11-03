@@ -15,6 +15,7 @@ interface FooterProps {
   onNavigateServices?: () => void;
   onNavigateTopics?: () => void;
   onNavigateFees?: () => void;
+  onNavigateVideos?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
@@ -31,6 +32,7 @@ export const Footer: React.FC<FooterProps> = ({
   onNavigateServices,
   onNavigateTopics,
   onNavigateFees,
+  onNavigateVideos,
 }) => {
   return (
     <footer className="relative bg-[#1E1527] text-[#FAF8F5] pt-20 pb-12 overflow-hidden border-t border-[#C5A059]/20">
@@ -242,6 +244,15 @@ export const Footer: React.FC<FooterProps> = ({
                 >
                   <Sparkles className="w-3 h-3 text-[#C5A059]" />
                   <span>تست آنلاین رضایت زناشویی</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/videos"
+                  onClick={(e) => { e.preventDefault(); onNavigateVideos ? onNavigateVideos() : onNavigateHome('videos'); }}
+                  className="hover:text-[#C5A059] text-rose-300 font-bold transition-colors cursor-pointer text-right block py-1 flex items-center gap-1.5"
+                >
+                  <span>🔴 ویدیوهای آپارات و یوتیوب</span>
                 </a>
               </li>
               <li>

@@ -51,5 +51,6 @@ export type RouteState =
   | { type: 'fees' }
   | { type: 'topics' }
   | { type: 'bestTherapist' }
+  | { type: 'videos' }
   | { type: 'privacy' }
   | { type: '404' };

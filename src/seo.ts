@@ -1,6 +1,7 @@
 import { getArticleBySlug } from './data/articles';
 import { getServiceBySlug } from './data/services';
 import { getTestBySlug } from './data/testsData';
+import { VIDEOS_DATA } from './data/videosData';
 import type { FaqItem, RouteState } from './types';
 
 /**
@@ -618,8 +619,44 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
   ];
 }
 
+function videosJsonLdSchema(url: string): Record<string, unknown>[] {
+  return VIDEOS_DATA.map((v) => ({
+    '@type': 'VideoObject',
+    '@id': `${url}#video-${v.id}`,
+    name: v.title,
+    description: v.description,
+    thumbnailUrl: [absoluteUrl(v.thumbnail)],
+    uploadDate: '2025-01-15T08:00:00+03:30',
+    duration: 'PT15M',
+    embedUrl: v.aparatEmbedUrl,
+    contentUrl: v.aparatUrl,
+    inLanguage: 'fa-IR',
+    keywords: v.tags.join(', '),
+    author: {
+      '@type': 'Person',
+      '@id': THERAPIST_ID,
+      name: 'مهناز خوینی',
+    },
+    publisher: {
+      '@type': 'Organization',
+      '@id': `${SITE_URL}/#clinic`,
+      name: 'مرکز تخصصی زوج درمان مهناز خوینی',
+    },
+  }));
+}
+
 export function seoForRoute(route: RouteState): SeoPage {
   switch (route.type) {
+    case 'videos':
+      return {
+        title: 'ویدیوهای آموزشی و برنامه‌های آپارات و یوتیوب | مهناز خوینی',
+        description:
+          'مشاهده آنلاین کارگاه‌ها و فیلم‌های آموزشی زوج‌درمانی، مشاوره خیانت، درمان طلاق عاطفی و مهارت‌های ارتباطی مهناز خوینی در آپارات و یوتیوب.',
+        path: '/videos',
+        breadcrumb: [{ name: 'صفحه اصلی' }, { name: 'ویدیوهای آموزشی و رسانه' }],
+        jsonLd: videosJsonLdSchema(absoluteUrl('/videos')),
+      };
+
     case 'home': {
       const path = '/';
       return {

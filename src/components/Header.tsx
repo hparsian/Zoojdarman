@@ -13,6 +13,7 @@ interface HeaderProps {
   onNavigateServices?: () => void;
   onNavigateTopics?: () => void;
   onNavigateFees?: () => void;
+  onNavigateVideos?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -27,6 +28,7 @@ export const Header: React.FC<HeaderProps> = ({
   onNavigateServices,
   onNavigateTopics,
   onNavigateFees,
+  onNavigateVideos,
 }) => {
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -62,6 +64,8 @@ export const Header: React.FC<HeaderProps> = ({
       onNavigateTools();
     } else if (key === 'fees' && onNavigateFees) {
       onNavigateFees();
+    } else if (key === 'videos' && onNavigateVideos) {
+      onNavigateVideos();
     } else if (key === 'seo-hub' && onNavigateTopics) {
       onNavigateTopics();
     } else if (key === 'services' && onNavigateServices) {
@@ -85,6 +89,7 @@ export const Header: React.FC<HeaderProps> = ({
   const navItems = [
     { label: 'آزمون‌های رابطه', path: '/tools', key: 'tools', isHighlight: true },
     { label: 'خدمات تخصصی', path: '/services', key: 'services' },
+    { label: 'ویدیوها و آپارات', path: '/videos', key: 'videos' },
     { label: 'تعرفه و بیمه', path: '/fees', key: 'fees' },
     { label: 'مراحل درمان EFT', path: '/process', key: 'process' },
     { label: 'بانک مقالات', path: '/articles', key: 'articles' },
