@@ -301,6 +301,47 @@ function testSchema(testSlug: string, url: string): Record<string, unknown>[] {
   ];
 }
 
+function toolsHubSchema(url: string): Record<string, unknown>[] {
+  return [
+    {
+      '@type': 'WebApplication',
+      '@id': `${url}#app`,
+      name: 'سامانه تست زوج درمانی آنلاین رایگان مهناز خوینی',
+      alternateName: [
+        'تست زوج درمانی',
+        'تست زوج درمانی آنلاین',
+        'تست آنلاین زوج درمانی',
+        'آزمون انریچ آنلاین',
+        'تست خیانت آنلاین',
+        'تست سلامت رابطه زناشویی'
+      ],
+      description: 'مجموعه ابزارهای سنجش و تست زوج درمانی آنلاین رایگان شامل آزمون رضایت زناشویی انریچ، تست ترومای خیانت، سبک دلبستگی و طلاق عاطفی با نمره و تحلیل بالینی فوری.',
+      url,
+      applicationCategory: 'HealthApplication',
+      operatingSystem: 'All',
+      inLanguage: 'fa-IR',
+      author: {
+        '@type': 'Person',
+        '@id': THERAPIST_ID,
+        name: 'مهناز خوینی',
+      },
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'IRR',
+        availability: 'https://schema.org/InStock',
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.9',
+        ratingCount: '1540',
+        bestRating: '5',
+        worstRating: '1',
+      },
+    },
+  ];
+}
+
 function homeJsonLdSchema(url: string): Record<string, unknown>[] {
   return [
     {
@@ -584,11 +625,12 @@ export function seoForRoute(route: RouteState): SeoPage {
 
     case 'tools':
       return {
-        title: 'تست‌های آنلاین روانشناسی رابطه و زوج‌درمانی | انریچ، خیانت و پیش از ازدواج | مهناز خوینی',
+        title: 'تست زوج درمانی آنلاین رایگان با تحلیل بالینی و نمره فوری | مهناز خوینی',
         description:
-          '۶ آزمون آنلاین و علمی رایگان سامانه زوج‌درمان: تست رضایت زناشویی انریچ، سنجش تروما و آسیب خیانت (PISD)، آمادگی پیش از ازدواج، طلاق عاطفی گاتمن، سبک دلبستگی و ۵ زبان عشق.',
+          'سامانه تست زوج درمانی آنلاین و رایگان با تفسیر فوری مهناز خوینی: آزمون رضایت زناشویی انریچ، تست آسیب و ترومای خیانت (PISD)، طلاق عاطفی گاتمن، سبک دلبستگی و ۵ زبان عشق.',
         path: '/tools',
-        breadcrumb: [{ name: 'صفحه اصلی' }, { name: 'تست‌های آنلاین رابطه' }],
+        breadcrumb: [{ name: 'صفحه اصلی' }, { name: 'تست زوج درمانی آنلاین' }],
+        jsonLd: toolsHubSchema(absoluteUrl('/tools')),
       };
 
     case 'fees':

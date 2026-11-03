@@ -93,8 +93,22 @@ export const ToolsView: React.FC<ToolsViewProps> = ({ onBack, onNavigateContact,
             صفحه اصلی
           </a>
           <span>/</span>
-          <span className="text-[#6D5AA8] font-bold">سامانه تست‌های آنلاین رابطه</span>
+          <span className="text-[#6D5AA8] font-bold">تست زوج درمانی آنلاین</span>
         </nav>
+
+        {/* Page Header */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f2eff8] text-[#6D5AA8] text-xs font-black mb-3">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>سامانه ارزیابی بالینی و خودسنجی سلامت رابطه</span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-black text-[#292733] mb-3 leading-tight">
+            تست زوج درمانی آنلاین؛ ارزیابی علمی رضایت زناشویی، خیانت و دلبستگی
+          </h1>
+          <p className="text-sm text-[#6F6B78] max-w-2xl mx-auto leading-relaxed">
+            مجموعه آزمون‌های استاندارد روانشناسی با نمره‌دهی فوری، نمودار تعاملی و تحلیل بالینی مهناز خوینی (زوج درمانگر هیجان‌مدار EFT). آزمون‌ها کاملاً رایگان، بدون نیاز به ثبت‌نام و همراه با کارنامه تحلیلی هستند.
+          </p>
+        </div>
 
         {/* Dedicated Test Pages Hub Grid */}
         <div className="mb-10">
