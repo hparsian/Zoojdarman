@@ -383,25 +383,52 @@ export const VideosSection: React.FC<VideosSectionProps> = ({
               </div>
             </div>
 
-            {/* Responsive Iframe Container */}
-            <div className="relative aspect-video bg-black w-full overflow-hidden">
-              {activePlayerPlatform === 'aparat' ? (
-                <iframe
-                  src={activeVideo.aparatEmbedUrl}
-                  title={activeVideo.title}
-                  className="w-full h-full border-0"
-                  allowFullScreen
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                />
-              ) : (
-                <iframe
-                  src={activeVideo.youtubeEmbedUrl}
-                  title={activeVideo.title}
-                  className="w-full h-full border-0"
-                  allowFullScreen
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                />
-              )}
+            {/* Video Player Display Container */}
+            <div className="relative aspect-video bg-[#181124] w-full overflow-hidden flex flex-col items-center justify-center p-6 text-center group">
+              <img
+                src={activeVideo.thumbnail}
+                alt={activeVideo.title}
+                className="absolute inset-0 w-full h-full object-cover object-top opacity-30 filter blur-xs scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#181124] via-[#181124]/80 to-transparent" />
+
+              <div className="relative z-10 max-w-lg mx-auto space-y-4">
+                <div className="w-16 h-16 rounded-full bg-[#C5A059] text-[#241A35] flex items-center justify-center mx-auto shadow-2xl border-2 border-white">
+                  <Play className="w-8 h-8 fill-[#241A35] mr-0.5" />
+                </div>
+
+                <h4 className="text-base sm:text-xl font-black text-white leading-snug">
+                  {activeVideo.title}
+                </h4>
+
+                <p className="text-xs text-white/80 line-clamp-2 leading-relaxed max-w-md mx-auto">
+                  برنامه‌ها و جلسات آموزشی مهناز خوینی به صورت اختصاصی در کانال‌های رسمی آپارات و یوتیوب قابل مشاهده است.
+                </p>
+
+                <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+                  <a
+                    href="https://www.aparat.com/Mahnaz.khoini_psychology"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-6 py-3 rounded-2xl bg-rose-600 hover:bg-rose-700 text-white font-black text-xs transition-all shadow-xl flex items-center gap-2 cursor-pointer border border-rose-400/40"
+                  >
+                    <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
+                    <span>تماشای ویدیو در کانال رسمی آپارات</span>
+                    <ExternalLink className="w-4 h-4 opacity-80" />
+                  </a>
+
+                  <a
+                    href="https://youtube.com/@mahnaz.khoini"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-6 py-3 rounded-2xl bg-red-600 hover:bg-red-700 text-white font-black text-xs transition-all shadow-xl flex items-center gap-2 cursor-pointer border border-red-400/40"
+                  >
+                    <YoutubeIcon className="w-4 h-4 text-white" />
+                    <span>مشاهده در کانال یوتیوب</span>
+                    <ExternalLink className="w-4 h-4 opacity-80" />
+                  </a>
+                </div>
+              </div>
             </div>
 
             {/* Modal Body Info */}
