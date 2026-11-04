@@ -38,6 +38,8 @@ import { RouteState } from './types';
 import { applySeo, seoForRoute } from './seo';
 import { BrandPreloader } from './components/BrandPreloader';
 
+import { HomeToolsTeaser } from './components/HomeToolsTeaser';
+
 export const App: React.FC = () => {
   const [route, setRoute] = useState<RouteState>({ type: 'home' });
   const [showPreloader, setShowPreloader] = useState(true);
@@ -397,7 +399,7 @@ export const App: React.FC = () => {
       return <PrivacyPolicyView onBack={() => navigateToHome()} />;
     }
 
-    // Home Page
+    // Home Page - Streamlined, Uncluttered, High-Performance Conversion Portal
     return (
       <div className="min-h-screen bg-[#FAF8F5] text-[#292733] flex flex-col">
         <Header
@@ -417,32 +419,31 @@ export const App: React.FC = () => {
 
         <main className="flex-1 home-page">
           <Hero
-            onScrollToAssessment={() => scrollToSection('assessment')}
-            onScrollToTools={() => scrollToSection('tools')}
+            onScrollToAssessment={navigateToTools}
+            onScrollToTools={navigateToTools}
+            onSelectService={navigateToService}
           />
           <Stats />
-          <InteractiveToolsSuite />
           <ServicesSection onSelectService={navigateToService} />
+          <HomeToolsTeaser
+            onNavigateTools={navigateToTools}
+            onSelectTest={navigateToSingleTest}
+          />
           <VideosSection
             onNavigateContact={navigateToContact}
             onNavigateVideos={navigateToVideos}
-            limit={6}
-          />
-          <CouplesTherapyGuideSection
-            onScrollToTools={() => scrollToSection('tools')}
-            onNavigateService={navigateToService}
-            onNavigateContact={navigateToContact}
-          />
-          <ProcessSection />
-          <DiagnosticWidget />
-          <KeywordsHubSection
-            onSelectArticle={navigateToArticle}
-            onSelectService={navigateToService}
-            onScrollToTools={() => scrollToSection('tools')}
+            limit={3}
           />
           <BioSection />
-          <ArticlesSection onSelectArticle={navigateToArticle} />
-          <FaqSection />
+          <ArticlesSection
+            onSelectArticle={navigateToArticle}
+            onNavigateArticles={navigateToArticles}
+            limit={3}
+          />
+          <FaqSection
+            onNavigateFaq={navigateToFaq}
+            limit={4}
+          />
           <ConsultationForm />
         </main>
 

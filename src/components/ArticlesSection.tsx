@@ -5,13 +5,19 @@ import { Article } from '../types';
 
 interface ArticlesSectionProps {
   onSelectArticle: (slug: string) => void;
+  onNavigateArticles?: () => void;
+  limit?: number;
 }
 
-export const ArticlesSection: React.FC<ArticlesSectionProps> = ({ onSelectArticle }) => {
+export const ArticlesSection: React.FC<ArticlesSectionProps> = ({
+  onSelectArticle,
+  onNavigateArticles,
+  limit,
+}) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('همه');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const pageSize = 9;
+  const pageSize = limit || 9;
 
   // Extract unique categories
   const categories = useMemo(() => {
@@ -53,73 +59,73 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({ onSelectArticl
   };
 
   return (
-    <section className="relative py-24 bg-gradient-to-b from-[#FAF8F5] via-[#F4EFEA] to-[#FAF8F5] overflow-hidden" id="articles">
+    <section className="relative py-20 lg:py-24 bg-gradient-to-b from-[#FAF8F5] via-[#F4EFEA] to-[#FAF8F5] overflow-hidden" id="articles">
       <div className="container-custom relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-[#A67C2E] uppercase mb-3">
-            <span className="w-6 h-px bg-[#C5A059]" />
-            <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
-            <span>پایگاه دانش بالینی و مقالات تخصصی</span>
-            <span className="w-6 h-px bg-[#C5A059]" />
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-[#A67C2E] uppercase mb-3">
+              <span className="w-6 h-px bg-[#C5A059]" />
+              <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
+              <span>پایگاه دانش بالینی و مقالات تخصصی</span>
+            </div>
+
+            <h2 className="text-2xl sm:text-4xl font-black text-[#2A1E35] mb-2 leading-tight">
+              دانشنامه جامع روابط عاطفی و زوج‌درمانی
+            </h2>
+
+            <p className="text-sm sm:text-base text-[#6F6B78] leading-relaxed">
+              راهنماها و مقالات بالینی بر پایه رویکرد هیجان‌مدار (EFT)، نظریه گاتمن و طرحواره‌درمانی.
+            </p>
           </div>
 
-          <h2 className="text-2xl sm:text-4xl font-black text-[#2A1E35] mb-4 leading-tight">
-            دانشنامه جامع روابط عاطفی و زوج‌درمانی
-          </h2>
-
-          <p className="text-sm sm:text-base text-[#6F6B78] leading-relaxed">
-            مجموعه بیش از ۴۰ مقاله بالینی بر پایه رویکرد هیجان‌مدار (EFT)، نظریه گاتمن و طرحواره‌درمانی برای رمزگشایی و ترمیم پیوندهای آسیب‌دیده.
-          </p>
-        </div>
-
-        {/* Filter and Search Bar */}
-        <div className="bg-white p-5 sm:p-6 rounded-2xl border border-[#E8DFD5] shadow-xs mb-8 flex flex-col md:flex-row gap-4 items-center justify-between">
-          {/* Categories Buttons */}
-          <div className="flex flex-wrap gap-2 w-full md:w-auto">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => handleCategoryChange(cat)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                  selectedCategory === cat
-                    ? 'bg-[#2A1E35] text-white shadow-sm border border-[#C5A059]/40'
-                    : 'bg-[#FAF8F5] text-[#6F6B78] hover:text-[#2A1E35] hover:border-[#C5A059]/40 border border-[#E8DFD5]'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
-          {/* Search Input */}
-          <div className="relative w-full md:w-72">
-            <input
-              type="text"
-              placeholder="جستجو در مقالات..."
-              value={searchQuery}
-              onChange={handleSearchChange}
-              className="w-full pl-4 pr-10 py-2.5 bg-[#FAF8F5] border border-[#E8DFD5] rounded-xl text-xs font-medium text-[#2A1E35] focus:bg-white focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059]/30 focus:outline-none transition-all"
-            />
-            <Search className="w-4 h-4 text-[#A67C2E] absolute right-3.5 top-3" />
-          </div>
-        </div>
-
-        {/* Articles Count */}
-        <div className="text-xs text-[#7A7382] font-bold mb-6 flex justify-between items-center px-1">
-          <span>نمایش {filteredArticles.length} مقاله تخصصی</span>
-          {searchQuery && (
+          {onNavigateArticles && (
             <button
-              onClick={() => setSearchQuery('')}
-              className="text-[#A67C2E] hover:underline cursor-pointer"
+              onClick={onNavigateArticles}
+              className="inline-flex items-center gap-2 text-xs font-black text-[#3E2F5B] hover:text-[#241A35] py-2.5 px-5 rounded-full border border-[#E8DFD5] hover:border-[#3E2F5B]/40 bg-white transition-all cursor-pointer shrink-0"
             >
-              پاک کردن فیلتر جستجو
+              <span>مشاهده آرشیو کامل مقالات ({articles.length} مقاله)</span>
+              <ArrowLeft className="w-3.5 h-3.5 text-[#C5A059]" />
             </button>
           )}
         </div>
 
+        {/* Filter and Search Bar (hidden if limit is set) */}
+        {!limit && (
+          <div className="bg-white p-5 sm:p-6 rounded-2xl border border-[#E8DFD5] shadow-xs mb-8 flex flex-col md:flex-row gap-4 items-center justify-between">
+            {/* Categories Buttons */}
+            <div className="flex flex-wrap gap-2 w-full md:w-auto">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => handleCategoryChange(cat)}
+                  className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                    selectedCategory === cat
+                      ? 'bg-[#2A1E35] text-white shadow-sm border border-[#C5A059]/40'
+                      : 'bg-[#FAF8F5] text-[#6F6B78] hover:text-[#2A1E35] hover:border-[#C5A059]/40 border border-[#E8DFD5]'
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+
+            {/* Search Input */}
+            <div className="relative w-full md:w-72">
+              <input
+                type="text"
+                placeholder="جستجو در مقالات..."
+                value={searchQuery}
+                onChange={handleSearchChange}
+                className="w-full pl-4 pr-10 py-2.5 bg-[#FAF8F5] border border-[#E8DFD5] rounded-xl text-xs font-medium text-[#2A1E35] focus:bg-white focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059]/30 focus:outline-none transition-all"
+              />
+              <Search className="w-4 h-4 text-[#A67C2E] absolute right-3.5 top-3" />
+            </div>
+          </div>
+        )}
+
         {/* Articles Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           {paginatedArticles.map((art: Article) => (
             <article
               key={art.slug}
@@ -172,7 +178,7 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({ onSelectArticl
                   </span>
                 </div>
                 <span className="text-[#A67C2E] font-bold group-hover:-translate-x-1 transition-transform flex items-center gap-1">
-                  مطالعه
+                  مطالعه مقاله
                   <ArrowLeft className="w-3.5 h-3.5" />
                 </span>
               </div>
@@ -180,8 +186,22 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({ onSelectArticl
           ))}
         </div>
 
-        {/* Pagination Controls */}
-        {totalPages > 1 && (
+        {/* View All Articles CTA Button */}
+        {limit && onNavigateArticles && (
+          <div className="text-center mt-8">
+            <button
+              onClick={onNavigateArticles}
+              className="inline-flex items-center gap-2 bg-[#2A1E35] hover:bg-[#3E2F5B] text-[#C5A059] font-black text-xs px-8 py-3.5 rounded-full border border-[#C5A059]/40 shadow-md transition-all cursor-pointer"
+            >
+              <BookOpen className="w-4 h-4 text-[#C5A059]" />
+              <span>ورود به بانک مقالات تخصصی زوج درمانی ({articles.length} مقاله)</span>
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+          </div>
+        )}
+
+        {/* Pagination Controls (when not limited) */}
+        {!limit && totalPages > 1 && (
           <div className="flex items-center justify-center gap-2">
             <button
               onClick={() => setCurrentPage(p => Math.max(1, p - 1))}

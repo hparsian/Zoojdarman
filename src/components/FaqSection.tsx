@@ -4,23 +4,29 @@ import { FaqItem } from '../types';
 import { registerFaqSchema } from '../seo';
 import { mainFaqsList } from '../data/faqsData';
 
-export const FaqSection: React.FC = () => {
+interface FaqSectionProps {
+  onNavigateFaq?: () => void;
+  limit?: number;
+}
+
+export const FaqSection: React.FC<FaqSectionProps> = ({ onNavigateFaq, limit }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const faqs: FaqItem[] = mainFaqsList.map((f) => ({ q: f.q, a: f.a }));
+  const allFaqs: FaqItem[] = mainFaqsList.map((f) => ({ q: f.q, a: f.a }));
+  const displayFaqs = limit ? allFaqs.slice(0, limit) : allFaqs;
 
   const toggle = (idx: number) => {
     setOpenIndex(openIndex === idx ? null : idx);
   };
 
   // داده‌های ساختاریافته پرسش‌وپاسخ صفحه اصلی (JSON-LD FAQPage)
-  useEffect(() => registerFaqSchema(faqs), []);
+  useEffect(() => registerFaqSchema(displayFaqs), [limit]);
 
   return (
-    <section className="relative py-24 bg-[#FAF8F5] overflow-hidden" id="faq">
+    <section className="relative py-20 lg:py-24 bg-[#FAF8F5] overflow-hidden" id="faq">
       <div className="container-custom relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-14">
+        <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-[#A67C2E] uppercase mb-3">
             <span className="w-6 h-px bg-[#C5A059]" />
             <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
@@ -39,7 +45,7 @@ export const FaqSection: React.FC = () => {
 
         {/* Accordion */}
         <div className="max-w-3xl mx-auto flex flex-col gap-3.5">
-          {faqs.map((faq, idx) => {
+          {displayFaqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div
@@ -78,6 +84,18 @@ export const FaqSection: React.FC = () => {
             );
           })}
         </div>
+
+        {limit && onNavigateFaq && (
+          <div className="text-center mt-10">
+            <button
+              onClick={onNavigateFaq}
+              className="inline-flex items-center gap-2 bg-[#2A1E35] hover:bg-[#3E2F5B] text-[#C5A059] font-black text-xs px-8 py-3.5 rounded-full border border-[#C5A059]/40 shadow-md transition-all cursor-pointer"
+            >
+              <HelpCircle className="w-4 h-4 text-[#C5A059]" />
+              <span>مشاهده تمام سوالات متداول ({allFaqs.length} سوال)</span>
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
