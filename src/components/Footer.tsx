@@ -98,6 +98,43 @@ export const Footer: React.FC<FooterProps> = ({
               </a>
             </div>
 
+            {/* Social & Channel Badges */}
+            <div className="flex flex-wrap items-center gap-2 mb-6 max-w-sm">
+              <a
+                href="https://www.aparat.com/Mahnaz.khoini_psychology"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 rounded-xl bg-rose-950/60 border border-rose-500/40 text-rose-300 hover:text-white text-xs font-bold transition-all flex items-center gap-1.5"
+              >
+                <span className="w-2 h-2 rounded-full bg-rose-500" />
+                <span>کانال آپارات</span>
+              </a>
+              <a
+                href="https://youtube.com/@mahnaz.khoini"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 rounded-xl bg-red-950/60 border border-red-500/40 text-red-300 hover:text-white text-xs font-bold transition-all flex items-center gap-1.5"
+              >
+                <span>🔴 کانال یوتیوب</span>
+              </a>
+              <a
+                href="https://instagram.com/mahnaz.khoini"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 rounded-xl bg-fuchsia-950/60 border border-fuchsia-500/40 text-fuchsia-300 hover:text-white text-xs font-bold transition-all"
+              >
+                اینستاگرام
+              </a>
+              <a
+                href="https://t.me/MKHOINI"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 rounded-xl bg-sky-950/60 border border-sky-500/40 text-sky-300 hover:text-white text-xs font-bold transition-all"
+              >
+                تلگرام
+              </a>
+            </div>
+
             <div className="flex items-center gap-2.5 text-xs text-[#E8DFD5] bg-[#2A1E35] border border-[#C5A059]/30 px-4 py-2.5 rounded-xl">
               <ShieldCheck className="w-4 h-4 text-[#C5A059] shrink-0" />
               <span>پروانه رسمی نظام روان‌شناسی و مشاوره: ۱۴۱۴۰۸۳</span>

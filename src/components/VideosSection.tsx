@@ -96,24 +96,24 @@ export const VideosSection: React.FC<VideosSectionProps> = ({
           {/* Quick Platform Badges & Direct Links */}
           <div className="flex items-center justify-center gap-4 mt-6">
             <a
-              href="https://www.aparat.com/"
+              href="https://www.aparat.com/Mahnaz.khoini_psychology"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200 text-xs font-bold transition-all shadow-xs"
             >
               <span className="w-2 h-2 rounded-full bg-rose-600 animate-ping" />
-              <span>کانال آپارات مهناز خوینی</span>
+              <span>کانال رسمی آپارات مهناز خوینی</span>
               <ExternalLink className="w-3.5 h-3.5 opacity-70" />
             </a>
 
             <a
-              href="https://www.youtube.com/"
+              href="https://youtube.com/@mahnaz.khoini"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-red-50 text-red-700 hover:bg-red-100 border border-red-200 text-xs font-bold transition-all shadow-xs"
             >
               <YoutubeIcon className="w-4 h-4 text-red-600" />
-              <span>کانال یوتیوب تخصصی</span>
+              <span>کانال رسمی یوتیوب مهناز خوینی</span>
               <ExternalLink className="w-3.5 h-3.5 opacity-70" />
             </a>
           </div>

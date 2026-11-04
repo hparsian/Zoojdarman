@@ -471,7 +471,9 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
         'https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA',
         'https://peyvandamn.ir',
         'https://instagram.com/mahnaz.khoini',
-        'https://t.me/MKHOINI'
+        'https://t.me/MKHOINI',
+        'https://www.aparat.com/Mahnaz.khoini_psychology',
+        'https://youtube.com/@mahnaz.khoini'
       ],
       hasMap: 'https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA',
       address: {
@@ -495,7 +497,9 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
       hasMap: 'https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA',
       sameAs: [
         'https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA',
-        'https://peyvandamn.ir'
+        'https://peyvandamn.ir',
+        'https://www.aparat.com/Mahnaz.khoini_psychology',
+        'https://youtube.com/@mahnaz.khoini'
       ],
       logo: `${SITE_URL}/images/logo-512.png`,
       image: absoluteUrl(DEFAULT_IMAGE),
