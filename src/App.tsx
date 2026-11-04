@@ -32,6 +32,12 @@ import { FeesView } from './components/FeesView';
 import { BestTherapistView } from './components/BestTherapistView';
 import { VideosSection } from './components/VideosSection';
 import { VideosView } from './components/VideosView';
+import { CityLandingView } from './components/CityLandingView';
+import { CitiesHubView } from './components/CitiesHubView';
+import { CountryLandingView } from './components/CountryLandingView';
+import { CountriesHubView } from './components/CountriesHubView';
+import { getCityBySlug } from './data/citiesData';
+import { getCountryBySlug } from './data/countriesData';
 import { getTestBySlug } from './data/testsData';
 import { AlertCircle } from 'lucide-react';
 import { RouteState } from './types';
@@ -89,6 +95,22 @@ export const App: React.FC = () => {
       setRoute({ type: 'privacy' });
     } else if (path === '/videos' || path === '/media' || path === '/aparat' || path === '/youtube') {
       setRoute({ type: 'videos' });
+    } else if (path.startsWith('/cities/')) {
+      const citySlug = path.replace('/cities/', '');
+      setRoute({ type: 'city', citySlug });
+    } else if (path.startsWith('/city/')) {
+      const citySlug = path.replace('/city/', '');
+      setRoute({ type: 'city', citySlug });
+    } else if (path === '/cities' || path === '/centers') {
+      setRoute({ type: 'cities' });
+    } else if (path.startsWith('/countries/')) {
+      const countrySlug = path.replace('/countries/', '');
+      setRoute({ type: 'country', countrySlug });
+    } else if (path.startsWith('/country/')) {
+      const countrySlug = path.replace('/country/', '');
+      setRoute({ type: 'country', countrySlug });
+    } else if (path === '/countries' || path === '/international') {
+      setRoute({ type: 'countries' });
     } else {
       setRoute({ type: 'home', section: hash || undefined });
     }
@@ -201,6 +223,34 @@ export const App: React.FC = () => {
   const navigateToPrivacy = () => {
     window.history.pushState({}, '', '/privacy-policy');
     setRoute({ type: 'privacy' });
+  };
+
+  const navigateToCities = () => {
+    window.history.pushState({}, '', '/cities');
+    setRoute({ type: 'cities' });
+  };
+
+  const navigateToCity = (citySlug: string) => {
+    if (citySlug === 'hub') {
+      navigateToCities();
+      return;
+    }
+    window.history.pushState({}, '', `/cities/${citySlug}`);
+    setRoute({ type: 'city', citySlug });
+  };
+
+  const navigateToCountries = () => {
+    window.history.pushState({}, '', '/countries');
+    setRoute({ type: 'countries' });
+  };
+
+  const navigateToCountry = (countrySlug: string) => {
+    if (countrySlug === 'hub') {
+      navigateToCountries();
+      return;
+    }
+    window.history.pushState({}, '', `/countries/${countrySlug}`);
+    setRoute({ type: 'country', countrySlug });
   };
 
   // Render view depending on route
@@ -397,6 +447,68 @@ export const App: React.FC = () => {
 
     if (route.type === 'privacy') {
       return <PrivacyPolicyView onBack={() => navigateToHome()} />;
+    }
+
+    if (route.type === 'city') {
+      const cityData = getCityBySlug(route.citySlug);
+      if (!cityData) {
+        return (
+          <CitiesHubView
+            onNavigateHome={() => navigateToHome()}
+            onSelectCity={navigateToCity}
+          />
+        );
+      }
+      return (
+        <CityLandingView
+          cityData={cityData}
+          onNavigateHome={() => navigateToHome()}
+          onNavigateContact={navigateToContact}
+          onNavigateTools={navigateToTools}
+          onSelectArticle={navigateToArticle}
+          onSelectCity={navigateToCity}
+        />
+      );
+    }
+
+    if (route.type === 'cities') {
+      return (
+        <CitiesHubView
+          onNavigateHome={() => navigateToHome()}
+          onSelectCity={navigateToCity}
+        />
+      );
+    }
+
+    if (route.type === 'country') {
+      const countryData = getCountryBySlug(route.countrySlug);
+      if (!countryData) {
+        return (
+          <CountriesHubView
+            onNavigateHome={() => navigateToHome()}
+            onSelectCountry={navigateToCountry}
+          />
+        );
+      }
+      return (
+        <CountryLandingView
+          countryData={countryData}
+          onNavigateHome={() => navigateToHome()}
+          onNavigateContact={navigateToContact}
+          onNavigateTools={navigateToTools}
+          onSelectArticle={navigateToArticle}
+          onSelectCountry={navigateToCountry}
+        />
+      );
+    }
+
+    if (route.type === 'countries') {
+      return (
+        <CountriesHubView
+          onNavigateHome={() => navigateToHome()}
+          onSelectCountry={navigateToCountry}
+        />
+      );
     }
 
     // Home Page - Streamlined, Uncluttered, High-Performance Conversion Portal

@@ -53,4 +53,8 @@ export type RouteState =
   | { type: 'bestTherapist' }
   | { type: 'videos' }
   | { type: 'privacy' }
+  | { type: 'city'; citySlug: string }
+  | { type: 'cities' }
+  | { type: 'country'; countrySlug: string }
+  | { type: 'countries' }
   | { type: '404' };

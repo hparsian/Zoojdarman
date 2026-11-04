@@ -67,6 +67,12 @@ function routeForPath(p) {
   if (p === '/faq') return { type: 'faq' };
   if (p === '/contact' || p === '/appointment') return { type: 'contact' };
   if (p === '/privacy-policy') return { type: 'privacy' };
+  if (p === '/cities' || p === '/centers') return { type: 'cities' };
+  if (p.startsWith('/cities/')) return { type: 'city', citySlug: p.slice('/cities/'.length) };
+  if (p.startsWith('/city/')) return { type: 'city', citySlug: p.slice('/city/'.length) };
+  if (p === '/countries' || p === '/international') return { type: 'countries' };
+  if (p.startsWith('/countries/')) return { type: 'country', countrySlug: p.slice('/countries/'.length) };
+  if (p.startsWith('/country/')) return { type: 'country', countrySlug: p.slice('/country/'.length) };
   return null;
 }
 

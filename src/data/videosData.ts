@@ -1,3 +1,105 @@
+export interface VideoCategoryItem {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  category: string;
+  aparatUrl: string;
+  youtubeUrl: string;
+  thumbnail: string;
+  tags: string[];
+  keyTopics: string[];
+}
+
+export const OFFICIAL_VIDEO_PLAYLISTS: VideoCategoryItem[] = [
+  {
+    id: 'infidelity-counseling',
+    slug: 'infidelity-counseling',
+    title: 'مجموعه ویدیوهای مشاوره خیانت و بازسازی اعتماد',
+    description:
+      'تحلیل بالینی مراحل آسیب پس از پیمان‌شکنی، راهکارهای خروج از شوک اولیه و پروتکل‌های بازسازی شفافیت با رویکرد هیجان‌مدار (EFT) توسط مهناز خوینی.',
+    category: 'مشاوره خیانت',
+    aparatUrl: 'https://www.aparat.com/Mahnaz.khoini_psychology',
+    youtubeUrl: 'https://youtube.com/@mahnaz.khoini',
+    thumbnail: '/images/mahnaz-khoini.jpg',
+    tags: ['مشاوره خیانت', 'بازسازی اعتماد', 'زوج درمانی', 'مهناز خوینی'],
+    keyTopics: [
+      'واکنش‌های طبیعی اولیه پس از پیمان‌شکنی',
+      'پروتکل ۳ مرحله‌ای ترمیم اعتماد زناشویی',
+      'نقش زوج‌درمانگر هیجان‌مدار در عبور از تروما'
+    ]
+  },
+  {
+    id: 'emotional-divorce',
+    slug: 'emotional-divorce',
+    title: 'مجموعه ویدیوهای طلاق عاطفی و تئوری گاتمن',
+    description:
+      'شناسایی علائم طلاق عاطفی زیر یک سقف، بررسی چهار سوارکار آسیب‌زننده رابطه (انتقاد، تحقیر، جبهه‌گیری و دیوارکشی) و پادزهر علمی آن‌ها.',
+    category: 'طلاق عاطفی',
+    aparatUrl: 'https://www.aparat.com/Mahnaz.khoini_psychology',
+    youtubeUrl: 'https://youtube.com/@mahnaz.khoini',
+    thumbnail: '/images/mahnaz-khoini-thumb.webp',
+    tags: ['طلاق عاطفی', 'تئوری گاتمن', 'صمیمیت زناشویی', 'مهناز خوینی'],
+    keyTopics: [
+      'تفاوت همزیستی ظاهری با طلاق عاطفی واقعی',
+      'پادزهر فوری دیوارکشی و لجبازی خاموش',
+      'تمرین‌های بازگرداندن صمیمیت عاطفی'
+    ]
+  },
+  {
+    id: 'effective-communication',
+    slug: 'effective-communication',
+    title: 'مجموعه آموزشی تکنیک‌های گفتگوی زناشویی و حل تعارض',
+    description:
+      'فرمول‌های عملی شروع نرم (Soft Startup)، ابراز انتظارات بدون دعوا و جنجال، و راهکارهای کنترل خشم در مشاجرات خانوادگی.',
+    category: 'ارتباط و گفتگو',
+    aparatUrl: 'https://www.aparat.com/Mahnaz.khoini_psychology',
+    youtubeUrl: 'https://youtube.com/@mahnaz.khoini',
+    thumbnail: '/images/mahnaz-khoini.jpg',
+    tags: ['گفتگوی موثر', 'حل تعارض', 'کنترل خشم', 'مهناز خوینی'],
+    keyTopics: [
+      'فرمول گفتگو درباره موضوعات حساس مالی و تربیتی',
+      'تکنیک زمان استراحت (Timeout) در مشاجرات',
+      'احیا و ترمیم صمیمیت کلامی در زندگی مشترک'
+    ]
+  },
+  {
+    id: 'attachment-styles-eft',
+    slug: 'attachment-styles-eft',
+    title: 'مجموعه ویدیوهای سبک‌های دلبستگی و زوج‌درمانی EFT',
+    description:
+      'ریشه‌یابی چرخه تعقیب-گریز زوجین، شناخت سبک‌های دلبستگی (اضطرابی، اجتنابی و ایمن) و نحوه تبدیل تعارضات تکراری به پیوند امن.',
+    category: 'رویکرد EFT',
+    aparatUrl: 'https://www.aparat.com/Mahnaz.khoini_psychology',
+    youtubeUrl: 'https://youtube.com/@mahnaz.khoini',
+    thumbnail: '/images/mahnaz-khoini-thumb.webp',
+    tags: ['سبک دلبستگی', 'رویکرد EFT', 'انتخاب همسر', 'مهناز خوینی'],
+    keyTopics: [
+      'شناسایی الگوهای دلبستگی ریشه‌دار از کودکی',
+      'شکستن چرخه معیوب دعواهای تکراری زناشویی',
+      'ایجاد احساس امنیت و تکیه‌گاه عاطفی'
+    ]
+  },
+  {
+    id: 'faq-couples-therapy',
+    slug: 'faq-couples-therapy',
+    title: 'پاسخ به سوالات متداول مراجعین زوج‌درمانی',
+    description:
+      'زمان طلایی مراجعه به مشاوره، نحوه همراه کردن همسر مقاوم، روند جلسات حضوری و آنلاین و شرایط محرمانگی مراجعین.',
+    category: 'سوالات متداول',
+    aparatUrl: 'https://www.aparat.com/Mahnaz.khoini_psychology',
+    youtubeUrl: 'https://youtube.com/@mahnaz.khoini',
+    thumbnail: '/images/mahnaz-khoini.jpg',
+    tags: ['سوالات متداول', 'مشاوره حضوری و آنلاین', 'مهناز خوینی'],
+    keyTopics: [
+      '۵ زنگ خطر نیاز به مداخله فوری زوج‌درمانگر',
+      'چگونه همسر را برای شرکت در مشاوره تشویق کنیم؟',
+      'فرایند و ساختار جلسات مشاوره بالینی'
+    ]
+  }
+];
+
+// Backward compatibility export
 export interface VideoItem {
   id: string;
   title: string;
@@ -19,170 +121,26 @@ export interface VideoItem {
   transcriptSnippet: string;
 }
 
-export const VIDEOS_DATA: VideoItem[] = [
-  {
-    id: 'infidelity-recovery-guide',
-    slug: 'infidelity-recovery-guide',
-    title: 'تحلیل بالینی خیانت زناشویی و راه‌های علمی بازسازی اعتماد با مهناز خوینی',
-    description:
-      'در این ویدیوی آموزشی جامع، مهناز خوینی (کارشناس ارشد روانشناسی بالینی و زوج‌درمانگر) به تحلیل مراحل صدمه دیدن رابطه پس از خیانت، نحوه توقف رفتار مقابله‌ای تخریب‌گر و پروتکل سه مرحله‌ای بازسازی اعتماد با رویکرد هیجان‌مدار (EFT) می‌پردازد.',
-    category: 'مشاوره خیانت',
-    duration: '۱۸:۲۴',
-    publishDate: '۱۴۰۳/۰۸/۱۲',
-    viewsCount: '۱۲,۴۵۰ بازدید',
-    aparatId: 'Mahnaz.khoini_psychology',
-    aparatEmbedUrl: 'https://www.aparat.com/Mahnaz.khoini_psychology',
-    aparatUrl: 'https://www.aparat.com/Mahnaz.khoini_psychology',
-    youtubeId: 'mahnaz.khoini',
-    youtubeEmbedUrl: 'https://www.youtube.com/embed?listType=user_uploads&list=mahnaz.khoini',
-    youtubeUrl: 'https://youtube.com/@mahnaz.khoini',
-    thumbnail: '/images/mahnaz-khoini.jpg',
-    tags: ['خیانت همسر', 'زوج درمان', 'ترمیم اعتماد', 'مهناز خوینی', 'مشاوره آنلاین خیانت', 'روانشناسی بالینی'],
-    keyTakeaways: [
-      'شناخت ۵ واکنش روانی طبیعی اولیه فرد آسیب‌دیده از پیمان‌شکنی',
-      'چرا بازجویی‌های مدام حالم را بهتر نمی‌کند و جایگزین بالینی آن چیست؟',
-      'شرایط سه‌گانه ضروری برای این که آیا رابطه قابل بازسازی است یا خیر',
-      'نقش زوج‌درمانگر هیجان‌مدار (EFT) در خروج از چرخه خشم و شوک اولیه'
-    ],
-    transcriptSnippet:
-      'وقتی پیمان‌شکنی و خیانت اتفاق می‌افتد، مغز فرد آسیب‌دیده در حالت تروما و آلارم خطر دائم قرار می‌گیرد. در این ویدیو مهناز خوینی توضیح می‌دهد چگونه می‌توان از افتادن در تله بازجویی‌های آسیب‌زا جلوگیری کرد و فرآیند گام‌به‌گام ترمیم شفافیت را آغاز نمود.'
-  },
-  {
-    id: 'emotional-divorce-gottman',
-    slug: 'emotional-divorce-gottman',
-    title: 'طلاق عاطفی چیست؟ ۴ سوارکار نابودکننده رابطه زناشویی (تئوری گاتمن)',
-    description:
-      'تحلیل بالینی علائم طلاق عاطفی در زوجین توسط مهناز خوینی. بررسی چهار الگوی رفتاری سمی گاتمن (انتقاد، تحقیر، جبهه‌گیری و دیوارکشی) و فرمول‌های پادزهر علمی برای تزریق مجدد صمیمیت.',
-    category: 'طلاق عاطفی',
-    duration: '۱۴:۵۰',
-    publishDate: '۱۴۰۳/۰۷/۲۵',
-    viewsCount: '۹,۸۲۰ بازدید',
-    aparatId: 'Mahnaz.khoini_psychology',
-    aparatEmbedUrl: 'https://www.aparat.com/Mahnaz.khoini_psychology',
-    aparatUrl: 'https://www.aparat.com/Mahnaz.khoini_psychology',
-    youtubeId: 'mahnaz.khoini',
-    youtubeEmbedUrl: 'https://www.youtube.com/embed?listType=user_uploads&list=mahnaz.khoini',
-    youtubeUrl: 'https://youtube.com/@mahnaz.khoini',
-    thumbnail: '/images/mahnaz-khoini-thumb.webp',
-    tags: ['طلاق عاطفی', 'تئوری گاتمن', 'زوج درمانی', 'مهناز خوینی', 'حل تعارض زناشویی'],
-    keyTakeaways: [
-      'تفاوت همزیستی مسالمت‌آمیز ظاهری با طلاق عاطفی واقعی',
-      'چگونه تحقیر و سارکاسم به سلامت جسمی و روانی زوجین ضربه می‌زند',
-      'پادزهر فوری دیوارکشی (Stonewalling) و لجبازی خاموش',
-      'تمارین روزانه ۵ دقیقه‌ای برای بازگرداندن حس دیده شدن در همسر'
-    ],
-    transcriptSnippet:
-      'طلاق عاطفی بدون دادگاه و صیغه طلاق رخ می‌دهد؛ زمانی که دو نفر زیر یک سقف مانند دو هم‌اتاقی بیگانه زندگی می‌کنند. در این بخش از ویدیو، تکنیک‌های پادزهر ۴ سوارکار طلاق به صورت کاربردی شرح داده می‌شود.'
-  },
-  {
-    id: 'communication-without-conflict',
-    slug: 'communication-without-conflict',
-    title: 'تکنیک‌های گفتگوی موثر و حل تعارض بدون دعوا و جروبحث زناشویی',
-    description:
-      'چگونه درباره گله‌ها، انتظارات مالی یا تربیتی با همسر صحبت کنیم بدون اینکه بحث به جنجال و قهر ختم شود؟ راهنمای مهناز خوینی برای فرمول شروع نرم (Soft Startup) و کنترل هیجانات منفی.',
-    category: 'ارتباط و گفتگو',
-    duration: '۱۱:۱۵',
-    publishDate: '۱۴۰۳/۰۶/۳۰',
-    viewsCount: '۱۵,۱۰۰ بازدید',
-    aparatId: 'Mahnaz.khoini_psychology',
-    aparatEmbedUrl: 'https://www.aparat.com/Mahnaz.khoini_psychology',
-    aparatUrl: 'https://www.aparat.com/Mahnaz.khoini_psychology',
-    youtubeId: 'mahnaz.khoini',
-    youtubeEmbedUrl: 'https://www.youtube.com/embed?listType=user_uploads&list=mahnaz.khoini',
-    youtubeUrl: 'https://youtube.com/@mahnaz.khoini',
-    thumbnail: '/images/mahnaz-khoini.jpg',
-    tags: ['گفتگوی موثر', 'مهارت ارتباطی', 'زوج درمانگر', 'مهناز خوینی', 'کنترل خشم'],
-    keyTakeaways: [
-      'استفاده از فرمول «من احساس می‌کنم... وقتی که... چون نیازمندِ... هستم»',
-      'زمان‌بندی طلایی برای شروع گفتگوهای حساس و عدم انباشت گله‌ها',
-      'تکنیک زمان استراحت (Timeout) هنگام بالا رفتن ضربان قلب بالای ۱۰۰',
-      'بازسازی صمیمیت کلامی در کمتر از ۱۰ روز با تمارین روزانه'
-    ],
-    transcriptSnippet:
-      'بسیاری از زوج‌ها فکر می‌کنند اختلاف نظر نشانه خرابی رابطه است، در حالی که نحوه بیان آن تعیین‌کننده است. شروع تند و متهم‌کننده در ۳ دقیقه اول، نتیجه کل گفتگو را خراب می‌کند.'
-  },
-  {
-    id: 'attachment-styles-eft-coupling',
-    slug: 'attachment-styles-eft-coupling',
-    title: 'نقش سبک‌های دلبستگی در انتخاب همسر و تعارضات زناشویی (رویکرد EFT)',
-    description:
-      'چرا فرد اضطرابی جذب فرد اجتنابی می‌شود؟ مهناز خوینی در این ویدیوی تحلیلی ریشه‌های کودکی الگوهای دلبستگی و نحوه تبدیل چرخه معیوب تعقیب-گریز به دلبستگی ایمن را تشریح می‌کند.',
-    category: 'رویکرد EFT',
-    duration: '۱۶:۴۰',
-    publishDate: '۱۴۰۳/۰۵/۱۸',
-    viewsCount: '۸,۶۰۰ بازدید',
-    aparatId: 'Mahnaz.khoini_psychology',
-    aparatEmbedUrl: 'https://www.aparat.com/Mahnaz.khoini_psychology',
-    aparatUrl: 'https://www.aparat.com/Mahnaz.khoini_psychology',
-    youtubeId: 'mahnaz.khoini',
-    youtubeEmbedUrl: 'https://www.youtube.com/embed?listType=user_uploads&list=mahnaz.khoini',
-    youtubeUrl: 'https://youtube.com/@mahnaz.khoini',
-    thumbnail: '/images/mahnaz-khoini-thumb.webp',
-    tags: ['سبک دلبستگی', 'EFT هیجان مدار', 'مهناز خوینی', 'انتخاب همسر', 'زوج درمانی آنلاین'],
-    keyTakeaways: [
-      'چگونه تراماهای دلبستگی گذشته به شکل دعواهای تکراری زناشویی بروز می‌کنند',
-      'شناسایی الگوی «تعقیب‌کننده هیجانی» و «فرارکننده اجتنابی»',
-      'روش ابراز نیازهای اولیه عاطفی بدون ایجاد جبهه‌گیری در همسر',
-      'مراحل ایجاد پیوند امن ناگسستنی بر اساس روانشناسی هیجان‌مدار'
-    ],
-    transcriptSnippet:
-      'وقتی همسر شما سکوت می‌کند یا از اتاق خارج می‌شود، برای او راهکار بقا در برابر فروماندگی هیجانی است. در طرف مقابل، تماس‌های مداوم فرد اضطرابی تلاش برای احساس امنیت است.'
-  },
-  {
-    id: 'when-to-see-couples-therapist',
-    slug: 'when-to-see-couples-therapist',
-    title: 'چه زمانی باید به زوج درمانگر مراجعه کنیم؟ (پاسخ به سوالات مراجعان)',
-    description:
-      'آیا زوج‌درمانی واقعاً جواب می‌دهد؟ در این ویدیو مهناز خوینی به زمان طلایی مراجعه، باورهای غلط درباره زوج‌درمانی و نحوه آماده‌سازی همسر مقاوم برای شرکت در جلسات می‌پردازد.',
-    category: 'سوالات متداول',
-    duration: '۰۹:۳۵',
-    publishDate: '۱۴۰۳/۰۴/۰۵',
-    viewsCount: '۱۱,۳۰۰ بازدید',
-    aparatId: 'Mahnaz.khoini_psychology',
-    aparatEmbedUrl: 'https://www.aparat.com/Mahnaz.khoini_psychology',
-    aparatUrl: 'https://www.aparat.com/Mahnaz.khoini_psychology',
-    youtubeId: 'mahnaz.khoini',
-    youtubeEmbedUrl: 'https://www.youtube.com/embed?listType=user_uploads&list=mahnaz.khoini',
-    youtubeUrl: 'https://youtube.com/@mahnaz.khoini',
-    thumbnail: '/images/mahnaz-khoini.jpg',
-    tags: ['زمان مراجعه به زوج درمانگر', 'مهناز خوینی', 'مشاوره آنلاین', 'پروانه نظام روانشناسی'],
-    keyTakeaways: [
-      '۵ زنگ خطری که نشان می‌دهد مراجعه فوری به زوج درمانگر ضروری است',
-      'چگونه همسری که مخالف مشاوره است را بدون اجبار به جلسه بیاوریم',
-      'فرآیند جلسه اول زوج درمانی حضوری و آنلاین به چه شکل است',
-      'تضمین محرمانگی و بی‌طرفی درمانگر در پروتکل نظام روانشناسی'
-    ],
-    transcriptSnippet:
-      'میانگین زمانی که زوجین پس از بروز مشکلات عمیق به مشاوره مراجعه می‌کنند ۶ سال است! مداخله زودهنگام می‌تواند مانع از فرسایش صمیمیت و هزینه‌های روانی سنگین بعدی شود.'
-  },
-  {
-    id: 'family-boundaries-in-marriage',
-    slug: 'family-boundaries-in-marriage',
-    title: 'پیشگیری از دخالت خانواده‌ها در زندگی مشترک و مرزبندی سالم زناشویی',
-    description:
-      'تنظیم مرزهای شفاف و محترمانه با خانواده اصلی زوجین. تحلیل بالینی مهناز خوینی برای جلوگیری از انتقال مشکلات زناشویی به والدین و حفظ استقلال زندگی مشترک.',
-    category: 'ارتباط و گفتگو',
-    duration: '۱۳:۱۰',
-    publishDate: '۱۴۰۳/۰۲/۱۴',
-    viewsCount: '۱۰,۷۵۰ بازدید',
-    aparatId: 'Mahnaz.khoini_psychology',
-    aparatEmbedUrl: 'https://www.aparat.com/Mahnaz.khoini_psychology',
-    aparatUrl: 'https://www.aparat.com/Mahnaz.khoini_psychology',
-    youtubeId: 'mahnaz.khoini',
-    youtubeEmbedUrl: 'https://www.youtube.com/embed?listType=user_uploads&list=mahnaz.khoini',
-    youtubeUrl: 'https://youtube.com/@mahnaz.khoini',
-    thumbnail: '/images/mahnaz-khoini-thumb.webp',
-    tags: ['دخالت خانواده ها', 'مرزبندی زناشویی', 'مهناز خوینی', 'استقلال همسران'],
-    keyTakeaways: [
-      'تفاوت احترام به والدین با اجازه دادن برای مداخله در تصمیمات زوجین',
-      'چگونه همسر خود را در برابر خانواده‌اش حمایت کنیم بدون ایجاد تضاد',
-      'قانون عدم بیان رازهای زوجین به والدین حتی در اوج اختلاف',
-      'تکنیک‌های مدیریت سفرهای خانوادگی و انتظارات تعطیلات'
-    ],
-    transcriptSnippet:
-      'اولین قدم برای استقلال عاطفی زندگی جدید، حمایت زوجین از یکدیگر در برابر انتقادات بیرونی است. مرزهای شفاف نه تنها احترام به والدین را کم نمی‌کند بلکه به پایداری رابطه کمک می‌کند.'
-  }
-];
+export const VIDEOS_DATA: VideoItem[] = OFFICIAL_VIDEO_PLAYLISTS.map((item) => ({
+  id: item.id,
+  title: item.title,
+  slug: item.slug,
+  description: item.description,
+  category: item.category as any,
+  duration: 'ویدیو رسمی',
+  publishDate: 'کانال رسمی',
+  viewsCount: 'آپارات و یوتیوب',
+  aparatId: 'Mahnaz.khoini_psychology',
+  aparatEmbedUrl: 'https://www.aparat.com/Mahnaz.khoini_psychology',
+  aparatUrl: item.aparatUrl,
+  youtubeId: 'mahnaz.khoini',
+  youtubeEmbedUrl: 'https://youtube.com/@mahnaz.khoini',
+  youtubeUrl: item.youtubeUrl,
+  thumbnail: item.thumbnail,
+  tags: item.tags,
+  keyTakeaways: item.keyTopics,
+  transcriptSnippet: item.description
+}));
 
 export function getVideoBySlug(slug: string): VideoItem | undefined {
   return VIDEOS_DATA.find((v) => v.slug === slug || v.id === slug);

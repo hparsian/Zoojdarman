@@ -1,6 +1,8 @@
 import { getArticleBySlug } from './data/articles';
 import { getServiceBySlug } from './data/services';
 import { getTestBySlug } from './data/testsData';
+import { getCityBySlug } from './data/citiesData';
+import { getCountryBySlug } from './data/countriesData';
 import { VIDEOS_DATA } from './data/videosData';
 import type { FaqItem, RouteState } from './types';
 
@@ -832,6 +834,56 @@ export function seoForRoute(route: RouteState): SeoPage {
           'تعهد مرکز تخصصی زوج درمان مهناز خوینی به محرمانگی کامل جلسات بالینی، حفظ داده‌های مراجعان و تطابق با موازین سازمان نظام روان‌شناسی و مشاوره.',
         path: '/privacy-policy',
         breadcrumb: [{ name: 'صفحه اصلی' }, { name: 'حریم خصوصی' }],
+      };
+
+    case 'city': {
+      const city = getCityBySlug(route.citySlug);
+      if (!city) return notFoundSeo();
+      const path = `/cities/${city.slug}`;
+      return {
+        title: city.title,
+        description: city.metaDescription,
+        path,
+        breadcrumb: [
+          { name: 'صفحه اصلی' },
+          { name: 'مراکز و شهرهای ایران', path: '/cities' },
+          { name: `زوج درمانی در ${city.cityName}` },
+        ],
+      };
+    }
+
+    case 'cities':
+      return {
+        title: 'پایگاه سراسری پوشش زوج درمانی آنلاین در شهرهای ایران | مهناز خوینی',
+        description:
+          'ارائه خدمات تخصصی مشاوره آنلاین زوج درمانی، درمان خیانت و طلاق عاطفی برای تهران، کرج، مشهد، اصفهان، شیراز، تبریز، اهواز، رشت، کرمان و سراسر ایران.',
+        path: '/cities',
+        breadcrumb: [{ name: 'صفحه اصلی' }, { name: 'مراکز و شهرهای ایران' }],
+      };
+
+    case 'country': {
+      const country = getCountryBySlug(route.countrySlug);
+      if (!country) return notFoundSeo();
+      const path = `/countries/${country.slug}`;
+      return {
+        title: country.title,
+        description: country.metaDescription,
+        path,
+        breadcrumb: [
+          { name: 'صفحه اصلی' },
+          { name: 'کشورها و ایرانیان خارج از کشور', path: '/countries' },
+          { name: `زوج درمانی آنلاین در ${country.countryNameFa}` },
+        ],
+      };
+    }
+
+    case 'countries':
+      return {
+        title: 'پایگاه بین‌المللی زوج درمانی آنلاین برای ایرانیان خارج از کشور | مهناز خوینی',
+        description:
+          'ارائه خدمات تخصصی مشاوره زوج درمانی آنلاین فارسی‌زبان برای ایرانیان مقیم کانادا، آمریکا، آلمان، انگلیس، استرالیا، امارات (دبی)، سوئد و ترکیه با مهناز خوینی.',
+        path: '/countries',
+        breadcrumb: [{ name: 'صفحه اصلی' }, { name: 'کشورها و ایرانیان خارج از کشور' }],
       };
 
     case '404':
