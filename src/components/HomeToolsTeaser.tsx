@@ -1,3 +1,5 @@
+import React from 'react';
+import { Compass, ShieldCheck, ChevronLeft, ArrowLeft } from 'lucide-react';
 import { testsData } from '../data/testsData';
 
 interface HomeToolsTeaserProps {
@@ -52,7 +54,7 @@ export const HomeToolsTeaser: React.FC<HomeToolsTeaserProps> = ({
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-[10px] font-black bg-[#F2EEF8] text-[#3E2F5B] px-3 py-1 rounded-full border border-[#3E2F5B]/15">
-                    {test.category}
+                    {test.badge}
                   </span>
                   <span className="text-[11px] text-[#8FAF9B] font-bold flex items-center gap-1">
                     <ShieldCheck className="w-3.5 h-3.5 text-[#8FAF9B]" />
@@ -65,7 +67,7 @@ export const HomeToolsTeaser: React.FC<HomeToolsTeaserProps> = ({
                 </h3>
 
                 <p className="text-xs text-[#5E5868] leading-relaxed mb-6 line-clamp-3">
-                  {test.description}
+                  {test.shortDesc}
                 </p>
               </div>
 
