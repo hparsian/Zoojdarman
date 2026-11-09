@@ -341,6 +341,23 @@ function toolsHubSchema(url: string): Record<string, unknown>[] {
         bestRating: '5',
         worstRating: '1',
       },
+      review: [
+        {
+          '@type': 'Review',
+          author: {
+            '@type': 'Person',
+            name: 'کاربر آزمون انریچ'
+          },
+          datePublished: '2025-12-05',
+          reviewBody: 'تحلیل تست انریچ و آزمون ترومای خیانت بسیار علمی و دقیق بود و به شفافیت مسائل رابطه‌مان کمک زیادی کرد.',
+          reviewRating: {
+            '@type': 'Rating',
+            ratingValue: '5',
+            bestRating: '5',
+            worstRating: '1'
+          }
+        }
+      ],
     },
   ];
 }
@@ -493,13 +510,16 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
       alternateName: [
         'کلینیک زوج درمانی پیوند امن',
         'مرکز زوج درمان تهران',
+        'مرکز تخصصی روانشناسی و زوج‌درمانی غرب تهران',
         'بهترین مرکز زوج درمان تهران'
       ],
+      description: 'مرکز تخصصی زوج درمان، مشاوره خیانت، درمان طلاق عاطفی و حل تعارضات زناشویی با رویکرد هیجان‌مدار (EFT) تحت مسئولیت فنی مهناز خوینی با پروانه نظام روانشناسی ۱۴۱۴۰۸۳',
       url,
       hasMap: 'https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA',
       sameAs: [
         'https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA',
         'https://peyvandamn.ir',
+        'https://instagram.com/mahnaz.khoini',
         'https://www.aparat.com/Mahnaz.khoini_psychology',
         'https://youtube.com/@mahnaz.khoini'
       ],
@@ -507,7 +527,246 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
       image: absoluteUrl(DEFAULT_IMAGE),
       medicalSpecialty: 'Psychological',
       telephone: '+989199087264',
+      email: 'Khoini.1988@gmail.com',
       priceRange: '$$',
+      currenciesAccepted: 'IRR, USD, EUR, CAD, GBP, AED',
+      paymentAccepted: 'کارت‌خوان (POS)، وجه نقد، کارت به کارت شتابی، واریز بانکی آنلاین، پی‌پال (PayPal)، وایز (Wise)، کردیت‌کارت بین‌المللی، ارز دیجیتال تتر (USDT)، پذیرش فاکتور بیمه تکمیلی',
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'کاتالوگ خدمات و تعرفه‌های مرکز زوج درمان مهناز خوینی',
+        itemListElement: [
+          {
+            '@type': 'Offer',
+            name: 'زوج‌درمانی تخصصی حضوری و آنلاین (EFT)',
+            description: 'جلسات ارزیابی و درمان تعارضات زناشویی، طلاق عاطفی و احیای صمیمیت بر مبنای پروتکل هیجان‌مدار و گاتمن',
+            url: `${SITE_URL}/services/couples-therapy`,
+            priceCurrency: 'IRR',
+            priceSpecification: {
+              '@type': 'PriceSpecification',
+              priceCurrency: 'IRR',
+              description: 'تعرفه هر جلسه طبق مصوبه سازمان نظام روان‌شناسی با امکان استرداد بیمه تکمیلی'
+            },
+            availability: 'https://schema.org/InStock',
+            validFrom: '2026-01-01',
+            itemOffered: {
+              '@type': 'MedicalTherapy',
+              name: 'زوج‌درمانی هیجان‌مدار (EFT)',
+              url: `${SITE_URL}/services/couples-therapy`
+            }
+          },
+          {
+            '@type': 'Offer',
+            name: 'مشاوره تخصصی مدیریت شوک و بحران خیانت زناشویی',
+            description: 'مدیریت ترومای خیانت، بازسازی اعتماد و تصمیم‌گیری شفاف در محیطی کاملاً محرمانه',
+            url: `${SITE_URL}/services/infidelity-counseling`,
+            priceCurrency: 'IRR',
+            priceSpecification: {
+              '@type': 'PriceSpecification',
+              priceCurrency: 'IRR',
+              description: 'جلسات انفرادی و مشترک زوجین با محرمانگی ۱۰۰٪'
+            },
+            availability: 'https://schema.org/InStock',
+            validFrom: '2026-01-01',
+            itemOffered: {
+              '@type': 'MedicalTherapy',
+              name: 'مشاوره خیانت زناشویی',
+              url: `${SITE_URL}/services/infidelity-counseling`
+            }
+          },
+          {
+            '@type': 'Offer',
+            name: 'مشاوره طلاق آگاهانه و کم‌آسیب',
+            description: 'مدیریت بحران عاطفی جدایی، کاهش آسیب‌های روانشناختی فرزندان و همراهی در تصمیم‌گیری عقلانی',
+            url: `${SITE_URL}/services/divorce-counseling`,
+            priceCurrency: 'IRR',
+            availability: 'https://schema.org/InStock',
+            validFrom: '2026-01-01',
+            itemOffered: {
+              '@type': 'MedicalTherapy',
+              name: 'مشاوره طلاق و جدایی',
+              url: `${SITE_URL}/services/divorce-counseling`
+            }
+          },
+          {
+            '@type': 'Offer',
+            name: 'مشاوره پیش از ازدواج و ارزیابی تناسب شخصیتی',
+            description: 'ارزیابی تخصصی بالینی، تست انریچ و تحلیل سبک‌های دلبستگی و انتظارات مشترک پیش از ازدواج',
+            url: `${SITE_URL}/services/premarital-counseling`,
+            priceCurrency: 'IRR',
+            availability: 'https://schema.org/InStock',
+            validFrom: '2026-01-01',
+            itemOffered: {
+              '@type': 'MedicalTherapy',
+              name: 'مشاوره پیش از ازدواج',
+              url: `${SITE_URL}/services/premarital-counseling`
+            }
+          },
+          {
+            '@type': 'Offer',
+            name: 'مشاوره آنلاین زوج‌درمانی ویژه ایرانیان خارج از کشور',
+            description: 'جلسات آنلاین تصویری با تطبیق منطقه زمانی محلی (کانادا، آمریکا، اروپا، استرالیا، امارات) و پرداخت ارزی',
+            url: `${SITE_URL}/services/online-counseling`,
+            priceCurrency: 'USD',
+            priceSpecification: {
+              '@type': 'PriceSpecification',
+              priceCurrency: 'USD',
+              description: 'امکان پرداخت ارزی از طریق PayPal، Wise، کردیت‌کارت بین‌المللی یا تتر (USDT)'
+            },
+            availability: 'https://schema.org/InStock',
+            validFrom: '2026-01-01',
+            itemOffered: {
+              '@type': 'MedicalTherapy',
+              name: 'زوج‌درمانی آنلاین بین‌المللی',
+              url: `${SITE_URL}/services/online-counseling`
+            }
+          },
+          {
+            '@type': 'Offer',
+            name: 'گروه‌درمانی الگوهای تکراری در روابط عاطفی',
+            description: 'تحلیل الگوهای ناخودآگاه تکرارشونده در انتخاب شریک و یادگیری مرزبندی سالم',
+            url: `${SITE_URL}/services/relationship-patterns-therapy`,
+            priceCurrency: 'IRR',
+            availability: 'https://schema.org/InStock',
+            validFrom: '2026-01-01',
+            itemOffered: {
+              '@type': 'MedicalTherapy',
+              name: 'گروه‌درمانی الگوهای رابطه',
+              url: `${SITE_URL}/services/relationship-patterns-therapy`
+            }
+          },
+          {
+            '@type': 'Offer',
+            name: 'سنجش و تست‌های آنلاین زوج درمانی (رایگان)',
+            description: 'آزمون رضایت زناشویی انریچ، ترومای خیانت، سبک دلبستگی و طلاق عاطفی با تفسیر فوری',
+            url: `${SITE_URL}/tools`,
+            price: '0',
+            priceCurrency: 'IRR',
+            availability: 'https://schema.org/InStock',
+            itemOffered: {
+              '@type': 'WebApplication',
+              name: 'سامانه تست زوج درمانی آنلاین',
+              url: `${SITE_URL}/tools`
+            }
+          }
+        ]
+      },
+      founder: { '@id': THERAPIST_ID },
+      employee: [{ '@id': THERAPIST_ID }],
+      isAccessibleForFree: false,
+      publicAccess: true,
+      hasCredential: [
+        {
+          '@type': 'EducationalOccupationalCredential',
+          credentialCategory: 'پروانه اشتغال تخصصی روانشناسی بالینی و زوج‌درمانی',
+          identifier: '1414083',
+          recognizedBy: {
+            '@type': 'Organization',
+            name: 'سازمان نظام روان‌شناسی و مشاوره جمهوری اسلامی ایران',
+            url: 'https://pcoiran.ir'
+          },
+          validIn: {
+            '@type': 'AdministrativeArea',
+            name: 'ایران'
+          }
+        },
+        {
+          '@type': 'EducationalOccupationalCredential',
+          credentialCategory: 'مجوز و پروانه مسئولیت فنی کلینیک تخصصی روان‌شناسی پیوند امن',
+          recognizedBy: {
+            '@type': 'Organization',
+            name: 'سازمان نظام روان‌شناسی و مشاوره'
+          },
+          validIn: {
+            '@type': 'AdministrativeArea',
+            name: 'تهران'
+          }
+        },
+        {
+          '@type': 'EducationalOccupationalCredential',
+          credentialCategory: 'گواهی‌نامه تخصصی بین‌المللی زوج‌درمانی هیجان‌مدار (EFT)',
+          recognizedBy: {
+            '@type': 'Organization',
+            name: 'انجمن بین‌المللی درمان هیجان‌مدار (ICEEFT)',
+            url: 'https://iceeft.com'
+          }
+        }
+      ],
+      memberOf: [
+        {
+          '@type': 'Organization',
+          name: 'سازمان نظام روان‌شناسی و مشاوره جمهوری اسلامی ایران',
+          url: 'https://pcoiran.ir'
+        },
+        {
+          '@type': 'Organization',
+          name: 'مرکز تخصصی روانشناسی پیوند امن',
+          url: 'https://peyvandamn.ir'
+        }
+      ],
+      amenityFeature: [
+        {
+          '@type': 'LocationFeatureSpecification',
+          name: 'اتاق‌های مشاوره عایق صدا (Acoustic Soundproof)',
+          value: true
+        },
+        {
+          '@type': 'LocationFeatureSpecification',
+          name: 'دسترسی آسان با آسانسور و رمپ توان‌یاب (Wheelchair Accessible)',
+          value: true
+        },
+        {
+          '@type': 'LocationFeatureSpecification',
+          name: 'سالن انتظار آرام با پذیرایی و تهویه مطبوع',
+          value: true
+        },
+        {
+          '@type': 'LocationFeatureSpecification',
+          name: 'اینترنت بی‌سیم پرسرعت (Wi-Fi رایگان مراجعان)',
+          value: true
+        },
+        {
+          '@type': 'LocationFeatureSpecification',
+          name: 'دستگاه کارت‌خوان POS و صدور فاکتور رسمی بیمه تکمیلی',
+          value: true
+        },
+        {
+          '@type': 'LocationFeatureSpecification',
+          name: 'دسترسی سریع به مترو فلکه صادقیه و خطوط BRT',
+          value: true
+        },
+        {
+          '@type': 'LocationFeatureSpecification',
+          name: 'مجاورت با پارکینگ عمومی و دسترسی آسان بزرگراهی',
+          value: true
+        },
+        {
+          '@type': 'LocationFeatureSpecification',
+          name: 'اتاق تست‌های روان‌سنجی و ارزیابی آنلاین زوجین',
+          value: true
+        }
+      ],
+      availableService: [
+        {
+          '@type': 'MedicalTherapy',
+          name: 'زوج درمانی تخصصی هیجان‌مدار (EFT)',
+          description: 'حل تعارضات عمیق زناشویی، بازسازی پیوند عاطفی و ارتقای صمیمیت'
+        },
+        {
+          '@type': 'MedicalTherapy',
+          name: 'مشاوره تخصصی مدیریت بحران خیانت زناشویی',
+          description: 'مدیریت تروما و شوک خیانت، بازسازی اعتماد و تصمیم‌گیری شفاف'
+        },
+        {
+          '@type': 'MedicalTherapy',
+          name: 'درمان طلاق عاطفی و سردی رابطه',
+          description: 'احیای رابطه در آستانه جدایی و بازگشت شور و تعهد زناشویی'
+        },
+        {
+          '@type': 'MedicalTherapy',
+          name: 'مشاوره آنلاین زوجین برای ایرانیان خارج از کشور',
+          description: 'جلسات آنلاین تصویری با حفظ کامل محرمانگی و پروتکل‌های رسمی نظام روانشناسی'
+        }
+      ],
       geo: {
         '@type': 'GeoCoordinates',
         latitude: 35.7208,
@@ -516,9 +775,24 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
       openingHoursSpecification: [
         {
           '@type': 'OpeningHoursSpecification',
-          dayOfWeek: ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+          dayOfWeek: ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday'],
           opens: '09:00',
-          closes: '21:00'
+          closes: '21:00',
+          description: 'شیفت صبح و عصر روزهای عادی'
+        },
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Thursday'],
+          opens: '09:00',
+          closes: '19:00',
+          description: 'پنج‌شنبه‌ها تا ساعت ۱۹:۰۰'
+        },
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Friday'],
+          opens: '10:00',
+          closes: '16:00',
+          description: 'جمعه‌ها ویژه جلسات آنلاین بین‌المللی و موارد اورژانسی با هماهنگی قبلی'
         }
       ],
       aggregateRating: {
@@ -528,20 +802,58 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
         bestRating: '5',
         worstRating: '1'
       },
+      review: [
+        {
+          '@type': 'Review',
+          author: {
+            '@type': 'Person',
+            name: 'مراجع زوج‌درمانی (تهران)'
+          },
+          datePublished: '2025-10-14',
+          reviewBody: 'پس از ماه‌ها تعارض و قهر طولانی، جلسات EFT با خانم خوینی نجات‌بخش زندگی ما شد. درک عمیق و رویکرد علمی ایشان فوق‌العاده است.',
+          reviewRating: {
+            '@type': 'Rating',
+            ratingValue: '5',
+            bestRating: '5',
+            worstRating: '1'
+          }
+        },
+        {
+          '@type': 'Review',
+          author: {
+            '@type': 'Person',
+            name: 'مراجع مشاوره آنلاین خیانت'
+          },
+          datePublished: '2025-11-20',
+          reviewBody: 'در بحران شدید شوک خیانت به صورت آنلاین از اصفهان مراجعه کردیم. مدیریت بحران، تخصص و رازداری خانم خوینی آرامش را به زندگی ما بازگرداند.',
+          reviewRating: {
+            '@type': 'Rating',
+            ratingValue: '5',
+            bestRating: '5',
+            worstRating: '1'
+          }
+        }
+      ],
       contactPoint: [
         {
           '@type': 'ContactPoint',
           telephone: '+989199087264',
           contactType: 'reservations',
           areaServed: ['تهران', 'کرج', 'اصفهان', 'کرمان', 'شیراز', 'مشهد', 'تبریز', 'IR', 'خارج از کشور'],
-          availableLanguage: 'fa'
+          availableLanguage: ['fa', 'en'],
+          hoursAvailable: {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+            opens: '09:00',
+            closes: '21:00'
+          }
         },
         {
           '@type': 'ContactPoint',
           telephone: '+982144600980',
           contactType: 'customer support',
           areaServed: 'IR',
-          availableLanguage: 'fa'
+          availableLanguage: ['fa']
         }
       ],
       address: {
@@ -549,6 +861,7 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
         streetAddress: 'فلکه دوم صادقیه، بزرگراه اشرفی اصفهانی',
         addressLocality: 'تهران',
         addressRegion: 'منطقه ۲',
+        postalCode: '14517',
         addressCountry: 'IR',
       },
     },

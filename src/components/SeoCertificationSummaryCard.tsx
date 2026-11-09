@@ -37,7 +37,7 @@ export const SeoCertificationSummaryCard: React.FC<SeoCertificationSummaryCardPr
         "name": "مهناز خوینی",
         "jobTitle": "زوج درمانگر بالینی و مسئول فنی کلینیک پیوند امن",
         "identifier": "1414083",
-        "description": "کارشناس ارشد روانشناسی بالینی، متخصص زوج درمان با رویکرد هیجان‌مدار (EFT)، پروانه ۱۸۱۴۰۸۳ نظام روانشناسی",
+        "description": "کارشناس ارشد روانشناسی بالینی، متخصص زوج درمان با رویکرد هیجان‌مدار (EFT)، پروانه ۱۴۱۴۰۸۳ نظام روانشناسی",
         "memberOf": {
           "@type": "Organization",
           "name": "سازمان نظام روان‌شناسی و مشاوره جمهوری اسلامی ایران",
@@ -66,6 +66,73 @@ export const SeoCertificationSummaryCard: React.FC<SeoCertificationSummaryCardPr
         "hasMap": "https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA",
         "medicalSpecialty": "Psychological",
         "priceRange": "$$",
+        "currenciesAccepted": "IRR, USD, EUR, CAD, GBP, AED",
+        "paymentAccepted": "کارت‌خوان (POS)، وجه نقد، کارت به کارت شتابی، واریز بانکی آنلاین، پی‌پال (PayPal)، وایز (Wise)، کردیت‌کارت بین‌المللی، ارز دیجیتال تتر (USDT)، پذیرش فاکتور بیمه تکمیلی",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "کاتالوگ خدمات و تعرفه‌های مرکز زوج درمان مهناز خوینی",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "name": "زوج‌درمانی تخصصی حضوری و آنلاین (EFT)",
+              "priceCurrency": "IRR",
+              "availability": "https://schema.org/InStock"
+            },
+            {
+              "@type": "Offer",
+              "name": "مشاوره آنلاین خیانت زناشویی",
+              "priceCurrency": "IRR",
+              "availability": "https://schema.org/InStock"
+            },
+            {
+              "@type": "Offer",
+              "name": "مشاوره آنلاین بین‌المللی خارج از کشور",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock"
+            }
+          ]
+        },
+        "hasCredential": [
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "پروانه اشتغال تخصصی روانشناسی بالینی و زوج‌درمانی ۱۴۱۴۰۸۳",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "سازمان نظام روان‌شناسی و مشاوره"
+            }
+          }
+        ],
+        "amenityFeature": [
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "اتاق‌های مشاوره عایق صدا و آکوستیک جهت رازداری ۱۰۰٪",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "دسترسی آسان با آسانسور و رمپ توان‌یاب (Wheelchair Accessible)",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "وای‌فای رایگان و سالن انتظار مجهز با پذیرایی",
+            "value": true
+          }
+        ],
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday"],
+            "opens": "09:00",
+            "closes": "21:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Thursday"],
+            "opens": "09:00",
+            "closes": "19:00"
+          }
+        ],
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": "4.9",
