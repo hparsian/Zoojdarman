@@ -242,6 +242,128 @@ const articleData = {
 
 <p><strong>آیا خیانت فراموش می‌شود؟</strong> خیر؛ خیانت هرگز کاملاً فراموش نمی‌شود، اما خنثی می‌شود. ضربه خیانت مانند یک شکستگی عمیق است؛ استخوان جوش می‌خورد و فرد دوباره راه می‌رود، اما اثر رادیولوژی آن در تاریخچه زندگی زوج ثبت است. در رابطه ترمیم‌شده، این واقعه دیگر درد حاد ایجاد نمی‌کند، بلکه به نمادی از بازسازی و مرزگذاری دوباره تبدیل می‌شود.</p>
 
+<h2 id=\"infographic-recovery-stages\">اینفوگرافیک نقشه راه: ۵ مرحله بازسازی رابطه پس از خیانت</h2>
+<p>بازسازی رابطه پس از خیانت، روندی ناهموار، چندبُعدی و زمان‌بر است که نمی‌توان آن را به یک تصمیم ساده یا فراموشی مکانیکی تقلیل داد. در رویکرد علمی زوج‌درمانی، هر مرحله دارای سه ساحت به هم پیوسته است: <strong>ابعاد منطقی و شناختی</strong>، <strong>ابعاد عاطفی و التیام تروما</strong>، و <strong>اقدامات عملی در اتاق درمان</strong>. اینفوگرافیک زیر نقشه راه بالینی این مسیر را به تصویر کشیده است:</p>
+
+<div class=\"infographic-container\">
+  <div class=\"infographic-media-card\">
+    <img src=\"/images/infographics/infidelity-recovery-steps.jpg\" alt=\"طرح اینفوگرافیک مراحل ۵ گانه بازسازی رابطه و اعتماد پس از خیانت زناشویی\" loading=\"lazy\" />
+    <div class=\"infographic-caption\">
+      <span><i class=\"fa-solid fa-route\" style=\"color: #C5A059; margin-left: 6px;\"></i> <strong>اینفوگرافیک اختصاصی:</strong> مراحل ۵ گانه بازیابی، التیام ترومای دلبستگی و بازسازی اعتماد</span>
+      <span>مرکز زوج‌درمانی پیوند امن</span>
+    </div>
+  </div>
+
+  <div class=\"infographic-stages-grid\">
+    <div class=\"infographic-stage-card\">
+      <div style=\"display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.6rem;\">
+        <span style=\"font-weight: 900; color: #241A35; font-size: 1.05rem;\">مرحله اول: مهار شوک و تثبیت بحران</span>
+        <span style=\"background: #3E2F5B; color: #FFFFFF; font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 9999px; font-weight: 800;\">فاز حاد (۰ تا ۴ هفته)</span>
+      </div>
+      <p style=\"font-size: 0.88rem; color: #5E5868; margin-bottom: 0.5rem;\">مهار رفتارهای هیجانی تخریب‌گر و ایجاد اولین لایه‌های امنیت جسمی و روانی.</p>
+      
+      <div class=\"dimension-row\">
+        <span class=\"dimension-tag dimension-logical\">بُعد منطقی</span>
+        فریز تصمیمات بنیادین (طلاق یا ادامه عجولانه)، مدیریت مرزهای فیزیکی خانه، انجام آزمایشات سلامت.
+      </div>
+      <div class=\"dimension-row\">
+        <span class=\"dimension-tag dimension-emotional\">بُعد عاطفی</span>
+        تخلیه کنترل‌شده شوک و خشم، مهار نشخوار ذهنی شدید، حفظ حرمت و پرهیز از آسیب فیزیکی یا توهین.
+      </div>
+      <div class=\"dimension-row\">
+        <span class=\"dimension-tag dimension-clinical\">اقدام در اتاق درمان</span>
+        مداخله اورژانسی در بحران، توقف کنجکاوی در جزئیات بصری آسیب‌زا، برقراری آتش‌بس موقت.
+      </div>
+    </div>
+
+    <div class=\"infographic-stage-card\">
+      <div style=\"display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.6rem;\">
+        <span style=\"font-weight: 900; color: #241A35; font-size: 1.05rem;\">مرحله دوم: قطع مطلق و شفافیت رادیکال</span>
+        <span style=\"background: #C5A059; color: #FFFFFF; font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 9999px; font-weight: 800;\">فاز شفاف‌سازی (ماه ۱ تا ۳)</span>
+      </div>
+      <p style=\"font-size: 0.88rem; color: #5E5868; margin-bottom: 0.5rem;\">پایان دادن کامل به هرگونه ردپای رابطه موازی و اثبات تعهد به صداقت بی‌قیدوشرط.</p>
+
+      <div class=\"dimension-row\">
+        <span class=\"dimension-tag dimension-logical\">بُعد منطقی</span>
+        مسدودسازی کلیه راه‌های ارتباط با نفر سوم، توافق بر سر دسترسی‌های شفاف به ابزارهای ارتباطی.
+      </div>
+      <div class=\"dimension-row\">
+        <span class=\"dimension-tag dimension-emotional\">بُعد عاطفی</span>
+        پذیرش کامل مسئولیت اشتباه توسط فرد پیمان‌شکن، مهار حالت تدافعی («گس‌لایتینگ») و بهانه‌تراشی.
+      </div>
+      <div class=\"dimension-row\">
+        <span class=\"dimension-tag dimension-clinical\">اقدام در اتاق درمان</span>
+        راستی‌آزمایی روایت‌ها، تنظیم قرارداد شفافیت موقت، بررسی انگیزه و آمادگی واقعی دو طرف برای ترمیم.
+      </div>
+    </div>
+
+    <div class=\"infographic-stage-card\">
+      <div style=\"display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.6rem;\">
+        <span style=\"font-weight: 900; color: #241A35; font-size: 1.05rem;\">مرحله سوم: هم‌نوایی هیجانی و شنیدن دردها</span>
+        <span style=\"background: #5E4B82; color: #FFFFFF; font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 9999px; font-weight: 800;\">فاز التیام تروما (ماه ۳ تا ۶)</span>
+      </div>
+      <p style=\"font-size: 0.88rem; color: #5E5868; margin-bottom: 0.5rem;\">ایجاد ظرفیت شنیدن و درک عمق ترومای خیانت بدون فرار یا احساس خستگی از گلایه‌ها.</p>
+
+      <div class=\"dimension-row\">
+        <span class=\"dimension-tag dimension-logical\">بُعد منطقی</span>
+        شناخت ماهیت نوسانی بازگشت اضطراب (تریگرها) و پذیرش اینکه بازسازی اعتماد روندی غیرخطی است.
+      </div>
+      <div class=\"dimension-row\">
+        <span class=\"dimension-tag dimension-emotional\">بُعد عاطفی</span>
+        همدلی صبورانه همسر خطاکار با دردهای پارتنر، سوگواری مشترک برای اعتماد از دست رفته، بازیابی حرمت نفس.
+      </div>
+      <div class=\"dimension-row\">
+        <span class=\"dimension-tag dimension-clinical\">اقدام در اتاق درمان</span>
+        مداخلات تخصصی مدل عاطفه‌محور (EFT)، التیام زخم‌های دلبستگی، ابراز ندامت اصیل و باز کردن گره‌های هیجانی.
+      </div>
+    </div>
+
+    <div class=\"infographic-stage-card\">
+      <div style=\"display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.6rem;\">
+        <span style=\"font-weight: 900; color: #241A35; font-size: 1.05rem;\">مرحله چهارم: واکاوی گسل‌ها و اعتمادسازی عملی</span>
+        <span style=\"background: #4E7A66; color: #FFFFFF; font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 9999px; font-weight: 800;\">فاز بازسازی ساختار (ماه ۶ تا ۱۲)</span>
+      </div>
+      <p style=\"font-size: 0.88rem; color: #5E5868; margin-bottom: 0.5rem;\">بررسی علمی آسیب‌پذیری‌های پیشین زندگی مشترک بدون اینکه توجیهی برای خیانت تلقی شود.</p>
+
+      <div class=\"dimension-row\">
+        <span class=\"dimension-tag dimension-logical\">بُعد منطقی</span>
+        تحلیل الگوهای ارتباطی معیوب گذشته، سبک‌های دلبستگی، مسائل جنسی و اقتصادی حل‌نشده پیش از واقعه.
+      </div>
+      <div class=\"dimension-row\">
+        <span class=\"dimension-tag dimension-emotional\">بُعد عاطفی</span>
+        تجربه تدریجی امنیت در لحظات تنهایی، کاهش چشمگیر اضطراب چک کردن، شکل‌گیری بخشش درونی.
+      </div>
+      <div class=\"dimension-row\">
+        <span class=\"dimension-tag dimension-clinical\">اقدام در اتاق درمان</span>
+        به‌کارگیری پروتکل بازسازی اعتماد گاتمن (Attunement)، تمرین‌های گفتگوی صمیمانه و سکس‌تراپی بالینی.
+      </div>
+    </div>
+
+    <div class=\"infographic-stage-card\" style=\"grid-column: 1 / -1;\">
+      <div style=\"display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.6rem;\">
+        <span style=\"font-weight: 900; color: #241A35; font-size: 1.05rem;\">مرحله پنجم: تولد ازدواج نوین و تعهد ایمن پایدار</span>
+        <span style=\"background: #241A35; color: #C5A059; font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 9999px; font-weight: 800;\">فاز تثبیت و رشد (سال اول به بعد)</span>
+      </div>
+      <p style=\"font-size: 0.88rem; color: #5E5868; margin-bottom: 0.5rem;\">عبور از رابطه شکننده گذشته و خلق ازدواجی تازه بر پایه صمیمیت عمیق، آگاهی بالا و مرزهای محکم.</p>
+
+      <div style=\"display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;\">
+        <div class=\"dimension-row\" style=\"margin-top: 0; padding-top: 0.4rem; border-top: none;\">
+          <span class=\"dimension-tag dimension-logical\">بُعد منطقی</span>
+          بازنویسی شفاف توافقات رابطه، تعهد متقابل به گفتگو پیرامون نارضایتی‌ها قبل از انباشت خشم.
+        </div>
+        <div class=\"dimension-row\" style=\"margin-top: 0; padding-top: 0.4rem; border-top: none;\">
+          <span class=\"dimension-tag dimension-emotional\">بُعد عاطفی</span>
+          آزادی از گروکشی گذشته، نگاه به همسر به عنوان شریک امن زندگی، غلبه بر ترس از آسیب‌پذیری مجدد.
+        </div>
+        <div class=\"dimension-row\" style=\"margin-top: 0; padding-top: 0.4rem; border-top: none;\">
+          <span class=\"dimension-tag dimension-clinical\">اقدام در اتاق درمان</span>
+          تدوین پروتکل پیشگیری از عود (Relapse Prevention)، تعیین چک‌آپ‌های فصلی، جشن گرفتن تولد رابطه نو.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <h2 id=\"rebuilding-trust\">۸. گام‌به‌گام تا بازسازی اعتماد از دست رفته</h2>
 <p>اعتماد مانند برجی است که طی سال‌ها آجر به آجر بالا رفته و در چند ثانیه فروریخته است. ساخت مجدد آن نه با واژه‌ها و سوگند خوردن، بلکه با <strong>«الگوهای رفتاری شفاف، پیوسته و تاییدپذیر در طول زمان»</strong> انجام می‌گیرد. مطالعه مقاله تخصصی <a href=\"/articles/rebuilding-trust-after-infidelity\">مراحل بازسازی اعتماد پس از خیانت</a> به فهم عمیق این گام‌ها کمک می‌کند.</p>
 
