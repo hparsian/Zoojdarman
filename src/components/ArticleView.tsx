@@ -1,8 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Article } from '../types';
 import { getRelatedArticles } from '../data/articles';
 import { registerFaqSchema } from '../seo';
-import { ArrowRight, Clock, Calendar, User, Lightbulb, MessageSquare, ChevronDown, BookOpen } from 'lucide-react';
+import {
+  ArrowRight,
+  Clock,
+  Calendar,
+  User,
+  Lightbulb,
+  MessageSquare,
+  ChevronDown,
+  ChevronUp,
+  BookOpen,
+  ListOrdered,
+  Link2,
+  Sparkles,
+  HeartHandshake,
+  ShieldCheck,
+  Scale,
+  BrainCircuit
+} from 'lucide-react';
 
 import { SocialShareButtons } from './SocialShareButtons';
 import { getArticleSocialMeta } from '../utils/socialShareSeo';
@@ -13,23 +30,161 @@ interface ArticleViewProps {
   onSelectArticle: (slug: string) => void;
 }
 
+interface TocItem {
+  id: string;
+  text: string;
+  level: 2 | 3;
+}
+
 export const ArticleView: React.FC<ArticleViewProps> = ({ article, onBack, onSelectArticle }) => {
   const related = getRelatedArticles(article.slug, 3);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const [tocItems, setTocItems] = useState<TocItem[]>([]);
+  const [activeHeadingId, setActiveHeadingId] = useState<string>('');
+  const [isTocOpen, setIsTocOpen] = useState<boolean>(true);
+  const [readingProgress, setReadingProgress] = useState<number>(0);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [article.slug]);
+
+  // ثبت داده‌های ساختاریافته پرسش‌وپاسخ مقاله (JSON-LD)
+  useEffect(() => {
+    registerFaqSchema(article.faqs);
   }, [article]);
 
-  // داده‌های ساختاریافته پرسش‌وپاسخ مقاله (JSON-LD)
-  useEffect(() => registerFaqSchema(article.faqs), [article]);
+  // ۱. استخراج پویا و ساخت جدول محتوا (TOC) از تگ‌های h2 و h3
+  useEffect(() => {
+    const container = contentRef.current;
+    if (!container) return;
+
+    // پیدا کردن تمام تگ‌های h2 و h3 داخل محتوای رندرشده مقاله
+    const headings = container.querySelectorAll<HTMLHeadingElement>('h2, h3');
+    const items: TocItem[] = [];
+
+    headings.forEach((heading, idx) => {
+      let id = heading.id;
+      if (!id) {
+        // ایجاد شناسه یکتا و امن فارسی/انگلیسی در صورت نبود id
+        const rawText = heading.textContent?.trim() || `section-${idx + 1}`;
+        const slugified = rawText
+          .replace(/[^\u0600-\u06FFa-zA-Z0-9\s-]/g, '')
+          .trim()
+          .replace(/\s+/g, '-');
+        id = `toc-${slugified || 'heading'}-${idx + 1}`;
+        heading.id = id;
+      }
+
+      const level = heading.tagName.toLowerCase() === 'h2' ? 2 : 3;
+      items.push({
+        id,
+        text: heading.textContent?.trim() || '',
+        level,
+      });
+    });
+
+    setTocItems(items);
+  }, [article.bodyHtml, article.slug]);
+
+  // ۲. ردیابی اسکرول کاربر (Scroll Spy) برای مشخص کردن بخش در حال مطالعه و درصد پیشرفت
+  useEffect(() => {
+    const handleScroll = () => {
+      // محاسبه درصد پیشرفت مطالعه
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight > 0) {
+        const progress = Math.min(100, Math.max(0, Math.round((window.scrollY / totalHeight) * 100)));
+        setReadingProgress(progress);
+      }
+
+      // تشخیص عنوان فعال در viewport
+      if (tocItems.length === 0) return;
+      const scrollPosition = window.scrollY + 140;
+
+      for (let i = tocItems.length - 1; i >= 0; i--) {
+        const element = document.getElementById(tocItems[i].id);
+        if (element && element.offsetTop <= scrollPosition) {
+          setActiveHeadingId(tocItems[i].id);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [tocItems]);
+
+  // اسکرول نرم به بخش انتخابی با کسر ارتفاع هدر چسبان
+  const scrollToHeading = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const topOffset = element.getBoundingClientRect().top + window.scrollY - 85;
+      window.scrollTo({ top: topOffset, behavior: 'smooth' });
+      setActiveHeadingId(id);
+    }
+  };
+
+  // ۳. مدیریت کلیک روی لینک‌های داخلی متن (هدایت نرم بدون رفرش صفحه)
+  const handleContentClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = (e.target as HTMLElement).closest('a');
+    if (!target) return;
+    const href = target.getAttribute('href');
+    if (!href) return;
+
+    // اگر لینک پرشی درون‌صفحه‌ای است (#section-...)
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const targetId = href.slice(1);
+      scrollToHeading(targetId);
+      return;
+    }
+
+    // اگر لینک داخلی سایت است (/articles/... یا /services/... یا /tests/...)
+    if (href.startsWith('/') && !href.startsWith('//')) {
+      if (href.startsWith('/articles/')) {
+        e.preventDefault();
+        const slug = href.replace('/articles/', '');
+        onSelectArticle(slug);
+      } else {
+        e.preventDefault();
+        window.history.pushState({}, '', href);
+        window.dispatchEvent(new PopStateEvent('popstate'));
+      }
+    }
+  };
 
   const socialMeta = getArticleSocialMeta(article);
 
+  // فهرست صفحات کلیدی پیشنهادی مرتبط برای ارتقای سئو داخلی
+  const vitalLinks = [
+    { label: 'مشاوره خیانت زناشویی', path: '/services/infidelity-counseling', icon: ShieldCheck, badge: 'اورژانسی' },
+    { label: 'مشاوره طلاق آگاهانه', path: '/services/divorce-counseling', icon: Scale, badge: 'تخصصی' },
+    { label: 'تست‌های آنلاین رایگان رابطه', path: '/tools', icon: BrainCircuit, badge: 'خودارزیابی' },
+    { label: 'تعرفه‌ها و هزینه جلسات', path: '/fees', icon: Sparkles, badge: 'تعرفه رسمی' },
+    { label: 'رزرو وقت مشاوره حضوری و آنلاین', path: '/contact', icon: HeartHandshake, badge: 'نوبت‌دهی' },
+  ];
+
+  const navigateInternal = (path: string) => {
+    if (path.startsWith('/articles/')) {
+      onSelectArticle(path.replace('/articles/', ''));
+    } else {
+      window.history.pushState({}, '', path);
+      window.dispatchEvent(new PopStateEvent('popstate'));
+    }
+  };
+
   return (
     <div className="bg-[#FAF8F5] min-h-screen pb-24">
-      {/* Top Bar */}
-      <div className="bg-white border-b border-[#E5E0EA] sticky top-0 z-40">
-        <div className="container-custom h-16 flex items-center justify-between">
+      {/* Top Bar with Reading Progress */}
+      <div className="bg-white border-b border-[#E5E0EA] sticky top-0 z-40 shadow-xs">
+        {/* نوار پیشرفت مطالعه مقاله */}
+        <div
+          className="h-1 bg-gradient-to-r from-[#C5A059] to-[#3E2F5B] transition-all duration-150"
+          style={{ width: `${readingProgress}%` }}
+        />
+
+        <div className="container-custom h-15 flex items-center justify-between">
           <a
             href="/"
             onClick={(e) => { e.preventDefault(); onBack(); }}
@@ -95,7 +250,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onBack, onSel
 
         {/* Key Takeaways if available */}
         {article.takeaways && article.takeaways.length > 0 && (
-          <div className="bg-[#f2eff8] border-r-4 border-[#6D5AA8] rounded-2xl p-6 sm:p-8 mb-10 shadow-xs">
+          <div className="bg-[#f2eff8] border-r-4 border-[#6D5AA8] rounded-2xl p-6 sm:p-8 mb-8 shadow-xs">
             <h3 className="text-base font-black text-[#44386B] mb-3 flex items-center gap-2">
               <Lightbulb className="w-5 h-5 text-[#E8A58D]" />
               <span>چکیده طلایی مقاله</span>
@@ -108,9 +263,107 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onBack, onSel
           </div>
         )}
 
+        {/* ============================================================== */}
+        {/* قابلیت جدید: جدول محتوای پویا بر اساس H2 و H3 (Dynamic TOC)   */}
+        {/* ============================================================== */}
+        {tocItems.length > 0 && (
+          <div className="bg-white border-2 border-[#E5DEF0] rounded-3xl p-5 sm:p-7 mb-10 shadow-sm transition-all">
+            <div className="flex items-center justify-between pb-4 border-b border-[#E8E2D8]">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-[#FAF5EB] border border-[#C5A059]/40 flex items-center justify-center text-[#9E7D36]">
+                  <ListOrdered className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-base sm:text-lg font-black text-[#241A35] m-0">
+                    جدول محتوا و سرفصل‌های این مقاله
+                  </h3>
+                  <span className="text-xs text-[#8A8494] block mt-0.5">
+                    تولیدشده به صورت پویا بر اساس عناوین اصلی (H2) و فرعی (H3)
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <span className="hidden sm:inline-block bg-[#F2EEF8] text-[#5E4B82] text-xs font-bold px-3 py-1 rounded-full border border-[#5E4B82]/20">
+                  {tocItems.length} سرفصل
+                </span>
+                <button
+                  onClick={() => setIsTocOpen(!isTocOpen)}
+                  className="inline-flex items-center gap-1.5 text-xs font-black text-[#3E2F5B] bg-[#FAF8F5] hover:bg-[#F2EEF8] border border-[#E8E2D8] px-3 py-1.5 rounded-xl cursor-pointer transition-colors"
+                >
+                  <span>{isTocOpen ? 'بستن فهرست' : 'نمایش فهرست'}</span>
+                  {isTocOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                </button>
+              </div>
+            </div>
+
+            {isTocOpen && (
+              <div className="mt-5 animate-fadeIn">
+                <nav className="max-h-[380px] overflow-y-auto pl-2 pr-1 space-y-1 custom-scrollbar">
+                  {tocItems.map((item, idx) => {
+                    const isActive = activeHeadingId === item.id;
+                    const isH3 = item.level === 3;
+
+                    return (
+                      <button
+                        key={idx}
+                        onClick={() => scrollToHeading(item.id)}
+                        className={`w-full text-right transition-all flex items-start gap-2.5 py-1.5 px-3 rounded-xl cursor-pointer ${
+                          isH3 ? 'mr-5 text-xs text-[#5E5868]' : 'text-xs sm:text-sm font-bold text-[#231F2D]'
+                        } ${
+                          isActive
+                            ? 'bg-[#F2EEF8] text-[#3E2F5B] font-black border-r-3 border-[#C5A059] shadow-2xs'
+                            : 'hover:bg-[#FAF8F5] hover:text-[#3E2F5B]'
+                        }`}
+                      >
+                        <span className={`shrink-0 mt-1 ${isH3 ? 'w-1.5 h-1.5 rounded-full bg-[#B5AFC0]' : 'w-2 h-2 rounded-full bg-[#C5A059]'}`} />
+                        <span className="leading-relaxed line-clamp-1">{item.text}</span>
+                      </button>
+                    );
+                  })}
+                </nav>
+
+                {/* پیوندهای داخلی کلیدی پیشنهادی در پایین جدول محتوا */}
+                <div className="mt-5 pt-4 border-t border-[#E8E2D8]/80 bg-[#FAF8F5]/80 -mx-5 -mb-5 p-5 rounded-b-3xl">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Link2 className="w-4 h-4 text-[#C5A059]" />
+                    <span className="text-xs font-black text-[#241A35]">
+                      صفحات کلیدی پیشنهادی مرتبط با این مقاله (سئو داخلی):
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {vitalLinks.map((link, idx) => {
+                      const Icon = link.icon;
+                      return (
+                        <a
+                          key={idx}
+                          href={link.path}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            navigateInternal(link.path);
+                          }}
+                          className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#3E2F5B] bg-white border border-[#E8E2D8] hover:border-[#C5A059] hover:bg-[#FAF5EB] px-3 py-1.5 rounded-xl shadow-2xs transition-all cursor-pointer"
+                        >
+                          <Icon className="w-3.5 h-3.5 text-[#9E7D36]" />
+                          <span>{link.label}</span>
+                          <span className="text-[9px] bg-[#EEF5F1] text-[#375949] font-black px-1.5 py-0.5 rounded-md">
+                            {link.badge}
+                          </span>
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Main Article Body */}
         <article className="bg-white rounded-3xl p-6 sm:p-12 border border-[#E5E0EA] shadow-xs mb-10">
           <div
+            ref={contentRef}
+            onClick={handleContentClick}
             className="article-rendered-content"
             dangerouslySetInnerHTML={{ __html: article.bodyHtml }}
           />

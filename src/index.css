@@ -226,11 +226,46 @@ body {
   margin-bottom: 0.6rem;
 }
 
+/* Prominently Highlighted Links in Article Content */
 .article-rendered-content a {
-  color: var(--luxury-plum);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  font-weight: 700;
+  display: inline;
+  color: #3E2F5B;
+  background: linear-gradient(180deg, transparent 62%, rgba(197, 160, 89, 0.22) 62%);
+  padding: 0.05rem 0.35rem;
+  margin: 0 0.15rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 800;
+  border-bottom: 1.5px solid rgba(197, 160, 89, 0.7);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.article-rendered-content a:hover {
+  background: rgba(197, 160, 89, 0.3);
+  color: #241A35;
+  border-bottom-color: #9E7D36;
+}
+
+/* In-text internal links with subtle highlight */
+.article-rendered-content a[href^="/"] {
+  font-weight: 800;
+  color: #312349;
+}
+
+/* In-page jump anchors (e.g. #section-...) */
+.article-rendered-content a[href^="#"] {
+  background: transparent;
+  border-bottom: 1px dashed rgba(94, 88, 104, 0.35);
+  font-weight: 600;
+  padding: 0;
+  margin: 0;
+}
+
+.article-rendered-content a[href^="#"]:hover {
+  background: rgba(197, 160, 89, 0.15);
+  border-bottom-color: #3E2F5B;
 }
 
 .article-rendered-content .callout {
