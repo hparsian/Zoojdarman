@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CITIES_DATA, CitySEOData } from '../data/citiesData';
 import { MapPin, Search, Sparkles, ChevronLeft, Globe, ShieldCheck, Phone, MessageSquare } from 'lucide-react';
+import { StandaloneSeoGuide } from './StandaloneSeoGuide';
 
 interface CitiesHubViewProps {
   onNavigateHome: () => void;
@@ -126,6 +127,8 @@ export const CitiesHubView: React.FC<CitiesHubViewProps> = ({
             </div>
           ))}
         </div>
+
+        <StandaloneSeoGuide routeKey="cities" maxWidthClass="max-w-full" />
       </div>
     </div>
   );

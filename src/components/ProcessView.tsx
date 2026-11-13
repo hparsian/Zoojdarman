@@ -12,6 +12,7 @@ import {
   HelpCircle,
   AlertCircle
 } from 'lucide-react';
+import { StandaloneSeoGuide } from './StandaloneSeoGuide';
 
 interface ProcessViewProps {
   onBack: () => void;
@@ -211,6 +212,8 @@ export const ProcessView: React.FC<ProcessViewProps> = ({
             </button>
           </div>
         </div>
+
+        <StandaloneSeoGuide routeKey="process" />
       </div>
     </div>
   );

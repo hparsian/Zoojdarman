@@ -45,10 +45,24 @@ import { applySeo, seoForRoute } from './seo';
 import { BrandPreloader } from './components/BrandPreloader';
 
 import { HomeToolsTeaser } from './components/HomeToolsTeaser';
+import { StandaloneSeoGuide } from './components/StandaloneSeoGuide';
 
 export const App: React.FC = () => {
   const [route, setRoute] = useState<RouteState>({ type: 'home' });
-  const [showPreloader, setShowPreloader] = useState(true);
+  const [showPreloader, setShowPreloader] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    const isHome = window.location.pathname === '/' || window.location.pathname === '';
+    if (!isHome) return false;
+    if (navigator.webdriver) return false;
+    if (/bot|googlebot|crawler|spider|bingbot|lighthouse/i.test(navigator.userAgent)) return false;
+    try {
+      if (sessionStorage.getItem('zd_preloader_seen')) return false;
+      sessionStorage.setItem('zd_preloader_seen', '1');
+    } catch {
+      // ignore storage errors
+    }
+    return true;
+  });
 
   // Parse path on initial load & popstate
   const parsePath = () => {
@@ -557,6 +571,7 @@ export const App: React.FC = () => {
             limit={4}
           />
           <ConsultationForm />
+          <StandaloneSeoGuide routeKey="home" skipFaqSchema maxWidthClass="max-w-5xl" />
         </main>
 
         <Footer

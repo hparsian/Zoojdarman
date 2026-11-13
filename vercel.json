@@ -1,4 +1,23 @@
 {
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/bio", "destination": "/about", "permanent": true },
+    { "source": "/treatment-process", "destination": "/process", "permanent": true },
+    { "source": "/assessments", "destination": "/tools", "permanent": true },
+    { "source": "/tests", "destination": "/tools", "permanent": true },
+    { "source": "/qa", "destination": "/topics", "permanent": true },
+    { "source": "/appointment", "destination": "/contact", "permanent": true },
+    { "source": "/pricing", "destination": "/fees", "permanent": true },
+    { "source": "/costs", "destination": "/fees", "permanent": true },
+    { "source": "/tariffs", "destination": "/fees", "permanent": true },
+    { "source": "/best-couples-therapist", "destination": "/best-couples-therapist-tehran", "permanent": true },
+    { "source": "/best-couples-therapist-tehran-online", "destination": "/best-couples-therapist-tehran", "permanent": true },
+    { "source": "/media", "destination": "/videos", "permanent": true },
+    { "source": "/aparat", "destination": "/videos", "permanent": true },
+    { "source": "/youtube", "destination": "/videos", "permanent": true },
+    { "source": "/centers", "destination": "/cities", "permanent": true },
+    { "source": "/international", "destination": "/countries", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/sitemap.xml",

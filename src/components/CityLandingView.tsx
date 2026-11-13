@@ -184,6 +184,16 @@ export const CityLandingView: React.FC<CityLandingViewProps> = ({
           </div>
         </div>
 
+        {/* Detailed Local Clinical Guide */}
+        {cityData.detailedGuideHtml && (
+          <article className="bg-white p-6 sm:p-10 rounded-3xl border border-[#E8DFD5] shadow-xs">
+            <div
+              className="article-rendered-content"
+              dangerouslySetInnerHTML={{ __html: cityData.detailedGuideHtml }}
+            />
+          </article>
+        )}
+
         {/* Local FAQs Section */}
         {cityData.faqs && cityData.faqs.length > 0 && (
           <div className="bg-white p-6 sm:p-10 rounded-3xl border border-[#E8DFD5] shadow-xs space-y-6">

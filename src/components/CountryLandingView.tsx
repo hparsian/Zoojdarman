@@ -184,6 +184,16 @@ export const CountryLandingView: React.FC<CountryLandingViewProps> = ({
           </div>
         </div>
 
+        {/* Detailed Diaspora Clinical Guide */}
+        {countryData.detailedGuideHtml && (
+          <article className="bg-white p-6 sm:p-10 rounded-3xl border border-[#E8DFD5] shadow-xs">
+            <div
+              className="article-rendered-content"
+              dangerouslySetInnerHTML={{ __html: countryData.detailedGuideHtml }}
+            />
+          </article>
+        )}
+
         {/* Local FAQs Section */}
         {countryData.faqs && countryData.faqs.length > 0 && (
           <div className="bg-white p-6 sm:p-10 rounded-3xl border border-[#E8DFD5] shadow-xs space-y-6">

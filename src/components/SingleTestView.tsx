@@ -385,6 +385,16 @@ export const SingleTestView: React.FC<SingleTestViewProps> = ({
           </div>
         </div>
 
+        {/* Detailed Psychometric Interpretation Guide */}
+        {test.detailedGuideHtml && (
+          <article className="bg-white rounded-3xl p-6 sm:p-10 border border-[#E5E0EA] shadow-xs mb-10">
+            <div
+              className="article-rendered-content"
+              dangerouslySetInnerHTML={{ __html: test.detailedGuideHtml }}
+            />
+          </article>
+        )}
+
         {/* Test FAQs */}
         {test.faqs.length > 0 && (
           <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#E5E0EA] shadow-xs mb-10">

@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 
 import { SeoCertificationSummaryCard } from './SeoCertificationSummaryCard';
+import { StandaloneSeoGuide } from './StandaloneSeoGuide';
 
 interface AboutViewProps {
   onBack: () => void;
@@ -238,6 +239,8 @@ export const AboutView: React.FC<AboutViewProps> = ({
             اطلاعات تماس و رزرو جلسه
           </button>
         </div>
+
+        <StandaloneSeoGuide routeKey="about" />
       </div>
     </div>
   );

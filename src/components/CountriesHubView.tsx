@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { COUNTRIES_DATA, CountrySEOData } from '../data/countriesData';
 import { Globe, Search, Sparkles, ChevronLeft, ShieldCheck, Clock, CreditCard } from 'lucide-react';
+import { StandaloneSeoGuide } from './StandaloneSeoGuide';
 
 interface CountriesHubViewProps {
   onNavigateHome: () => void;
@@ -126,6 +127,8 @@ export const CountriesHubView: React.FC<CountriesHubViewProps> = ({
             </div>
           ))}
         </div>
+
+        <StandaloneSeoGuide routeKey="countries" maxWidthClass="max-w-full" />
       </div>
     </div>
   );

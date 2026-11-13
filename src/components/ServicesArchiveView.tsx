@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { services } from '../data/services';
 import { ProfessionalCredentialsSummaryCard } from './ProfessionalCredentialsSummaryCard';
+import { StandaloneSeoGuide } from './StandaloneSeoGuide';
 import {
   ArrowRight,
   ShieldCheck,
@@ -144,6 +145,8 @@ export const ServicesArchiveView: React.FC<ServicesArchiveViewProps> = ({
             شروع تست آنلاین سلامت رابطه (انریچ)
           </button>
         </div>
+
+        <StandaloneSeoGuide routeKey="services" maxWidthClass="max-w-full" />
       </div>
     </div>
   );

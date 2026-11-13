@@ -6,6 +6,7 @@ import {
   MessageSquare
 } from 'lucide-react';
 import { KeywordsHubSection } from './KeywordsHubSection';
+import { StandaloneSeoGuide } from './StandaloneSeoGuide';
 
 interface TopicsViewProps {
   onBack: () => void;
@@ -67,6 +68,8 @@ export const TopicsView: React.FC<TopicsViewProps> = ({
           onSelectService={onSelectService}
           onScrollToTools={onNavigateTools}
         />
+
+        <StandaloneSeoGuide routeKey="topics" />
       </div>
     </div>
   );

@@ -12,6 +12,7 @@ import {
   Video
 } from 'lucide-react';
 import { ConsultationForm } from './ConsultationForm';
+import { StandaloneSeoGuide } from './StandaloneSeoGuide';
 
 interface ContactViewProps {
   onBack: () => void;
@@ -190,6 +191,8 @@ export const ContactView: React.FC<ContactViewProps> = ({ onBack, onNavigateTool
 
         {/* Embedded Consultation Form */}
         <ConsultationForm />
+
+        <StandaloneSeoGuide routeKey="contact" />
       </div>
     </div>
   );

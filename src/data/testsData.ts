@@ -1,3 +1,5 @@
+import { TESTS_EXTRA_CONTENT } from './testsDetailedGuides';
+
 export interface TestQuestion {
   id: number;
   text: string;
@@ -20,6 +22,7 @@ export interface TestDetailData {
   scientificDescription: string;
   dimensionsTested: string[];
   faqs: { q: string; a: string }[];
+  detailedGuideHtml?: string;
   questions: TestQuestion[];
   getDiagnosis: (scorePercentage: number) => {
     level: string;
@@ -30,7 +33,7 @@ export interface TestDetailData {
   };
 }
 
-export const testsData: Record<string, TestDetailData> = {
+const RAW_TESTS_DATA: Record<string, TestDetailData> = {
   enrich: {
     id: 'enrich',
     slug: 'enrich-marital-satisfaction',
@@ -39,7 +42,7 @@ export const testsData: Record<string, TestDetailData> = {
     badge: 'پرطرفدارترین تست زوجین',
     shortDesc: 'سنجش ۱۰ فاکتور حیاتی صمیمیت عاطفی، شیوه حل تعارض، اعتماد و پایداری رابطه زناشویی',
     seoTitle: 'تست زوج درمانی انریچ آنلاین رایگان با نمره و تحلیل | مهناز خوینی',
-    seoDescription: 'تست زوج درمانی انریچ (ENRICH) آنلاین و رایگان؛ ارزیابی ۱۰ بعد صمیمیت، حل تعارض و امنیت عاطفی رابطه با کارنامه نمره‌دهی و تحلیل بالینی مهناز خوینی، زوج‌درمانگر هیجان‌مدار.',
+    seoDescription: 'تست زوج درمانی انریچ (ENRICH) آنلاین رایگان؛ سنجش ۱۰ بعد صمیمیت، حل تعارض و امنیت عاطفی با کارنامه نمره‌دهی و تحلیل بالینی مهناز خوینی.',
     timeEstimate: '۳ دقیقه',
     questionsCount: 10,
     scientificOrigin: 'بر پایه پرسشنامه استاندارد ارزیابی و غنی‌سازی روابط (ENRICH) اثر دکتر دیوید اولسون',
@@ -247,8 +250,8 @@ export const testsData: Record<string, TestDetailData> = {
     h1: 'تست آنلاین پیش‌بینی طلاق عاطفی و ۴ ویرانگر رابطه گاتمن (Four Horsemen)',
     badge: 'سنجش ریسک جدایی',
     shortDesc: 'شناسایی و سنجش ۴ رفتار مرگبار رابطه: سرزنش، تحقیر و کنایه، جبهه‌گیری و دیوارکشی سکوت',
-    seoTitle: 'تست آنلاین پیش‌بینی طلاق عاطفی و ۴ ویرانگر رابطه گاتمن | مهناز خوینی',
-    seoDescription: 'تست آنلاین پیش‌بینی طلاق عاطفی بر پایه تحقیقات بالینی دکتر جان گاتمن. ارزیابی سرزنش، تحقیر، حالت تدافعی و دیوارکشی سکوت با تحلیل و راهکار زوج‌درمانی.',
+    seoTitle: 'تست پایان زندگی مشترک و طلاق عاطفی گاتمن | مهناز خوینی',
+    seoDescription: 'تست آنلاین رایگان پایان زندگی مشترک و پیش‌بینی طلاق عاطفی بر پایه تحقیقات دکتر جان گاتمن. سنجش سرزنش، تحقیر، دفاعی‌شدن و دیوارکشی سکوت با تحلیل فوری.',
     timeEstimate: '۲ دقیقه',
     questionsCount: 8,
     scientificOrigin: 'بر پایه آزمایشگاه عشق و تحقیقات ۴۰ ساله دکتر جان گاتمن (The Gottman Institute)',
@@ -416,7 +419,7 @@ export const testsData: Record<string, TestDetailData> = {
     h1: 'تست سبک‌های دلبستگی در روابط عاطفی (ایمن، اضطرابی، اجتنابی) بر پایه EFT',
     badge: 'رویکرد دلبستگی EFT',
     shortDesc: 'کشف ریشه مشاجرات و شکستن چرخه تعقیب‌کننده-گریزنده با شناسایی سبک دلبستگی',
-    seoTitle: 'تست آنلاین سبک دلبستگی در رابطه عاطفی (ایمن، اضطرابی، اجتنابی) | مهناز خوینی',
+    seoTitle: 'تست آنلاین سبک دلبستگی عاطفی در رابطه | مهناز خوینی',
     seoDescription: 'تست آنلاین رایگان سبک دلبستگی در روابط عاطفی بر پایه تئوری دلبستگی بالبی و EFT. سبک دلبستگی ایمن، اضطرابی یا اجتنابی خود را بسنجید.',
     timeEstimate: '۳ دقیقه',
     questionsCount: 9,
@@ -692,7 +695,7 @@ export const testsData: Record<string, TestDetailData> = {
     h1: 'تست آنلاین سنجش شدت آسیب خیانت، شوک عاطفی و امکان بازسازی اعتماد',
     badge: 'سنجش اختصاصی شوک خیانت',
     shortDesc: 'ارزیابی علمی سطح تروما، افکار هجوم‌آورنده، تمایل به جبران و پتانسیل احیای پیوند پس از خیانت',
-    seoTitle: 'تست آنلاین سنجش آسیب خیانت و امکان بازسازی اعتماد (PISD) | مهناز خوینی',
+    seoTitle: 'تست آنلاین آسیب خیانت و بازسازی اعتماد (PISD) | مهناز خوینی',
     seoDescription: 'تست آنلاین علمی سنجش تروما و آسیب ناشی از خیانت عاطفی یا جنسی همسر (PISD) با تحلیل بالینی مهناز خوینی، زوج‌درمانگر هیجان‌مدار و مسئول فنی کلینیک پیوند امن.',
     timeEstimate: '۳ دقیقه',
     questionsCount: 8,
@@ -1028,6 +1031,21 @@ export const testsData: Record<string, TestDetailData> = {
     },
   },
 };
+
+export const testsData: Record<string, TestDetailData> = Object.fromEntries(
+  Object.entries(RAW_TESTS_DATA).map(([key, test]) => {
+    const extra = TESTS_EXTRA_CONTENT[test.id];
+    if (!extra) return [key, test];
+    return [
+      key,
+      {
+        ...test,
+        faqs: [...test.faqs, ...extra.extraFaqs],
+        detailedGuideHtml: extra.detailedGuideHtml,
+      },
+    ];
+  })
+);
 
 export const getTestBySlug = (slugOrId: string): TestDetailData | undefined => {
   if (testsData[slugOrId]) return testsData[slugOrId];

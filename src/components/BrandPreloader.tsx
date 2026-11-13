@@ -130,11 +130,11 @@ export const BrandPreloader: React.FC<BrandPreloaderProps> = ({
           <span>تخصصی‌ترین مرجع بازسازی روابط عاطفی</span>
         </div>
 
-        <h1 className="text-3xl sm:text-5xl font-black tracking-tight mb-2 sm:mb-3">
+        <div className="text-3xl sm:text-5xl font-black tracking-tight mb-2 sm:mb-3">
           <span className="animate-shimmer-brand text-4xl sm:text-6xl inline-block drop-shadow-[0_4px_16px_rgba(197,160,89,0.35)]">
             زوج درمان
           </span>
-        </h1>
+        </div>
 
         <p className="text-xs sm:text-sm text-[#E5DEF0] font-medium leading-relaxed mb-6 sm:mb-8 max-w-sm mx-auto opacity-90">
           ترمیم پیوند عاطفی، بازسازی اعتماد و دلبستگی امن در رابطه

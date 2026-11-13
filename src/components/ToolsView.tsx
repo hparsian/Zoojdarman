@@ -8,6 +8,7 @@ import {
   HelpCircle
 } from 'lucide-react';
 import { InteractiveToolsSuite } from './InteractiveToolsSuite';
+import { StandaloneSeoGuide } from './StandaloneSeoGuide';
 
 interface ToolsViewProps {
   onBack: () => void;
@@ -172,6 +173,8 @@ export const ToolsView: React.FC<ToolsViewProps> = ({ onBack, onNavigateContact,
             </p>
           </div>
         </div>
+
+        <StandaloneSeoGuide routeKey="tools" maxWidthClass="max-w-full" />
       </div>
     </div>
   );

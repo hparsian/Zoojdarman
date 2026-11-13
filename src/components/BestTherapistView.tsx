@@ -20,6 +20,7 @@ import {
   AlertTriangle
 } from 'lucide-react';
 import { SeoCertificationSummaryCard } from './SeoCertificationSummaryCard';
+import { StandaloneSeoGuide } from './StandaloneSeoGuide';
 
 interface BestTherapistViewProps {
   onBack: () => void;
@@ -482,6 +483,8 @@ export const BestTherapistView: React.FC<BestTherapistViewProps> = ({
             </button>
           </div>
         </div>
+
+        <StandaloneSeoGuide routeKey="bestTherapist" maxWidthClass="max-w-5xl" />
       </div>
     </div>
   );

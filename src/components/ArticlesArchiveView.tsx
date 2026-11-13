@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { articles } from '../data/articles';
 import { ProfessionalCredentialsSummaryCard } from './ProfessionalCredentialsSummaryCard';
+import { StandaloneSeoGuide } from './StandaloneSeoGuide';
 import { Article } from '../types';
 import {
   ArrowRight,
@@ -181,6 +182,8 @@ export const ArticlesArchiveView: React.FC<ArticlesArchiveViewProps> = ({
             </article>
           ))}
         </div>
+
+        <StandaloneSeoGuide routeKey="articles" maxWidthClass="max-w-full" />
       </div>
     </div>
   );

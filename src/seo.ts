@@ -161,7 +161,7 @@ function notFoundSeo(): SeoPage {
       'این صفحه وجود ندارد یا آدرس آن تغییر کرده است. از صفحه اصلی، بانک مقالات یا تست‌های آنلاین سلامت رابطه بازدید کنید.',
     path,
     robots: NOT_FOUND_ROBOTS,
-    breadcrumb: [{ name: 'صفحه اصلی' }, { name: 'صفحه یافت نشد' }],
+    breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'صفحه یافت نشد' }],
   };
 }
 
@@ -944,16 +944,19 @@ export function seoForRoute(route: RouteState): SeoPage {
         description:
           'مشاهده آنلاین کارگاه‌ها و فیلم‌های آموزشی زوج‌درمانی، مشاوره خیانت، درمان طلاق عاطفی و مهارت‌های ارتباطی مهناز خوینی در آپارات و یوتیوب.',
         path: '/videos',
-        breadcrumb: [{ name: 'صفحه اصلی' }, { name: 'ویدیوهای آموزشی و رسانه' }],
+        breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'ویدیوهای آموزشی و رسانه' }],
         jsonLd: videosJsonLdSchema(absoluteUrl('/videos')),
       };
 
     case 'home': {
       const path = '/';
+      const hasSearchQuery =
+        typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('s');
       return {
         title: HOME_TITLE,
         description: HOME_DESCRIPTION,
         path,
+        robots: hasSearchQuery ? NOT_FOUND_ROBOTS : DEFAULT_ROBOTS,
         jsonLd: homeJsonLdSchema(absoluteUrl(path)),
       };
     }
@@ -968,7 +971,7 @@ export function seoForRoute(route: RouteState): SeoPage {
         path,
         ogType: 'article',
         breadcrumb: [
-          { name: 'صفحه اصلی' },
+          { name: 'صفحه اصلی', path: '/' },
           { name: 'راهنمای رابطه و مقالات', path: '/articles' },
           { name: article.h1 || article.title },
         ],
@@ -980,9 +983,9 @@ export function seoForRoute(route: RouteState): SeoPage {
       return {
         title: 'بانک مقالات تخصصی زوج درمان، خیانت و بهبود روابط عاطفی | مهناز خوینی',
         description:
-          '۴۲ مقاله تخصصی زوج درمان، خیانت، طلاق عاطفی، سردی رابطه و مهارت حل تعارض با پروتکل‌های EFT و گاتمن؛ مطالعه رایگان و جستجوی موضوعی.',
+          '۶۳ مقاله تخصصی زوج درمان، خیانت، طلاق عاطفی، سردی رابطه و حل تعارض با پروتکل‌های EFT و گاتمن؛ مطالعه رایگان و جستجوی موضوعی.',
         path: '/articles',
-        breadcrumb: [{ name: 'صفحه اصلی' }, { name: 'مقالات و راهنما' }],
+        breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'مقالات و راهنما' }],
       };
 
     case 'service': {
@@ -994,7 +997,7 @@ export function seoForRoute(route: RouteState): SeoPage {
         description: service.description,
         path,
         breadcrumb: [
-          { name: 'صفحه اصلی' },
+          { name: 'صفحه اصلی', path: '/' },
           { name: 'خدمات تخصصی', path: '/services' },
           { name: service.h1 || service.title },
         ],
@@ -1008,7 +1011,7 @@ export function seoForRoute(route: RouteState): SeoPage {
         description:
           '۶ خدمت تخصصی زوج درمان هیجان‌مدار، مشاوره خیانت، طلاق آگاهانه، پیش از ازدواج، الگوهای رابطه و مشاوره آنلاین با مهناز خوینی.',
         path: '/services',
-        breadcrumb: [{ name: 'صفحه اصلی' }, { name: 'خدمات تخصصی' }],
+        breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'خدمات تخصصی' }],
       };
 
     case 'singleTest': {
@@ -1020,7 +1023,7 @@ export function seoForRoute(route: RouteState): SeoPage {
         description: test.seoDescription,
         path,
         breadcrumb: [
-          { name: 'صفحه اصلی' },
+          { name: 'صفحه اصلی', path: '/' },
           { name: 'تست‌های آنلاین رابطه', path: '/tools' },
           { name: test.title },
         ],
@@ -1032,28 +1035,28 @@ export function seoForRoute(route: RouteState): SeoPage {
       return {
         title: 'تست زوج درمانی آنلاین رایگان با تحلیل بالینی و نمره فوری | مهناز خوینی',
         description:
-          'سامانه تست زوج درمانی آنلاین و رایگان با تفسیر فوری مهناز خوینی: آزمون رضایت زناشویی انریچ، تست آسیب و ترومای خیانت (PISD)، طلاق عاطفی گاتمن، سبک دلبستگی و ۵ زبان عشق.',
+          'سامانه تست زوج درمانی آنلاین رایگان با تحلیل فوری مهناز خوینی: انریچ، ترومای خیانت (PISD)، طلاق گاتمن، سبک دلبستگی و ۵ زبان عشق.',
         path: '/tools',
-        breadcrumb: [{ name: 'صفحه اصلی' }, { name: 'تست زوج درمانی آنلاین' }],
+        breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'تست زوج درمانی آنلاین' }],
         jsonLd: toolsHubSchema(absoluteUrl('/tools')),
       };
 
     case 'fees':
       return {
-        title: 'تعرفه و هزینه هر جلسه زوج درمانی ۱۴۰۴ | ماشین‌حساب و شرایط بیمه | مهناز خوینی',
+        title: 'تعرفه و هزینه زوج درمانی ۱۴۰۴ و بیمه تکمیلی | مهناز خوینی',
         description:
-          'هزینه هر جلسه زوج درمانی، مشاوره خیانت و پیش از ازدواج بر اساس تعرفه مصوب سازمان نظام روان‌شناسی، شرایط استرداد بیمه تکمیلی، پرداخت ارزی و ماشین‌حساب تخمین تعداد جلسات.',
+          'تعرفه مصوب زوج درمانی، مشاوره خیانت و پیش از ازدواج، شرایط فاکتور بیمه تکمیلی، پرداخت ارزی و ماشین‌حساب تخمین تعداد جلسات.',
         path: '/fees',
-        breadcrumb: [{ name: 'صفحه اصلی' }, { name: 'تعرفه و هزینه جلسات' }],
+        breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'تعرفه و هزینه جلسات' }],
       };
 
     case 'topics':
       return {
-        title: 'دانشنامه موضوعات و پرسش‌های پرمراجعه زوج‌درمانی و خانواده | مهناز خوینی',
+        title: 'دانشنامه موضوعات و پرسش‌های زوج‌درمانی | مهناز خوینی',
         description:
           'راهنمای جامع موضوعات و پرسش‌های مراجعان زوج‌درمانی؛ انتخاب مقاله یا خدمت مناسب مشاجرات مکرر، خیانت، سردی رابطه و تصمیم‌گیری درباره طلاق.',
         path: '/topics',
-        breadcrumb: [{ name: 'صفحه اصلی' }, { name: 'موضوعات پرجستجو' }],
+        breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'موضوعات پرجستجو' }],
       };
 
     case 'about':
@@ -1062,7 +1065,7 @@ export function seoForRoute(route: RouteState): SeoPage {
         description:
           'مهناز خوینی، کارشناس ارشد روان‌شناسی بالینی (پروانه ۱۴۱۴۰۸۳) و زوج درمانگر EFT با بیش از ۱۵,۰۰۰ ساعت تجربه بالینی؛ رزرو مشاوره حضوری تهران و آنلاین.',
         path: '/about',
-        breadcrumb: [{ name: 'صفحه اصلی' }, { name: 'درباره مهناز خوینی' }],
+        breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'درباره مهناز خوینی' }],
         jsonLd: [
           {
             '@type': 'ProfilePage',
@@ -1080,7 +1083,7 @@ export function seoForRoute(route: RouteState): SeoPage {
         description:
           'فرآیند گام‌به‌گام زوج درمان: ارزیابی و تشخیص، تثبیت هیجان، بازپردازش تعارضات عمیق و تثبیت دستاوردها برای پایداری رابطه زناشویی.',
         path: '/process',
-        breadcrumb: [{ name: 'صفحه اصلی' }, { name: 'مراحل درمان' }],
+        breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'مراحل درمان' }],
       };
 
     case 'faq':
@@ -1089,7 +1092,7 @@ export function seoForRoute(route: RouteState): SeoPage {
         description:
           'پاسخ پرتکرارترین پرسش‌های مراجعان درباره مدت و تعداد جلسات زوج درمان، محرمانگی، مشاوره آنلاین، خیانت و شرایط نوبت‌دهی.',
         path: '/faq',
-        breadcrumb: [{ name: 'صفحه اصلی' }, { name: 'پرسش‌های متداول' }],
+        breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'پرسش‌های متداول' }],
       };
 
     case 'contact':
@@ -1098,7 +1101,7 @@ export function seoForRoute(route: RouteState): SeoPage {
         description:
           'رزرو وقت حضوری در تهران و مشاوره آنلاین سراسر جهان؛ آدرس مرکز زوج درمان پیوند امن، ساعات کاری، تماس مستقیم و رزرو از طریق واتساپ.',
         path: '/contact',
-        breadcrumb: [{ name: 'صفحه اصلی' }, { name: 'تماس و نوبت‌دهی' }],
+        breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'تماس و نوبت‌دهی' }],
       };
 
     case 'bestTherapist': {
@@ -1106,10 +1109,10 @@ export function seoForRoute(route: RouteState): SeoPage {
       return {
         title: 'بهترین زوج درمانگر خوب در تهران و آنلاین | مهناز خوینی',
         description:
-          'راهنمای انتخاب بهترین زوج درمانگر خوب در تهران و آنلاین؛ پروانه رسمی ۱۴۱۴۰۸۳ نظام روانشناسی، پروتکل‌های تخصصی EFT، کلینیک غرب تهران و جلسات تصویری سراسر جهان با مهناز خوینی.',
+          'راهنمای انتخاب بهترین زوج درمانگر خوب در تهران و آنلاین؛ پروانه رسمی ۱۴۱۴۰۸۳ نظام روانشناسی، پروتکل EFT، کلینیک صادقیه و مشاوره آنلاین.',
         path,
         breadcrumb: [
-          { name: 'صفحه اصلی' },
+          { name: 'صفحه اصلی', path: '/' },
           { name: 'بهترین زوج درمانگر خوب در تهران و آنلاین' },
         ],
         jsonLd: [
@@ -1155,7 +1158,7 @@ export function seoForRoute(route: RouteState): SeoPage {
         description:
           'تعهد مرکز تخصصی زوج درمان مهناز خوینی به محرمانگی کامل جلسات بالینی، حفظ داده‌های مراجعان و تطابق با موازین سازمان نظام روان‌شناسی و مشاوره.',
         path: '/privacy-policy',
-        breadcrumb: [{ name: 'صفحه اصلی' }, { name: 'حریم خصوصی' }],
+        breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'حریم خصوصی' }],
       };
 
     case 'city': {
@@ -1168,7 +1171,7 @@ export function seoForRoute(route: RouteState): SeoPage {
         description: city.metaDescription,
         path,
         breadcrumb: [
-          { name: 'صفحه اصلی' },
+          { name: 'صفحه اصلی', path: '/' },
           { name: 'مراکز و شهرهای ایران', path: '/cities' },
           { name: `زوج درمانی در ${city.cityName}` },
         ],
@@ -1203,7 +1206,7 @@ export function seoForRoute(route: RouteState): SeoPage {
         description:
           'ارائه خدمات تخصصی مشاوره آنلاین زوج درمانی، درمان خیانت و طلاق عاطفی برای تهران، کرج، مشهد، اصفهان، شیراز، تبریز، اهواز، رشت، کرمان و سراسر ایران.',
         path: '/cities',
-        breadcrumb: [{ name: 'صفحه اصلی' }, { name: 'مراکز و شهرهای ایران' }],
+        breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'مراکز و شهرهای ایران' }],
       };
 
     case 'country': {
@@ -1216,7 +1219,7 @@ export function seoForRoute(route: RouteState): SeoPage {
         description: country.metaDescription,
         path,
         breadcrumb: [
-          { name: 'صفحه اصلی' },
+          { name: 'صفحه اصلی', path: '/' },
           { name: 'کشورها و ایرانیان خارج از کشور', path: '/countries' },
           { name: `زوج درمانی آنلاین در ${country.countryNameFa}` },
         ],
@@ -1247,11 +1250,11 @@ export function seoForRoute(route: RouteState): SeoPage {
 
     case 'countries':
       return {
-        title: 'پایگاه بین‌المللی زوج درمانی آنلاین برای ایرانیان خارج از کشور | مهناز خوینی',
+        title: 'زوج درمانی آنلاین برای ایرانیان خارج از کشور | مهناز خوینی',
         description:
           'ارائه خدمات تخصصی مشاوره زوج درمانی آنلاین فارسی‌زبان برای ایرانیان مقیم کانادا، آمریکا، آلمان، انگلیس، استرالیا، امارات (دبی)، سوئد و ترکیه با مهناز خوینی.',
         path: '/countries',
-        breadcrumb: [{ name: 'صفحه اصلی' }, { name: 'کشورها و ایرانیان خارج از کشور' }],
+        breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'کشورها و ایرانیان خارج از کشور' }],
       };
 
     case '404':

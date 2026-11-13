@@ -2,6 +2,7 @@ import React from 'react';
 import { VideosSection } from './VideosSection';
 import { SeoCertificationSummaryCard } from './SeoCertificationSummaryCard';
 import { ProfessionalCredentialsSummaryCard } from './ProfessionalCredentialsSummaryCard';
+import { StandaloneSeoGuide } from './StandaloneSeoGuide';
 import { Tv, Sparkles, MessageSquare, ChevronLeft, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 interface VideosViewProps {
@@ -65,6 +66,8 @@ export const VideosView: React.FC<VideosViewProps> = ({
           <SeoCertificationSummaryCard />
         </div>
       </div>
+
+      <StandaloneSeoGuide routeKey="videos" maxWidthClass="max-w-5xl" />
     </div>
   );
 };

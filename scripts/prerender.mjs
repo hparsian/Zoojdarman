@@ -67,6 +67,7 @@ function routeForPath(p) {
   if (p === '/faq') return { type: 'faq' };
   if (p === '/contact' || p === '/appointment') return { type: 'contact' };
   if (p === '/privacy-policy') return { type: 'privacy' };
+  if (p === '/videos' || p === '/media' || p === '/aparat' || p === '/youtube') return { type: 'videos' };
   if (p === '/cities' || p === '/centers') return { type: 'cities' };
   if (p.startsWith('/cities/')) return { type: 'city', citySlug: p.slice('/cities/'.length) };
   if (p.startsWith('/city/')) return { type: 'city', citySlug: p.slice('/city/'.length) };
@@ -94,7 +95,138 @@ try {
   const { getCityBySlug } = await vite.ssrLoadModule('/src/data/citiesData.ts');
   const { getCountryBySlug } = await vite.ssrLoadModule('/src/data/countriesData.ts');
 
-  /** پرسش‌وپاسخ‌های قابل استفاده برای هر مسیر (در صورت وجود در داده‌ها) */
+  const { articles } = await vite.ssrLoadModule('/src/data/articles.ts');
+  const { services } = await vite.ssrLoadModule('/src/data/services.ts');
+  const { testsData } = await vite.ssrLoadModule('/src/data/testsData.ts');
+  const { CITIES_DATA } = await vite.ssrLoadModule('/src/data/citiesData.ts');
+  const { COUNTRIES_DATA } = await vite.ssrLoadModule('/src/data/countriesData.ts');
+  const { VIDEOS_DATA } = await vite.ssrLoadModule('/src/data/videosData.ts');
+  const { STANDALONE_SEO_CONTENT } = await vite.ssrLoadModule('/src/data/standaloneSeoContent.ts');
+  const { mainFaqsList } = await vite.ssrLoadModule('/src/data/faqsData.ts');
+
+  const escapeHtml = (str = '') =>
+    String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+
+  function renderFaqsHtml(faqs) {
+    if (!faqs || faqs.length === 0) return '';
+    return `<section aria-label="سوالات متداول"><h2>پرسش‌های متداول</h2>${faqs
+      .map((f) => `<article><h3>${escapeHtml(f.q)}</h3><p>${escapeHtml(f.a)}</p></article>`)
+      .join('')}</section>`;
+  }
+
+  function renderBreadcrumbHtml(breadcrumb) {
+    if (!breadcrumb || breadcrumb.length === 0) return '';
+    return `<nav aria-label="مسیر راهنما">${breadcrumb
+      .map((b) => (b.path ? `<a href="${escapeHtml(b.path)}">${escapeHtml(b.name)}</a>` : `<span>${escapeHtml(b.name)}</span>`))
+      .join(' / ')}</nav>`;
+  }
+
+  function renderBodyForRoute(route, page, faqs) {
+    const navLinks = `<nav aria-label="دسترسی سریع">
+      <a href="/">صفحه اصلی</a> |
+      <a href="/services">خدمات تخصصی</a> |
+      <a href="/articles">بانک مقالات</a> |
+      <a href="/tools">تست‌های آنلاین زوج‌درمانی</a> |
+      <a href="/cities">شهرهای ایران</a> |
+      <a href="/countries">ایرانیان خارج از کشور</a> |
+      <a href="/fees">تعرفه جلسات</a> |
+      <a href="/about">درباره مهناز خوینی</a> |
+      <a href="/contact">رزرو نوبت</a>
+    </nav>`;
+
+    const bcHtml = renderBreadcrumbHtml(page.breadcrumb);
+    let mainHtml = `<h1>${escapeHtml(page.title)}</h1><p>${escapeHtml(page.description)}</p>`;
+
+    const standaloneEntry = STANDALONE_SEO_CONTENT[route.type];
+    const standaloneBlock = standaloneEntry
+      ? `<section><h2>${escapeHtml(standaloneEntry.heading)}</h2><article>${standaloneEntry.bodyHtml}</article>${renderFaqsHtml(standaloneEntry.faqs)}</section>`
+      : '';
+
+    if (route.type === 'article') {
+      const a = getArticleBySlug(route.slug);
+      if (a) {
+        const takeawaysHtml =
+          a.takeaways && a.takeaways.length > 0
+            ? `<section><h2>نکات کلیدی</h2><ul>${a.takeaways.map((t) => `<li>${escapeHtml(t)}</li>`).join('')}</ul></section>`
+            : '';
+        mainHtml = `<h1>${escapeHtml(a.h1 || a.title)}</h1><p>${escapeHtml(a.description)}</p>${takeawaysHtml}<article>${a.bodyHtml || ''}</article>${renderFaqsHtml(a.faqs)}`;
+      }
+    } else if (route.type === 'service') {
+      const s = getServiceBySlug(route.slug);
+      if (s) {
+        mainHtml = `<h1>${escapeHtml(s.h1 || s.title)}</h1><p>${escapeHtml(s.description)}</p><article>${s.bodyHtml || ''}</article>${renderFaqsHtml(s.faqs)}`;
+      }
+    } else if (route.type === 'city') {
+      const c = getCityBySlug(route.citySlug);
+      if (c) {
+        const features = (c.keyFeatures || []).map((f) => `<li>${escapeHtml(f)}</li>`).join('');
+        const areas = (c.neighborhoods || []).join('، ');
+        const related = (c.relatedArticleSlugs || [])
+          .map((slug) => getArticleBySlug(slug))
+          .filter(Boolean)
+          .map((a) => `<li><a href="/articles/${escapeHtml(a.slug)}">${escapeHtml(a.title)}</a></li>`)
+          .join('');
+        mainHtml = `<h1>${escapeHtml(c.h1)}</h1><p>${escapeHtml(c.metaDescription)}</p><p>${escapeHtml(c.introText)}</p><p>${escapeHtml(c.populationNote)} — مناطق تحت پوشش: ${escapeHtml(areas)}</p><ul>${features}</ul><article>${c.detailedGuideHtml || ''}</article>${renderFaqsHtml(c.faqs)}${related ? `<section><h2>مقالات مرتبط</h2><ul>${related}</ul></section>` : ''}`;
+      }
+    } else if (route.type === 'country') {
+      const co = getCountryBySlug(route.countrySlug);
+      if (co) {
+        const features = (co.keyFeatures || []).map((f) => `<li>${escapeHtml(f)}</li>`).join('');
+        const cities = (co.majorCities || []).join('، ');
+        const related = (co.relatedArticleSlugs || [])
+          .map((slug) => getArticleBySlug(slug))
+          .filter(Boolean)
+          .map((a) => `<li><a href="/articles/${escapeHtml(a.slug)}">${escapeHtml(a.title)}</a></li>`)
+          .join('');
+        mainHtml = `<h1>${escapeHtml(co.h1)}</h1><p>${escapeHtml(co.metaDescription)}</p><p>${escapeHtml(co.introText)}</p><p>شهرهای تحت پوشش: ${escapeHtml(cities)} | ${escapeHtml(co.timezoneNote)} | ${escapeHtml(co.paymentNote)}</p><ul>${features}</ul><article>${co.detailedGuideHtml || ''}</article>${renderFaqsHtml(co.faqs)}${related ? `<section><h2>مقالات راهنما</h2><ul>${related}</ul></section>` : ''}`;
+      }
+    } else if (route.type === 'singleTest') {
+      const t = getTestBySlug(route.testSlug);
+      if (t) {
+        const dims = (t.dimensionsTested || []).map((d) => `<li>${escapeHtml(d)}</li>`).join('');
+        mainHtml = `<h1>${escapeHtml(t.h1 || t.title)}</h1><p>${escapeHtml(t.seoDescription)}</p><p>${escapeHtml(t.scientificDescription || '')}</p><ul>${dims}</ul><article>${t.detailedGuideHtml || ''}</article>${renderFaqsHtml(t.faqs)}`;
+      }
+    } else if (route.type === 'home') {
+      const srvLinks = services.map((s) => `<li><a href="/services/${escapeHtml(s.slug)}">${escapeHtml(s.title)}</a></li>`).join('');
+      const artLinks = articles.slice(0, 12).map((a) => `<li><a href="/articles/${escapeHtml(a.slug)}">${escapeHtml(a.title)}</a></li>`).join('');
+      const testLinks = Object.values(testsData).map((t) => `<li><a href="/tests/${escapeHtml(t.slug)}">${escapeHtml(t.title)}</a></li>`).join('');
+      const cityLinks = CITIES_DATA.map((c) => `<li><a href="/cities/${escapeHtml(c.slug)}">زوج درمانی در ${escapeHtml(c.cityName)}</a></li>`).join('');
+      const countryLinks = COUNTRIES_DATA.map((co) => `<li><a href="/countries/${escapeHtml(co.slug)}">زوج درمانگر آنلاین در ${escapeHtml(co.countryNameFa)}</a></li>`).join('');
+      mainHtml = `<h1>مرکز تخصصی زوج درمان مهناز خوینی (پروانه نظام روان‌شناسی ۱۴۱۴۰۸۳)</h1><p>${escapeHtml(page.description)}</p><section><h2>خدمات تخصصی</h2><ul>${srvLinks}</ul></section><section><h2>تست‌های آنلاین رایگان</h2><ul>${testLinks}</ul></section><section><h2>مقالات منتخب</h2><ul>${artLinks}</ul></section><section><h2>مراکز شهرهای ایران</h2><ul>${cityLinks}</ul></section><section><h2>ایرانیان خارج از کشور</h2><ul>${countryLinks}</ul></section>${standaloneBlock}`;
+    } else if (route.type === 'articles') {
+      const artLinks = articles.map((a) => `<li><a href="/articles/${escapeHtml(a.slug)}">${escapeHtml(a.title)}</a></li>`).join('');
+      mainHtml = `<h1>بانک مقالات تخصصی زوج درمان و مشاوره رابطه</h1><p>${escapeHtml(page.description)}</p><ul>${artLinks}</ul>${standaloneBlock}`;
+    } else if (route.type === 'services') {
+      const srvLinks = services.map((s) => `<li><a href="/services/${escapeHtml(s.slug)}">${escapeHtml(s.title)}</a></li>`).join('');
+      mainHtml = `<h1>خدمات تخصصی زوج درمان مهناز خوینی</h1><p>${escapeHtml(page.description)}</p><ul>${srvLinks}</ul>${standaloneBlock}`;
+    } else if (route.type === 'tools') {
+      const testLinks = Object.values(testsData).map((t) => `<li><a href="/tests/${escapeHtml(t.slug)}">${escapeHtml(t.title)}</a></li>`).join('');
+      mainHtml = `<h1>تست‌های آنلاین زوج درمانی رایگان</h1><p>${escapeHtml(page.description)}</p><ul>${testLinks}</ul>${standaloneBlock}`;
+    } else if (route.type === 'cities') {
+      const cityLinks = CITIES_DATA.map((c) => `<li><a href="/cities/${escapeHtml(c.slug)}">${escapeHtml(c.h1)}</a></li>`).join('');
+      mainHtml = `<h1>پایگاه پوشش زوج درمانی آنلاین در شهرهای ایران</h1><p>${escapeHtml(page.description)}</p><ul>${cityLinks}</ul>${standaloneBlock}`;
+    } else if (route.type === 'countries') {
+      const countryLinks = COUNTRIES_DATA.map((co) => `<li><a href="/countries/${escapeHtml(co.slug)}">${escapeHtml(co.h1)}</a></li>`).join('');
+      mainHtml = `<h1>زوج درمانی آنلاین برای ایرانیان خارج از کشور</h1><p>${escapeHtml(page.description)}</p><ul>${countryLinks}</ul>${standaloneBlock}`;
+    } else if (route.type === 'videos') {
+      const vList = VIDEOS_DATA.map((v) => `<article><h2>${escapeHtml(v.title)}</h2><p>${escapeHtml(v.description)}</p></article>`).join('');
+      mainHtml = `<h1>ویدیوها و کارگاه‌های آموزشی مهناز خوینی</h1><p>${escapeHtml(page.description)}</p>${vList}${standaloneBlock}`;
+    } else if (route.type === 'faq') {
+      const allMainFaqs = renderFaqsHtml((mainFaqsList || []).map((f) => ({ q: f.q, a: f.a })));
+      mainHtml += `${allMainFaqs}${standaloneBlock}`;
+    } else if (standaloneBlock) {
+      mainHtml += standaloneBlock;
+    } else if (faqs && faqs.length > 0) {
+      mainHtml += renderFaqsHtml(faqs);
+    }
+
+    return `<div style="direction:rtl;text-align:right;max-width:960px;margin:0 auto;padding:24px;font-family:Vazirmatn,sans-serif"><header>${navLinks}</header>${bcHtml}<main>${mainHtml}</main></div>`;
+  }
+
   function faqsForRoute(route) {
     try {
       if (route.type === 'article') return getArticleBySlug(route.slug)?.faqs;
@@ -102,6 +234,13 @@ try {
       if (route.type === 'singleTest') return getTestBySlug(route.testSlug)?.faqs;
       if (route.type === 'city') return getCityBySlug(route.citySlug)?.faqs;
       if (route.type === 'country') return getCountryBySlug(route.countrySlug)?.faqs;
+      if (route.type === 'faq') {
+        const extra = STANDALONE_SEO_CONTENT.faq?.faqs || [];
+        return [...(mainFaqsList || []).map((f) => ({ q: f.q, a: f.a })), ...extra];
+      }
+      if (STANDALONE_SEO_CONTENT[route.type]?.faqs) {
+        return STANDALONE_SEO_CONTENT[route.type].faqs;
+      }
     } catch {
       /* داده ناقص نباید بیلد را متوقف کند */
     }
@@ -137,6 +276,11 @@ try {
     const faqs = faqsForRoute(route);
     if (faqs && faqs.length > 0) {
       registerFaqSchema(faqs);
+    }
+
+    const rootEl = dom.window.document.getElementById('root');
+    if (rootEl) {
+      rootEl.innerHTML = renderBodyForRoute(route, page, faqs);
     }
 
     const outFile =

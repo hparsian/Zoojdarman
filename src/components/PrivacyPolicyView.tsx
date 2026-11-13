@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { ArrowRight, ShieldCheck, Lock, CheckCircle2 } from 'lucide-react';
+import { StandaloneSeoGuide } from './StandaloneSeoGuide';
 
 interface PrivacyPolicyViewProps {
   onBack: () => void;
@@ -95,6 +96,8 @@ export const PrivacyPolicyView: React.FC<PrivacyPolicyViewProps> = ({ onBack }) 
             </p>
           </div>
         </article>
+
+        <StandaloneSeoGuide routeKey="privacy" maxWidthClass="max-w-full" />
       </div>
     </div>
   );

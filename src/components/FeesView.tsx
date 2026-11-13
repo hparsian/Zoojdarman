@@ -18,6 +18,7 @@ import {
   ChevronLeft
 } from 'lucide-react';
 import { registerFaqSchema } from '../seo';
+import { StandaloneSeoGuide } from './StandaloneSeoGuide';
 
 interface FeesViewProps {
   onBack: () => void;
@@ -441,6 +442,8 @@ export const FeesView: React.FC<FeesViewProps> = ({
             })}
           </div>
         </div>
+
+        <StandaloneSeoGuide routeKey="fees" skipFaqSchema maxWidthClass="max-w-5xl" />
       </main>
     </div>
   );

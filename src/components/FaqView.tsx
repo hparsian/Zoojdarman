@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { registerFaqSchema } from '../seo';
 import { mainFaqsList, ExtendedFaqItem } from '../data/faqsData';
+import { StandaloneSeoGuide } from './StandaloneSeoGuide';
 
 interface FaqViewProps {
   onBack: () => void;
@@ -185,6 +186,8 @@ export const FaqView: React.FC<FaqViewProps> = ({
             تماس با بخش پذیرش کلینیک
           </button>
         </div>
+
+        <StandaloneSeoGuide routeKey="faq" skipFaqSchema />
       </div>
     </div>
   );
