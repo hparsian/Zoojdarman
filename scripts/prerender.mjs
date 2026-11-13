@@ -91,6 +91,8 @@ try {
   const { getArticleBySlug } = await vite.ssrLoadModule('/src/data/articles.ts');
   const { getServiceBySlug } = await vite.ssrLoadModule('/src/data/services.ts');
   const { getTestBySlug } = await vite.ssrLoadModule('/src/data/testsData.ts');
+  const { getCityBySlug } = await vite.ssrLoadModule('/src/data/citiesData.ts');
+  const { getCountryBySlug } = await vite.ssrLoadModule('/src/data/countriesData.ts');
 
   /** پرسش‌وپاسخ‌های قابل استفاده برای هر مسیر (در صورت وجود در داده‌ها) */
   function faqsForRoute(route) {
@@ -98,6 +100,8 @@ try {
       if (route.type === 'article') return getArticleBySlug(route.slug)?.faqs;
       if (route.type === 'service') return getServiceBySlug(route.slug)?.faqs;
       if (route.type === 'singleTest') return getTestBySlug(route.testSlug)?.faqs;
+      if (route.type === 'city') return getCityBySlug(route.citySlug)?.faqs;
+      if (route.type === 'country') return getCountryBySlug(route.countrySlug)?.faqs;
     } catch {
       /* داده ناقص نباید بیلد را متوقف کند */
     }

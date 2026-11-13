@@ -23,9 +23,9 @@ const DEFAULT_IMAGE = '/images/og-cover.jpg';
 const THERAPIST_ID = `${SITE_URL}/#therapist`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
 
-const HOME_TITLE = 'مرکز تخصصی زوج درمان | مهناز خوینی زوج درمان گر';
+const HOME_TITLE = 'مرکز تخصصی زوج درمان | مهناز خوینی (نظام ۱۴۱۴۰۸۳)';
 const HOME_DESCRIPTION =
-  'مرکز تخصصی زوج درمان و زوج درمانی، زوج درمان خوب در تهران و کرج، زوج درمان گر آنلاین برای اصفهان، کرمان، شیراز و مشهد با مهناز خوینی (پروانه ۱۴۱۴۰۸۳). حل تعارضات زناشویی، درمان خیانت، طلاق عاطفی و تست آنلاین سلامت رابطه.';
+  'زوج درمانگر خوب در تهران (حضوری) و مشاوره آنلاین زوج درمانی در کرج، مشهد، اصفهان و خارج کشور با مهناز خوینی. درمان خیانت، طلاق عاطفی و تست آنلاین رایگان.';
 
 export interface SeoBreadcrumbItem {
   name: string;
@@ -218,7 +218,7 @@ function articleSchema(slug: string, url: string): Record<string, unknown>[] {
       inLanguage: 'fa-IR',
       mainEntityOfPage: { '@id': url },
       datePublished: '2025-01-15T08:00:00+03:30',
-      dateModified: '2026-11-03T10:00:00+03:30',
+      dateModified: '2026-11-12T10:00:00+03:30',
       keywords: [
         article.category,
         'زوج درمان',
@@ -1058,11 +1058,20 @@ export function seoForRoute(route: RouteState): SeoPage {
 
     case 'about':
       return {
-        title: 'درباره مهناز خوینی | زوج درمانگر بالینی و مسئول فنی کلینیک پیوند امن',
+        title: 'درباره مهناز خوینی | زوج درمانگر بالینی (نظام ۱۴۱۴۰۸۳)',
         description:
-          'مهناز خوینی، کارشناس ارشد روان‌شناسی بالینی، زوج درمانگر EFT و طرحواره‌درمانی، مسئول فنی کلینیک پیوند امن با پروانه نظام روان‌شناسی ۱۴۱۴۰۸۳.',
+          'مهناز خوینی، کارشناس ارشد روان‌شناسی بالینی (پروانه ۱۴۱۴۰۸۳) و زوج درمانگر EFT با بیش از ۱۵,۰۰۰ ساعت تجربه بالینی؛ رزرو مشاوره حضوری تهران و آنلاین.',
         path: '/about',
         breadcrumb: [{ name: 'صفحه اصلی' }, { name: 'درباره مهناز خوینی' }],
+        jsonLd: [
+          {
+            '@type': 'ProfilePage',
+            '@id': `${absoluteUrl('/about')}#profile`,
+            url: absoluteUrl('/about'),
+            inLanguage: 'fa-IR',
+            mainEntity: { '@id': THERAPIST_ID },
+          },
+        ],
       };
 
     case 'process':
@@ -1153,6 +1162,7 @@ export function seoForRoute(route: RouteState): SeoPage {
       const city = getCityBySlug(route.citySlug);
       if (!city) return notFoundSeo();
       const path = `/cities/${city.slug}`;
+      const url = absoluteUrl(path);
       return {
         title: city.title,
         description: city.metaDescription,
@@ -1161,6 +1171,28 @@ export function seoForRoute(route: RouteState): SeoPage {
           { name: 'صفحه اصلی' },
           { name: 'مراکز و شهرهای ایران', path: '/cities' },
           { name: `زوج درمانی در ${city.cityName}` },
+        ],
+        jsonLd: [
+          {
+            '@type': 'Service',
+            '@id': `${url}#service`,
+            name: `مشاوره آنلاین زوج درمانی و درمان خیانت در ${city.cityName}`,
+            description: city.metaDescription,
+            url,
+            inLanguage: 'fa-IR',
+            serviceType: 'زوج‌درمانی آنلاین، مشاوره خیانت و حل تعارضات زناشویی',
+            provider: {
+              '@type': 'MedicalBusiness',
+              '@id': `${SITE_URL}/#clinic`,
+              name: 'مرکز تخصصی زوج درمان مهناز خوینی',
+              telephone: '+989199087264',
+            },
+            areaServed: {
+              '@type': 'City',
+              name: city.cityName,
+            },
+            availableLanguage: 'fa-IR',
+          },
         ],
       };
     }
@@ -1178,6 +1210,7 @@ export function seoForRoute(route: RouteState): SeoPage {
       const country = getCountryBySlug(route.countrySlug);
       if (!country) return notFoundSeo();
       const path = `/countries/${country.slug}`;
+      const url = absoluteUrl(path);
       return {
         title: country.title,
         description: country.metaDescription,
@@ -1186,6 +1219,28 @@ export function seoForRoute(route: RouteState): SeoPage {
           { name: 'صفحه اصلی' },
           { name: 'کشورها و ایرانیان خارج از کشور', path: '/countries' },
           { name: `زوج درمانی آنلاین در ${country.countryNameFa}` },
+        ],
+        jsonLd: [
+          {
+            '@type': 'Service',
+            '@id': `${url}#service`,
+            name: `مشاوره آنلاین زوج درمانی برای ایرانیان مقیم ${country.countryNameFa}`,
+            description: country.metaDescription,
+            url,
+            inLanguage: 'fa-IR',
+            serviceType: 'زوج‌درمانی آنلاین بین‌المللی به زبان فارسی',
+            provider: {
+              '@type': 'MedicalBusiness',
+              '@id': `${SITE_URL}/#clinic`,
+              name: 'مرکز تخصصی زوج درمان مهناز خوینی',
+              telephone: '+989199087264',
+            },
+            areaServed: {
+              '@type': 'Country',
+              name: country.countryNameFa,
+            },
+            availableLanguage: 'fa-IR',
+          },
         ],
       };
     }

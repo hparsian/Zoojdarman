@@ -78,11 +78,12 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onBack, onSel
   };
 
   const navigateInternal = (path: string) => {
-    if (path.startsWith('/articles/')) {
-      const slug = path.replace('/articles/', '');
+    const cleanPath = path.replace(/\/+$/, '') || '/';
+    if (cleanPath.startsWith('/articles/')) {
+      const slug = cleanPath.replace('/articles/', '');
       onSelectArticle(slug);
     } else {
-      window.history.pushState({}, '', path);
+      window.history.pushState({}, '', cleanPath);
       window.dispatchEvent(new PopStateEvent('popstate'));
     }
   };
