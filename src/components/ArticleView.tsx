@@ -8,10 +8,13 @@ import {
   Clock,
   Calendar,
   User,
-  Lightbulb,
-  MessageSquare,
-  BookOpen
+  MessageSquare
 } from 'lucide-react';
+import {
+  SeoTakeawaysCard,
+  StructuredTablesSection,
+  InteractiveFaqSection,
+} from './StructuredContentBlocks';
 
 import { SocialShareButtons } from './SocialShareButtons';
 import { getArticleSocialMeta } from '../utils/socialShareSeo';
@@ -165,19 +168,7 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onBack, onSel
         </div>
 
         {/* Key Takeaways if available */}
-        {article.takeaways && article.takeaways.length > 0 && (
-          <div className="bg-[#f2eff8] border-r-4 border-[#6D5AA8] rounded-2xl p-6 sm:p-8 mb-8 shadow-xs">
-            <h3 className="text-base font-black text-[#44386B] mb-3 flex items-center gap-2">
-              <Lightbulb className="w-5 h-5 text-[#E8A58D]" />
-              <span>چکیده طلایی مقاله</span>
-            </h3>
-            <ul className="flex flex-col gap-2.5 text-xs sm:text-sm text-[#292733] leading-relaxed list-disc list-inside">
-              {article.takeaways.map((item, idx) => (
-                <li key={idx}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        )}
+        <SeoTakeawaysCard title="چکیده طلایی مقاله" items={article.takeaways} />
 
         {/* ============================================================== */}
         {/* ساختار ۲ ستونه تعاملی با کامپوننت TableOfContents شناور         */}
@@ -204,33 +195,16 @@ export const ArticleView: React.FC<ArticleViewProps> = ({ article, onBack, onSel
               />
             </div>
 
-            {/* بدنه اصلی محتوای رندرشده مقاله */}
+            {/* بدنه اصلی محتوای رندرشده مقاله و جداول داده‌محور */}
             <article className="bg-white rounded-3xl p-6 sm:p-12 border border-[#E5E0EA] shadow-xs mb-10">
-              <div
-                ref={contentRef}
-                onClick={handleContentClick}
-                className="article-rendered-content"
-                dangerouslySetInnerHTML={{ __html: article.bodyHtml }}
-              />
+              <div ref={contentRef} onClick={handleContentClick} className="article-rendered-content">
+                <div dangerouslySetInnerHTML={{ __html: article.bodyHtml }} />
+                <StructuredTablesSection tables={article.structuredTables} />
+              </div>
             </article>
 
             {/* بخش سوالات متداول مراجعان */}
-            {article.faqs && article.faqs.length > 0 && (
-              <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#E5E0EA] shadow-xs mb-10">
-                <h2 className="text-xl font-black text-[#44386B] mb-6 flex items-center gap-2">
-                  <BookOpen className="w-5 h-5 text-[#6D5AA8]" />
-                  <span>سوالات متداول مراجعان</span>
-                </h2>
-                <div className="flex flex-col gap-4">
-                  {article.faqs.map((faq, idx) => (
-                    <div key={idx} className="bg-[#FAF8F5] rounded-2xl p-5 border border-[#E5E0EA]">
-                      <h3 className="text-sm font-black text-[#292733] mb-2">{faq.q}</h3>
-                      <p className="text-xs sm:text-sm text-[#6F6B78] leading-relaxed text-justify">{faq.a}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+            <InteractiveFaqSection faqs={article.faqs} title="سوالات متداول مراجعان" />
 
             {/* باکس دعوت به اقدام (CTA) */}
             <div className="bg-gradient-to-br from-[#FAF8F5] to-[#f2eff8] border border-[#6D5AA8]/30 rounded-3xl p-8 sm:p-10 mb-10 text-center">

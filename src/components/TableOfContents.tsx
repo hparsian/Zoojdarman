@@ -23,6 +23,7 @@ interface TableOfContentsProps {
   className?: string;
   onNavigateInternal?: (path: string) => void;
   defaultOpenOnMobile?: boolean;
+  headingTitle?: string;
 }
 
 export const TableOfContents: React.FC<TableOfContentsProps> = ({
@@ -31,6 +32,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
   className = '',
   onNavigateInternal,
   defaultOpenOnMobile = false,
+  headingTitle = 'جدول محتوای مقاله',
 }) => {
   const [headings, setHeadings] = useState<TocHeading[]>([]);
   const [activeId, setActiveId] = useState<string>('');
@@ -147,7 +149,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
           </div>
           <div>
             <h3 className="text-sm sm:text-base font-black text-[#241A35] m-0 leading-tight">
-              جدول محتوای مقاله
+              {headingTitle}
             </h3>
             <span className="text-[11px] text-[#8A8494] block mt-0.5">
               {headings.length} بخش تخصصی بر اساس H2 و H3

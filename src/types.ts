@@ -1,3 +1,11 @@
+export interface ContentTable {
+  id?: string;
+  title: string;
+  subtitle?: string;
+  headers: string[];
+  rows: string[][];
+}
+
 export interface Article {
   slug: string;
   title: string;
@@ -9,6 +17,8 @@ export interface Article {
   takeaways: string[];
   faqs: { q: string; a: string }[];
   bodyHtml: string;
+  structuredTables?: ContentTable[];
+  targetKeywords?: string[];
 }
 
 export interface ServiceItem {
@@ -16,8 +26,15 @@ export interface ServiceItem {
   title: string;
   h1: string;
   description: string;
+  category?: string;
+  sessionDuration?: string;
+  modality?: string;
+  takeaways?: string[];
   faqs: { q: string; a: string }[];
   bodyHtml: string;
+  structuredTables?: ContentTable[];
+  relatedArticleSlugs?: string[];
+  targetKeywords?: string[];
 }
 
 export interface DiagnosisScenario {

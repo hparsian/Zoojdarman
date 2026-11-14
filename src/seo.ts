@@ -205,9 +205,32 @@ export function applySeo(page: SeoPage): void {
 /* تبدیل مسیر (Route) به پیکربندی سئو                                */
 /* ------------------------------------------------------------------ */
 
+function countPlainWords(text: string): number {
+  return text.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().split(' ').filter(Boolean).length;
+}
+
 function articleSchema(slug: string, url: string): Record<string, unknown>[] {
   const article = getArticleBySlug(slug);
   if (!article) return [];
+  const tableText = (article.structuredTables || [])
+    .map((t) => `${t.title} ${t.subtitle || ''} ${t.headers.join(' ')} ${t.rows.map((r) => r.join(' ')).join(' ')}`)
+    .join(' ');
+  const faqText = (article.faqs || []).map((f) => `${f.q} ${f.a}`).join(' ');
+  const wordCount = countPlainWords(
+    `${article.h1 || article.title} ${article.description} ${(article.takeaways || []).join(' ')} ${article.bodyHtml} ${tableText} ${faqText}`
+  );
+  const keywords = Array.from(
+    new Set([
+      article.category,
+      ...(article.targetKeywords || []),
+      'زوج درمان',
+      'زوج درمانی',
+      'زوج درمانگر',
+      'زوج درمان خوب',
+      'مهناز خوینی',
+      'روانشناسی بالینی',
+    ])
+  );
   return [
     {
       '@type': 'Article',
@@ -219,21 +242,14 @@ function articleSchema(slug: string, url: string): Record<string, unknown>[] {
       mainEntityOfPage: { '@id': url },
       datePublished: '2025-01-15T08:00:00+03:30',
       dateModified: '2026-11-12T10:00:00+03:30',
-      keywords: [
-        article.category,
-        'زوج درمان',
-        'زوج درمانی',
-        'زوج درمانگر',
-        'زوج درمان خوب',
-        'مهناز خوینی',
-        'روانشناسی بالینی'
-      ],
+      wordCount,
+      keywords,
       author: {
         '@type': 'Person',
         '@id': THERAPIST_ID,
         name: 'مهناز خوینی',
         jobTitle: 'کارشناس ارشد روانشناسی بالینی و زوج درمانگر',
-        url: `${SITE_URL}/#bio`
+        url: `${SITE_URL}/#bio`,
       },
       publisher: {
         '@type': 'Organization',
@@ -243,8 +259,8 @@ function articleSchema(slug: string, url: string): Record<string, unknown>[] {
           '@type': 'ImageObject',
           url: `${SITE_URL}/images/logo-512.png`,
           width: 512,
-          height: 512
-        }
+          height: 512,
+        },
       },
       articleSection: article.category,
     },
@@ -258,25 +274,31 @@ function serviceSchema(slug: string, url: string): Record<string, unknown>[] {
     {
       '@type': 'Service',
       '@id': `${url}#service`,
-      name: service.title,
+      name: service.h1 || service.title,
       description: service.description,
       url,
       inLanguage: 'fa-IR',
+      category: service.category || 'خدمات تخصصی زوج‌درمانی',
       serviceType: 'زوج‌درمانی، مشاوره خانواده و روانشناسی بالینی',
       provider: {
         '@type': 'MedicalBusiness',
         '@id': `${SITE_URL}/#clinic`,
         name: 'مرکز تخصصی زوج درمان مهناز خوینی',
-        telephone: '+989199087264'
+        telephone: '+989199087264',
       },
       areaServed: ['تهران', 'کرج', 'اصفهان', 'کرمان', 'شیراز', 'مشهد', 'سراسر ایران', 'خارج از کشور'],
       availableLanguage: 'fa-IR',
+      ...(service.relatedArticleSlugs && service.relatedArticleSlugs.length > 0
+        ? {
+            isRelatedTo: service.relatedArticleSlugs.map((aSlug) => absoluteUrl(`/articles/${aSlug}`)),
+          }
+        : {}),
       offers: {
         '@type': 'Offer',
         priceCurrency: 'IRR',
         availability: 'https://schema.org/InStock',
-        validFrom: '2026-01-01'
-      }
+        validFrom: '2026-01-01',
+      },
     },
   ];
 }

@@ -111,6 +111,23 @@ try {
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;');
 
+  function renderStructuredTablesHtml(tables) {
+    if (!tables || tables.length === 0) return '';
+    return tables
+      .map((t) => {
+        const thead = `<thead><tr>${(t.headers || [])
+          .map((h) => `<th scope="col">${escapeHtml(h)}</th>`)
+          .join('')}</tr></thead>`;
+        const tbody = `<tbody>${(t.rows || [])
+          .map((r) => `<tr>${r.map((c) => `<td>${escapeHtml(c)}</td>`).join('')}</tr>`)
+          .join('')}</tbody>`;
+        return `<section><h2>${escapeHtml(t.title)}</h2>${
+          t.subtitle ? `<p>${escapeHtml(t.subtitle)}</p>` : ''
+        }<table>${thead}${tbody}</table></section>`;
+      })
+      .join('');
+  }
+
   function renderFaqsHtml(faqs) {
     if (!faqs || faqs.length === 0) return '';
     return `<section aria-label="سوالات متداول"><h2>پرسش‌های متداول</h2>${faqs
@@ -153,12 +170,21 @@ try {
           a.takeaways && a.takeaways.length > 0
             ? `<section><h2>نکات کلیدی</h2><ul>${a.takeaways.map((t) => `<li>${escapeHtml(t)}</li>`).join('')}</ul></section>`
             : '';
-        mainHtml = `<h1>${escapeHtml(a.h1 || a.title)}</h1><p>${escapeHtml(a.description)}</p>${takeawaysHtml}<article>${a.bodyHtml || ''}</article>${renderFaqsHtml(a.faqs)}`;
+        mainHtml = `<h1>${escapeHtml(a.h1 || a.title)}</h1><p>${escapeHtml(a.description)}</p>${takeawaysHtml}<article>${a.bodyHtml || ''}${renderStructuredTablesHtml(a.structuredTables)}</article>${renderFaqsHtml(a.faqs)}`;
       }
     } else if (route.type === 'service') {
       const s = getServiceBySlug(route.slug);
       if (s) {
-        mainHtml = `<h1>${escapeHtml(s.h1 || s.title)}</h1><p>${escapeHtml(s.description)}</p><article>${s.bodyHtml || ''}</article>${renderFaqsHtml(s.faqs)}`;
+        const takeawaysHtml =
+          s.takeaways && s.takeaways.length > 0
+            ? `<section><h2>دستاوردهای کلیدی این خدمت</h2><ul>${s.takeaways.map((t) => `<li>${escapeHtml(t)}</li>`).join('')}</ul></section>`
+            : '';
+        const related = (s.relatedArticleSlugs || [])
+          .map((slug) => getArticleBySlug(slug))
+          .filter(Boolean)
+          .map((a) => `<li><a href="/articles/${escapeHtml(a.slug)}">${escapeHtml(a.h1 || a.title)}</a></li>`)
+          .join('');
+        mainHtml = `<h1>${escapeHtml(s.h1 || s.title)}</h1><p>${escapeHtml(s.description)}</p>${takeawaysHtml}<article>${s.bodyHtml || ''}${renderStructuredTablesHtml(s.structuredTables)}</article>${renderFaqsHtml(s.faqs)}${related ? `<section><h2>مقالات علمی مرتبط</h2><ul>${related}</ul></section>` : ''}`;
       }
     } else if (route.type === 'city') {
       const c = getCityBySlug(route.citySlug);
