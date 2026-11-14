@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { HelpCircle, ChevronDown, Sparkles } from 'lucide-react';
+import { HelpCircle, ChevronDown, ArrowLeft } from 'lucide-react';
 import { FaqItem } from '../types';
 import { registerFaqSchema } from '../seo';
 import { mainFaqsList } from '../data/faqsData';
@@ -19,83 +19,76 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onNavigateFaq, limit }) 
     setOpenIndex(openIndex === idx ? null : idx);
   };
 
-  // داده‌های ساختاریافته پرسش‌وپاسخ صفحه اصلی (JSON-LD FAQPage)
   useEffect(() => registerFaqSchema(displayFaqs), [limit]);
 
   return (
-    <section className="relative py-20 lg:py-24 bg-[#FAF8F5] overflow-hidden" id="faq">
-      <div className="container-custom relative z-10">
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-[#A67C2E] uppercase mb-3">
-            <span className="w-6 h-px bg-[#C5A059]" />
-            <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
-            <span>پاسخ به ابهامات مراجعان</span>
-            <span className="w-6 h-px bg-[#C5A059]" />
-          </div>
+    <section className="py-16 lg:py-24 bg-[#F8F5EE] border-b border-[#E8E2D8]" id="faq">
+      <div className="container-custom">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          {/* Sticky Editorial Header Column */}
+          <div className="lg:col-span-5">
+            <span className="text-[11px] font-extrabold text-[#9E7D36] block mb-2">
+              پاسخ به پرسش‌های متداول مراجعان
+            </span>
+            <h2 className="balance-text text-2xl sm:text-3xl font-black text-[#241A35] mb-4 leading-tight">
+              سوالات پرتکرار درباره جلسات حضوری و آنلاین زوج‌درمانی
+            </h2>
+            <p className="text-sm text-[#5E5868] leading-[1.9] mb-6">
+              تمامی جزئیات مربوط به تعداد جلسات، نحوه حضور هر دو یا یک نفر از زوجین، محرمانگی اطلاعات و تعرفه مصوب نظام روان‌شناسی در این بخش پاسخ داده شده است.
+            </p>
 
-          <h2 className="text-2xl sm:text-4xl font-black text-[#2A1E35] mb-4 leading-tight">
-            سوالات متداول درباره فرآیند و جلسات زوج درمان
-          </h2>
-
-          <p className="text-sm sm:text-base text-[#6F6B78] leading-relaxed">
-            پاسخ به پرتکرارترین پرسش‌های مراجعان مرکز زوج درمان درباره نحوه برگزاری جلسات حضوری و آنلاین، اثربخشی و شرایط نوبت‌دهی.
-          </p>
-        </div>
-
-        {/* Accordion */}
-        <div className="max-w-3xl mx-auto flex flex-col gap-3.5">
-          {displayFaqs.map((faq, idx) => {
-            const isOpen = openIndex === idx;
-            return (
-              <div
-                key={idx}
-                className={`bg-white rounded-2xl border transition-all duration-200 overflow-hidden ${
-                  isOpen
-                    ? 'border-[#C5A059]/60 shadow-lg ring-1 ring-[#C5A059]/20'
-                    : 'border-[#E8DFD5] hover:border-[#C5A059]/40 shadow-xs'
-                }`}
+            {limit && onNavigateFaq && (
+              <a
+                href="/faq"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigateFaq();
+                }}
+                className="inline-flex items-center gap-2 bg-white hover:bg-[#FAF5EB] text-[#241A35] font-black text-xs px-5 py-3 rounded-xl border border-[#E8E2D8] hover:border-[#C5A059] transition-colors cursor-pointer"
               >
-                <button
-                  onClick={() => toggle(idx)}
-                  className="w-full text-right p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer"
-                >
-                  <span className={`text-sm sm:text-base font-black leading-snug transition-colors ${
-                    isOpen ? 'text-[#2A1E35]' : 'text-[#3E3846]'
-                  }`}>
-                    {faq.q}
-                  </span>
-                  <div
-                    className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-transform ${
-                      isOpen
-                        ? 'bg-[#2A1E35] text-[#C5A059] rotate-180'
-                        : 'bg-[#FAF8F5] text-[#7A7382] border border-[#E8DFD5]'
-                    }`}
-                  >
-                    <ChevronDown className="w-4 h-4" />
-                  </div>
-                </button>
-                {isOpen && (
-                  <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-[#5A5265] leading-[2] border-t border-[#F0EAE1] text-justify">
-                    {faq.a}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-
-        {limit && onNavigateFaq && (
-          <div className="text-center mt-10">
-            <button
-              onClick={onNavigateFaq}
-              className="inline-flex items-center gap-2 bg-[#2A1E35] hover:bg-[#3E2F5B] text-[#C5A059] font-black text-xs px-8 py-3.5 rounded-full border border-[#C5A059]/40 shadow-md transition-all cursor-pointer"
-            >
-              <HelpCircle className="w-4 h-4 text-[#C5A059]" />
-              <span>مشاهده تمام سوالات متداول ({allFaqs.length} سوال)</span>
-            </button>
+                <HelpCircle className="w-4 h-4 text-[#9E7D36]" />
+                <span className="tabular-nums">مشاهده تمام سوالات متداول ({allFaqs.length})</span>
+                <ArrowLeft className="w-3.5 h-3.5 text-[#9E7D36]" />
+              </a>
+            )}
           </div>
-        )}
+
+          {/* Clean Accordion Column */}
+          <div className="lg:col-span-7 flex flex-col gap-3">
+            {displayFaqs.map((faq, idx) => {
+              const isOpen = openIndex === idx;
+              return (
+                <div
+                  key={idx}
+                  className={`bg-white rounded-xl border transition-colors overflow-hidden ${
+                    isOpen ? 'border-[#C5A059]' : 'border-[#E8E2D8] hover:border-[#C5A059]/60'
+                  }`}
+                >
+                  <button
+                    type="button"
+                    onClick={() => toggle(idx)}
+                    aria-expanded={isOpen}
+                    className="w-full text-right p-5 flex items-center justify-between gap-4 cursor-pointer"
+                  >
+                    <span className="text-sm sm:text-base font-black text-[#241A35] leading-snug">
+                      {faq.q}
+                    </span>
+                    <ChevronDown
+                      className={`w-4 h-4 text-[#9E7D36] shrink-0 transition-transform ${
+                        isOpen ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+                  {isOpen && (
+                    <div className="px-5 pb-5 pt-2 text-xs sm:text-sm text-[#4E4858] leading-[1.95] border-t border-[#F0EBE2] text-justify">
+                      {faq.a}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );

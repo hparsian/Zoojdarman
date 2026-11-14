@@ -1,37 +1,73 @@
 import React from 'react';
 import {
-  MessageSquare,
+  CheckCircle2,
+  ArrowLeft,
   HeartCrack,
   Scale,
   Globe,
   Users,
   Brain,
-  CheckCircle,
-  ArrowLeft,
-  Sparkles,
-  Clock,
-  ShieldCheck
+  ShieldCheck,
 } from 'lucide-react';
 
 interface ServicesSectionProps {
   onSelectService: (slug: string) => void;
+  onNavigateServices?: () => void;
 }
 
-export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectService }) => {
+export const ServicesSection: React.FC<ServicesSectionProps> = ({
+  onSelectService,
+  onNavigateServices,
+}) => {
+  const secondaryServices = [
+    {
+      slug: 'divorce-counseling',
+      kicker: 'تصمیم‌گیری آگاهانه',
+      title: 'مشاوره طلاق و کاهش آسیب',
+      desc: 'ارزیابی دقیق آخرین شانس‌های بقای رابطه، جدایی محترمانه و صیانت از سلامت روان فرزندان.',
+      bullets: ['کاهش آسیب عاطفی بر کودکان', 'تصمیم منطقی بدون شتاب‌زدگی'],
+      icon: Scale,
+    },
+    {
+      slug: 'online-counseling',
+      kicker: 'سراسر ایران و خارج کشور',
+      title: 'مشاوره آنلاین زوج‌درمانی',
+      desc: 'جلسات ویدئویی رمزنگاری‌شده با همان کیفیت بالینی کلینیک تهران و منطبق با اختلاف ساعت کشورها.',
+      bullets: ['گوگل میت و واتساپ تصویری امن', 'مناسب ایرانیان اروپا، کانادا و آمریکا'],
+      icon: Globe,
+    },
+    {
+      slug: 'premarital-counseling',
+      kicker: 'پیشگیری پیش از عقد',
+      title: 'مشاوره پیش از ازدواج',
+      desc: 'سنجش تناسب شخصیتی، خط قرمزهای مالی و خانوادگی و تحلیل تست‌های استاندارد پیش از تعهد دائم.',
+      bullets: ['ارزیابی طرحواره‌ها و سازگاری', 'مرزبندی با خانواده‌های پدری'],
+      icon: Users,
+    },
+    {
+      slug: 'relationship-patterns-therapy',
+      kicker: 'طرحواره‌درمانی رابطه',
+      title: 'درمان تله‌های عاطفی تکراری',
+      desc: 'شناخت و درمان ریشه‌ای الگوهای دلبستگی ناایمن، ترس از طردشدگی و انتخاب‌های آسیب‌زا در روابط.',
+      bullets: ['خروج از چرخه روابط فرساینده', 'بازسازی عزت‌نفس و امنیت درونی'],
+      icon: Brain,
+    },
+  ];
+
   return (
-    <section className="py-20 lg:py-28 bg-[#FFFFFF] border-b border-[#E8E2D8]" id="services">
+    <section className="py-16 lg:py-24 bg-white border-b border-[#E8E2D8]" id="services">
       <div className="container-custom">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-5">
           <div className="max-w-2xl">
-            <span className="text-[11px] font-black text-[#C5A059] uppercase tracking-wider block mb-2">
-              خدمات تخصصی بالینی
+            <span className="text-[11px] font-extrabold text-[#9E7D36] block mb-2">
+              خدمات تخصصی بالینی کلینیک پیوند امن
             </span>
-            <h2 className="text-2xl sm:text-4xl font-black text-[#241A35] leading-tight">
-              حوزه‌های درمان و پروتکل‌های بالینی رابطه
+            <h2 className="balance-text text-2xl sm:text-4xl font-black text-[#241A35] leading-tight">
+              حوزه‌های مداخله و پروتکل‌های درمان زوجین
             </h2>
             <p className="text-sm sm:text-base text-[#5E5868] mt-3 leading-relaxed">
-              پروتکل‌های درمانی مبتنی بر شواهد علمی دانشگاهی در مرکز زوج درمان برای توقف بحران و احیای پیوند عاطفی.
+              تمامی خدمات با تکیه بر رویکردهای اثبات‌شده دانشگاهی (EFT، گاتمن و طرحواره‌درمانی) برای مراجعان حضوری تهران و آنلاین جهانی ارائه می‌شود.
             </p>
           </div>
 
@@ -39,221 +75,158 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
             href="/services"
             onClick={(e) => {
               e.preventDefault();
-              onSelectService('couples-therapy');
+              if (onNavigateServices) {
+                onNavigateServices();
+              } else {
+                onSelectService('couples-therapy');
+              }
             }}
-            className="inline-flex items-center gap-2 text-xs font-black text-[#3E2F5B] hover:text-[#241A35] py-2 px-4 rounded-full border border-[#E8E2D8] hover:border-[#3E2F5B]/40 bg-[#FAF5EB] transition-all cursor-pointer shrink-0 self-start md:self-end"
+            className="inline-flex items-center gap-2 text-xs font-black text-[#241A35] hover:text-[#3E2F5B] py-2.5 px-5 rounded-lg border border-[#E8E2D8] hover:border-[#C5A059] bg-[#FCFAF8] transition-colors cursor-pointer shrink-0 self-start md:self-end"
           >
-            <span>مشاهده همه خدمات تخصصی</span>
-            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>آرشیو کامل خدمات درمانی</span>
+            <ArrowLeft className="w-3.5 h-3.5 text-[#9E7D36]" />
           </a>
         </div>
 
-        {/* Asymmetric Bento-Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Bento Card 1: Flagship Marquee (Col-Span 2 on lg) */}
-          <article
-            onClick={() => onSelectService('couples-therapy')}
-            className="lg:col-span-2 bg-gradient-to-br from-[#241A35] via-[#2D2142] to-[#3E2F5B] text-white rounded-3xl p-8 sm:p-10 shadow-[0_15px_35px_-10px_rgba(36,26,53,0.3)] border border-[#C5A059]/30 relative overflow-hidden flex flex-col justify-between group cursor-pointer"
+        {/* Row 1: Asymmetric Bento (2-col Flagship + 1-col Infidelity) */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+          {/* Flagship Marquee Card */}
+          <a
+            href="/services/couples-therapy"
+            onClick={(e) => {
+              e.preventDefault();
+              onSelectService('couples-therapy');
+            }}
+            className="lg:col-span-2 bg-[#241A35] hover:bg-[#2B1F3F] text-white rounded-2xl p-7 sm:p-9 border border-[#C5A059]/35 transition-colors flex flex-col justify-between group cursor-pointer"
           >
-            {/* Ambient Background Watermark/Glow */}
-            <div className="absolute top-0 left-0 w-72 h-72 bg-radial from-[#C5A059]/20 to-transparent rounded-full pointer-events-none blur-2xl" />
-
-            <div className="relative z-10 mb-8">
-              <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-                <span className="px-3.5 py-1 bg-[#C5A059] text-[#241A35] rounded-full text-[11px] font-black inline-flex items-center gap-1.5 shadow-sm">
-                  <Sparkles className="w-3 h-3" />
-                  <span>پروتکل طلایی مرکز زوج درمان</span>
+            <div className="mb-8">
+              <div className="flex flex-wrap items-center justify-between gap-3 pb-4 mb-5 border-b border-white/10 text-xs">
+                <span className="font-extrabold text-[#C5A059]">
+                  پروتکل محوری · رویکرد هیجان‌مدار (EFT)
                 </span>
-                <div className="flex items-center gap-2">
-                  <img
-                    src="/images/mahnaz-khoini-thumb.webp"
-                    alt="مهناز خوینی"
-                    loading="lazy"
-                    decoding="async"
-                    width={28}
-                    height={28}
-                    className="w-7 h-7 rounded-full object-cover border border-[#C5A059]"
-                  />
-                  <span className="text-xs text-white/90 font-bold flex items-center gap-1.5">
-                    <ShieldCheck className="w-3.5 h-3.5 text-[#C5A059]" />
-                    <span>نظارت بالینی مهناز خوینی</span>
-                  </span>
-                </div>
+                <span className="inline-flex items-center gap-1.5 text-white/85 font-semibold">
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#C5A059]" />
+                  <span>نظارت بالینی مهناز خوینی</span>
+                </span>
               </div>
 
-              <h3 className="text-xl sm:text-3xl font-black text-[#FAF5EB] mb-4 leading-snug">
+              <h3 className="text-xl sm:text-3xl font-black text-[#FAF5EB] mb-3.5 leading-snug">
                 زوج درمان و زوج‌درمانی هیجان‌مدار (EFT)
               </h3>
 
-              <p className="text-xs sm:text-sm text-white/85 leading-relaxed max-w-2xl text-justify mb-6">
-                شکستن چرخه‌های فرسایشی دعوا، توقف خشم و سرزنش‌های سطحی و رمزگشایی از نیازهای دلبستگی ناگفته. این رویکرد بین‌المللی با ۸ الی ۱۲ جلسه، امنیت و صمیمیت از دست رفته رابطه را بازمی‌گرداند.
+              <p className="text-xs sm:text-sm text-[#E8E2D8] leading-[1.9] max-w-2xl text-justify mb-6">
+                شکستن چرخه‌های فرسایشی دعوا و سکوت، توقف خشم‌های سطحی و رمزگشایی از نیازهای دلبستگی ناگفته. در این پروتکل ۸ تا ۱۲ جلسه‌ای، الگوی تعقیب‌کننده و گریزنده متوقف شده و امنیت عاطفی رابطه از پایه ترمیم می‌شود.
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-white/10">
-                <div className="flex items-center gap-2 text-xs font-bold text-white/90">
-                  <CheckCircle className="w-4 h-4 text-[#C5A059] shrink-0" />
-                  <span>حل مشاجرات مکرر مالی، خانوادگی و زناشویی</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-bold text-white/90">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#C5A059] shrink-0" />
+                  <span>حل تعارض‌های مالی، خانوادگی و زناشویی</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs font-bold text-white/90">
-                  <CheckCircle className="w-4 h-4 text-[#C5A059] shrink-0" />
-                  <span>رهایی از الگوی تعقیب‌کننده و گریزنده</span>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#C5A059] shrink-0" />
+                  <span>ترمیم سردی عاطفی و طلاق خاموش</span>
                 </div>
               </div>
             </div>
 
-            <div className="relative z-10 flex items-center justify-between pt-4 border-t border-white/10 text-xs font-black text-[#FAF5EB]">
-              <span className="group-hover:text-[#C5A059] transition-colors">
-                مشاهده فرآیند درمان، پیش‌نیازها و رزرو جلسه
-              </span>
-              <div className="w-8 h-8 rounded-full bg-white/10 group-hover:bg-[#C5A059] group-hover:text-[#241A35] flex items-center justify-center transition-all">
-                <ArrowLeft className="w-4 h-4" />
-              </div>
+            <div className="flex items-center justify-between pt-4 border-t border-white/10 text-xs font-black text-[#C5A059]">
+              <span>مشاهده پروتکل درمان، جلسات و رزرو نوبت</span>
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
             </div>
-          </article>
+          </a>
 
-          {/* Bento Card 2: Infidelity Counseling (Col-Span 1) */}
-          <article
-            onClick={() => onSelectService('infidelity-counseling')}
-            className="bg-[#FCFAF8] hover:bg-white rounded-3xl p-7 border border-[#E8E2D8] hover:border-[#D9846A]/50 shadow-xs hover:shadow-[0_12px_28px_-6px_rgba(36,26,53,0.08)] hover:-translate-y-1 transition-all flex flex-col justify-between group cursor-pointer"
+          {/* High-Priority Clinical Card: Infidelity Counseling */}
+          <a
+            href="/services/infidelity-counseling"
+            onClick={(e) => {
+              e.preventDefault();
+              onSelectService('infidelity-counseling');
+            }}
+            className="bg-[#FCFAF8] hover:bg-[#FAF5EB]/55 rounded-2xl p-7 border border-[#E8E2D8] hover:border-[#C5A059] transition-colors flex flex-col justify-between group cursor-pointer"
           >
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-[#FBF1ED] text-[#D9846A] flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
-                <HeartCrack className="w-6 h-6" />
+              <div className="flex items-center justify-between mb-5 pb-3 border-b border-[#E8E2D8]">
+                <span className="text-[11px] font-extrabold text-[#9C381D]">
+                  پروتکل ترومای رابطه
+                </span>
+                <HeartCrack className="w-5 h-5 text-[#D9846A]" />
               </div>
-              <span className="text-[10px] font-black text-[#D9846A] bg-[#FBF1ED] px-2.5 py-0.5 rounded-full inline-block mb-2">
-                ترومای رابطه
-              </span>
-              <h3 className="text-lg font-black text-[#241A35] mb-2 leading-snug group-hover:text-[#3E2F5B] transition-colors">
-                مشاوره تخصصی درمان خیانت
+
+              <h3 className="text-lg sm:text-xl font-black text-[#241A35] mb-3 leading-snug group-hover:text-[#3E2F5B] transition-colors">
+                مشاوره تخصصی درمان خیانت و بازسازی اعتماد
               </h3>
-              <p className="text-xs text-[#5E5868] leading-relaxed mb-5">
-                مدیریت شوک اولیه کشف خیانت، شفافیت رادیکال و بازسازی گام‌به‌گام اعتماد آسیب‌دیده با پروتکل علمی ۳ مرحله‌ای.
+
+              <p className="text-xs text-[#5E5868] leading-[1.9] mb-5">
+                مدیریت شوک اولیه کشف خیانت، پایان دادن به نشخوار ذهنی و اجرای پروتکل ۳ مرحله‌ای برای ترمیم تدریجی اعتماد آسیب‌دیده.
               </p>
-              <ul className="space-y-1.5 text-xs text-[#231F2D] font-bold mb-6">
-                <li className="flex items-center gap-1.5">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#4E7A66]" />
-                  <span>تثبیت بحران بدون تصمیم‌گیری شتاب‌زده</span>
+
+              <ul className="space-y-2 text-xs text-[#231F2D] font-bold mb-6">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#4E7A66] shrink-0" />
+                  <span>تثبیت بحران بدون تصمیم شتاب‌زده</span>
                 </li>
-                <li className="flex items-center gap-1.5">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#4E7A66]" />
-                  <span>التیام زخم‌های عاطفی و نشخوار ذهنی</span>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#4E7A66] shrink-0" />
+                  <span>شفافیت اصولی و التیام زخم عاطفی</span>
                 </li>
               </ul>
             </div>
 
             <div className="flex items-center justify-between pt-4 border-t border-[#E8E2D8] text-xs font-black text-[#3E2F5B]">
               <span>مطالعه پروتکل ۳ مرحله‌ای</span>
-              <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform text-[#C5A059]" />
+              <ArrowLeft className="w-4 h-4 text-[#9E7D36] group-hover:-translate-x-1 transition-transform" />
             </div>
-          </article>
+          </a>
+        </div>
 
-          {/* Bento Card 3: Divorce Counseling (Col-Span 1) */}
-          <article
-            onClick={() => onSelectService('divorce-counseling')}
-            className="bg-[#FCFAF8] hover:bg-white rounded-3xl p-7 border border-[#E8E2D8] hover:border-[#3E2F5B]/40 shadow-xs hover:shadow-[0_12px_28px_-6px_rgba(36,26,53,0.08)] hover:-translate-y-1 transition-all flex flex-col justify-between group cursor-pointer"
-          >
-            <div>
-              <div className="w-12 h-12 rounded-2xl bg-[#F2EEF8] text-[#3E2F5B] flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
-                <Scale className="w-6 h-6" />
-              </div>
-              <span className="text-[10px] font-black text-[#3E2F5B] bg-[#F2EEF8] px-2.5 py-0.5 rounded-full inline-block mb-2">
-                تصمیم‌گیری آگاهانه
-              </span>
-              <h3 className="text-lg font-black text-[#241A35] mb-2 leading-snug group-hover:text-[#3E2F5B] transition-colors">
-                مشاوره طلاق آگاهانه و کاهش آسیب
-              </h3>
-              <p className="text-xs text-[#5E5868] leading-relaxed mb-5">
-                ارزیابی قطعی بودن تصمیم جدایی، بررسی آخرین شانس‌های بقای رابطه و صیانت از سلامت روان فرزندان در طلاق.
-              </p>
-              <ul className="space-y-1.5 text-xs text-[#231F2D] font-bold mb-6">
-                <li className="flex items-center gap-1.5">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#4E7A66]" />
-                  <span>کاهش آسیب عاطفی بر کودکان</span>
-                </li>
-                <li className="flex items-center gap-1.5">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#4E7A66]" />
-                  <span>جدایی محترمانه بدون کینه و جنگ</span>
-                </li>
-              </ul>
-            </div>
+        {/* Row 2: All 4 Remaining Services in Balanced Architectural Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {secondaryServices.map((srv) => {
+            const Icon = srv.icon;
+            return (
+              <a
+                key={srv.slug}
+                href={`/services/${srv.slug}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onSelectService(srv.slug);
+                }}
+                className="bg-[#FCFAF8] hover:bg-white rounded-2xl p-6 border border-[#E8E2D8] hover:border-[#3E2F5B]/45 transition-colors flex flex-col justify-between group cursor-pointer"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-4 pb-2.5 border-b border-[#EFEAE0]">
+                    <span className="text-[11px] font-extrabold text-[#9E7D36]">
+                      {srv.kicker}
+                    </span>
+                    <Icon className="w-4 h-4 text-[#3E2F5B]" />
+                  </div>
 
-            <div className="flex items-center justify-between pt-4 border-t border-[#E8E2D8] text-xs font-black text-[#3E2F5B]">
-              <span>جزئیات مشاوره طلاق</span>
-              <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform text-[#C5A059]" />
-            </div>
-          </article>
+                  <h3 className="text-base font-black text-[#241A35] mb-2 leading-snug group-hover:text-[#3E2F5B] transition-colors">
+                    {srv.title}
+                  </h3>
 
-          {/* Bento Card 4: Online Counseling (Col-Span 1) */}
-          <article
-            onClick={() => onSelectService('online-counseling')}
-            className="bg-[#FCFAF8] hover:bg-white rounded-3xl p-7 border border-[#E8E2D8] hover:border-[#4E7A66]/40 shadow-xs hover:shadow-[0_12px_28px_-6px_rgba(36,26,53,0.08)] hover:-translate-y-1 transition-all flex flex-col justify-between group cursor-pointer"
-          >
-            <div>
-              <div className="w-12 h-12 rounded-2xl bg-[#EEF5F1] text-[#4E7A66] flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
-                <Globe className="w-6 h-6" />
-              </div>
-              <span className="text-[10px] font-black text-[#4E7A66] bg-[#EEF5F1] px-2.5 py-0.5 rounded-full inline-block mb-2">
-                دسترسی جهانی
-              </span>
-              <h3 className="text-lg font-black text-[#241A35] mb-2 leading-snug group-hover:text-[#3E2F5B] transition-colors">
-                مشاوره آنلاین برای خارج از کشور
-              </h3>
-              <p className="text-xs text-[#5E5868] leading-relaxed mb-5">
-                جلسات آنلاین ویدئویی با همان پروتکل‌های استاندارد حضوری، منطبق با منطقه زمانی شما در هر کجای دنیا.
-              </p>
-              <ul className="space-y-1.5 text-xs text-[#231F2D] font-bold mb-6">
-                <li className="flex items-center gap-1.5">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#4E7A66]" />
-                  <span>پلتفرم امن گوگل میت و واتساپ تصویری</span>
-                </li>
-                <li className="flex items-center gap-1.5">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#4E7A66]" />
-                  <span>هماهنگی با اختلاف ساعت کشورها</span>
-                </li>
-              </ul>
-            </div>
+                  <p className="text-xs text-[#5E5868] leading-relaxed mb-4">
+                    {srv.desc}
+                  </p>
 
-            <div className="flex items-center justify-between pt-4 border-t border-[#E8E2D8] text-xs font-black text-[#3E2F5B]">
-              <span>رزرو جلسه بین‌المللی</span>
-              <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform text-[#C5A059]" />
-            </div>
-          </article>
+                  <ul className="space-y-1.5 text-[11px] text-[#231F2D] font-bold mb-5">
+                    {srv.bullets.map((b, i) => (
+                      <li key={i} className="flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#4E7A66] shrink-0" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-          {/* Bento Card 5: Premarital (Col-Span 1) */}
-          <article
-            onClick={() => onSelectService('premarital-counseling')}
-            className="bg-[#FCFAF8] hover:bg-white rounded-3xl p-7 border border-[#E8E2D8] hover:border-[#C5A059]/40 shadow-xs hover:shadow-[0_12px_28px_-6px_rgba(36,26,53,0.08)] hover:-translate-y-1 transition-all flex flex-col justify-between group cursor-pointer"
-          >
-            <div>
-              <div className="w-12 h-12 rounded-2xl bg-[#FAF5EB] text-[#C5A059] flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
-                <Users className="w-6 h-6" />
-              </div>
-              <span className="text-[10px] font-black text-[#C5A059] bg-[#FAF5EB] px-2.5 py-0.5 rounded-full inline-block mb-2">
-                پیشگیری و ارزیابی
-              </span>
-              <h3 className="text-lg font-black text-[#241A35] mb-2 leading-snug group-hover:text-[#3E2F5B] transition-colors">
-                مشاوره پیش از ازدواج و تست‌ها
-              </h3>
-              <p className="text-xs text-[#5E5868] leading-relaxed mb-5">
-                سنجش تناسب شخصیتی با تست‌های نئو و انریچ، بررسی خط قرمزها و پیشگیری از تنش‌های مالی و خانوادگی پیش از عقد.
-              </p>
-              <ul className="space-y-1.5 text-xs text-[#231F2D] font-bold mb-6">
-                <li className="flex items-center gap-1.5">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#4E7A66]" />
-                  <span>ارزیابی تناسب طرحواره‌های شخصیتی</span>
-                </li>
-                <li className="flex items-center gap-1.5">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#4E7A66]" />
-                  <span>مرزبندی هوشمندانه با خانواده پدری</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="flex items-center justify-between pt-4 border-t border-[#E8E2D8] text-xs font-black text-[#3E2F5B]">
-              <span>برنامه جلسات پیش از ازدواج</span>
-              <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform text-[#C5A059]" />
-            </div>
-          </article>
+                <div className="flex items-center justify-between pt-3 border-t border-[#EFEAE0] text-xs font-black text-[#3E2F5B]">
+                  <span>جزئیات خدمت</span>
+                  <ArrowLeft className="w-3.5 h-3.5 text-[#9E7D36] group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>

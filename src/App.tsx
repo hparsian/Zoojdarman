@@ -45,6 +45,7 @@ import { applySeo, seoForRoute } from './seo';
 import { BrandPreloader } from './components/BrandPreloader';
 
 import { HomeToolsTeaser } from './components/HomeToolsTeaser';
+import { HomeRegionalGateway } from './components/HomeRegionalGateway';
 import { StandaloneSeoGuide } from './components/StandaloneSeoGuide';
 
 export const App: React.FC = () => {
@@ -525,9 +526,9 @@ export const App: React.FC = () => {
       );
     }
 
-    // Home Page - Streamlined, Uncluttered, High-Performance Conversion Portal
+    // Home Page - Redesigned Editorial Clinical Portal for SEO & Conversion
     return (
-      <div className="min-h-screen bg-[#FAF8F5] text-[#292733] flex flex-col">
+      <div className="min-h-screen bg-[#FCFAF8] text-[#231F2D] flex flex-col">
         <Header
           onNavigateHome={navigateToHome}
           onNavigatePrivacy={navigateToPrivacy}
@@ -541,6 +542,8 @@ export const App: React.FC = () => {
           onNavigateTopics={navigateToTopics}
           onNavigateFees={navigateToFees}
           onNavigateVideos={navigateToVideos}
+          onNavigateCities={navigateToCities}
+          onNavigateCountries={navigateToCountries}
         />
 
         <main className="flex-1 home-page">
@@ -548,19 +551,33 @@ export const App: React.FC = () => {
             onScrollToAssessment={navigateToTools}
             onScrollToTools={navigateToTools}
             onSelectService={navigateToService}
+            onNavigateBestTherapist={navigateToBestTherapist}
           />
           <Stats />
-          <ServicesSection onSelectService={navigateToService} />
+          <ServicesSection
+            onSelectService={navigateToService}
+            onNavigateServices={navigateToServices}
+          />
           <HomeToolsTeaser
             onNavigateTools={navigateToTools}
             onSelectTest={navigateToSingleTest}
+          />
+          <BioSection
+            onNavigateAbout={navigateToAbout}
+            onNavigateProcess={navigateToProcess}
+          />
+          <HomeRegionalGateway
+            onSelectCity={navigateToCity}
+            onSelectCountry={navigateToCountry}
+            onNavigateCities={navigateToCities}
+            onNavigateCountries={navigateToCountries}
+            onNavigateBestTherapist={navigateToBestTherapist}
           />
           <VideosSection
             onNavigateContact={navigateToContact}
             onNavigateVideos={navigateToVideos}
             limit={3}
           />
-          <BioSection />
           <ArticlesSection
             onSelectArticle={navigateToArticle}
             onNavigateArticles={navigateToArticles}
@@ -589,6 +606,8 @@ export const App: React.FC = () => {
           onNavigateTopics={navigateToTopics}
           onNavigateFees={navigateToFees}
           onNavigateVideos={navigateToVideos}
+          onNavigateCities={navigateToCities}
+          onNavigateCountries={navigateToCountries}
         />
 
         <FloatingActions />

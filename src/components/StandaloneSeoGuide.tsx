@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ChevronDown, HelpCircle, BookOpenCheck } from 'lucide-react';
+import { ChevronDown, HelpCircle } from 'lucide-react';
 import { getStandaloneSeo } from '../data/standaloneSeoContent';
 import { registerFaqSchema } from '../seo';
 
@@ -27,15 +27,14 @@ export const StandaloneSeoGuide: React.FC<StandaloneSeoGuideProps> = ({
   return (
     <section
       aria-label="راهنمای تخصصی و سوالات متداول"
-      className={`container-custom ${maxWidthClass} mt-12 mb-8 space-y-8`}
+      className={`container-custom ${maxWidthClass} py-12 space-y-8`}
     >
-      <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#E8DFD5] shadow-xs">
-        <div className="inline-flex items-center gap-2 bg-[#FAF5EB] text-[#A67C2E] border border-[#C5A059]/30 px-3.5 py-1 rounded-full text-xs font-black mb-4">
-          <BookOpenCheck className="w-4 h-4 text-[#C5A059]" />
-          <span>راهنمای تخصصی و علمی کلینیک پیوند امن (نظام ۱۴۱۴۰۸۳)</span>
-        </div>
+      <div className="bg-white rounded-2xl p-6 sm:p-10 border border-[#E8E2D8]">
+        <span className="text-[11px] font-extrabold text-[#9E7D36] block mb-2">
+          راهنمای جامع بالینی کلینیک پیوند امن · پروانه نظام ۱۴۱۴۰۸۳
+        </span>
 
-        <h2 className="text-xl sm:text-2xl font-black text-[#241A35] mb-6 leading-snug">
+        <h2 className="balance-text text-xl sm:text-2xl font-black text-[#241A35] mb-6 leading-snug">
           {entry.heading}
         </h2>
 

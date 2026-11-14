@@ -5,274 +5,238 @@ import {
   ShieldCheck,
   Lock,
   Award,
-  Sparkles,
-  ChevronLeft,
-  HeartHandshake,
-  HeartCrack,
-  Flame,
-  Globe,
-  MapPin
+  ArrowLeft,
+  MapPin,
 } from 'lucide-react';
 
 interface HeroProps {
   onScrollToAssessment: () => void;
   onScrollToTools: () => void;
   onSelectService?: (slug: string) => void;
+  onNavigateBestTherapist?: () => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({
-  onScrollToAssessment,
   onScrollToTools,
   onSelectService,
+  onNavigateBestTherapist,
 }) => {
   const pathways = [
     {
+      index: '۰۱',
       title: 'آزمون آنلاین سلامت رابطه',
-      desc: 'سنجش شاخص انریچ و ۴ سوارکار طلاق با تحلیل بالینی فوری',
-      actionText: 'شروع آزمون رایگان',
-      icon: Compass,
-      color: '#3E2F5B',
-      bgColor: '#F2EEF8',
+      desc: 'سنجش علمی انریچ، ۴ سوارکار طلاق و ترومای خیانت با کارنامه بالینی فوری',
+      actionText: 'شروع ارزیابی رایگان',
+      href: '/tools',
       onClick: onScrollToTools,
     },
     {
-      title: 'زوج درمان دعوای مکرر',
-      desc: 'شکستن چرخه معیوب تعارض و قهر با متد هیجان‌مدار (EFT)',
-      actionText: 'مشاهده پروتکل درمان',
-      icon: Flame,
-      color: '#C5A059',
-      bgColor: '#FAF5EB',
+      index: '۰۲',
+      title: 'زوج‌درمانی تعارض و سردی',
+      desc: 'شکستن چرخه معیوب دعوا، قهر و فاصله عاطفی با پروتکل هیجان‌مدار (EFT)',
+      actionText: 'جزئیات زوج‌درمانی',
+      href: '/services/couples-therapy',
       onClick: () => onSelectService && onSelectService('couples-therapy'),
     },
     {
-      title: 'مشاوره خیانت و اعتماد',
-      desc: 'پروتکل علمی ۳ مرحله‌ای برای مدیریت شوک و ترمیم پیوند',
-      actionText: 'مشاهده جزئیات خدمت',
-      icon: HeartCrack,
-      color: '#D9846A',
-      bgColor: '#FBF1ED',
+      index: '۰۳',
+      title: 'مشاوره خیانت و بازسازی اعتماد',
+      desc: 'مدیریت شوک پس از کشف پیمان‌شکنی و ترمیم ۳ مرحله‌ای پیوند زناشویی',
+      actionText: 'پروتکل درمان خیانت',
+      href: '/services/infidelity-counseling',
       onClick: () => onSelectService && onSelectService('infidelity-counseling'),
     },
     {
-      title: 'مشاوره آنلاین خارج از کشور',
-      desc: 'هماهنگی جلسات تصویری امن با منطقه زمانی ایرانیان جهان',
-      actionText: 'رزرو جلسه بین‌المللی',
-      icon: Globe,
-      color: '#4E7A66',
-      bgColor: '#EEF5F1',
+      index: '۰۴',
+      title: 'مشاوره آنلاین سراسر دنیا',
+      desc: 'جلسات تصویری امن منطبق با ساعت ایران، اروپا، آمریکا، کانادا و استرالیا',
+      actionText: 'رزرو نوبت آنلاین',
+      href: '/services/online-counseling',
       onClick: () => onSelectService && onSelectService('online-counseling'),
     },
   ];
 
   return (
-    <section className="relative overflow-hidden pt-6 pb-12 sm:pt-10 sm:pb-16 lg:pt-16 lg:pb-24 bg-[#FCFAF8] border-b border-[#E8E2D8]">
-      {/* Ambient luxury light aura */}
-      <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-radial from-[#C5A059]/10 via-[#3E2F5B]/5 to-transparent rounded-full pointer-events-none blur-3xl" />
-      <div className="absolute -bottom-20 -left-20 w-[450px] h-[450px] bg-radial from-[#8FAF9B]/10 to-transparent rounded-full pointer-events-none blur-2xl" />
-
-      <div className="container-custom relative z-10 px-4 sm:px-6">
-        {/* Main 2-Column Split: Value Proposition vs Clinician Showcase */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center mb-10 sm:mb-16">
-          {/* Content Column */}
-          <div className="lg:col-span-7 flex flex-col items-start">
-            {/* Service Channels Showcase (In-person & Global Online) */}
-            <div className="mb-4 sm:mb-7 w-full sm:w-auto inline-flex flex-col sm:flex-row sm:items-center bg-white/95 backdrop-blur-md p-1.5 rounded-2xl sm:rounded-full border border-[#E8E2D8] shadow-[0_4px_20px_-4px_rgba(36,26,53,0.06)]">
-              {/* In-Person Care (Tehran Clinic) */}
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-[#FAF8F5] sm:bg-transparent rounded-xl sm:rounded-none">
-                <span className="relative flex h-2 w-2 shrink-0">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4E7A66] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#4E7A66]" />
-                </span>
-                <span className="text-[11px] sm:text-xs font-black text-[#241A35] flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-[#C5A059] shrink-0" />
-                  <span>خدمات تخصصی زوج درمان حضوری در تهران</span>
-                </span>
-              </div>
-
-              {/* Elegant Hairline Divider (Desktop) */}
-              <div className="hidden sm:block w-px h-4 bg-[#E8E2D8] mx-1.5 shrink-0" />
-
-              {/* Online Consultation Channel */}
-              <div className="flex items-center gap-2 px-3 py-1.5 mt-0.5 sm:mt-0">
-                <Globe className="w-3.5 h-3.5 text-[#3E2F5B] shrink-0" />
-                <span className="text-[11px] sm:text-xs font-semibold text-[#5E5868]">
-                  مشاوره آنلاین برای مراجعان <strong className="font-extrabold text-[#3E2F5B]">سراسر ایران و جهان</strong>
-                </span>
-              </div>
+    <section className="relative bg-[#FCFAF8] border-b border-[#E8E2D8] pt-8 pb-12 sm:pt-12 sm:pb-16 lg:pt-14 lg:pb-20">
+      <div className="container-custom">
+        {/* Main 2-Column Editorial Split */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch mb-12 lg:mb-16">
+          {/* Narrative & Action Column */}
+          <div className="lg:col-span-7 flex flex-col justify-center items-start">
+            {/* Editorial Location & Accreditation Kicker (Zero pills / zero pulsing dots) */}
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs font-bold text-[#5E5868] mb-5 pb-3 border-b border-[#E8E2D8] w-full max-w-2xl">
+              <span className="inline-flex items-center gap-1.5 text-[#241A35] font-extrabold">
+                <MapPin className="w-3.5 h-3.5 text-[#9E7D36]" />
+                <span>کلینیک پیوند امن تهران (پونک)</span>
+              </span>
+              <span className="text-[#B5AFC0]">·</span>
+              <span>مشاوره آنلاین سراسری ایران و جهان</span>
+              <span className="text-[#B5AFC0]">·</span>
+              <span className="text-[#9E7D36] font-extrabold tabular-nums">پروانه نظام ۱۴۱۴۰۸۳</span>
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-2xl sm:text-4xl lg:text-[2.85rem] font-black leading-[1.35] sm:leading-[1.35] text-[#241A35] mb-2.5 sm:mb-4">
-              <span className="block sm:inline">
+            {/* Balanced Main Display H1 */}
+            <h1 className="balance-text text-2xl sm:text-4xl lg:text-[2.7rem] font-black leading-[1.35] text-[#241A35] mb-4">
+              <span className="block">
                 مرکز تخصصی{' '}
-                <span className="relative inline-block border-b-2 sm:border-b-4 border-[#C5A059]/50 pb-0.5 sm:pb-1">
-                  <span className="animate-shimmer-subtle inline-block font-black">
-                    زوج درمان
-                  </span>
+                <span className="text-[#3E2F5B] underline decoration-[#C5A059] decoration-[3px] underline-offset-[8px]">
+                  زوج درمان
                 </span>
               </span>
-              <span className="hidden sm:inline text-[#C5A059] font-light mx-2">|</span>
-              <span className="block sm:inline text-xl sm:text-4xl lg:text-[2.85rem] text-[#3E2F5B] sm:text-[#241A35] font-black mt-1 sm:mt-0">
-                مهناز خوینی زوج درمان گر
-              </span>
+              <span className="block mt-1.5">زوج‌درمانی با مهناز خوینی</span>
             </h1>
 
-            {/* Sub-headline */}
-            <h2 className="text-[13px] sm:text-xl lg:text-2xl font-bold sm:font-extrabold text-[#5E5868] leading-[1.7] sm:leading-[1.6] mb-3.5 sm:mb-6">
-              ترمیم پیوند عاطفی، بازسازی اعتماد و بازگشت صمیمیت پایدار به رابطه
+            {/* Concrete Mechanism Sub-headline */}
+            <h2 className="balance-text text-sm sm:text-xl font-extrabold text-[#5E5868] leading-[1.7] mb-5">
+              بازسازی اعتماد پس از خیانت، رفع طلاق عاطفی و توقف چرخه تعارض با پروتکل علمی EFT
             </h2>
 
-            {/* Lead Paragraph */}
-            <p className="text-xs sm:text-base leading-[2.1] sm:leading-[2.2] text-[#5E5868] mb-5 sm:mb-6 max-w-2xl text-justify">
-              حتی در پیچیده‌ترین بحران‌های زناشویی و پس از فرسایش اعتماد، با مداخله علمی یک <strong>زوج درمان خوب</strong> می‌توان پیوند رابطه را نجات داد و از نو ساخت. جلسات درمانی تحت نظارت مستقیم <strong>مهناز خوینی</strong> (کارشناس ارشد روان‌شناسی بالینی، متخصص زوج‌درمانی با رویکرد هیجان‌مدار EFT و مسئول فنی کلینیک پیوند امن با پروانه نظام روان‌شناسی ۱۴۱۴۰۸۳) در فضایی امن و کاملاً محرمانه برگزار می‌شود؛ همراه با <strong>پذیرش حضوری در کلینیک تهران</strong> و <strong>مشاوره تخصصی آنلاین ویژه مراجعان سراسر ایران و جهان</strong>.
+            {/* Clinical Lead Copy */}
+            <p className="text-xs sm:text-[15px] leading-[2.05] text-[#4E4858] mb-7 max-w-2xl text-justify">
+              حتی در پیچیده‌ترین بحران‌های زناشویی، با مداخله تخصصی یک{' '}
+              <a
+                href="/best-couples-therapist-tehran"
+                onClick={(e) => {
+                  if (onNavigateBestTherapist) {
+                    e.preventDefault();
+                    onNavigateBestTherapist();
+                  }
+                }}
+                className="font-extrabold text-[#241A35] underline decoration-[#C5A059]/70 underline-offset-4 hover:text-[#3E2F5B]"
+              >
+                زوج درمانگر خوب در تهران
+              </a>{' '}
+              می‌توان پیوند عاطفی را ترمیم کرد. جلسات زیر نظر <strong>مهناز خوینی</strong> (کارشناس ارشد روان‌شناسی بالینی، مسئول فنی کلینیک پیوند امن و متخصص رویکرد هیجان‌مدار EFT) به‌صورت <strong>حضوری در تهران</strong> و <strong>آنلاین تصویری برای سراسر ایران و ایرانیان مقیم خارج</strong> در فضایی کاملاً محرمانه برگزار می‌شود.
             </p>
 
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-4 mb-6 sm:mb-10 w-full sm:w-auto">
+            {/* Clear CTA Hierarchy: 1 Primary + 1 Secondary */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-8 w-full sm:w-auto">
               <button
+                type="button"
                 onClick={onScrollToTools}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#241A35] hover:bg-[#3E2F5B] text-white font-black text-xs sm:text-sm px-5 sm:px-7 py-3.5 sm:py-4 rounded-xl sm:rounded-full shadow-[0_8px_20px_-6px_rgba(36,26,53,0.35)] hover:-translate-y-0.5 transition-all cursor-pointer border border-[#C5A059]/40 active:scale-[0.98]"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#241A35] hover:bg-[#3E2F5B] text-white font-black text-xs sm:text-sm px-6 py-4 rounded-xl transition-colors cursor-pointer border border-[#C5A059]/40"
               >
                 <Compass className="w-4 h-4 text-[#C5A059] shrink-0" />
-                <span>شروع آزمون آنلاین سلامت رابطه (تحلیل رایگان)</span>
+                <span>شروع آزمون رایگان سلامت رابطه</span>
               </button>
 
               <a
                 href="https://wa.me/989199087264?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%AF%D8%B1%DB%8C%D8%A7%D9%81%D8%AA%20%D9%86%D9%88%D8%A8%D8%AA%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%B2%D9%88%D8%AC%20%D8%AF%D8%B1%D9%85%D8%A7%D9%86%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%87%D9%85."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-[#FAF5EB] text-[#241A35] font-extrabold text-xs sm:text-sm px-5 sm:px-6 py-3.5 sm:py-4 rounded-xl sm:rounded-full border border-[#E8E2D8] shadow-2xs hover:-translate-y-0.5 transition-all active:scale-[0.98]"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-[#F8F5EE] text-[#241A35] font-extrabold text-xs sm:text-sm px-6 py-4 rounded-xl border border-[#E8E2D8] transition-colors"
               >
-                <MessageSquare className="w-4 h-4 text-[#3E2F5B] shrink-0" />
+                <MessageSquare className="w-4 h-4 text-[#4E7A66] shrink-0" />
                 <span>رزرو وقت در واتساپ (۰۹۱۹۹۰۸۷۲۶۴)</span>
               </a>
             </div>
 
-            {/* Clinical Trust Strip */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 pt-4 sm:pt-6 border-t border-[#E8E2D8] w-full text-[11px] sm:text-xs font-bold text-[#5E5868]">
-              <div className="flex items-center gap-2 bg-[#FAF8F5]/80 sm:bg-transparent px-3 py-2 sm:p-0 rounded-xl sm:rounded-none border sm:border-0 border-[#E8E2D8]/60">
+            {/* Clean Typographic Clinical Trust Strip */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-0 sm:divide-x sm:divide-x-reverse sm:divide-[#E8E2D8] pt-5 border-t border-[#E8E2D8] w-full text-xs font-bold text-[#4E4858]">
+              <div className="flex items-center gap-2 sm:pl-4">
                 <ShieldCheck className="w-4 h-4 text-[#4E7A66] shrink-0" />
-                <span>پروانه نظام روان‌شناسی ۱۴۱۴۰۸۳</span>
+                <span className="tabular-nums">پروانه نظام ۱۴۱۴۰۸۳</span>
               </div>
-              <div className="flex items-center gap-2 bg-[#FAF8F5]/80 sm:bg-transparent px-3 py-2 sm:p-0 rounded-xl sm:rounded-none border sm:border-0 border-[#E8E2D8]/60">
+              <div className="flex items-center gap-2 sm:px-4">
                 <Lock className="w-4 h-4 text-[#4E7A66] shrink-0" />
-                <span>محرمانگی ۱۰۰٪ جلسات مشاوره</span>
+                <span>محرمانگی ۱۰۰٪ جلسات</span>
               </div>
-              <div className="flex items-center gap-2 bg-[#FAF8F5]/80 sm:bg-transparent px-3 py-2 sm:p-0 rounded-xl sm:rounded-none border sm:border-0 border-[#E8E2D8]/60">
-                <Award className="w-4 h-4 text-[#4E7A66] shrink-0" />
-                <span>۱۲+ سال سابقه و ۱۵,۰۰۰ ساعت مشاوره</span>
+              <div className="flex items-center gap-2 sm:pr-4">
+                <Award className="w-4 h-4 text-[#9E7D36] shrink-0" />
+                <span className="tabular-nums">۱۵٬۰۰۰+ ساعت مشاوره</span>
               </div>
             </div>
           </div>
 
-          {/* Visual Showcase Column */}
-          <div className="lg:col-span-5 relative max-w-md lg:max-w-none mx-auto w-full mt-4 lg:mt-0">
-            <div className="relative bg-white p-3 sm:p-4 rounded-3xl shadow-[0_20px_50px_-15px_rgba(36,26,53,0.14)] border border-[#E8E2D8]">
-              {/* Photo Frame */}
-              <div className="relative overflow-hidden rounded-2xl">
-                <img
-                  src="/images/mahnaz-khoini-thumb.webp"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = '/images/mahnaz-khoini.jpg';
-                  }}
-                  alt="مهناز خوینی کارشناس ارشد روانشناسی بالینی و زوج درمانگر مرکز زوج درمان"
-                  width={617}
-                  height={775}
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
-                  className="w-full h-[450px] sm:h-[500px] lg:h-[540px] object-cover object-top rounded-2xl hover:scale-[1.02] transition-transform duration-500"
-                />
+          {/* Editorial Clinician Portrait Frame */}
+          <div className="lg:col-span-5 flex">
+            <div className="relative w-full min-h-[400px] sm:min-h-[470px] lg:min-h-full rounded-2xl overflow-hidden border border-[#E8E2D8] bg-[#241A35] shadow-[0_20px_48px_-20px_rgba(36,26,53,0.22)]">
+              <img
+                src="/images/mahnaz-khoini-thumb.webp"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/images/mahnaz-khoini.jpg';
+                }}
+                alt="مهناز خوینی کارشناس ارشد روان‌شناسی بالینی و زوج درمانگر مرکز زوج درمان"
+                width={617}
+                height={775}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                className="w-full h-full max-h-[540px] lg:max-h-none object-cover object-top"
+              />
 
-                {/* Top Badge: License / Credential */}
-                <div className="absolute top-2.5 right-2.5 sm:top-3.5 sm:right-3.5 inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 bg-[#241A35]/85 backdrop-blur-md text-white font-bold rounded-lg sm:rounded-xl text-[10px] sm:text-xs border border-[#C5A059]/40 shadow-lg">
-                  <Award className="w-3.5 h-3.5 text-[#C5A059] shrink-0" />
-                  <span>پروانه نظام روان‌شناسی ۱۴۱۴۰۸۳</span>
-                </div>
-
-                {/* Subtle Luxury Gradient Overlay at Bottom for Clinician Identity */}
-                <div className="absolute inset-x-0 bottom-0 pt-20 pb-4 px-4 bg-gradient-to-t from-[#241A35]/95 via-[#241A35]/65 to-transparent pointer-events-none rounded-b-2xl">
-                  <div className="flex items-end justify-between text-white gap-2">
-                    <div>
-                      <span className="block font-black text-base sm:text-lg text-[#FAF5EB] leading-tight mb-0.5">
-                        مهناز خوینی
-                      </span>
-                      <span className="text-xs text-white/85 block">
-                        کارشناس ارشد روان‌شناسی بالینی و زوج درمانگر
-                      </span>
+              {/* Single Grounded Editorial Caption Scrim */}
+              <div className="absolute inset-x-0 bottom-0 pt-24 pb-6 px-6 bg-gradient-to-t from-[#241A35]/95 via-[#241A35]/70 to-transparent text-white">
+                <div className="flex items-end justify-between gap-4 border-t border-white/15 pt-4">
+                  <div>
+                    <div className="text-lg sm:text-xl font-black text-[#FAF5EB] leading-snug">
+                      مهناز خوینی
                     </div>
-                    <span className="px-2.5 py-1 bg-[#C5A059] text-[#241A35] font-black rounded-lg text-[10px] sm:text-[11px] shrink-0 shadow-xs">
-                      رویکرد EFT
-                    </span>
+                    <div className="text-xs text-[#E8E2D8] mt-0.5">
+                      کارشناس ارشد روان‌شناسی بالینی · متخصص EFT و مسئول فنی کلینیک پیوند امن
+                    </div>
                   </div>
-                </div>
-              </div>
-
-              {/* Clinic Accreditation Bar (Positioned cleanly below image in flow - no overlap) */}
-              <div className="mt-2.5 sm:mt-3.5 bg-[#241A35] text-white rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5 shadow-md border border-[#C5A059]/30 flex items-center gap-2.5 sm:gap-3">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-[#C5A059]/20 text-[#C5A059] flex items-center justify-center shrink-0">
-                  <HeartHandshake className="w-4 h-4 sm:w-5 sm:h-5 text-[#C5A059]" />
-                </div>
-                <div className="min-w-0">
-                  <h4 className="text-[11px] sm:text-sm font-black text-[#FAF5EB] truncate">
-                    کلینیک تخصصی پیوند امن تهران
-                  </h4>
-                  <p className="text-[9px] sm:text-[11px] text-white/75 truncate">
-                    مرکز تخصصی زوج درمان، حل تعارضات و مشاوره خانواده
-                  </p>
+                  <div className="text-left shrink-0">
+                    <span className="block text-[10px] text-[#C5A059] font-extrabold tracking-wide">تلفن پذیرش</span>
+                    <a
+                      href="tel:02144600980"
+                      className="text-xs sm:text-sm font-black text-white hover:text-[#C5A059] tabular-nums"
+                      dir="ltr"
+                    >
+                      021 4460 0980
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Multi-Portal Clinical Pathways (Breaks out of single-page flatness) */}
-        <div className="pt-6 sm:pt-8">
-          <div className="flex items-center justify-between mb-4 sm:mb-6">
+        {/* Full-Width 4-Column Architectural Pathways */}
+        <div className="pt-8 border-t border-[#E8E2D8]">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-5 gap-2">
             <div>
-              <span className="text-[10px] sm:text-[11px] font-black text-[#C5A059] uppercase tracking-wider block mb-0.5 sm:mb-1">
-                درگاه‌های دسترسی تخصصی مراجعان
+              <span className="text-[11px] font-extrabold text-[#9E7D36] block mb-1">
+                درگاه‌های تخصصی دسترسی سریع
               </span>
-              <h2 className="text-base sm:text-2xl font-black text-[#241A35]">
-                مسیر درمانی متناسب با چالش رابطه شما
+              <h2 className="balance-text text-lg sm:text-2xl font-black text-[#241A35]">
+                مسیر متناسب با چالش فعلی رابطه خود را انتخاب کنید
               </h2>
             </div>
-            <span className="hidden sm:inline-block text-xs font-bold text-[#5E5868]">
-              انتخاب بخش مورد نظر برای ارزیابی و مشاوره
+            <span className="text-xs font-medium text-[#5E5868]">
+              ارزیابی اولیه آنلاین یا رزرو مستقیم جلسه بالینی
             </span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
-            {pathways.map((path, idx) => {
-              const IconComp = path.icon;
-              return (
-                <div
-                  key={idx}
-                  onClick={path.onClick}
-                  className="bg-white rounded-2xl p-4 sm:p-5 border border-[#E8E2D8] hover:border-[#3E2F5B]/40 shadow-xs hover:shadow-[0_12px_28px_-6px_rgba(36,26,53,0.08)] hover:-translate-y-1 transition-all flex flex-col justify-between group cursor-pointer"
-                >
-                  <div>
-                    <div
-                      className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-105"
-                      style={{ backgroundColor: path.bgColor, color: path.color }}
-                    >
-                      <IconComp className="w-5 h-5" />
-                    </div>
-                    <h3 className="text-sm font-black text-[#241A35] mb-1.5 group-hover:text-[#3E2F5B] transition-colors">
-                      {path.title}
-                    </h3>
-                    <p className="text-xs text-[#5E5868] leading-relaxed mb-4">
-                      {path.desc}
-                    </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {pathways.map((path) => (
+              <a
+                key={path.index}
+                href={path.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  path.onClick();
+                }}
+                className="group bg-white hover:bg-[#FAF5EB]/55 rounded-xl p-5 border border-[#E8E2D8] hover:border-[#C5A059] transition-colors flex flex-col justify-between cursor-pointer"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-3 pb-2.5 border-b border-[#F0EBE2]">
+                    <span className="text-xs font-black text-[#9E7D36] tabular-nums">{path.index}</span>
+                    <ArrowLeft className="w-4 h-4 text-[#B5AFC0] group-hover:text-[#3E2F5B] group-hover:-translate-x-1 transition-all" />
                   </div>
-
-                  <div className="flex items-center justify-between pt-3 border-t border-[#F0EBE2] text-[11px] font-extrabold text-[#3E2F5B]">
-                    <span>{path.actionText}</span>
-                    <ChevronLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform text-[#C5A059]" />
-                  </div>
+                  <h3 className="text-sm font-black text-[#241A35] group-hover:text-[#3E2F5B] mb-2 transition-colors">
+                    {path.title}
+                  </h3>
+                  <p className="text-xs text-[#5E5868] leading-relaxed mb-4">
+                    {path.desc}
+                  </p>
                 </div>
-              );
-            })}
+
+                <span className="text-[11px] font-extrabold text-[#3E2F5B] group-hover:text-[#9E7D36] transition-colors">
+                  {path.actionText}
+                </span>
+              </a>
+            ))}
           </div>
         </div>
       </div>
