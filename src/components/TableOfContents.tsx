@@ -8,7 +8,7 @@ import {
   Scale,
   BrainCircuit,
   Sparkles,
-  HeartHandshake
+  HeartHandshake,
 } from 'lucide-react';
 
 export interface TocHeading {
@@ -32,20 +32,18 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
   className = '',
   onNavigateInternal,
   defaultOpenOnMobile = false,
-  headingTitle = 'جدول محتوای مقاله',
+  headingTitle = 'فهرست مطالب مقاله',
 }) => {
   const [headings, setHeadings] = useState<TocHeading[]>([]);
   const [activeId, setActiveId] = useState<string>('');
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const [progressPercent, setProgressPercent] = useState<number>(0);
 
-  // تنظیم وضعیت اولیه باز/بسته بودن بر اساس اندازه صفحه
   useEffect(() => {
     const isMobile = window.innerWidth < 1024;
     setIsOpen(isMobile ? defaultOpenOnMobile : true);
   }, [defaultOpenOnMobile]);
 
-  // ۱. پویش و استخراج تمام عناوین h2 و h3 با استفاده از ref
   useEffect(() => {
     const container = contentRef.current;
     if (!container) return;
@@ -76,7 +74,6 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
     setHeadings(items);
   }, [contentRef, articleTrigger]);
 
-  // ۲. ردیابی اسکرول (ScrollSpy) جهت مشخص کردن عنوان فعال
   useEffect(() => {
     const handleScroll = () => {
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -102,7 +99,6 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, [headings]);
 
-  // اسکرول نرم به بخش مورد نظر با در نظر گرفتن ارتفاع نوار چسبان
   const handleScrollTo = (id: string) => {
     const targetEl = document.getElementById(id);
     if (targetEl) {
@@ -116,11 +112,11 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
   };
 
   const vitalInternalLinks = [
-    { label: 'مشاوره خیانت زناشویی', path: '/services/infidelity-counseling', icon: ShieldCheck, badge: 'اورژانسی' },
-    { label: 'مشاوره طلاق آگاهانه', path: '/services/divorce-counseling', icon: Scale, badge: 'تخصصی' },
-    { label: 'تست‌های آنلاین رایگان', path: '/tools', icon: BrainCircuit, badge: 'خودارزیابی' },
-    { label: 'تعرفه‌ها و هزینه جلسات', path: '/fees', icon: Sparkles, badge: 'تعرفه مصوب' },
-    { label: 'رزرو وقت مشاوره و تماس', path: '/contact', icon: HeartHandshake, badge: 'نوبت‌دهی' },
+    { label: 'مشاوره خیانت زناشویی', path: '/services/infidelity-counseling', icon: ShieldCheck },
+    { label: 'مشاوره طلاق آگاهانه', path: '/services/divorce-counseling', icon: Scale },
+    { label: 'خودسنجی‌های آنلاین رابطه', path: '/tools', icon: BrainCircuit },
+    { label: 'تعرفه و هزینه جلسات', path: '/fees', icon: Sparkles },
+    { label: 'رزرو وقت مشاوره', path: '/contact', icon: HeartHandshake },
   ];
 
   const handleLinkClick = (path: string, e: React.MouseEvent) => {
@@ -139,52 +135,51 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
 
   return (
     <div
-      className={`bg-white/95 backdrop-blur-md border border-[#E8E2D8] hover:border-[#C5A059]/40 rounded-3xl p-4 sm:p-5 shadow-sm hover:shadow-md transition-all overflow-hidden ${className}`}
+      className={`bg-[#FCFBF8] border border-[#E5E0D8] rounded-2xl p-4 sm:p-5 overflow-hidden ${className}`}
     >
-      {/* سربرگ جدول محتوا */}
-      <div className="flex items-center justify-between pb-3.5 border-b border-[#E8E2D8]">
+      <div className="flex items-center justify-between pb-3.5 border-b border-[#E5E0D8]">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-[#FAF5EB] border border-[#C5A059]/40 flex items-center justify-center text-[#9E7D36] shrink-0">
+          <div className="w-8 h-8 rounded-lg bg-[#EDF2EE] flex items-center justify-center text-[#344A42] shrink-0">
             <Compass className="w-4 h-4" />
           </div>
           <div>
-            <h3 className="text-sm sm:text-base font-black text-[#241A35] m-0 leading-tight">
+            <h3 className="text-sm font-bold text-[#292D2A] m-0 leading-tight">
               {headingTitle}
             </h3>
-            <span className="text-[11px] text-[#8A8494] block mt-0.5">
-              {headings.length} بخش تخصصی بر اساس H2 و H3
+            <span className="text-[11px] text-[#6E6E68] block mt-0.5">
+              {headings.length} سرفصل
             </span>
           </div>
         </div>
 
         <button
+          type="button"
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? 'بستن فهرست' : 'نمایش فهرست'}
-          className="inline-flex items-center gap-1 text-xs font-bold text-[#3E2F5B] bg-[#FAF8F5] hover:bg-[#F2EEF8] border border-[#E8E2D8] px-2.5 py-1.5 rounded-xl cursor-pointer transition-colors"
+          className="inline-flex items-center gap-1 text-xs font-semibold text-[#344A42] bg-[#F4F1EC] hover:bg-[#ECE7DF] border border-[#E5E0D8] px-2.5 py-1.5 rounded-lg cursor-pointer transition-colors"
         >
           <span className="text-[11px]">{isOpen ? 'بستن' : 'نمایش'}</span>
           {isOpen ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
         </button>
       </div>
 
-      {/* نوار کوچک پیشرفت مطالعه داخل کامپوننت */}
-      <div className="w-full bg-[#FAF5EB] h-1.5 rounded-full mt-3 overflow-hidden">
+      {/* Reading progress bar */}
+      <div className="w-full bg-[#ECE7DF] h-1.5 rounded-full mt-3 overflow-hidden">
         <div
-          className="bg-gradient-to-r from-[#C5A059] to-[#3E2F5B] h-full rounded-full transition-all duration-150"
+          className="bg-[#344A42] h-full rounded-full transition-all duration-150"
           style={{ width: `${progressPercent}%` }}
         />
       </div>
-      <div className="flex items-center justify-between text-[10px] text-[#8A8494] mt-1 mb-2">
-        <span>پیشرفت مطالعه:</span>
-        <span className="font-bold text-[#3E2F5B]">{progressPercent}%</span>
+      <div className="flex items-center justify-between text-[11px] text-[#6E6E68] mt-1 mb-2">
+        <span>پیشرفت مطالعه</span>
+        <span className="font-semibold text-[#344A42]">{progressPercent}%</span>
       </div>
 
-      {/* فهرست عناوین با اسکرول بار اختصاصی */}
       {isOpen && (
-        <div className="mt-3 animate-fadeIn">
+        <div className="mt-3">
           <nav
             aria-label="سرفصل‌های مقاله"
-            className="max-h-[300px] lg:max-h-[440px] overflow-y-auto pl-1.5 pr-0.5 space-y-1 custom-scrollbar text-right"
+            className="max-h-[300px] lg:max-h-[420px] overflow-y-auto pl-1.5 pr-0.5 space-y-1 text-right"
           >
             {headings.map((item, idx) => {
               const isActive = activeId === item.id;
@@ -193,23 +188,24 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
               return (
                 <button
                   key={idx}
+                  type="button"
                   onClick={() => handleScrollTo(item.id)}
                   title={item.text}
-                  className={`w-full text-right transition-all flex items-start gap-2 py-1 px-2.5 rounded-xl cursor-pointer ${
+                  className={`w-full text-right transition-colors flex items-start gap-2 py-1.5 px-2.5 rounded-lg cursor-pointer ${
                     isH3
-                      ? 'mr-4 text-[11px] text-[#5E5868]'
-                      : 'text-xs font-bold text-[#231F2D]'
+                      ? 'mr-3 text-[11px] text-[#555650]'
+                      : 'text-xs font-semibold text-[#292D2A]'
                   } ${
                     isActive
-                      ? 'bg-gradient-to-l from-[#F2EEF8] to-white text-[#3E2F5B] font-black border-r-3 border-[#C5A059] shadow-2xs'
-                      : 'hover:bg-[#FAF8F5] hover:text-[#3E2F5B]'
+                      ? 'bg-[#EDF2EE] text-[#344A42] font-bold'
+                      : 'hover:bg-[#F4F1EC] hover:text-[#344A42]'
                   }`}
                 >
                   <span
                     className={`shrink-0 mt-1.5 ${
                       isH3
-                        ? 'w-1 h-1 rounded-full bg-[#B5AFC0]'
-                        : 'w-1.5 h-1.5 rounded-full bg-[#C5A059]'
+                        ? 'w-1 h-1 rounded-full bg-[#CFC7BA]'
+                        : 'w-1.5 h-1.5 rounded-full bg-[#8FAE9B]'
                     }`}
                   />
                   <span className="leading-relaxed line-clamp-1 break-words">{item.text}</span>
@@ -218,12 +214,11 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
             })}
           </nav>
 
-          {/* پیوندهای داخلی کلیدی پیشنهادی مرتبط با سئو */}
-          <div className="mt-4 pt-3.5 border-t border-[#E8E2D8] bg-[#FAF8F5]/80 -mx-4 sm:-mx-5 -mb-4 sm:-mb-5 p-3.5 sm:p-4 rounded-b-3xl">
+          <div className="mt-4 pt-3.5 border-t border-[#E5E0D8]">
             <div className="flex items-center gap-1.5 mb-2.5">
-              <Link2 className="w-3.5 h-3.5 text-[#C5A059]" />
-              <span className="text-[11px] font-black text-[#241A35]">
-                صفحات پیشنهادی مرتبط (سئو داخلی):
+              <Link2 className="w-3.5 h-3.5 text-[#3D5E4E]" />
+              <span className="text-xs font-bold text-[#292D2A]">
+                مسیرهای مرتبط
               </span>
             </div>
             <div className="flex flex-col gap-1.5">
@@ -234,15 +229,10 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
                     key={idx}
                     href={link.path}
                     onClick={(e) => handleLinkClick(link.path, e)}
-                    className="flex items-center justify-between text-[11px] font-bold text-[#3E2F5B] bg-white border border-[#E8E2D8] hover:border-[#C5A059] hover:bg-[#FAF5EB] px-2.5 py-1.5 rounded-xl shadow-2xs transition-all cursor-pointer"
+                    className="flex items-center gap-2 text-xs font-medium text-[#344A42] bg-[#F4F1EC] hover:bg-[#EDF2EE] border border-[#E5E0D8] px-3 py-2 rounded-lg transition-colors cursor-pointer"
                   >
-                    <div className="flex items-center gap-1.5">
-                      <Icon className="w-3.5 h-3.5 text-[#9E7D36] shrink-0" />
-                      <span className="truncate">{link.label}</span>
-                    </div>
-                    <span className="text-[9px] bg-[#EEF5F1] text-[#375949] font-black px-1.5 py-0.5 rounded-md shrink-0 mr-1">
-                      {link.badge}
-                    </span>
+                    <Icon className="w-3.5 h-3.5 text-[#3D5E4E] shrink-0" />
+                    <span className="truncate">{link.label}</span>
                   </a>
                 );
               })}

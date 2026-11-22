@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import {
-  ArrowRight,
-  HelpCircle,
-  ChevronDown,
-  Search,
-  MessageSquare,
-  Sparkles,
-  ShieldCheck
-} from 'lucide-react';
+import { ChevronDown, Search } from 'lucide-react';
 import { registerFaqSchema } from '../seo';
 import { mainFaqsList, ExtendedFaqItem } from '../data/faqsData';
+import { InnerPageTopBar } from './InnerPageTopBar';
 import { StandaloneSeoGuide } from './StandaloneSeoGuide';
 
 interface FaqViewProps {
@@ -31,9 +24,8 @@ export const FaqView: React.FC<FaqViewProps> = ({
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    // داده‌های ساختاریافته پرسش‌وپاسخ صفحه (JSON-LD FAQPage)
-    registerFaqSchema(faqs.map((f) => ({ q: f.q, a: f.a })));
-  }, []);
+    return registerFaqSchema(faqs.map((f) => ({ q: f.q, a: f.a })));
+  }, [faqs]);
 
   const categories = [
     { id: 'all', label: 'همه سوالات' },
@@ -53,51 +45,40 @@ export const FaqView: React.FC<FaqViewProps> = ({
   });
 
   return (
-    <div className="bg-[#FAF8F5] min-h-screen pb-24">
-      {/* Top Bar */}
-      <div className="bg-white border-b border-[#E5E0EA] sticky top-0 z-40">
-        <div className="container-custom h-16 flex items-center justify-between">
-          <a
-            href="/"
-            onClick={(e) => { e.preventDefault(); onBack(); }}
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-black text-[#6D5AA8] hover:text-[#44386B] cursor-pointer"
-          >
-            <ArrowRight className="w-4 h-4" />
-            <span>بازگشت به صفحه اصلی</span>
-          </a>
-
-          <div className="flex items-center text-lg font-black text-[#44386B]" dir="ltr">
-            <span>Z</span>
-            <svg width="14" height="14" viewBox="0 0 32 29" className="inline-block mx-0.5 fill-[#8FAF9B]">
-              <path d="M16 29 C16 29 0 18.5 0 8.8 C0 3.5 4 0 8.6 0 C11.8 0 14.4 1.8 16 4.6 C17.6 1.8 20.2 0 23.4 0 C28 0 32 3.5 32 8.8 C32 18.5 16 29 16 29 Z" />
-            </svg>
-            <svg width="14" height="14" viewBox="0 0 32 29" className="inline-block mx-0.5 fill-[#E8A58D]">
-              <path d="M16 29 C16 29 0 18.5 0 8.8 C0 3.5 4 0 8.6 0 C11.8 0 14.4 1.8 16 4.6 C17.6 1.8 20.2 0 23.4 0 C28 0 32 3.5 32 8.8 C32 18.5 16 29 16 29 Z" />
-            </svg>
-            <span>jdarman.ir</span>
-          </div>
-        </div>
-      </div>
+    <div className="bg-[#F4F1EC] min-h-screen pb-24 text-[#292D2A]">
+      <InnerPageTopBar
+        onBack={onBack}
+        backLabel="صفحه اصلی"
+        onNavigateTools={onNavigateTools}
+        onNavigateContact={onNavigateContact}
+        maxWidthClass="max-w-4xl"
+      />
 
       <div className="container-custom max-w-4xl pt-8 sm:pt-12">
-        {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-xs text-[#8e8a96] mb-6">
-          <a href="/" onClick={(e) => { e.preventDefault(); onBack(); }} className="hover:text-[#6D5AA8] cursor-pointer">
+        <nav aria-label="مسیر صفحه" className="flex items-center gap-2 text-xs text-[#6B6D67] mb-6">
+          <a
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              onBack();
+            }}
+            className="hover:text-[#344A42] cursor-pointer"
+          >
             صفحه اصلی
           </a>
           <span>/</span>
-          <span className="text-[#6D5AA8] font-bold">سوالات متداول</span>
+          <span className="text-[#344A42] font-semibold">سوالات متداول</span>
         </nav>
 
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <span className="inline-block bg-[#f2eff8] text-[#6D5AA8] text-xs font-black px-4 py-1.5 rounded-full mb-3 border border-[#6D5AA8]/20">
+          <p className="text-xs font-semibold text-[#3D5E4E] mb-2">
             پاسخ‌های شفاف به دغدغه‌های مراجعان
-          </span>
-          <h1 className="text-2xl sm:text-4xl font-black text-[#44386B] mb-4">
+          </p>
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-[#292D2A] mb-4">
             پرسش‌های متداول درباره زوج‌درمانی
           </h1>
-          <p className="text-xs sm:text-base text-[#6F6B78] leading-relaxed">
+          <p className="text-xs sm:text-base text-[#555650] leading-relaxed">
             پاسخ به پرتکرارترین پرسش‌ها پیرامون شیوه برگزاری جلسات، طول درمان، خیانت و مشاوره آنلاین توسط مهناز خوینی.
           </p>
         </div>
@@ -110,20 +91,22 @@ export const FaqView: React.FC<FaqViewProps> = ({
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="جستجو در سوالات متداول..."
-              className="w-full px-5 py-3.5 pr-12 bg-white border border-[#E5E0EA] rounded-2xl text-xs sm:text-sm font-medium text-[#292733] focus:border-[#6D5AA8] focus:outline-none shadow-xs"
+              aria-label="جستجو در سوالات متداول"
+              className="w-full px-5 py-3.5 pr-12 bg-[#FCFBF8] border border-[#E5E0D8] rounded-xl text-xs sm:text-sm font-medium text-[#292D2A] focus:border-[#344A42] focus:outline-none"
             />
-            <Search className="w-5 h-5 text-[#8e8a96] absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Search className="w-5 h-5 text-[#6B6D67] absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-2">
             {categories.map((c) => (
               <button
                 key={c.id}
+                type="button"
                 onClick={() => setActiveCategory(c.id)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer border ${
                   activeCategory === c.id
-                    ? 'bg-[#6D5AA8] text-white'
-                    : 'bg-white text-[#6F6B78] hover:bg-[#f2eff8] border border-[#E5E0EA]'
+                    ? 'bg-[#344A42] text-[#FCFBF8] border-[#344A42]'
+                    : 'bg-[#FCFBF8] text-[#555650] hover:bg-[#ECE7DF] border-[#E5E0D8]'
                 }`}
               >
                 {c.label}
@@ -139,22 +122,24 @@ export const FaqView: React.FC<FaqViewProps> = ({
             return (
               <div
                 key={idx}
-                className={`rounded-2xl border transition-all ${
+                className={`rounded-xl border transition-colors ${
                   isOpen
-                    ? 'bg-white border-[#6D5AA8] shadow-sm ring-1 ring-[#6D5AA8]/20'
-                    : 'bg-white/80 border-[#E5E0EA] hover:border-[#6D5AA8]/40'
+                    ? 'bg-[#FCFBF8] border-[#344A42]'
+                    : 'bg-[#FCFBF8] border-[#E5E0D8] hover:border-[#8FAE9B]'
                 }`}
               >
                 <button
+                  type="button"
                   onClick={() => setOpenIndex(isOpen ? null : idx)}
+                  aria-expanded={isOpen}
                   className="w-full p-5 sm:p-6 text-right flex items-center justify-between gap-4 cursor-pointer"
                 >
-                  <span className="text-xs sm:text-base font-black text-[#292733] leading-snug">
+                  <span className="text-xs sm:text-base font-bold text-[#292D2A] leading-snug">
                     {faq.q}
                   </span>
                   <div
-                    className={`w-7 h-7 rounded-full bg-[#FAF8F5] flex items-center justify-center text-[#6D5AA8] shrink-0 transition-transform ${
-                      isOpen ? 'rotate-180 bg-[#6D5AA8] text-white' : ''
+                    className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-transform ${
+                      isOpen ? 'rotate-180 bg-[#344A42] text-[#FCFBF8]' : 'bg-[#F4F1EC] text-[#344A42]'
                     }`}
                   >
                     <ChevronDown className="w-4 h-4" />
@@ -162,7 +147,7 @@ export const FaqView: React.FC<FaqViewProps> = ({
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 pb-6 sm:px-6 sm:pb-6 pt-1 text-xs sm:text-sm text-[#6F6B78] leading-relaxed border-t border-[#E5E0EA]/50 text-justify">
+                  <div className="px-5 pb-6 sm:px-6 sm:pb-6 pt-3 text-xs sm:text-sm text-[#555650] leading-[1.9] border-t border-[#E5E0D8] text-justify">
                     {faq.a}
                   </div>
                 )}
@@ -172,16 +157,17 @@ export const FaqView: React.FC<FaqViewProps> = ({
         </div>
 
         {/* Footer Support Callout */}
-        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#E5E0EA] text-center shadow-xs">
-          <h3 className="text-base font-black text-[#44386B] mb-2">
+        <div className="bg-[#FCFBF8] p-6 sm:p-8 rounded-2xl border border-[#E5E0D8] text-center">
+          <h2 className="text-base font-extrabold text-[#292D2A] mb-2">
             سوال دیگری دارید که در اینجا پاسخ داده نشده؟
-          </h3>
-          <p className="text-xs text-[#6F6B78] mb-5">
-            همکاران بخش پذیرش در پیام‌رسان واتساپ پاسخگوی کلیه ابهامات شما درباره نوبت‌دهی و شرایط جلسات هستند.
+          </h2>
+          <p className="text-xs text-[#555650] mb-5">
+            بخش پذیرش کلینیک پاسخگوی کلیه پرسش‌های شما درباره نوبت‌دهی و شرایط جلسات است.
           </p>
           <button
+            type="button"
             onClick={onNavigateContact}
-            className="px-6 py-3 bg-[#6D5AA8] hover:bg-[#44386B] text-white rounded-full font-bold text-xs shadow-md transition-all cursor-pointer"
+            className="px-6 py-3 bg-[#344A42] hover:bg-[#273932] text-[#FCFBF8] rounded-lg font-semibold text-xs transition-colors cursor-pointer"
           >
             تماس با بخش پذیرش کلینیک
           </button>

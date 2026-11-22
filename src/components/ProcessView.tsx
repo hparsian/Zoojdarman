@@ -1,17 +1,6 @@
 import React, { useEffect } from 'react';
-import {
-  ArrowRight,
-  ClipboardCheck,
-  Flame,
-  ShieldCheck,
-  HeartHandshake,
-  CheckCircle2,
-  Clock,
-  Calendar,
-  MessageSquare,
-  HelpCircle,
-  AlertCircle
-} from 'lucide-react';
+import { ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { InnerPageTopBar } from './InnerPageTopBar';
 import { StandaloneSeoGuide } from './StandaloneSeoGuide';
 
 interface ProcessViewProps {
@@ -34,10 +23,10 @@ export const ProcessView: React.FC<ProcessViewProps> = ({
       num: '۰۱',
       title: 'مرحله اول: ارزیابی بالینی و شناسایی چرخه منفی',
       sessions: 'جلسات ۱ تا ۳',
-      desc: 'در این فاز، تاریخچه شکل‌گیری رابطه، الگوهای تعارض، طرحواره‌های ناسازگار هر دو پارتنر و سبک‌های دلبستگی ارزیابی می‌شود. یک جلسه مشترک و در صورت نیاز جلسات فردی مجزا برای هر یک از همسران برگزار می‌شود تا بدون ترس ناگفته‌ها مطرح گردد.',
+      desc: 'در این فاز، تاریخچه شکل‌گیری رابطه، الگوهای تعارض، طرحواره‌های ناسازگار هر دو پارتنر و سبک‌های دلبستگی ارزیابی می‌شود. یک جلسه مشترک و در صورت نیاز جلسات فردی مجزا برای هر یک از همسران برگزار می‌شود تا بدون ترس و قضاوت تصویر کامل شکل بگیرد.',
       deliverables: [
-        'ترسیم نمودار چرخه معیوب دعوا (انتقاد - دفاع - کناره‌گیری)',
-        'اجرای تست‌های بالینی تشخیصی دلبستگی و رضایت زناشویی',
+        'ترسیم نقشه چرخه معیوب تعارض (انتقاد — دفاع — کناره‌گیری)',
+        'اجرای ارزیابی‌های دلبستگی و رضایت زناشویی در صورت نیاز',
         'مشخص کردن اهداف درمانی شفاف با توافق هر دو طرف',
       ],
     },
@@ -45,10 +34,10 @@ export const ProcessView: React.FC<ProcessViewProps> = ({
       num: '۰۲',
       title: 'مرحله دوم: تنش‌زدایی و تثبیت بحران (De-escalation)',
       sessions: 'جلسات ۴ تا ۶',
-      desc: 'هدف این مرحله متوقف ساختن فوری رفتارهای ویرانگر، متلک‌گویی، قهر و تهدید به طلاق است. همسران یاد می‌گیرند که دشمن واقعی رابطه، «چرخه منفی» است نه پارتنرشان. با یادگیری مهارت وقفه و مدیریت فیزیولوژیک خشم، آرامش نسبی به خانه بازمی‌گردد.',
+      desc: 'هدف این مرحله متوقف ساختن رفتارهای ویرانگر، تحقیر، قهر طولانی و تهدید به جدایی است. همسران یاد می‌گیرند که دشمن واقعی رابطه «چرخه منفی» است نه یکدیگر. با یادگیری مهارت وقفه و تنظیم هیجان، آرامش نسبی به فضا بازمی‌گردد.',
       deliverables: [
-        'مهار هیجانات واکنشی شدید و توقف ۴ ویرانگر گاتمن',
-        'کاهش زمان قهرها از چند روز به کمتر از چند ساعت',
+        'مهار هیجانات واکنشی شدید و توقف الگوهای تخریبی گفت‌وگو',
+        'کاهش مدت قهرها و بازیابی توان گفت‌وگو پس از تنش',
         'ایجاد فضای امن روانی اولیه برای آغاز مکالمات عمیق‌تر',
       ],
     },
@@ -56,108 +45,97 @@ export const ProcessView: React.FC<ProcessViewProps> = ({
       num: '۰۳',
       title: 'مرحله سوم: بازسازی پیوند عاطفی و دسترسی‌پذیری هیجانی',
       sessions: 'جلسات ۷ تا ۱۰',
-      desc: 'قلب تپنده زوج‌درمانی هیجان‌مدار (EFT) در این مرحله است. همسر منزوی و گریزنده یاد می‌گیرد از غار تنهایی خود بیرون بیاید و احساسات پنهانش را بیان کند، و همسر شاکی و انتقادگر یاد می‌گیرد ترس از رها شدن و نیاز به صمیمیت را به جای خشم و کنایه ابراز نماید.',
+      desc: 'هسته اصلی زوج‌درمانی هیجان‌مدار (EFT) در این مرحله شکل می‌گیرد. شریک فاصله‌گیر یاد می‌گیرد بدون ترس احساسات واقعی خود را بیان کند و شریک پیگیر یاد می‌گیرد نیاز به نزدیکی و ترس از رهاشدن را به جای خشم و گلایه ابراز نماید.',
       deliverables: [
-        'بیان آسیب‌پذیری و احساسات دست‌اول دلبستگی بدون جبهه‌گیری',
-        'احیای محبت کلامی، نوازش و صمیمیت زناشویی و جنسی',
-        'ترمیم ترومای دلخوری‌ها، پیمان‌شکنی‌ها یا بی‌اعتمادی‌های گذشته',
+        'بیان آسیب‌پذیری و نیازهای دلبستگی بدون جبهه‌گیری',
+        'احیای صمیمیت عاطفی و جنسی متناسب با شرایط زوجین',
+        'کار عمیق بر روی دلخوری‌ها و آسیب‌های اعتماد گذشته',
       ],
     },
     {
       num: '۰۴',
-      title: 'مرحله چهارم: تحکیم دستاوردها و پیشگیری از عود تعارضات',
+      title: 'مرحله چهارم: تحکیم دستاوردها و پیشگیری از بازگشت الگوها',
       sessions: 'جلسات ۱۱ تا ۱۲+',
-      desc: 'در فاز پایانی، پروتکل‌های پیشگیری از لغزش تدوین می‌شود. زوجین با اعتمادبه‌نفس بالا مسائل روزمره (مالی، فرزندپروری، دخالت اطرافیان) را به روش جدید حل می‌کنند و به استقلال و امنیت عاطفی پایدار می‌رسند.',
+      desc: 'در فاز پایانی، مهارت‌های به‌دست‌آمده در مسائل روزمره (مالی، فرزندپروری، مرزبندی با خانواده‌ها) آزموده می‌شوند و زوجین با استقلال در مهارت‌های گفت‌وگو و ترمیم، دوره درمان را به پایان می‌رسانند.',
       deliverables: [
-        'تدوین منشور و قوانین جدید خانه و رابطه',
-        'تنظیم جلسات فالوآپ و چک‌این دوره‌ای (هر ۳ ماه یک‌بار)',
-        'پایان موفقیت‌آمیز دوره درمان با پیوند محکم و رضایت بالا',
+        'تدوین قراردادهای جدید گفت‌وگو و حل اختلاف در خانه',
+        'تنظیم جلسات پیگیری و چک‌این با فواصل طولانی‌تر',
+        'استقلال در تشخیص نشانه‌های لغزش و ترمیم به‌موقع پیوند',
       ],
     },
   ];
 
   return (
-    <div className="bg-[#FAF8F5] min-h-screen pb-24">
-      {/* Top Bar */}
-      <div className="bg-white border-b border-[#E5E0EA] sticky top-0 z-40">
-        <div className="container-custom h-16 flex items-center justify-between">
-          <a
-            href="/"
-            onClick={(e) => { e.preventDefault(); onBack(); }}
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-black text-[#6D5AA8] hover:text-[#44386B] cursor-pointer"
-          >
-            <ArrowRight className="w-4 h-4" />
-            <span>بازگشت به صفحه اصلی</span>
-          </a>
-
-          <div className="flex items-center text-lg font-black text-[#44386B]" dir="ltr">
-            <span>Z</span>
-            <svg width="14" height="14" viewBox="0 0 32 29" className="inline-block mx-0.5 fill-[#8FAF9B]">
-              <path d="M16 29 C16 29 0 18.5 0 8.8 C0 3.5 4 0 8.6 0 C11.8 0 14.4 1.8 16 4.6 C17.6 1.8 20.2 0 23.4 0 C28 0 32 3.5 32 8.8 C32 18.5 16 29 16 29 Z" />
-            </svg>
-            <svg width="14" height="14" viewBox="0 0 32 29" className="inline-block mx-0.5 fill-[#E8A58D]">
-              <path d="M16 29 C16 29 0 18.5 0 8.8 C0 3.5 4 0 8.6 0 C11.8 0 14.4 1.8 16 4.6 C17.6 1.8 20.2 0 23.4 0 C28 0 32 3.5 32 8.8 C32 18.5 16 29 16 29 Z" />
-            </svg>
-            <span>jdarman.ir</span>
-          </div>
-        </div>
-      </div>
+    <div className="bg-[#F4F1EC] min-h-screen pb-24 text-[#292D2A]">
+      <InnerPageTopBar
+        onBack={onBack}
+        backLabel="صفحه اصلی"
+        onNavigateTools={onNavigateTools}
+        onNavigateContact={onNavigateContact}
+        maxWidthClass="max-w-4xl"
+      />
 
       <div className="container-custom max-w-4xl pt-8 sm:pt-12">
-        {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-xs text-[#8e8a96] mb-6">
-          <a href="/" onClick={(e) => { e.preventDefault(); onBack(); }} className="hover:text-[#6D5AA8] cursor-pointer">
+        <nav aria-label="مسیر صفحه" className="flex items-center gap-2 text-xs text-[#6B6D67] mb-6">
+          <a
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              onBack();
+            }}
+            className="hover:text-[#344A42] cursor-pointer"
+          >
             صفحه اصلی
           </a>
           <span>/</span>
-          <span className="text-[#6D5AA8] font-bold">مراحل و پروتکل درمانی</span>
+          <span className="text-[#344A42] font-semibold">مراحل و پروتکل درمانی</span>
         </nav>
 
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="inline-block bg-[#edf5f0] text-[#5e826b] text-xs font-black px-4 py-1.5 rounded-full mb-3 border border-[#8FAF9B]/30">
-            پروتکل بالینی استاندارد بین‌المللی
-          </span>
-          <h1 className="text-2xl sm:text-4xl font-black text-[#44386B] mb-4">
-            نقشه راه و مراحل ۴ گانه زوج‌درمانی
+          <p className="text-xs font-semibold text-[#3D5E4E] mb-2">
+            پروتکل ساختاریافته مبتنی بر شواهد علمی
+          </p>
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-[#292D2A] mb-4">
+            نقشه راه و مراحل ۴گانه زوج‌درمانی
           </h1>
-          <p className="text-xs sm:text-base text-[#6F6B78] leading-relaxed">
-            درمان بالینی روابط عاطفی یک فرایند ساختاریافته علمی بر اساس رویکرد هیجان‌مدار (EFT) است. در طول جلسات چه اتفاقی می‌افتد؟
+          <p className="text-xs sm:text-base text-[#555650] leading-relaxed">
+            درمان بالینی روابط یک فرایند گام‌به‌گام بر پایه رویکرد هیجان‌مدار (EFT) است. شفافیت مسیر به شما کمک می‌کند بدانید در هر مرحله چه اتفاقی می‌افتد.
           </p>
         </div>
 
         {/* Steps List */}
-        <div className="space-y-8 mb-14">
-          {steps.map((s, idx) => (
+        <div className="space-y-6 mb-12">
+          {steps.map((s) => (
             <div
-              key={idx}
-              className="bg-white rounded-3xl p-6 sm:p-10 border border-[#E5E0EA] shadow-xs relative overflow-hidden"
+              key={s.num}
+              className="bg-[#FCFBF8] rounded-2xl p-6 sm:p-8 border border-[#E5E0D8]"
             >
               <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                <span className="text-3xl sm:text-4xl font-black text-[#6D5AA8]/30 font-sans" dir="ltr">
+                <span className="text-2xl sm:text-3xl font-extrabold text-[#344A42]/35 font-mono" dir="ltr">
                   {s.num}
                 </span>
-                <span className="bg-[#f2eff8] text-[#6D5AA8] text-xs font-black px-3.5 py-1 rounded-full border border-[#6D5AA8]/20">
+                <span className="text-xs font-semibold text-[#3D5E4E] bg-[#EDF2EE] px-3 py-1 rounded-lg border border-[#D3E0D7]">
                   {s.sessions}
                 </span>
               </div>
 
-              <h2 className="text-lg sm:text-xl font-black text-[#44386B] mb-3">
+              <h2 className="text-lg sm:text-xl font-extrabold text-[#292D2A] mb-3">
                 {s.title}
               </h2>
 
-              <p className="text-xs sm:text-sm text-[#6F6B78] leading-relaxed mb-6 text-justify">
+              <p className="text-xs sm:text-sm text-[#555650] leading-[1.9] mb-6 text-justify">
                 {s.desc}
               </p>
 
-              <div className="bg-[#FAF8F5] p-5 rounded-2xl border border-[#E5E0EA]">
-                <span className="text-xs font-black text-[#44386B] block mb-2">
-                  دستاوردها و تمرین‌های این مرحله:
+              <div className="bg-[#F4F1EC] p-5 rounded-xl border border-[#E5E0D8]">
+                <span className="text-xs font-bold text-[#344A42] block mb-2.5">
+                  اهداف و محورهای این مرحله:
                 </span>
                 <ul className="space-y-2">
                   {s.deliverables.map((item, dIdx) => (
-                    <li key={dIdx} className="text-xs text-[#292733] flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#5e826b] mt-0.5 shrink-0" />
+                    <li key={dIdx} className="text-xs text-[#292D2A] flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#3D5E4E] mt-0.5 shrink-0" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -168,47 +146,49 @@ export const ProcessView: React.FC<ProcessViewProps> = ({
         </div>
 
         {/* Session Rules Box */}
-        <div className="bg-[#edf5f0] p-6 sm:p-8 rounded-3xl border border-[#d8e8dd] mb-12">
-          <h3 className="text-base font-black text-[#292733] mb-4 flex items-center gap-2">
-            <ShieldCheck className="w-5 h-5 text-[#5e826b]" />
-            <span>اصول حاکم بر اتاق درمان مهناز خوینی</span>
+        <div className="bg-[#EDF2EE] p-6 sm:p-8 rounded-2xl border border-[#D3E0D7] mb-10">
+          <h3 className="text-base font-extrabold text-[#292D2A] mb-4 flex items-center gap-2">
+            <ShieldCheck className="w-5 h-5 text-[#344A42]" />
+            <span>اصول حرفه‌ای اتاق درمان مهناز خوینی</span>
           </h3>
-          <ul className="space-y-2.5 text-xs sm:text-sm text-[#44386B]">
+          <ul className="space-y-2.5 text-xs sm:text-sm text-[#292D2A] leading-relaxed">
             <li className="flex items-start gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#5e826b] mt-2 shrink-0" />
-              <span><strong>عدم قضاوت و بی‌طرفی مطلق:</strong> درمانگر وکیل هیچ‌یک از طرفین نیست؛ درمانگر حامی سلامت رابطه است.</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#344A42] mt-2 shrink-0" />
+              <span><strong>بی‌طرفی کامل و نبود قضاوت:</strong> درمانگر حامی سلامت رابطه و شنیده شدن منصفانه هر دو طرف است، نه داور یا مقصریاب.</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#5e826b] mt-2 shrink-0" />
-              <span><strong>محرمانگی بالینی ۱۰۰٪:</strong> تمامی اطلاعات و صحبت‌های جلسات تحت سوگند حرفه‌ای نظام روان‌شناسی محرمانه است.</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#344A42] mt-2 shrink-0" />
+              <span><strong>محرمانگی حرفه‌ای مطابق منشور نظام روان‌شناسی:</strong> تمامی اطلاعات و صحبت‌های جلسات محرمانه می‌ماند (به جز استثنائات قانونی خطر جانی فوری).</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#5e826b] mt-2 shrink-0" />
-              <span><strong>مدت زمان هر جلسه:</strong> جلسات زوجی ۹۰ دقیقه و جلسات انفرادی ۶۰ دقیقه برگزار می‌گردد.</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#344A42] mt-2 shrink-0" />
+              <span><strong>ساختار زمانی مشخص:</strong> جلسات زوجی ۶۰ تا ۹۰ دقیقه و جلسات انفرادی ۴۵ تا ۶۰ دقیقه برگزار می‌شود.</span>
             </li>
           </ul>
         </div>
 
         {/* Action Callout */}
-        <div className="bg-gradient-to-r from-[#44386B] to-[#6D5AA8] rounded-3xl p-8 text-white text-center shadow-lg">
-          <h3 className="text-xl font-black mb-2">
+        <div className="bg-[#344A42] rounded-2xl p-8 text-[#FCFBF8] text-center">
+          <h3 className="text-xl font-extrabold mb-2">
             برای شروع مسیر درمانی آماده‌اید؟
           </h3>
-          <p className="text-xs sm:text-sm text-white/80 mb-6 max-w-lg mx-auto">
-            پیش از تعیین وقت، می‌توانید با شرکت در تست آنلاین رایگان سلامت رابطه وضعیت خود را بسنجید یا مستقیماً برای هماهنگی جلسه پیام دهید.
+          <p className="text-xs sm:text-sm text-[#DCE4DE] mb-6 max-w-lg mx-auto leading-relaxed">
+            پیش از تعیین وقت، می‌توانید با ابزارهای خودسنجی رایگان نگاه روشن‌تری به وضعیت رابطه پیدا کنید یا برای هماهنگی جلسه اول اقدام نمایید.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <button
+              type="button"
               onClick={onNavigateContact}
-              className="px-6 py-3 bg-white text-[#44386B] rounded-full font-black text-xs shadow hover:bg-[#FAF8F5] transition-all cursor-pointer"
+              className="px-6 py-3 bg-[#FCFBF8] text-[#344A42] rounded-lg font-semibold text-xs hover:bg-[#F4F1EC] transition-colors cursor-pointer"
             >
               هماهنگی جلسه اول (پذیرش)
             </button>
             <button
+              type="button"
               onClick={onNavigateTools}
-              className="px-6 py-3 bg-white/20 hover:bg-white/30 text-white rounded-full font-bold text-xs backdrop-blur-xs transition-all cursor-pointer"
+              className="px-6 py-3 bg-[#273932] hover:bg-[#1F2E28] text-[#FCFBF8] border border-[#8FAE9B]/30 rounded-lg font-semibold text-xs transition-colors cursor-pointer"
             >
-              انجام تست آنلاین رابطه (انریچ)
+              ابزارهای خودسنجی رابطه
             </button>
           </div>
         </div>

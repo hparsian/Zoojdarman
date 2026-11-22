@@ -1,26 +1,24 @@
 import React, { useEffect } from 'react';
-import { CitySEOData, CITIES_DATA } from '../data/citiesData';
-import { getArticleBySlug } from '../data/articles';
+import { getCityBySlug } from '../data/citiesData';
+import { CITIES_META } from '../data/citiesMeta';
+import { getArticleMetaBySlug } from '../data/articlesMeta';
+import { registerFaqSchema } from '../seo';
+import { InnerPageTopBar } from './InnerPageTopBar';
+import { CitiesHubView } from './CitiesHubView';
 import {
   MapPin,
   Phone,
   MessageSquare,
   ShieldCheck,
-  Sparkles,
-  ChevronLeft,
   CheckCircle2,
   HelpCircle,
   BookOpen,
-  Calendar,
-  Clock,
   ArrowLeft,
-  ExternalLink,
-  Globe
+  Globe,
 } from 'lucide-react';
-import { registerFaqSchema } from '../seo';
 
 interface CityLandingViewProps {
-  cityData: CitySEOData;
+  citySlug: string;
   onNavigateHome: () => void;
   onNavigateContact: () => void;
   onNavigateTools: () => void;
@@ -29,107 +27,124 @@ interface CityLandingViewProps {
 }
 
 export const CityLandingView: React.FC<CityLandingViewProps> = ({
-  cityData,
+  citySlug,
   onNavigateHome,
   onNavigateContact,
   onNavigateTools,
   onSelectArticle,
   onSelectCity,
 }) => {
-  // Register local FAQ JSON-LD Schema
+  const cityData = getCityBySlug(citySlug);
+
   useEffect(() => {
-    if (cityData.faqs && cityData.faqs.length > 0) {
-      const cleanup = registerFaqSchema(
-        cityData.faqs.map((f) => ({ q: f.q, a: f.a }))
-      );
-      return cleanup;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [citySlug]);
+
+  useEffect(() => {
+    if (cityData?.faqs && cityData.faqs.length > 0) {
+      return registerFaqSchema(cityData.faqs.map((f) => ({ q: f.q, a: f.a })));
     }
   }, [cityData]);
 
-  // Fetch related articles
+  if (!cityData) {
+    return (
+      <CitiesHubView
+        onNavigateHome={onNavigateHome}
+        onSelectCity={onSelectCity}
+        onNavigateContact={onNavigateContact}
+      />
+    );
+  }
+
   const relatedArticles = cityData.relatedArticleSlugs
-    .map((slug) => getArticleBySlug(slug))
-    .filter(Boolean);
+    .map((slug) => getArticleMetaBySlug(slug))
+    .filter((a): a is NonNullable<typeof a> => Boolean(a));
 
   return (
-    <div className="bg-[#FCFAF8] min-h-screen pb-20">
-      {/* Top Hero Banner */}
-      <div className="bg-[#241A35] text-white py-14 lg:py-20 relative overflow-hidden border-b border-[#C5A059]/30">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#C5A059]/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#3E2F5B]/20 rounded-full blur-3xl pointer-events-none" />
+    <div className="bg-[#F4F1EC] min-h-screen pb-20 text-[#292D2A]">
+      <InnerPageTopBar
+        onBack={() => onSelectCity('hub')}
+        backLabel="شهرهای ایران"
+        onNavigateTools={onNavigateTools}
+        onNavigateContact={onNavigateContact}
+        maxWidthClass="max-w-5xl"
+      />
 
-        <div className="container-custom relative z-10">
-          {/* Breadcrumb Navigation */}
-          <nav className="flex flex-wrap items-center gap-2 text-xs text-[#C5A059] font-bold mb-6">
-            <button onClick={onNavigateHome} className="hover:underline cursor-pointer">
+      {/* Hero Banner */}
+      <div className="bg-[#FCFBF8] py-12 lg:py-16 border-b border-[#E5E0D8]">
+        <div className="container-custom max-w-5xl">
+          <nav aria-label="مسیر صفحه" className="flex flex-wrap items-center gap-2 text-xs text-[#6B6D67] mb-6">
+            <button type="button" onClick={onNavigateHome} className="hover:text-[#344A42] cursor-pointer">
               صفحه اصلی
             </button>
             <span>/</span>
-            <button onClick={() => onSelectCity('hub')} className="hover:underline cursor-pointer text-white/80">
+            <button
+              type="button"
+              onClick={() => onSelectCity('hub')}
+              className="hover:text-[#344A42] cursor-pointer"
+            >
               مراکز و شهرهای ایران
             </button>
             <span>/</span>
-            <span className="text-white">زوج درمانی در {cityData.cityName}</span>
+            <span className="text-[#344A42] font-semibold">زوج‌درمانی در {cityData.cityName}</span>
           </nav>
 
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-            <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#3E2F5B] text-[#C5A059] text-xs font-black mb-4 border border-[#C5A059]/30 shadow-md">
-                <MapPin className="w-4 h-4 text-[#C5A059]" />
-                <span>پوشش اختصاصی زوج‌درمانی در {cityData.cityName} و استان {cityData.province}</span>
-              </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div className="lg:col-span-8">
+              <p className="text-xs font-semibold text-[#3D5E4E] mb-3 flex items-center gap-1.5">
+                <MapPin className="w-4 h-4" />
+                <span>پوشش تخصصی زوج‌درمانی در {cityData.cityName} و استان {cityData.province}</span>
+              </p>
 
-              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+              <h1 className="text-2xl sm:text-4xl font-extrabold text-[#292D2A] leading-tight mb-4">
                 {cityData.h1}
               </h1>
 
-              <p className="text-xs sm:text-base text-white/85 leading-relaxed font-medium mb-6">
+              <p className="text-xs sm:text-base text-[#555650] leading-relaxed mb-6">
                 {cityData.metaDescription}
               </p>
 
-              {/* Local Badges */}
-              <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-[#E8DFD5]">
-                <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/15">
-                  <ShieldCheck className="w-4 h-4 text-[#C5A059]" />
+              <div className="flex flex-wrap items-center gap-3 text-xs font-semibold text-[#344A42]">
+                <div className="flex items-center gap-1.5 bg-[#EDF2EE] px-3 py-1.5 rounded-lg border border-[#D3E0D7]">
+                  <ShieldCheck className="w-4 h-4" />
                   <span>پروانه مسئول فنی ۱۴۱۴۰۸۳</span>
                 </div>
 
-                <div className="flex items-center gap-1.5 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/15">
-                  <Globe className="w-4 h-4 text-[#8FAF9B]" />
-                  <span>مشاوره آنلاین تصویری فوری</span>
+                <div className="flex items-center gap-1.5 bg-[#F4F1EC] px-3 py-1.5 rounded-lg border border-[#E5E0D8]">
+                  <Globe className="w-4 h-4 text-[#3D5E4E]" />
+                  <span>مشاوره آنلاین تصویری امن</span>
                 </div>
               </div>
             </div>
 
             {/* Quick Action Box */}
-            <div className="bg-gradient-to-b from-[#2A1E35] to-[#1E1527] p-6 sm:p-7 rounded-3xl border border-[#C5A059]/40 shadow-2xl shrink-0 w-full lg:w-80 space-y-4">
-              <div className="text-center border-b border-white/10 pb-4">
-                <span className="text-[11px] text-[#C5A059] font-black uppercase tracking-wider block mb-1">
-                  پذیرش اختصاصی {cityData.cityName}
+            <div className="lg:col-span-4 bg-[#344A42] text-[#FCFBF8] p-6 rounded-2xl space-y-4">
+              <div className="border-b border-[#8FAE9B]/20 pb-3">
+                <span className="text-[11px] text-[#DCE4DE] font-semibold block mb-1">
+                  پذیرش {cityData.cityName}
                 </span>
-                <h3 className="text-base font-black text-white">رزرو مشاوره زوج درمانی</h3>
+                <h2 className="text-base font-extrabold">رزرو مشاوره زوج‌درمانی</h2>
               </div>
 
-              <a
-                href="https://wa.me/989199087264?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D9%86%D9%88%D8%A8%D8%AA%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%B2%D9%88%D8%AC%20%D8%AF%D8%B1%D9%85%D8%A7%D9%86%DB%8C%20%D8%AF%D8%B1%20%D8%B4%D9%87%D8%B1%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%87%D9%85."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-3.5 bg-[#C5A059] hover:bg-[#9E7D36] text-[#241A35] rounded-2xl font-black text-xs flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer"
+              <button
+                type="button"
+                onClick={onNavigateContact}
+                className="w-full py-3 bg-[#FCFBF8] hover:bg-[#F4F1EC] text-[#344A42] rounded-lg font-semibold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
               >
                 <MessageSquare className="w-4 h-4" />
-                <span>ارسال پیام در واتساپ</span>
-              </a>
+                <span>هماهنگی نوبت و پذیرش</span>
+              </button>
 
               <a
                 href="tel:09199087264"
-                className="w-full py-3 bg-white/10 hover:bg-white/20 text-white rounded-2xl font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer border border-white/15"
+                className="w-full py-3 bg-[#273932] hover:bg-[#1F2E28] text-[#FCFBF8] rounded-lg font-semibold text-xs flex items-center justify-center gap-2 transition-colors border border-[#8FAE9B]/25"
                 dir="ltr"
               >
-                <Phone className="w-4 h-4 text-[#C5A059]" />
+                <Phone className="w-4 h-4" />
                 <span>۰۹۱۹ ۹۰۸ ۷۲۶۴</span>
               </a>
 
-              <p className="text-[11px] text-white/70 text-center leading-normal">
+              <p className="text-[11px] text-[#DCE4DE] leading-relaxed">
                 {cityData.populationNote}
               </p>
             </div>
@@ -137,56 +152,45 @@ export const CityLandingView: React.FC<CityLandingViewProps> = ({
         </div>
       </div>
 
-      {/* Main Content Body */}
-      <div className="container-custom py-12 lg:py-16 space-y-12">
-        {/* Intro & Local Background Section */}
-        <div className="bg-white p-6 sm:p-10 rounded-3xl border border-[#E8DFD5] shadow-xs space-y-6">
-          <div className="flex items-center gap-2 text-xs font-bold text-[#A67C2E] uppercase">
-            <Sparkles className="w-4 h-4 text-[#C5A059]" />
-            <span>راهنمای بالینی و ویژگی‌های مشاوره برای همشهریان {cityData.cityName}</span>
-          </div>
+      {/* Main Content */}
+      <div className="container-custom max-w-5xl py-10 space-y-10">
+        <div className="bg-[#FCFBF8] p-6 sm:p-10 rounded-2xl border border-[#E5E0D8] space-y-6">
+          <span className="text-xs font-semibold text-[#3D5E4E] block">
+            راهنمای بالینی و ویژگی‌های مشاوره برای ساکنین {cityData.cityName}
+          </span>
 
-          <p className="text-sm sm:text-base text-[#241A35] leading-relaxed text-justify font-medium">
+          <p className="text-sm sm:text-base text-[#292D2A] leading-[1.9] text-justify">
             {cityData.introText}
           </p>
 
-          {/* Key Features Grid */}
-          <div className="pt-6 border-t border-[#F0EBE2]">
-            <h3 className="text-base font-black text-[#241A35] mb-4">
-              مزایای خدمات زوج‌درمانی آنلاین مهناز خوینی در استان {cityData.province}:
-            </h3>
+          <div className="pt-6 border-t border-[#E5E0D8]">
+            <h2 className="text-base font-extrabold text-[#292D2A] mb-4">
+              ویژگی‌های جلسات زوج‌درمانی برای استان {cityData.province}:
+            </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {cityData.keyFeatures.map((feat, idx) => (
-                <div key={idx} className="flex items-start gap-3 bg-[#FAF8F5] p-4 rounded-2xl border border-[#E8DFD5]">
-                  <CheckCircle2 className="w-5 h-5 text-[#8FAF9B] shrink-0 mt-0.5" />
-                  <span className="text-xs sm:text-sm text-[#241A35] font-bold leading-normal">{feat}</span>
+                <div key={idx} className="flex items-start gap-3 bg-[#F4F1EC] p-4 rounded-xl border border-[#E5E0D8]">
+                  <CheckCircle2 className="w-5 h-5 text-[#3D5E4E] shrink-0 mt-0.5" />
+                  <span className="text-xs sm:text-sm text-[#292D2A] font-medium leading-relaxed">{feat}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Neighborhoods / Local Areas Tags */}
-          <div className="pt-6 border-t border-[#F0EBE2]">
-            <span className="text-xs font-black text-[#241A35] block mb-3">
-              📍 مناطق و محله‌های تحت پوشش مشاوره زناشویی در {cityData.cityName}:
+          <div className="pt-6 border-t border-[#E5E0D8]">
+            <span className="text-xs font-bold text-[#292D2A] block mb-3">
+              مناطق تحت پوشش مشاوره آنلاین و حضوری در {cityData.cityName}:
             </span>
-            <div className="flex flex-wrap gap-2">
-              {cityData.neighborhoods.map((hood, idx) => (
-                <span
-                  key={idx}
-                  className="bg-[#FAF5EB] text-[#3E2F5B] text-xs font-bold px-3.5 py-1.5 rounded-full border border-[#C5A059]/30"
-                >
-                  {hood}
-                </span>
-              ))}
-            </div>
+            <p className="text-xs sm:text-sm text-[#555650] leading-relaxed">
+              {cityData.neighborhoods.join(' · ')}
+            </p>
           </div>
         </div>
 
         {/* Detailed Local Clinical Guide */}
         {cityData.detailedGuideHtml && (
-          <article className="bg-white p-6 sm:p-10 rounded-3xl border border-[#E8DFD5] shadow-xs">
+          <article className="bg-[#FCFBF8] p-6 sm:p-10 rounded-2xl border border-[#E5E0D8]">
             <div
               className="article-rendered-content"
               dangerouslySetInnerHTML={{ __html: cityData.detailedGuideHtml }}
@@ -196,20 +200,19 @@ export const CityLandingView: React.FC<CityLandingViewProps> = ({
 
         {/* Local FAQs Section */}
         {cityData.faqs && cityData.faqs.length > 0 && (
-          <div className="bg-white p-6 sm:p-10 rounded-3xl border border-[#E8DFD5] shadow-xs space-y-6">
-            <div className="flex items-center gap-2 text-xs font-bold text-[#A67C2E] uppercase">
-              <HelpCircle className="w-4 h-4 text-[#C5A059]" />
-              <span>پرسش‌های متداول مراجعین زوج درمانی در {cityData.cityName}</span>
+          <div className="bg-[#FCFBF8] p-6 sm:p-10 rounded-2xl border border-[#E5E0D8] space-y-6">
+            <div className="flex items-center gap-2 text-xs font-bold text-[#3D5E4E]">
+              <HelpCircle className="w-4 h-4" />
+              <span>پرسش‌های متداول مراجعین در {cityData.cityName}</span>
             </div>
 
             <div className="space-y-4">
               {cityData.faqs.map((faq, idx) => (
-                <div key={idx} className="bg-[#FAF8F5] p-5 rounded-2xl border border-[#E8DFD5] space-y-2">
-                  <h4 className="text-sm sm:text-base font-black text-[#241A35] flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#C5A059]" />
-                    <span>{faq.q}</span>
-                  </h4>
-                  <p className="text-xs sm:text-sm text-[#5E5868] leading-relaxed pr-4">
+                <div key={idx} className="bg-[#F4F1EC] p-5 rounded-xl border border-[#E5E0D8] space-y-2">
+                  <h3 className="text-sm sm:text-base font-bold text-[#292D2A]">
+                    {faq.q}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#555650] leading-[1.9]">
                     {faq.a}
                   </p>
                 </div>
@@ -220,66 +223,70 @@ export const CityLandingView: React.FC<CityLandingViewProps> = ({
 
         {/* Related Clinical Articles */}
         {relatedArticles.length > 0 && (
-          <div className="space-y-6">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-sm sm:text-base font-black text-[#241A35]">
-                <BookOpen className="w-5 h-5 text-[#C5A059]" />
-                <span>مقالات و راهنماهای بالینی پیشنهادی برای زوجین {cityData.cityName}:</span>
-              </div>
+          <div className="space-y-5">
+            <div className="flex items-center gap-2 text-sm sm:text-base font-extrabold text-[#292D2A]">
+              <BookOpen className="w-5 h-5 text-[#344A42]" />
+              <span>مقالات پیشنهادی برای زوجین {cityData.cityName}:</span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {relatedArticles.map((art) => art && (
-                <div
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {relatedArticles.map((art) => (
+                <a
                   key={art.slug}
-                  onClick={() => onSelectArticle(art.slug)}
-                  className="bg-white p-6 rounded-3xl border border-[#E8DFD5] hover:border-[#C5A059]/60 shadow-xs hover:shadow-xl transition-all cursor-pointer flex flex-col justify-between group"
+                  href={`/articles/${art.slug}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onSelectArticle(art.slug);
+                  }}
+                  className="bg-[#FCFBF8] p-6 rounded-2xl border border-[#E5E0D8] hover:border-[#344A42] transition-colors cursor-pointer flex flex-col justify-between group"
                 >
                   <div>
-                    <span className="text-[11px] font-bold text-[#A67C2E] bg-[#FAF5EB] px-3 py-1 rounded-full border border-[#C5A059]/30 inline-block mb-3">
+                    <span className="text-[11px] font-semibold text-[#3D5E4E] block mb-2">
                       {art.category}
                     </span>
-                    <h4 className="text-base font-black text-[#241A35] group-hover:text-[#3E2F5B] transition-colors leading-snug mb-2">
+                    <h4 className="text-base font-bold text-[#292D2A] group-hover:text-[#344A42] transition-colors leading-snug mb-2">
                       {art.h1 || art.title}
                     </h4>
-                    <p className="text-xs text-[#5E5868] line-clamp-2 leading-relaxed mb-4">
+                    <p className="text-xs text-[#555650] line-clamp-2 leading-relaxed mb-4">
                       {art.description}
                     </p>
                   </div>
 
-                  <div className="pt-3 border-t border-[#F0EBE2] flex items-center justify-between text-xs font-black text-[#3E2F5B]">
-                    <span>مطالعه مقاله کامل</span>
-                    <ArrowLeft className="w-3.5 h-3.5 text-[#C5A059] group-hover:-translate-x-1 transition-transform" />
+                  <div className="pt-3 border-t border-[#E5E0D8] flex items-center justify-between text-xs font-semibold text-[#344A42]">
+                    <span>مطالعه مقاله</span>
+                    <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
                   </div>
-                </div>
+                </a>
               ))}
             </div>
           </div>
         )}
 
         {/* Other Major Iranian Cities Directory */}
-        <div className="bg-[#241A35] text-white p-6 sm:p-10 rounded-3xl border border-[#C5A059]/40 space-y-6">
-          <div className="flex items-center justify-between border-b border-white/10 pb-4">
-            <div className="flex items-center gap-2 text-xs sm:text-sm font-black text-[#C5A059]">
-              <Globe className="w-5 h-5 text-[#C5A059]" />
-              <span>شبکه هوشمند پوشش کشوری زوج‌درمانی آنلاین در سایر کلان‌شهرهای ایران:</span>
-            </div>
+        <div className="bg-[#344A42] text-[#FCFBF8] p-6 sm:p-8 rounded-2xl space-y-5">
+          <div className="flex items-center gap-2 text-xs sm:text-sm font-bold text-[#DCE4DE] border-b border-[#8FAE9B]/20 pb-3">
+            <Globe className="w-4 h-4" />
+            <span>سایر شهرهای تحت پوشش زوج‌درمانی آنلاین:</span>
           </div>
 
-          <div className="flex flex-wrap gap-2.5">
-            {CITIES_DATA.map((city) => (
-              <button
-                key={city.id}
-                onClick={() => onSelectCity(city.slug)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-                  city.id === cityData.id
-                    ? 'bg-[#C5A059] text-[#241A35] font-black shadow-md'
-                    : 'bg-white/10 hover:bg-white/20 text-white/90 border border-white/15'
+          <div className="flex flex-wrap gap-2">
+            {CITIES_META.map((city) => (
+              <a
+                key={city.slug}
+                href={`/cities/${city.slug}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onSelectCity(city.slug);
+                }}
+                className={`px-3.5 py-2 rounded-lg text-xs font-semibold transition-colors cursor-pointer inline-flex items-center gap-1.5 ${
+                  city.slug === cityData.slug
+                    ? 'bg-[#FCFBF8] text-[#344A42]'
+                    : 'bg-[#273932] hover:bg-[#1F2E28] text-[#FCFBF8] border border-[#8FAE9B]/20'
                 }`}
               >
-                <MapPin className="w-3 h-3 text-[#C5A059]" />
-                <span>زوج درمانی در {city.cityName}</span>
-              </button>
+                <MapPin className="w-3 h-3" />
+                <span>زوج‌درمانی در {city.cityName}</span>
+              </a>
             ))}
           </div>
         </div>

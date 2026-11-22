@@ -1,17 +1,16 @@
-import { getArticleBySlug } from './data/articles';
-import { getServiceBySlug } from './data/services';
-import { getTestBySlug } from './data/testsData';
-import { getCityBySlug } from './data/citiesData';
-import { getCountryBySlug } from './data/countriesData';
+import { getArticleMetaBySlug } from './data/articlesMeta';
+import { getServiceMetaBySlug } from './data/servicesMeta';
+import { getTestMetaBySlug } from './data/testsMeta';
+import { getCityMetaBySlug } from './data/citiesMeta';
+import { getCountryMetaBySlug } from './data/countriesMeta';
 import { VIDEOS_DATA } from './data/videosData';
 import type { FaqItem, RouteState } from './types';
 
 /**
- * ماژول مرکزی سئوی سایت (Client-Side SEO)
+ * ماژول مرکزی سئوی سایت (Client-Side & Build-time Prerender SEO)
  *
  * برای هر مسیر، عنوان، توضیحات متا، canonical، برچسب‌های Open Graph / Twitter
- * و داده‌های ساختاریافته JSON-LD را به‌روزرسانی می‌کند. پیش از وجود این ماژول
- * تمام صفحات canonical و متا دیسکریپشن صفحه اصلی را داشتند.
+ * و داده‌های ساختاریافته JSON-LD معتبر را به‌روزرسانی می‌کند.
  */
 
 export const SITE_URL = 'https://zoojdarman.ir';
@@ -25,7 +24,7 @@ const WEBSITE_ID = `${SITE_URL}/#website`;
 
 const HOME_TITLE = 'مرکز تخصصی زوج درمان | مهناز خوینی (نظام ۱۴۱۴۰۸۳)';
 const HOME_DESCRIPTION =
-  'زوج درمانگر خوب در تهران (حضوری) و مشاوره آنلاین زوج درمانی در کرج، مشهد، اصفهان و خارج کشور با مهناز خوینی. درمان خیانت، طلاق عاطفی و تست آنلاین رایگان.';
+  'زوج درمانگر خوب در تهران (حضوری) و مشاوره آنلاین زوج درمانی در کرج، مشهد، اصفهان و خارج کشور با مهناز خوینی. درمان خیانت، طلاق عاطفی و خودسنجی رایگان رابطه.';
 
 export interface SeoBreadcrumbItem {
   name: string;
@@ -94,9 +93,6 @@ export function removeJsonLd(id: string): void {
 /**
  * ثبت داده‌های ساختاریافته FAQPage برای پرسش‌وپاسخ‌هایی که همان لحظه
  * در صفحه رندر می‌شوند. تابع برگشتی، اسکریپت را هنگام ترک کامپوننت پاک می‌کند.
- *
- * نمونه مصرف:
- *   useEffect(() => registerFaqSchema(article.faqs), [article]);
  */
 export function registerFaqSchema(faqs: FaqItem[]): () => void {
   const url = absoluteUrl(window.location.pathname || '/');
@@ -158,7 +154,7 @@ function notFoundSeo(): SeoPage {
   return {
     title: 'صفحه یافت نشد | مهناز خوینی',
     description:
-      'این صفحه وجود ندارد یا آدرس آن تغییر کرده است. از صفحه اصلی، بانک مقالات یا تست‌های آنلاین سلامت رابطه بازدید کنید.',
+      'این صفحه وجود ندارد یا آدرس آن تغییر کرده است. از صفحه اصلی، بانک مقالات یا ابزارهای خودسنجی رابطه بازدید کنید.',
     path,
     robots: NOT_FOUND_ROBOTS,
     breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'صفحه یافت نشد' }],
@@ -205,28 +201,14 @@ export function applySeo(page: SeoPage): void {
 /* تبدیل مسیر (Route) به پیکربندی سئو                                */
 /* ------------------------------------------------------------------ */
 
-function countPlainWords(text: string): number {
-  return text.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().split(' ').filter(Boolean).length;
-}
-
 function articleSchema(slug: string, url: string): Record<string, unknown>[] {
-  const article = getArticleBySlug(slug);
+  const article = getArticleMetaBySlug(slug);
   if (!article) return [];
-  const tableText = (article.structuredTables || [])
-    .map((t) => `${t.title} ${t.subtitle || ''} ${t.headers.join(' ')} ${t.rows.map((r) => r.join(' ')).join(' ')}`)
-    .join(' ');
-  const faqText = (article.faqs || []).map((f) => `${f.q} ${f.a}`).join(' ');
-  const wordCount = countPlainWords(
-    `${article.h1 || article.title} ${article.description} ${(article.takeaways || []).join(' ')} ${article.bodyHtml} ${tableText} ${faqText}`
-  );
   const keywords = Array.from(
     new Set([
       article.category,
       ...(article.targetKeywords || []),
-      'زوج درمان',
       'زوج درمانی',
-      'زوج درمانگر',
-      'زوج درمان خوب',
       'مهناز خوینی',
       'روانشناسی بالینی',
     ])
@@ -242,14 +224,14 @@ function articleSchema(slug: string, url: string): Record<string, unknown>[] {
       mainEntityOfPage: { '@id': url },
       datePublished: '2025-01-15T08:00:00+03:30',
       dateModified: '2026-11-12T10:00:00+03:30',
-      wordCount,
+      wordCount: article.wordCount,
       keywords,
       author: {
         '@type': 'Person',
         '@id': THERAPIST_ID,
         name: 'مهناز خوینی',
         jobTitle: 'کارشناس ارشد روانشناسی بالینی و زوج درمانگر',
-        url: `${SITE_URL}/#bio`,
+        url: `${SITE_URL}/about`,
       },
       publisher: {
         '@type': 'Organization',
@@ -268,7 +250,7 @@ function articleSchema(slug: string, url: string): Record<string, unknown>[] {
 }
 
 function serviceSchema(slug: string, url: string): Record<string, unknown>[] {
-  const service = getServiceBySlug(slug);
+  const service = getServiceMetaBySlug(slug);
   if (!service) return [];
   return [
     {
@@ -304,7 +286,7 @@ function serviceSchema(slug: string, url: string): Record<string, unknown>[] {
 }
 
 function testSchema(testSlug: string, url: string): Record<string, unknown>[] {
-  const test = getTestBySlug(testSlug);
+  const test = getTestMetaBySlug(testSlug);
   if (!test) return [];
   return [
     {
@@ -320,8 +302,8 @@ function testSchema(testSlug: string, url: string): Record<string, unknown>[] {
         '@type': 'Offer',
         price: '0',
         priceCurrency: 'IRR',
-        availability: 'https://schema.org/InStock'
-      }
+        availability: 'https://schema.org/InStock',
+      },
     },
   ];
 }
@@ -331,16 +313,10 @@ function toolsHubSchema(url: string): Record<string, unknown>[] {
     {
       '@type': 'WebApplication',
       '@id': `${url}#app`,
-      name: 'سامانه تست زوج درمانی آنلاین رایگان مهناز خوینی',
-      alternateName: [
-        'تست زوج درمانی',
-        'تست زوج درمانی آنلاین',
-        'تست آنلاین زوج درمانی',
-        'آزمون انریچ آنلاین',
-        'تست خیانت آنلاین',
-        'تست سلامت رابطه زناشویی'
-      ],
-      description: 'مجموعه ابزارهای سنجش و تست زوج درمانی آنلاین رایگان شامل آزمون رضایت زناشویی انریچ، تست ترومای خیانت، سبک دلبستگی و طلاق عاطفی با نمره و تحلیل بالینی فوری.',
+      name: 'سامانه خودسنجی و تست آنلاین رابطه مهناز خوینی',
+      alternateName: ['تست زوج درمانی آنلاین', 'آزمون انریچ آنلاین', 'تست سلامت رابطه زناشویی'],
+      description:
+        'مجموعه ابزارهای غیرتشخیصی و آموزشی خودسنجی رابطه شامل پرسشنامه رضایت زناشویی انریچ، ارزیابی آسیب خیانت، سبک دلبستگی و ۴ الگوی گاتمن.',
       url,
       applicationCategory: 'HealthApplication',
       operatingSystem: 'All',
@@ -356,30 +332,6 @@ function toolsHubSchema(url: string): Record<string, unknown>[] {
         priceCurrency: 'IRR',
         availability: 'https://schema.org/InStock',
       },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '4.9',
-        ratingCount: '1540',
-        bestRating: '5',
-        worstRating: '1',
-      },
-      review: [
-        {
-          '@type': 'Review',
-          author: {
-            '@type': 'Person',
-            name: 'کاربر آزمون انریچ'
-          },
-          datePublished: '2025-12-05',
-          reviewBody: 'تحلیل تست انریچ و آزمون ترومای خیانت بسیار علمی و دقیق بود و به شفافیت مسائل رابطه‌مان کمک زیادی کرد.',
-          reviewRating: {
-            '@type': 'Rating',
-            ratingValue: '5',
-            bestRating: '5',
-            worstRating: '1'
-          }
-        }
-      ],
     },
   ];
 }
@@ -391,122 +343,57 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
       '@id': `${url}#website`,
       url,
       name: 'مرکز تخصصی زوج درمان مهناز خوینی',
-      alternateName: [
-        'زوج درمان',
-        'زوج درمان خوب در تهران',
-        'زوج درمان گر',
-        'زوج درمان اصفهان',
-        'زوج درمان خوب',
-        'زوج درمان کرمان',
-        'زوج درمان تهران',
-        'زوج درمان خوب در کرج',
-        'زوج درمانی',
-        'زوج درمانگر',
-        'سایت زوج درمان',
-        'مرکز زوج درمان',
-        'کلینیک زوج درمانی',
-        'بهترین زوج درمانگر تهران',
-        'زوج درمانگر آنلاین',
-        'مشاوره خیانت',
-        'مشاوره روانشناسی آنلاین',
-        'روانشناس آنلاین',
-        'Zoojdarman',
-        'zoojdarman.ir'
-      ],
-      description: 'سامانه و مرکز تخصصی زوج درمان، زوج درمان خوب در تهران، کرج، اصفهان، کرمان، شیراز و مشهد و آنلاین با مهناز خوینی',
+      alternateName: ['Zoojdarman', 'zoojdarman.ir'],
+      description: 'مرکز تخصصی زوج‌درمانی، مشاوره خیانت، درمان طلاق عاطفی و روان‌شناسی روابط با مهناز خوینی (پروانه نظام ۱۴۱۴۰۸۳)',
       inLanguage: 'fa-IR',
       publisher: { '@id': THERAPIST_ID },
       potentialAction: {
         '@type': 'SearchAction',
         target: {
           '@type': 'EntryPoint',
-          urlTemplate: `${SITE_URL}/articles?q={search_term_string}`
+          urlTemplate: `${SITE_URL}/articles?q={search_term_string}`,
         },
-        'query-input': 'required name=search_term_string'
-      }
+        'query-input': 'required name=search_term_string',
+      },
     },
     {
       '@type': 'Psychologist',
       '@id': THERAPIST_ID,
       name: 'مهناز خوینی',
-      alternateName: [
-        'Mahnaz Khoini',
-        'دکتر مهناز خوینی',
-        'زوج درمان گر مهناز خوینی',
-        'زوج درمانگر مهناز خوینی',
-        'بهترین زوج درمانگر تهران',
-        'زوج درمان خوب در تهران',
-        'زوج درمان خوب در کرج',
-        'روانشناس بالینی مهناز خوینی'
-      ],
+      alternateName: ['Mahnaz Khoini'],
       jobTitle: 'زوج درمانگر بالینی و مشاور خانواده',
-      description: 'کارشناس ارشد روانشناسی بالینی، متخصص زوج درمان با رویکرد هیجان‌مدار (EFT) و طرحواره‌درمانی، مسئول فنی کلینیک پیوند امن با پروانه نظام روانشناسی ۱۴۱۴۰۸۳',
+      description:
+        'کارشناس ارشد روانشناسی بالینی، متخصص زوج درمان با رویکرد هیجان‌مدار (EFT) و طرحواره‌درمانی، مسئول فنی کلینیک پیوند امن با پروانه نظام روانشناسی ۱۴۱۴۰۸۳',
       identifier: '1414083',
-      url: `${url}#bio`,
+      url: `${SITE_URL}/about`,
       image: absoluteUrl(DEFAULT_IMAGE),
       telephone: '+989199087264',
       email: 'Khoini.1988@gmail.com',
       memberOf: {
         '@type': 'Organization',
         name: 'سازمان نظام روان‌شناسی و مشاوره جمهوری اسلامی ایران',
-        url: 'https://pcoiran.ir'
+        url: 'https://pcoiran.ir',
       },
       hasCredential: {
         '@type': 'EducationalOccupationalCredential',
         credentialCategory: 'پروانه اشتغال تخصصی',
         recognizedBy: {
           '@type': 'Organization',
-          name: 'سازمان نظام روان‌شناسی و مشاوره'
+          name: 'سازمان نظام روان‌شناسی و مشاوره',
         },
         validIn: {
           '@type': 'AdministrativeArea',
-          name: 'ایران'
-        }
+          name: 'ایران',
+        },
       },
-      award: 'بیش از ۱۵,۰۰۰ ساعت مشاوره بالینی تخصصی زوجین و خانواده',
       knowsAbout: [
-        'زوج درمان',
-        'زوج درمان خوب در تهران',
-        'زوج درمان گر',
-        'زوج درمان اصفهان',
-        'زوج درمان خوب',
-        'زوج درمان کرمان',
-        'زوج درمان تهران',
-        'زوج درمان خوب در کرج',
-        'زوج درمانی',
-        'زوج درمانگر',
-        'زوج درمانگر خوب در تهران',
-        'زوج درمانگر آنلاین',
-        'زوج درمانگر خوب',
-        'زوج درمانی چیست',
-        'زوج درمانگر شیراز',
-        'زوج درمانگر مشهد',
-        'مشاوره خیانت',
-        'مشاوره خیانت پرسش و پاسخ',
-        'مشاوره خیانت زن',
-        'مشاوره خیانت همسر',
-        'مشاوره خیانت مرد به زن',
-        'مشاوره خیانت در مشهد',
-        'مشاوره خیانت زن به شوهر',
-        'مشاوره خیانت تلفنی رایگان',
-        'مشاوره روانشناسی آنلاین',
-        'مشاوره آنلاین',
-        'مشاوره به انگلیسی',
-        'مشاوره رایگان',
-        'مشاوره تلفنی رایگان',
-        'مشاوره روانشناسی',
-        'روانشناس به انگلیسی',
-        'روانشناس',
-        'روانشناسی به انگلیسی',
-        'روانشناسی',
-        'روانشناس آنلاین',
-        'روانشناسی پول',
-        'روانشناسی بالینی',
-        'روانشناسی بالینی چیست',
-        'حل تعارضات زناشویی',
-        'درمان طلاق عاطفی',
-        'EFT هیجان مدار',
-        'سکس تراپی'
+        'زوج‌درمانی هیجان‌مدار (EFT)',
+        'طرحواره‌درمانی زوجین',
+        'مداخله در بحران و ترومای خیانت',
+        'درمان طلاق عاطفی و بازسازی صمیمیت',
+        'ارزیابی و مشاوره پیش از ازدواج',
+        'زوج‌درمانی آنلاین برای ایرانیان خارج از کشور',
+        'روان‌شناسی بالینی و دلبستگی بزرگسالان',
       ],
       sameAs: [
         'https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA',
@@ -514,12 +401,12 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
         'https://instagram.com/mahnaz.khoini',
         'https://t.me/MKHOINI',
         'https://www.aparat.com/Mahnaz.khoini_psychology',
-        'https://youtube.com/@mahnaz.khoini'
+        'https://youtube.com/@mahnaz.khoini',
       ],
       hasMap: 'https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'فلکه دوم صادقیه، بزرگراه اشرفی اصفهانی',
+        streetAddress: 'منطقه ۲، محدوده صادقیه – پونک، کلینیک پیوند امن',
         addressLocality: 'تهران',
         addressRegion: 'منطقه ۲',
         addressCountry: 'IR',
@@ -529,13 +416,9 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
       '@type': 'MedicalBusiness',
       '@id': `${url}#clinic`,
       name: 'مرکز تخصصی زوج درمان مهناز خوینی',
-      alternateName: [
-        'کلینیک زوج درمانی پیوند امن',
-        'مرکز زوج درمان تهران',
-        'مرکز تخصصی روانشناسی و زوج‌درمانی غرب تهران',
-        'بهترین مرکز زوج درمان تهران'
-      ],
-      description: 'مرکز تخصصی زوج درمان، مشاوره خیانت، درمان طلاق عاطفی و حل تعارضات زناشویی با رویکرد هیجان‌مدار (EFT) تحت مسئولیت فنی مهناز خوینی با پروانه نظام روانشناسی ۱۴۱۴۰۸۳',
+      alternateName: ['کلینیک پیوند امن'],
+      description:
+        'مرکز تخصصی زوج درمان، مشاوره خیانت، درمان طلاق عاطفی و حل تعارضات زناشویی با رویکرد هیجان‌مدار (EFT) تحت مسئولیت فنی مهناز خوینی با پروانه نظام روانشناسی ۱۴۱۴۰۸۳',
       url,
       hasMap: 'https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA',
       sameAs: [
@@ -543,7 +426,7 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
         'https://peyvandamn.ir',
         'https://instagram.com/mahnaz.khoini',
         'https://www.aparat.com/Mahnaz.khoini_psychology',
-        'https://youtube.com/@mahnaz.khoini'
+        'https://youtube.com/@mahnaz.khoini',
       ],
       logo: `${SITE_URL}/images/logo-512.png`,
       image: absoluteUrl(DEFAULT_IMAGE),
@@ -552,10 +435,11 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
       email: 'Khoini.1988@gmail.com',
       priceRange: '$$',
       currenciesAccepted: 'IRR, USD, EUR, CAD, GBP, AED',
-      paymentAccepted: 'کارت‌خوان (POS)، وجه نقد، کارت به کارت شتابی، واریز بانکی آنلاین، پی‌پال (PayPal)، وایز (Wise)، کردیت‌کارت بین‌المللی، ارز دیجیتال تتر (USDT)، پذیرش فاکتور بیمه تکمیلی',
+      paymentAccepted:
+        'کارت‌خوان (POS)، واریز بانکی، پی‌پال (PayPal)، وایز (Wise)، کردیت‌کارت بین‌المللی، پذیرش فاکتور بیمه تکمیلی',
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
-        name: 'کاتالوگ خدمات و تعرفه‌های مرکز زوج درمان مهناز خوینی',
+        name: 'خدمات مرکز تخصصی زوج درمان مهناز خوینی',
         itemListElement: [
           {
             '@type': 'Offer',
@@ -563,37 +447,15 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
             description: 'جلسات ارزیابی و درمان تعارضات زناشویی، طلاق عاطفی و احیای صمیمیت بر مبنای پروتکل هیجان‌مدار و گاتمن',
             url: `${SITE_URL}/services/couples-therapy`,
             priceCurrency: 'IRR',
-            priceSpecification: {
-              '@type': 'PriceSpecification',
-              priceCurrency: 'IRR',
-              description: 'تعرفه هر جلسه طبق مصوبه سازمان نظام روان‌شناسی با امکان استرداد بیمه تکمیلی'
-            },
             availability: 'https://schema.org/InStock',
-            validFrom: '2026-01-01',
-            itemOffered: {
-              '@type': 'MedicalTherapy',
-              name: 'زوج‌درمانی هیجان‌مدار (EFT)',
-              url: `${SITE_URL}/services/couples-therapy`
-            }
           },
           {
             '@type': 'Offer',
             name: 'مشاوره تخصصی مدیریت شوک و بحران خیانت زناشویی',
-            description: 'مدیریت ترومای خیانت، بازسازی اعتماد و تصمیم‌گیری شفاف در محیطی کاملاً محرمانه',
+            description: 'مدیریت ترومای خیانت، بازسازی اعتماد و تصمیم‌گیری شفاف طبق موازین اخلاق حرفه‌ای نظام روان‌شناسی',
             url: `${SITE_URL}/services/infidelity-counseling`,
             priceCurrency: 'IRR',
-            priceSpecification: {
-              '@type': 'PriceSpecification',
-              priceCurrency: 'IRR',
-              description: 'جلسات انفرادی و مشترک زوجین با محرمانگی ۱۰۰٪'
-            },
             availability: 'https://schema.org/InStock',
-            validFrom: '2026-01-01',
-            itemOffered: {
-              '@type': 'MedicalTherapy',
-              name: 'مشاوره خیانت زناشویی',
-              url: `${SITE_URL}/services/infidelity-counseling`
-            }
           },
           {
             '@type': 'Offer',
@@ -602,12 +464,6 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
             url: `${SITE_URL}/services/divorce-counseling`,
             priceCurrency: 'IRR',
             availability: 'https://schema.org/InStock',
-            validFrom: '2026-01-01',
-            itemOffered: {
-              '@type': 'MedicalTherapy',
-              name: 'مشاوره طلاق و جدایی',
-              url: `${SITE_URL}/services/divorce-counseling`
-            }
           },
           {
             '@type': 'Offer',
@@ -616,31 +472,14 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
             url: `${SITE_URL}/services/premarital-counseling`,
             priceCurrency: 'IRR',
             availability: 'https://schema.org/InStock',
-            validFrom: '2026-01-01',
-            itemOffered: {
-              '@type': 'MedicalTherapy',
-              name: 'مشاوره پیش از ازدواج',
-              url: `${SITE_URL}/services/premarital-counseling`
-            }
           },
           {
             '@type': 'Offer',
             name: 'مشاوره آنلاین زوج‌درمانی ویژه ایرانیان خارج از کشور',
-            description: 'جلسات آنلاین تصویری با تطبیق منطقه زمانی محلی (کانادا، آمریکا، اروپا، استرالیا، امارات) و پرداخت ارزی',
+            description: 'جلسات آنلاین تصویری با تطبیق منطقه زمانی محلی (کانادا، آمریکا، اروپا، استرالیا، امارات)',
             url: `${SITE_URL}/services/online-counseling`,
             priceCurrency: 'USD',
-            priceSpecification: {
-              '@type': 'PriceSpecification',
-              priceCurrency: 'USD',
-              description: 'امکان پرداخت ارزی از طریق PayPal، Wise، کردیت‌کارت بین‌المللی یا تتر (USDT)'
-            },
             availability: 'https://schema.org/InStock',
-            validFrom: '2026-01-01',
-            itemOffered: {
-              '@type': 'MedicalTherapy',
-              name: 'زوج‌درمانی آنلاین بین‌المللی',
-              url: `${SITE_URL}/services/online-counseling`
-            }
           },
           {
             '@type': 'Offer',
@@ -649,33 +488,11 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
             url: `${SITE_URL}/services/relationship-patterns-therapy`,
             priceCurrency: 'IRR',
             availability: 'https://schema.org/InStock',
-            validFrom: '2026-01-01',
-            itemOffered: {
-              '@type': 'MedicalTherapy',
-              name: 'گروه‌درمانی الگوهای رابطه',
-              url: `${SITE_URL}/services/relationship-patterns-therapy`
-            }
           },
-          {
-            '@type': 'Offer',
-            name: 'سنجش و تست‌های آنلاین زوج درمانی (رایگان)',
-            description: 'آزمون رضایت زناشویی انریچ، ترومای خیانت، سبک دلبستگی و طلاق عاطفی با تفسیر فوری',
-            url: `${SITE_URL}/tools`,
-            price: '0',
-            priceCurrency: 'IRR',
-            availability: 'https://schema.org/InStock',
-            itemOffered: {
-              '@type': 'WebApplication',
-              name: 'سامانه تست زوج درمانی آنلاین',
-              url: `${SITE_URL}/tools`
-            }
-          }
-        ]
+        ],
       },
       founder: { '@id': THERAPIST_ID },
       employee: [{ '@id': THERAPIST_ID }],
-      isAccessibleForFree: false,
-      publicAccess: true,
       hasCredential: [
         {
           '@type': 'EducationalOccupationalCredential',
@@ -684,115 +501,22 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
           recognizedBy: {
             '@type': 'Organization',
             name: 'سازمان نظام روان‌شناسی و مشاوره جمهوری اسلامی ایران',
-            url: 'https://pcoiran.ir'
+            url: 'https://pcoiran.ir',
           },
-          validIn: {
-            '@type': 'AdministrativeArea',
-            name: 'ایران'
-          }
         },
         {
           '@type': 'EducationalOccupationalCredential',
-          credentialCategory: 'مجوز و پروانه مسئولیت فنی کلینیک تخصصی روان‌شناسی پیوند امن',
+          credentialCategory: 'مسئولیت فنی کلینیک تخصصی روان‌شناسی پیوند امن',
           recognizedBy: {
             '@type': 'Organization',
-            name: 'سازمان نظام روان‌شناسی و مشاوره'
+            name: 'سازمان نظام روان‌شناسی و مشاوره',
           },
-          validIn: {
-            '@type': 'AdministrativeArea',
-            name: 'تهران'
-          }
         },
-        {
-          '@type': 'EducationalOccupationalCredential',
-          credentialCategory: 'گواهی‌نامه تخصصی بین‌المللی زوج‌درمانی هیجان‌مدار (EFT)',
-          recognizedBy: {
-            '@type': 'Organization',
-            name: 'انجمن بین‌المللی درمان هیجان‌مدار (ICEEFT)',
-            url: 'https://iceeft.com'
-          }
-        }
-      ],
-      memberOf: [
-        {
-          '@type': 'Organization',
-          name: 'سازمان نظام روان‌شناسی و مشاوره جمهوری اسلامی ایران',
-          url: 'https://pcoiran.ir'
-        },
-        {
-          '@type': 'Organization',
-          name: 'مرکز تخصصی روانشناسی پیوند امن',
-          url: 'https://peyvandamn.ir'
-        }
-      ],
-      amenityFeature: [
-        {
-          '@type': 'LocationFeatureSpecification',
-          name: 'اتاق‌های مشاوره عایق صدا (Acoustic Soundproof)',
-          value: true
-        },
-        {
-          '@type': 'LocationFeatureSpecification',
-          name: 'دسترسی آسان با آسانسور و رمپ توان‌یاب (Wheelchair Accessible)',
-          value: true
-        },
-        {
-          '@type': 'LocationFeatureSpecification',
-          name: 'سالن انتظار آرام با پذیرایی و تهویه مطبوع',
-          value: true
-        },
-        {
-          '@type': 'LocationFeatureSpecification',
-          name: 'اینترنت بی‌سیم پرسرعت (Wi-Fi رایگان مراجعان)',
-          value: true
-        },
-        {
-          '@type': 'LocationFeatureSpecification',
-          name: 'دستگاه کارت‌خوان POS و صدور فاکتور رسمی بیمه تکمیلی',
-          value: true
-        },
-        {
-          '@type': 'LocationFeatureSpecification',
-          name: 'دسترسی سریع به مترو فلکه صادقیه و خطوط BRT',
-          value: true
-        },
-        {
-          '@type': 'LocationFeatureSpecification',
-          name: 'مجاورت با پارکینگ عمومی و دسترسی آسان بزرگراهی',
-          value: true
-        },
-        {
-          '@type': 'LocationFeatureSpecification',
-          name: 'اتاق تست‌های روان‌سنجی و ارزیابی آنلاین زوجین',
-          value: true
-        }
-      ],
-      availableService: [
-        {
-          '@type': 'MedicalTherapy',
-          name: 'زوج درمانی تخصصی هیجان‌مدار (EFT)',
-          description: 'حل تعارضات عمیق زناشویی، بازسازی پیوند عاطفی و ارتقای صمیمیت'
-        },
-        {
-          '@type': 'MedicalTherapy',
-          name: 'مشاوره تخصصی مدیریت بحران خیانت زناشویی',
-          description: 'مدیریت تروما و شوک خیانت، بازسازی اعتماد و تصمیم‌گیری شفاف'
-        },
-        {
-          '@type': 'MedicalTherapy',
-          name: 'درمان طلاق عاطفی و سردی رابطه',
-          description: 'احیای رابطه در آستانه جدایی و بازگشت شور و تعهد زناشویی'
-        },
-        {
-          '@type': 'MedicalTherapy',
-          name: 'مشاوره آنلاین زوجین برای ایرانیان خارج از کشور',
-          description: 'جلسات آنلاین تصویری با حفظ کامل محرمانگی و پروتکل‌های رسمی نظام روانشناسی'
-        }
       ],
       geo: {
         '@type': 'GeoCoordinates',
         latitude: 35.7208,
-        longitude: 51.3347
+        longitude: 51.3347,
       },
       openingHoursSpecification: [
         {
@@ -800,87 +524,33 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
           dayOfWeek: ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday'],
           opens: '09:00',
           closes: '21:00',
-          description: 'شیفت صبح و عصر روزهای عادی'
         },
         {
           '@type': 'OpeningHoursSpecification',
           dayOfWeek: ['Thursday'],
           opens: '09:00',
-          closes: '19:00',
-          description: 'پنج‌شنبه‌ها تا ساعت ۱۹:۰۰'
+          closes: '18:00',
         },
-        {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: ['Friday'],
-          opens: '10:00',
-          closes: '16:00',
-          description: 'جمعه‌ها ویژه جلسات آنلاین بین‌المللی و موارد اورژانسی با هماهنگی قبلی'
-        }
-      ],
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '4.9',
-        reviewCount: '348',
-        bestRating: '5',
-        worstRating: '1'
-      },
-      review: [
-        {
-          '@type': 'Review',
-          author: {
-            '@type': 'Person',
-            name: 'مراجع زوج‌درمانی (تهران)'
-          },
-          datePublished: '2025-10-14',
-          reviewBody: 'پس از ماه‌ها تعارض و قهر طولانی، جلسات EFT با خانم خوینی نجات‌بخش زندگی ما شد. درک عمیق و رویکرد علمی ایشان فوق‌العاده است.',
-          reviewRating: {
-            '@type': 'Rating',
-            ratingValue: '5',
-            bestRating: '5',
-            worstRating: '1'
-          }
-        },
-        {
-          '@type': 'Review',
-          author: {
-            '@type': 'Person',
-            name: 'مراجع مشاوره آنلاین خیانت'
-          },
-          datePublished: '2025-11-20',
-          reviewBody: 'در بحران شدید شوک خیانت به صورت آنلاین از اصفهان مراجعه کردیم. مدیریت بحران، تخصص و رازداری خانم خوینی آرامش را به زندگی ما بازگرداند.',
-          reviewRating: {
-            '@type': 'Rating',
-            ratingValue: '5',
-            bestRating: '5',
-            worstRating: '1'
-          }
-        }
       ],
       contactPoint: [
         {
           '@type': 'ContactPoint',
           telephone: '+989199087264',
           contactType: 'reservations',
-          areaServed: ['تهران', 'کرج', 'اصفهان', 'کرمان', 'شیراز', 'مشهد', 'تبریز', 'IR', 'خارج از کشور'],
+          areaServed: ['تهران', 'کرج', 'اصفهان', 'کرمان', 'شیراز', 'مشهد', 'IR', 'خارج از کشور'],
           availableLanguage: ['fa', 'en'],
-          hoursAvailable: {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-            opens: '09:00',
-            closes: '21:00'
-          }
         },
         {
           '@type': 'ContactPoint',
           telephone: '+982144600980',
           contactType: 'customer support',
           areaServed: 'IR',
-          availableLanguage: ['fa']
-        }
+          availableLanguage: ['fa'],
+        },
       ],
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'فلکه دوم صادقیه، بزرگراه اشرفی اصفهانی',
+        streetAddress: 'منطقه ۲، محدوده صادقیه – پونک، کلینیک پیوند امن',
         addressLocality: 'تهران',
         addressRegion: 'منطقه ۲',
         postalCode: '14517',
@@ -890,72 +560,69 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
     {
       '@type': 'ItemList',
       '@id': `${url}#sitelinks`,
-      name: 'خدمات و تخصص‌های اصلی مرکز زوج درمان',
+      name: 'خدمات و بخش‌های اصلی مرکز زوج درمان',
       itemListElement: [
         {
           '@type': 'SiteNavigationElement',
           position: 1,
-          name: 'زوج درمانگر در تهران (حضوری)',
-          description: 'جلسات تخصصی زوج درمانی حضوری در کلینیک غرب تهران با مهناز خوینی',
-          url: `${SITE_URL}/services/couples-therapy`
+          name: 'زوج درمانگر در تهران (حضوری و آنلاین)',
+          url: `${SITE_URL}/services/couples-therapy`,
         },
         {
           '@type': 'SiteNavigationElement',
           position: 2,
-          name: 'مشاوره آنلاین خیانت زناشویی',
-          description: 'مدیریت شوک خیانت، ترمیم اعتماد و تصمیم‌گیری آگاهانه آنلاین',
-          url: `${SITE_URL}/services/infidelity-counseling`
+          name: 'مشاوره خیانت و بازسازی اعتماد',
+          url: `${SITE_URL}/services/infidelity-counseling`,
         },
         {
           '@type': 'SiteNavigationElement',
           position: 3,
-          name: 'تست زوج درمانی آنلاین',
-          description: 'خودسنجی آنلاین انریچ، ترومای خیانت، سبک دلبستگی و ۵ زبان عشق',
-          url: `${SITE_URL}/tools`
+          name: 'خودسنجی و تست آنلاین رابطه',
+          url: `${SITE_URL}/tools`,
         },
         {
           '@type': 'SiteNavigationElement',
           position: 4,
-          name: 'تعرفه و هزینه جلسات ۱۴۰۴',
-          description: 'تعرفه مصوب نظام روانشناسی، بیمه تکمیلی و ماشین‌حساب تخمین',
-          url: `${SITE_URL}/fees`
+          name: 'تعرفه جلسات ۱۴۰۴',
+          url: `${SITE_URL}/fees`,
         },
         {
           '@type': 'SiteNavigationElement',
           position: 5,
           name: 'بانک مقالات تخصصی رابطه',
-          description: 'راهنماهای تحلیلی زوج‌درمانی، طلاق عاطفی، حل تعارض و دلبستگی',
-          url: `${SITE_URL}/articles`
-        }
-      ]
-    }
+          url: `${SITE_URL}/articles`,
+        },
+      ],
+    },
   ];
 }
 
 function videosJsonLdSchema(url: string): Record<string, unknown>[] {
-  return VIDEOS_DATA.map((v) => ({
-    '@type': 'VideoObject',
-    '@id': `${url}#video-${v.id}`,
-    name: v.title,
-    description: v.description,
-    thumbnailUrl: [absoluteUrl(v.thumbnail)],
-    uploadDate: '2025-01-15T08:00:00+03:30',
-    duration: 'PT15M',
-    embedUrl: v.aparatEmbedUrl,
-    contentUrl: v.aparatUrl,
-    inLanguage: 'fa-IR',
-    keywords: v.tags.join(', '),
-    author: {
-      '@type': 'Person',
-      '@id': THERAPIST_ID,
-      name: 'مهناز خوینی',
+  return [
+    {
+      '@type': 'CollectionPage',
+      '@id': `${url}#collection`,
+      name: 'ویدیوهای آموزشی و کارگاه‌های روان‌شناسی مهناز خوینی',
+      url,
+      inLanguage: 'fa-IR',
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: VIDEOS_DATA.map((v, idx) => ({
+          '@type': 'ListItem',
+          position: idx + 1,
+          item: {
+            '@type': 'CreativeWork',
+            '@id': `${url}#video-${v.id}`,
+            name: v.title,
+            description: v.description,
+            url: v.youtubeUrl || v.aparatUrl,
+            inLanguage: 'fa-IR',
+            author: { '@id': THERAPIST_ID },
+          },
+        })),
+      },
     },
-    publisher: {
-      '@type': 'Organization',
-      '@id': `${SITE_URL}/#clinic`,
-      name: 'مرکز تخصصی زوج درمان مهناز خوینی',
-    },
-  }));
+  ];
 }
 
 export function seoForRoute(route: RouteState): SeoPage {
@@ -964,7 +631,7 @@ export function seoForRoute(route: RouteState): SeoPage {
       return {
         title: 'ویدیوهای آموزشی و برنامه‌های آپارات و یوتیوب | مهناز خوینی',
         description:
-          'مشاهده آنلاین کارگاه‌ها و فیلم‌های آموزشی زوج‌درمانی، مشاوره خیانت، درمان طلاق عاطفی و مهارت‌های ارتباطی مهناز خوینی در آپارات و یوتیوب.',
+          'مشاهده کارگاه‌ها و فیلم‌های آموزشی زوج‌درمانی، مشاوره خیانت، درمان طلاق عاطفی و مهارت‌های ارتباطی مهناز خوینی در آپارات و یوتیوب.',
         path: '/videos',
         breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'ویدیوهای آموزشی و رسانه' }],
         jsonLd: videosJsonLdSchema(absoluteUrl('/videos')),
@@ -984,7 +651,7 @@ export function seoForRoute(route: RouteState): SeoPage {
     }
 
     case 'article': {
-      const article = getArticleBySlug(route.slug);
+      const article = getArticleMetaBySlug(route.slug);
       if (!article) return notFoundSeo();
       const path = `/articles/${article.slug}`;
       return {
@@ -1011,7 +678,7 @@ export function seoForRoute(route: RouteState): SeoPage {
       };
 
     case 'service': {
-      const service = getServiceBySlug(route.slug);
+      const service = getServiceMetaBySlug(route.slug);
       if (!service) return notFoundSeo();
       const path = `/services/${service.slug}`;
       return {
@@ -1037,7 +704,7 @@ export function seoForRoute(route: RouteState): SeoPage {
       };
 
     case 'singleTest': {
-      const test = getTestBySlug(route.testSlug);
+      const test = getTestMetaBySlug(route.testSlug);
       if (!test) return notFoundSeo();
       const path = `/tests/${test.slug}`;
       return {
@@ -1046,7 +713,7 @@ export function seoForRoute(route: RouteState): SeoPage {
         path,
         breadcrumb: [
           { name: 'صفحه اصلی', path: '/' },
-          { name: 'تست‌های آنلاین رابطه', path: '/tools' },
+          { name: 'خودسنجی رابطه', path: '/tools' },
           { name: test.title },
         ],
         jsonLd: testSchema(test.slug, absoluteUrl(path)),
@@ -1055,9 +722,9 @@ export function seoForRoute(route: RouteState): SeoPage {
 
     case 'tools':
       return {
-        title: 'تست زوج درمانی آنلاین رایگان با تحلیل بالینی و نمره فوری | مهناز خوینی',
+        title: 'تست زوج درمانی آنلاین رایگان و خودسنجی رابطه | مهناز خوینی',
         description:
-          'سامانه تست زوج درمانی آنلاین رایگان با تحلیل فوری مهناز خوینی: انریچ، ترومای خیانت (PISD)، طلاق گاتمن، سبک دلبستگی و ۵ زبان عشق.',
+          'سامانه خودسنجی آنلاین رابطه مهناز خوینی: انریچ، آسیب خیانت (PISD)، الگوی گاتمن، سبک دلبستگی و ۵ زبان عشق.',
         path: '/tools',
         breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'تست زوج درمانی آنلاین' }],
         jsonLd: toolsHubSchema(absoluteUrl('/tools')),
@@ -1067,7 +734,7 @@ export function seoForRoute(route: RouteState): SeoPage {
       return {
         title: 'تعرفه و هزینه زوج درمانی ۱۴۰۴ و بیمه تکمیلی | مهناز خوینی',
         description:
-          'تعرفه مصوب زوج درمانی، مشاوره خیانت و پیش از ازدواج، شرایط فاکتور بیمه تکمیلی، پرداخت ارزی و ماشین‌حساب تخمین تعداد جلسات.',
+          'تعرفه مصوب زوج درمانی، مشاوره خیانت و پیش از ازدواج، شرایط فاکتور بیمه تکمیلی، پرداخت ارزی و راهنمای برنامه‌ریزی جلسات.',
         path: '/fees',
         breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'تعرفه و هزینه جلسات' }],
       };
@@ -1085,7 +752,7 @@ export function seoForRoute(route: RouteState): SeoPage {
       return {
         title: 'درباره مهناز خوینی | زوج درمانگر بالینی (نظام ۱۴۱۴۰۸۳)',
         description:
-          'مهناز خوینی، کارشناس ارشد روان‌شناسی بالینی (پروانه ۱۴۱۴۰۸۳) و زوج درمانگر EFT با بیش از ۱۵,۰۰۰ ساعت تجربه بالینی؛ رزرو مشاوره حضوری تهران و آنلاین.',
+          'مهناز خوینی، کارشناس ارشد روان‌شناسی بالینی (پروانه ۱۴۱۴۰۸۳)، مسئول فنی کلینیک پیوند امن و زوج‌درمانگر رویکرد EFT؛ رزرو مشاوره حضوری تهران و آنلاین.',
         path: '/about',
         breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'درباره مهناز خوینی' }],
         jsonLd: [
@@ -1103,7 +770,7 @@ export function seoForRoute(route: RouteState): SeoPage {
       return {
         title: 'مراحل ۴ گانه زوج درمان هیجان‌مدار (EFT) | مهناز خوینی',
         description:
-          'فرآیند گام‌به‌گام زوج درمان: ارزیابی و تشخیص، تثبیت هیجان، بازپردازش تعارضات عمیق و تثبیت دستاوردها برای پایداری رابطه زناشویی.',
+          'فرآیند گام‌به‌گام زوج درمان: ارزیابی و شناخت چرخه، تثبیت هیجان، گفت‌وگوی عمیق و تثبیت دستاوردها برای پایداری رابطه زناشویی.',
         path: '/process',
         breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'مراحل درمان' }],
       };
@@ -1121,7 +788,7 @@ export function seoForRoute(route: RouteState): SeoPage {
       return {
         title: 'رزرو وقت و تماس با مرکز تخصصی زوج درمان مهناز خوینی | تهران و آنلاین',
         description:
-          'رزرو وقت حضوری در تهران و مشاوره آنلاین سراسر جهان؛ آدرس مرکز زوج درمان پیوند امن، ساعات کاری، تماس مستقیم و رزرو از طریق واتساپ.',
+          'رزرو وقت حضوری در تهران و مشاوره آنلاین سراسر جهان؛ آدرس کلینیک پیوند امن، ساعات کاری، تماس مستقیم و هماهنگی نوبت.',
         path: '/contact',
         breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'تماس و نوبت‌دهی' }],
       };
@@ -1129,46 +796,24 @@ export function seoForRoute(route: RouteState): SeoPage {
     case 'bestTherapist': {
       const path = '/best-couples-therapist-tehran';
       return {
-        title: 'بهترین زوج درمانگر خوب در تهران و آنلاین | مهناز خوینی',
+        title: 'معیارهای انتخاب زوج درمانگر خوب در تهران و آنلاین | مهناز خوینی',
         description:
-          'راهنمای انتخاب بهترین زوج درمانگر خوب در تهران و آنلاین؛ پروانه رسمی ۱۴۱۴۰۸۳ نظام روانشناسی، پروتکل EFT، کلینیک صادقیه و مشاوره آنلاین.',
+          'راهنمای انتخاب زوج درمانگر خوب در تهران و آنلاین؛ پروانه رسمی ۱۴۱۴۰۸۳ نظام روانشناسی، پروتکل‌های تخصصی EFT و گاتمن، کلینیک منطقه ۲ تهران و مشاوره آنلاین.',
         path,
         breadcrumb: [
           { name: 'صفحه اصلی', path: '/' },
-          { name: 'بهترین زوج درمانگر خوب در تهران و آنلاین' },
+          { name: 'راهنمای انتخاب زوج درمانگر' },
         ],
         jsonLd: [
           {
             '@type': 'MedicalWebPage',
             '@id': `${absoluteUrl(path)}#webpage`,
-            name: 'بهترین زوج درمانگر خوب در تهران و آنلاین',
+            name: 'راهنمای انتخاب زوج درمانگر خوب در تهران و آنلاین',
             description:
-              'راهنمای انتخاب بهترین زوج درمانگر خوب در تهران و آنلاین؛ پروانه رسمی ۱۴۱۴۰۸۳ نظام روانشناسی، پروتکل‌های تخصصی EFT، کلینیک غرب تهران و مشاوره آنلاین با مهناز خوینی.',
+              'راهنمای انتخاب زوج درمانگر در تهران و آنلاین؛ پروانه رسمی ۱۴۱۴۰۸۳ نظام روانشناسی، پروتکل‌های تخصصی EFT و مشاوره آنلاین با مهناز خوینی.',
             url: absoluteUrl(path),
             inLanguage: 'fa-IR',
             about: { '@id': THERAPIST_ID },
-          },
-          {
-            '@type': 'FAQPage',
-            '@id': `${absoluteUrl(path)}#faqpage`,
-            mainEntity: [
-              {
-                '@type': 'Question',
-                name: 'بهترین زوج درمانگر در تهران کیست و چطور انتخاب کنیم؟',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: 'بهترین زوج درمانگر متخصصی است که علاوه بر تحصیلات تکمیلی کارشناسی ارشد یا دکتری روانشناسی بالینی، دارای پروانه رسمی اشتغال تخصصی از سازمان نظام روانشناسی (پروانه ۱۴۱۴۰۸۳ مهناز خوینی)، تسلط به EFT و گاتمن، و بیش از ۱۵,۰۰۰ ساعت تجربه بالینی باشد.',
-                },
-              },
-              {
-                '@type': 'Question',
-                name: 'آیا جلسات آنلاین زوج درمانی برای مراجعان خارج از تهران همان کیفیت حضوری را دارد؟',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: 'بله، پژوهش‌های متعدد انجمن روان‌شناسی آمریکا (APA) اثربخشی کاملاً مشابه جلسات آنلاین و حضوری با متد EFT را به اثبات رسانده است.',
-                },
-              },
-            ],
           },
         ],
       };
@@ -1178,13 +823,13 @@ export function seoForRoute(route: RouteState): SeoPage {
       return {
         title: 'حریم خصوصی و محرمانگی | سامانه زوج درمان zoojdarman.ir',
         description:
-          'تعهد مرکز تخصصی زوج درمان مهناز خوینی به محرمانگی کامل جلسات بالینی، حفظ داده‌های مراجعان و تطابق با موازین سازمان نظام روان‌شناسی و مشاوره.',
+          'تعهد مرکز تخصصی زوج درمان مهناز خوینی به محرمانگی جلسات بالینی، حفظ داده‌های مراجعان و تطابق با موازین سازمان نظام روان‌شناسی و مشاوره.',
         path: '/privacy-policy',
         breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'حریم خصوصی' }],
       };
 
     case 'city': {
-      const city = getCityBySlug(route.citySlug);
+      const city = getCityMetaBySlug(route.citySlug);
       if (!city) return notFoundSeo();
       const path = `/cities/${city.slug}`;
       const url = absoluteUrl(path);
@@ -1232,7 +877,7 @@ export function seoForRoute(route: RouteState): SeoPage {
       };
 
     case 'country': {
-      const country = getCountryBySlug(route.countrySlug);
+      const country = getCountryMetaBySlug(route.countrySlug);
       if (!country) return notFoundSeo();
       const path = `/countries/${country.slug}`;
       const url = absoluteUrl(path);

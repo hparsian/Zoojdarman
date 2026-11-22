@@ -36,7 +36,13 @@ interface TestConfig {
   timeEstimate: string;
 }
 
-export const InteractiveToolsSuite: React.FC = () => {
+interface InteractiveToolsSuiteProps {
+  onNavigateContact?: () => void;
+}
+
+export const InteractiveToolsSuite: React.FC<InteractiveToolsSuiteProps> = ({
+  onNavigateContact,
+}) => {
   const [activeTestId, setActiveTestId] = useState<string>('enrich');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
@@ -178,7 +184,7 @@ export const InteractiveToolsSuite: React.FC = () => {
       text: 'میزان اعتماد قلبی من به وفاداری و صداقت همسرم در بالاترین حد است.',
       category: 'شفافیت و اعتماد',
       options: [
-        { label: '۱۰۰٪ به او اعتماد دارم و شک و تردیدی ندارم', score: 4 },
+        { label: 'به او اعتماد کامل دارم و شک و تردیدی ندارم', score: 4 },
         { label: 'اعتماد نسبی بالایی دارم', score: 3 },
         { label: 'سوءظن یا عدم شفافیت‌های آزاردهنده‌ای وجود دارد', score: 2 },
         { label: 'تجربه خیانت یا از دست رفتن کامل اعتماد را داریم', score: 1 },
@@ -554,37 +560,37 @@ export const InteractiveToolsSuite: React.FC = () => {
     if (scorePct >= 75) {
       return {
         level: 'ایمن: مکالمات سازنده بدون ۴ ویرانگر گاتمن',
-        color: 'text-emerald-700 bg-emerald-50 border-emerald-200',
+        color: 'text-[#344A42] bg-[#EDF2EE] border-[#D3E0D7]',
         badge: 'احترام متقابل فعال',
         summary:
-          'خوشبختانه سموم چهارگانه رابطه (تحقیر، سرزنش، جبهه‌گیری و دیوارکشی) در رابطه شما بسیار اندک است و تلاش‌های ترمیم به ثمر می‌نشیند.',
+          'خوشبختانه الگوهای تخریبی چهارگانه رابطه (تحقیر، سرزنش، جبهه‌گیری و دیوارکشی) در تعامل شما اندک است و تلاش‌های ترمیم به ثمر می‌نشیند.',
         advice: [
-          'قدردان لحن نرم شروع مکالمه خود باشید.',
-          'تلاش‌های آشتی کوچک همسر را همواره با آغوش باز پاسخ دهید.',
+          'قدردان لحن آرام در شروع گفت‌وگوهای حساس باشید.',
+          'تلاش‌های آشتی و نزدیک‌شدن همسر را با گشودگی بپذیرید.',
         ],
       };
     } else if (scorePct >= 50) {
       return {
-        level: 'هشدار جدی: نفوذ تحقیر و حالت تدافعی در مشاجرات',
-        color: 'text-amber-800 bg-amber-50 border-amber-200',
-        badge: 'شاخص ریسک طلاق عاطفی ۶۰٪',
+        level: 'الگوهای نیازمند توجه: نفوذ تحقیر و حالت تدافعی در مشاجرات',
+        color: 'text-[#7C4330] bg-[#FAF1ED] border-[#E8CEC4]',
+        badge: 'الگوهای نیازمند توجه جدی',
         summary:
-          'تحقیقات بالینی دکتر گاتمن نشان می‌دهد وجود تحقیر و کنایه قوی‌ترین پیش‌بینی‌کننده شکست رابطه است. رابطه شما در مرحله لغزش به سوی انزوا و قطع ارتباط کلامی قرار دارد.',
+          'یافته‌های پژوهشی نشان می‌دهد حضور تحقیر و دفاعی‌پذیری پیوسته در گفت‌وگو، احساس امنیت عاطفی را تضعیف می‌کند و نیازمند اصلاح سبک گفت‌وگو است.',
         advice: [
-          'تحقیر و نیشخند را فوراً به عنوان خط قرمز قطعی مکالمات اعلام کنید.',
-          'جایگزین کردن حالت تدافعی با عبارت: «حق با توئه، در این قسمت اشتباه کردم».',
+          'تحقیر و کنایه را به‌عنوان خط قرمز گفت‌وگوهای دوطرفه متوقف کنید.',
+          'به جای جبهه‌گیری فوری، گوش دادن به تجربه احساسی طرف مقابل را تمرین کنید.',
         ],
       };
     } else {
       return {
-        level: 'خطر فوری طلاق عاطفی و از بین رفتن حریم احترام',
-        color: 'text-rose-800 bg-rose-50 border-rose-200',
-        badge: 'شاخص ریسک طلاق ۸۵٪',
+        level: 'ضرورت گفت‌وگوی تخصصی: فرسایش احترام و دیوارکشی سکوت',
+        color: 'text-[#8C3F30] bg-[#F7ECE9] border-[#E0C2BA]',
+        badge: 'نیازمند حمایت تخصصی',
         summary:
-          'دیوارکشی سکوت و انزجار عاطفی فعال است. در این مرحله، فیزیولوژی بدن شما در حضور همسر مدام در حالت جنگ یا گریز (Fight or Flight) قرار دارد.',
+          'وجود دیوارکشی سکوت یا واکنش‌های تدافعی شدید نشان می‌دهد مکالمات دونفره به‌تنهایی به تنش یا فاصله عمیق ختم می‌شوند و کمک تخصصی بی‌طرف بسیار راهگشاست.',
         advice: [
-          'بررسی علائم افسردگی یا فرسودگی عاطفی توسط زوج‌درمانگر متخصص.',
-          'توقف جلسات محاکمه‌گونه خانگی و ورود به چارچوب بالینی کنترل‌شده.',
+          'بررسی خستگی عاطفی و الگوهای گفت‌وگو در کنار زوج‌درمانگر متخصص.',
+          'توقف مکالمات پرتنش بدون ساختار در زمان عصبانیت شدید.',
         ],
       };
     }
@@ -647,24 +653,20 @@ export const InteractiveToolsSuite: React.FC = () => {
   };
 
   return (
-    <section className="relative py-24 bg-gradient-to-b from-[#FAF8F5] via-[#F4EFEA] to-[#FAF8F5] overflow-hidden" id="tools">
-      <div className="container-custom relative z-10">
+    <section className="py-10 sm:py-14 bg-[#F4F1EC]" id="tools-suite">
+      <div className="container-custom">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-[#A67C2E] uppercase mb-3">
-            <span className="w-6 h-px bg-[#C5A059]" />
-            <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
-            <span>سامانه بالینی ارزیابی آنلاین رابطه</span>
-            <span className="w-6 h-px bg-[#C5A059]" />
-          </div>
+        <div className="text-center max-w-3xl mx-auto mb-10">
+          <p className="text-xs font-semibold text-[#3D5E4E] mb-2">
+            خودسنجی محرمانه و بدون ذخیره در سرور
+          </p>
 
-          <h2 className="text-2xl sm:text-4xl font-black text-[#2A1E35] mb-4 tracking-tight leading-snug">
-            تست‌های آنلاین و ابزارهای تشخیصی{' '}
-            <span className="text-[#C5A059] block sm:inline">زوج‌درمانی و سنجش رابطه</span>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#292D2A] mb-3 leading-snug">
+            پرسشنامه‌های خودآگاهی رابطه
           </h2>
 
-          <p className="text-sm sm:text-base text-[#6F6B78] leading-relaxed">
-            با پاسخ به پرسش‌های بالینی استاندارد زیر، کارنامه تفکیکی وضعیت عاطفی، درصد خطر طلاق و ریشه مشاجرات رابطه‌تان را در کمتر از ۳ دقیقه دریافت کنید.
+          <p className="text-sm text-[#555650] leading-relaxed">
+            با پاسخ به پرسش‌های کوتاه زیر، تصویر اولیه‌ای از نقاط قوت و الگوهای نیازمند توجه رابطه‌تان در مرورگر خود مشاهده کنید.
           </p>
         </div>
 
@@ -675,41 +677,39 @@ export const InteractiveToolsSuite: React.FC = () => {
             return (
               <button
                 key={test.id}
+                type="button"
                 onClick={() => handleResetTest(test.id)}
-                className={`p-5 rounded-2xl text-right transition-all duration-300 border flex flex-col justify-between cursor-pointer relative overflow-hidden ${
+                className={`p-5 rounded-xl text-right transition-colors border flex flex-col justify-between cursor-pointer ${
                   isSelected
-                    ? 'bg-[#2A1E35] text-white border-[#C5A059]/50 shadow-xl -translate-y-1'
-                    : 'bg-white border-[#E8DFD5] hover:border-[#C5A059]/40 text-[#2A1E35] shadow-xs hover:shadow-md'
+                    ? 'bg-[#344A42] text-[#FCFBF8] border-[#344A42]'
+                    : 'bg-[#FCFBF8] border-[#E5E0D8] hover:border-[#8FAE9B] text-[#292D2A]'
                 }`}
               >
-                {/* Top Badge */}
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center justify-between mb-2">
                   <span
-                    className={`text-[10px] font-mono font-bold px-2.5 py-1 rounded-md ${
-                      isSelected
-                        ? 'bg-[#C5A059] text-[#1E1527]'
-                        : 'bg-[#FAF8F5] border border-[#E8DFD5] text-[#A67C2E]'
+                    className={`text-[11px] font-semibold ${
+                      isSelected ? 'text-[#DCE4DE]' : 'text-[#3D5E4E]'
                     }`}
                   >
                     {test.badge}
                   </span>
-                  <span className={`text-[11px] font-medium ${isSelected ? 'text-[#D8D2E5]' : 'text-[#7A7382]'}`}>
+                  <span className={`text-[11px] ${isSelected ? 'text-[#DCE4DE]' : 'text-[#6B6D67]'}`}>
                     {test.timeEstimate}
                   </span>
                 </div>
 
-                <h3 className={`text-sm sm:text-base font-black mb-2 leading-snug ${isSelected ? 'text-white' : 'text-[#2A1E35]'}`}>
+                <h3 className={`text-sm font-bold mb-2 leading-snug ${isSelected ? 'text-[#FCFBF8]' : 'text-[#292D2A]'}`}>
                   {test.title}
                 </h3>
 
-                <p className={`text-xs leading-relaxed line-clamp-2 mb-4 ${isSelected ? 'text-[#D8D2E5]' : 'text-[#6F6B78]'}`}>
+                <p className={`text-xs leading-relaxed line-clamp-2 mb-4 ${isSelected ? 'text-[#DCE4DE]' : 'text-[#555650]'}`}>
                   {test.shortDesc}
                 </p>
 
-                <div className={`flex items-center justify-between pt-3 border-t text-xs font-bold ${
-                  isSelected ? 'border-white/10 text-[#C5A059]' : 'border-[#F0EAE1] text-[#A67C2E]'
+                <div className={`flex items-center justify-between pt-3 border-t text-xs font-semibold ${
+                  isSelected ? 'border-[#8FAE9B]/25 text-[#FCFBF8]' : 'border-[#E5E0D8] text-[#344A42]'
                 }`}>
-                  <span>{isSelected ? 'در حال آزمون' : 'شروع تست رایگان'}</span>
+                  <span>{isSelected ? 'پرسشنامه فعال' : 'شروع خودسنجی'}</span>
                   <ChevronRight className={`w-4 h-4 transition-transform ${isSelected ? 'rotate-90' : ''}`} />
                 </div>
               </button>
@@ -718,72 +718,68 @@ export const InteractiveToolsSuite: React.FC = () => {
         </div>
 
         {/* Test Execution or Result Card */}
-        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#E5E0EA] shadow-md max-w-4xl mx-auto">
+        <div className="bg-[#FCFBF8] rounded-2xl p-6 sm:p-10 border border-[#E5E0D8] max-w-4xl mx-auto">
           {!testCompleted ? (
-            /* Active Question State */
             <div>
-              {/* Progress & Header */}
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#E5E0EA]">
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#E5E0D8]">
                 <div>
-                  <span className="text-xs font-black text-[#6D5AA8] block mb-1">
+                  <span className="text-xs font-semibold text-[#3D5E4E] block mb-1">
                     سوال {currentQuestionIndex + 1} از {currentQuestions.length}
                   </span>
-                  <h3 className="text-base sm:text-lg font-black text-[#44386B]">
+                  <h3 className="text-base sm:text-lg font-extrabold text-[#292D2A]">
                     {tests.find((t) => t.id === activeTestId)?.title}
                   </h3>
                 </div>
 
                 <div className="text-left">
-                  <span className="text-xs font-bold text-[#6F6B78] block">پیشرفت تست</span>
-                  <span className="text-sm font-black text-[#44386B]" dir="ltr">
+                  <span className="text-xs font-medium text-[#6B6D67] block">پیشرفت</span>
+                  <span className="text-sm font-bold text-[#344A42]" dir="ltr">
                     {Math.round(((currentQuestionIndex + 1) / currentQuestions.length) * 100)}%
                   </span>
                 </div>
               </div>
 
-              {/* Progress Bar */}
-              <div className="w-full bg-[#f2eff8] h-2.5 rounded-full mb-8 overflow-hidden">
+              <div className="w-full bg-[#ECE7DF] h-2 rounded-full mb-8 overflow-hidden">
                 <div
-                  className="bg-gradient-to-r from-[#8FAF9B] to-[#6D5AA8] h-full rounded-full transition-all duration-300"
+                  className="bg-[#344A42] h-full rounded-full transition-all duration-300"
                   style={{
                     width: `${((currentQuestionIndex + 1) / currentQuestions.length) * 100}%`,
                   }}
                 />
               </div>
 
-              {/* Question Box */}
               <div className="mb-8">
-                <span className="inline-block text-[11px] font-bold text-[#5e826b] bg-[#edf5f0] px-3 py-1 rounded-full mb-3">
-                  موضوع: {currentQuestion.category}
+                <span className="inline-block text-xs font-semibold text-[#3D5E4E] mb-2">
+                  محور: {currentQuestion.category}
                 </span>
-                <p className="text-base sm:text-xl font-black text-[#292733] leading-relaxed">
+                <p className="text-base sm:text-xl font-extrabold text-[#292D2A] leading-relaxed">
                   {currentQuestion.text}
                 </p>
               </div>
 
-              {/* Options */}
               <div className="flex flex-col gap-3 mb-8">
                 {currentQuestion.options.map((opt, idx) => (
                   <button
                     key={idx}
+                    type="button"
                     onClick={() => handleSelectOption(opt.score)}
-                    className="w-full p-4 sm:p-5 rounded-2xl bg-[#FAF8F5] hover:bg-[#f2eff8] text-right text-xs sm:text-sm font-extrabold text-[#292733] border border-[#E5E0EA] hover:border-[#6D5AA8] hover:text-[#44386B] transition-all flex items-center justify-between group cursor-pointer"
+                    className="w-full p-4 sm:p-5 rounded-xl bg-[#F4F1EC] hover:bg-[#EDF2EE] text-right text-xs sm:text-sm font-bold text-[#292D2A] border border-[#E5E0D8] hover:border-[#344A42] transition-colors flex items-center justify-between group cursor-pointer"
                   >
                     <span className="flex-1">{opt.label}</span>
-                    <span className="w-6 h-6 rounded-full border-2 border-[#E5E0EA] group-hover:border-[#6D5AA8] flex items-center justify-center shrink-0 mr-3">
-                      <span className="w-2.5 h-2.5 rounded-full bg-transparent group-hover:bg-[#6D5AA8] transition-colors" />
+                    <span className="w-5 h-5 rounded-full border-2 border-[#C7C2B8] group-hover:border-[#344A42] flex items-center justify-center shrink-0 mr-3">
+                      <span className="w-2 h-2 rounded-full bg-transparent group-hover:bg-[#344A42] transition-colors" />
                     </span>
                   </button>
                 ))}
               </div>
 
-              {/* Back / Navigation button if needed */}
-              <div className="flex items-center justify-between text-xs text-[#8e8a96] pt-4 border-t border-[#E5E0EA]">
-                <span>پاسخ‌های شما کاملاً ناشناس و محرمانه پردازش می‌شوند.</span>
+              <div className="flex items-center justify-between text-xs text-[#6B6D67] pt-4 border-t border-[#E5E0D8]">
+                <span>پاسخ‌های شما به هیچ سروری ارسال نمی‌شوند.</span>
                 {currentQuestionIndex > 0 && (
                   <button
+                    type="button"
                     onClick={() => setCurrentQuestionIndex(currentQuestionIndex - 1)}
-                    className="font-bold text-[#6D5AA8] hover:underline cursor-pointer"
+                    className="font-semibold text-[#344A42] hover:underline cursor-pointer"
                   >
                     بازگشت به سوال قبل
                   </button>
@@ -791,40 +787,39 @@ export const InteractiveToolsSuite: React.FC = () => {
               </div>
             </div>
           ) : (
-            /* Results & Diagnostic Report */
             <div>
               {/* Top Result Banner */}
-              <div className="text-center mb-8 pb-8 border-b border-[#E5E0EA]">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#f2eff8] text-[#6D5AA8] mb-4 shadow-inner">
-                  <Award className="w-8 h-8" />
+              <div className="text-center mb-8 pb-8 border-b border-[#E5E0D8]">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#EDF2EE] text-[#344A42] mb-4">
+                  <Award className="w-7 h-7" />
                 </div>
 
-                <span className="block text-xs font-bold text-[#6F6B78] mb-1">
-                  کارنامه بالینی ارزیابی رابطه
+                <span className="block text-xs font-semibold text-[#3D5E4E] mb-1">
+                  نتیجه خودسنجی آموزشی (محلی در مرورگر)
                 </span>
 
-                <h3 className="text-2xl sm:text-3xl font-black text-[#44386B] mb-4">
+                <h3 className="text-xl sm:text-2xl font-extrabold text-[#292D2A] mb-4">
                   {tests.find((t) => t.id === activeTestId)?.title}
                 </h3>
 
-                {/* Score Dial */}
-                <div className="inline-flex flex-col items-center justify-center p-6 rounded-3xl bg-[#FAF8F5] border border-[#E5E0EA] shadow-inner mb-4">
-                  <span className="text-xs text-[#6F6B78] font-bold mb-1">شاخص سلامت و امنیت رابطه</span>
-                  <div className="text-4xl sm:text-5xl font-black text-[#6D5AA8]" dir="ltr">
-                    {scorePercentage} <span className="text-2xl font-bold text-[#8FAF9B]">/ ۱۰۰</span>
+                {/* Score Box */}
+                <div className="inline-flex flex-col items-center justify-center p-6 rounded-2xl bg-[#F4F1EC] border border-[#E5E0D8] mb-4">
+                  <span className="text-xs text-[#555650] font-semibold mb-1">شاخص کلی خودسنجی</span>
+                  <div className="text-4xl font-extrabold text-[#344A42]" dir="ltr">
+                    {scorePercentage} <span className="text-xl font-bold text-[#6B6D67]">/ ۱۰۰</span>
                   </div>
-                  <span className={`inline-block px-4 py-1.5 rounded-full text-xs font-black mt-3 border ${diagnosis.color}`}>
+                  <span className={`inline-block px-3.5 py-1 rounded-lg text-xs font-bold mt-3 border ${diagnosis.color}`}>
                     {diagnosis.badge}
                   </span>
                 </div>
 
-                <h4 className="text-base sm:text-lg font-black text-[#292733] max-w-xl mx-auto">
+                <h4 className="text-base sm:text-lg font-extrabold text-[#292D2A] max-w-xl mx-auto">
                   {diagnosis.level}
                 </h4>
               </div>
 
-              {/* Clinical Analysis by Mahnaz Khoini */}
-              <div className="bg-[#FAF8F5] p-6 sm:p-8 rounded-2xl border border-[#E5E0EA] mb-8">
+              {/* Educational Reflection Note */}
+              <div className="bg-[#F4F1EC] p-6 sm:p-8 rounded-2xl border border-[#E5E0D8] mb-6">
                 <div className="flex items-center gap-3 mb-4">
                   <img
                     src="/images/mahnaz-khoini-thumb.webp"
@@ -836,122 +831,129 @@ export const InteractiveToolsSuite: React.FC = () => {
                     height={775}
                     loading="lazy"
                     decoding="async"
-                    className="w-12 h-12 rounded-full object-cover border-2 border-[#6D5AA8]"
+                    className="w-11 h-11 rounded-xl object-cover border border-[#E5E0D8]"
                   />
                   <div>
-                    <h5 className="text-sm font-black text-[#44386B]">
-                      تحلیل تخصصی مهناز خوینی (زوج‌درمانگر هیجان‌مدار)
+                    <h5 className="text-sm font-extrabold text-[#292D2A]">
+                      جمع‌بندی آموزشی مهناز خوینی
                     </h5>
-                    <span className="text-[11px] text-[#6F6B78] font-bold">
-                      پروانه نظام روان‌شناسی: ۱۴۱۴۰۸۳
+                    <span className="text-[11px] text-[#555650]">
+                      زوج‌درمانگر بالینی · پروانه نظام ۱۴۱۴۰۸۳
                     </span>
                   </div>
                 </div>
 
-                <p className="text-sm sm:text-base text-[#292733] leading-relaxed mb-6 text-justify">
+                <p className="text-sm text-[#292D2A] leading-[1.9] mb-5 text-justify">
                   {diagnosis.summary}
                 </p>
 
-                <h6 className="text-xs font-black text-[#44386B] mb-3 flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#5e826b]" />
-                  <span>راهکارهای بالینی پیشنهادی برای شروع درمان:</span>
+                <h6 className="text-xs font-bold text-[#344A42] mb-3 flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#3D5E4E]" />
+                  <span>گام‌های پیشنهادی برای گفت‌وگو و پیگیری:</span>
                 </h6>
 
-                <ul className="space-y-2 mb-2">
+                <ul className="space-y-2 mb-4">
                   {diagnosis.advice.map((item, aIdx) => (
                     <li
                       key={aIdx}
-                      className="text-xs sm:text-sm text-[#6F6B78] flex items-start gap-2 leading-relaxed"
+                      className="text-xs sm:text-sm text-[#555650] flex items-start gap-2 leading-relaxed"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#6D5AA8] mt-2 shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#344A42] mt-2 shrink-0" />
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
+
+                <p className="text-[11px] text-[#6B6D67] pt-3 border-t border-[#E5E0D8]">
+                  توضیح حرفه‌ای: این جمع‌بندی صرفاً جنبه خودآگاهی دارد و تشخیص بالینی قطعی محسوب نمی‌شود.
+                </p>
               </div>
 
-              {/* Action Buttons: Viral Share & Consultation */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                {/* Book Session with Results */}
-                <a
-                  href={`https://wa.me/989199087264?text=${encodeURIComponent(
-                    `سلام خانم خوینی، در آزمون ${tests.find((t) => t.id === activeTestId)?.title} سایت شرکت کردم. نمره رابطه من ${scorePercentage} از ۱۰۰ شد (${diagnosis.level}). برای جلسه تحلیل کارنامه و مشاوره زوج‌درمانی درخواست نوبت دارم.`
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="py-4 px-6 bg-[#6D5AA8] hover:bg-[#44386B] text-white rounded-2xl font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all"
-                >
-                  <MessageSquare className="w-4 h-4" />
-                  <span>رزرو نوبت تحلیل کارنامه در واتساپ</span>
-                </a>
+              {/* Privacy-First Actions */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                {onNavigateContact ? (
+                  <button
+                    type="button"
+                    onClick={onNavigateContact}
+                    className="py-3.5 px-5 bg-[#344A42] hover:bg-[#273932] text-[#FCFBF8] rounded-lg font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                  >
+                    <MessageSquare className="w-4 h-4" />
+                    <span>هماهنگی جلسه ارزیابی بالینی</span>
+                  </button>
+                ) : (
+                  <a
+                    href="https://wa.me/989199087264?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D9%87%D9%85%D8%A7%D9%87%D9%86%DA%AF%DB%8C%20%D9%86%D9%88%D8%A8%D8%AA%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%B2%D9%88%D8%AC%E2%80%8C%D8%AF%D8%B1%D9%85%D8%A7%D9%86%DB%8C%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%87%D9%85."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="py-3.5 px-5 bg-[#344A42] hover:bg-[#273932] text-[#FCFBF8] rounded-lg font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors"
+                  >
+                    <MessageSquare className="w-4 h-4" />
+                    <span>هماهنگی نوبت جلسه در واتساپ</span>
+                  </a>
+                )}
 
-                {/* Share with Partner / WhatsApp */}
-                <a
-                  href={`https://wa.me/?text=${encodeURIComponent(shareText)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="py-4 px-6 bg-[#edf5f0] hover:bg-[#d8e8dd] text-[#5e826b] rounded-2xl font-black text-xs sm:text-sm flex items-center justify-center gap-2 border border-[#8FAF9B]/40 transition-all"
+                <button
+                  type="button"
+                  onClick={copyToClipboard}
+                  className="py-3.5 px-5 bg-[#EDF2EE] hover:bg-[#DDE7DF] text-[#344A42] rounded-lg font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 border border-[#D3E0D7] transition-colors cursor-pointer"
                 >
                   <Share2 className="w-4 h-4" />
-                  <span>ارسال کارنامه به همسر در واتساپ</span>
-                </a>
+                  <span>{copiedResult ? 'خلاصه نتیجه کپی شد' : 'کپی خلاصه در مرورگر (خصوصی)'}</span>
+                </button>
               </div>
 
-              {/* Utility actions */}
-              <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[#E5E0EA] text-xs">
-                <button
-                  onClick={copyToClipboard}
-                  className="font-bold text-[#6F6B78] hover:text-[#6D5AA8] flex items-center gap-1.5 cursor-pointer"
-                >
-                  <span>{copiedResult ? 'متن کارنامه کپی شد!' : 'کپی متن خلاصه نتایج'}</span>
-                </button>
+              <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[#E5E0D8] text-xs">
+                <span className="text-[#6B6D67]">
+                  هیچ نمره یا پاسخی از طریق لینک یا سرور ذخیره و ارسال نمی‌شود.
+                </span>
 
                 <button
+                  type="button"
                   onClick={() => handleResetTest()}
-                  className="font-black text-[#6D5AA8] hover:underline flex items-center gap-1 cursor-pointer"
+                  className="font-semibold text-[#344A42] hover:underline flex items-center gap-1.5 cursor-pointer"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
-                  <span>تکرار مجدد آزمون</span>
+                  <span>تکرار مجدد خودسنجی</span>
                 </button>
               </div>
             </div>
           )}
         </div>
 
-        {/* Viral Traffic Features Highlights */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-4xl mx-auto">
-          <div className="bg-white p-5 rounded-2xl border border-[#E5E0EA] flex items-start gap-3 shadow-xs">
-            <div className="w-9 h-9 rounded-xl bg-[#edf5f0] text-[#5e826b] flex items-center justify-center shrink-0">
+        {/* Highlights */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10 max-w-4xl mx-auto">
+          <div className="bg-[#FCFBF8] p-5 rounded-xl border border-[#E5E0D8] flex items-start gap-3">
+            <div className="w-9 h-9 rounded-lg bg-[#EDF2EE] text-[#344A42] flex items-center justify-center shrink-0">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-xs font-black text-[#292733] mb-1">کاملاً رایگان و محرمانه</h4>
-              <p className="text-[11px] text-[#6F6B78] leading-relaxed">
-                بدون نیاز به ثبت‌نام یا اطلاعات هویتی؛ پاسخ‌ها فقط در مرورگر شما پردازش می‌شوند.
+              <h4 className="text-xs font-bold text-[#292D2A] mb-1">کاملاً محرمانه در مرورگر</h4>
+              <p className="text-[11px] text-[#555650] leading-relaxed">
+                بدون ثبت‌نام یا ارسال داده؛ تمامی پاسخ‌ها فقط در دستگاه شما پردازش می‌شوند.
               </p>
             </div>
           </div>
 
-          <div className="bg-white p-5 rounded-2xl border border-[#E5E0EA] flex items-start gap-3 shadow-xs">
-            <div className="w-9 h-9 rounded-xl bg-[#f2eff8] text-[#6D5AA8] flex items-center justify-center shrink-0">
+          <div className="bg-[#FCFBF8] p-5 rounded-xl border border-[#E5E0D8] flex items-start gap-3">
+            <div className="w-9 h-9 rounded-lg bg-[#EDF2EE] text-[#3D5E4E] flex items-center justify-center shrink-0">
               <Brain className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-xs font-black text-[#292733] mb-1">منطبق بر مقیاس‌های EFT و Gottman</h4>
-              <p className="text-[11px] text-[#6F6B78] leading-relaxed">
-                طراحی شده بر اساس پرسشنامه‌های معتبر انریچ و پروتکل‌های هیجان‌مدار بین‌المللی.
+              <h4 className="text-xs font-bold text-[#292D2A] mb-1">مبتنی بر مفاهیم EFT و گاتمن</h4>
+              <p className="text-[11px] text-[#555650] leading-relaxed">
+                طراحی‌شده بر پایه مقیاس‌های پژوهشی انریچ، دلبستگی و الگوهای گفت‌وگوی زوجین.
               </p>
             </div>
           </div>
 
-          <div className="bg-white p-5 rounded-2xl border border-[#E5E0EA] flex items-start gap-3 shadow-xs">
-            <div className="w-9 h-9 rounded-xl bg-[#fcf1ec] text-[#8e482f] flex items-center justify-center shrink-0">
+          <div className="bg-[#FCFBF8] p-5 rounded-xl border border-[#E5E0D8] flex items-start gap-3">
+            <div className="w-9 h-9 rounded-lg bg-[#F4F1EC] text-[#344A42] flex items-center justify-center shrink-0">
               <Share2 className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-xs font-black text-[#292733] mb-1">قابلیت مقایسه با همسر</h4>
-              <p className="text-[11px] text-[#6F6B78] leading-relaxed">
-                ارسال لینک به پارتنر جهت مقایسه دیدگاه‌ها و پیدا کردن ریشه پنهان سوءتفاهم‌ها.
+              <h4 className="text-xs font-bold text-[#292D2A] mb-1">آماده‌سازی برای جلسه اول</h4>
+              <p className="text-[11px] text-[#555650] leading-relaxed">
+                می‌توانید خلاصه خودسنجی را به‌صورت خصوصی نگه دارید و در جلسه مطرح کنید.
               </p>
             </div>
           </div>

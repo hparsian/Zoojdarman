@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ServiceItem } from '../types';
-import { getArticleBySlug } from '../data/articles';
+import { getServiceBySlug } from '../data/services';
+import { articlesMeta } from '../data/articlesMeta';
 import { registerFaqSchema } from '../seo';
 import { TableOfContents } from './TableOfContents';
+import { InnerPageTopBar } from './InnerPageTopBar';
 import {
   SeoTakeawaysCard,
   StructuredTablesSection,
@@ -16,26 +17,36 @@ import {
   Clock,
   Globe2,
   BookOpen,
+  AlertCircle,
 } from 'lucide-react';
-
 import { SocialShareButtons } from './SocialShareButtons';
 import { getServiceSocialMeta } from '../utils/socialShareSeo';
 
 interface ServiceViewProps {
-  service: ServiceItem;
+  slug: string;
   onBack: () => void;
+  onNavigateHome?: () => void;
+  onNavigateContact?: () => void;
 }
 
-export const ServiceView: React.FC<ServiceViewProps> = ({ service, onBack }) => {
+export const ServiceView: React.FC<ServiceViewProps> = ({
+  slug,
+  onBack,
+  onNavigateHome,
+  onNavigateContact,
+}) => {
+  const service = getServiceBySlug(slug);
   const contentRef = useRef<HTMLDivElement>(null);
   const [readingProgress, setReadingProgress] = useState<number>(0);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [service.slug]);
+  }, [slug]);
 
-  // داده‌های ساختاریافته پرسش‌وپاسخ خدمت (JSON-LD)
-  useEffect(() => registerFaqSchema(service.faqs), [service]);
+  useEffect(() => {
+    if (!service?.faqs || service.faqs.length === 0) return;
+    return registerFaqSchema(service.faqs);
+  }, [service]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,6 +61,23 @@ export const ServiceView: React.FC<ServiceViewProps> = ({ service, onBack }) => 
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  if (!service) {
+    return (
+      <div className="min-h-screen bg-[#F4F1EC] flex flex-col items-center justify-center p-6 text-center">
+        <AlertCircle className="w-14 h-14 text-[#344A42] mb-4" />
+        <h1 className="text-2xl font-extrabold text-[#292D2A] mb-2">خدمت مورد نظر یافت نشد</h1>
+        <p className="text-sm text-[#555650] mb-6">صفحه مورد نظر در حال حاضر در دسترس نیست.</p>
+        <button
+          type="button"
+          onClick={onBack}
+          className="px-6 py-3 bg-[#344A42] hover:bg-[#273932] text-[#FCFBF8] rounded-lg font-semibold text-xs cursor-pointer"
+        >
+          مشاهده خدمات تخصصی
+        </button>
+      </div>
+    );
+  }
 
   const navigateInternal = (path: string) => {
     const cleanPath = path.replace(/\/+$/, '') || '/';
@@ -80,56 +108,36 @@ export const ServiceView: React.FC<ServiceViewProps> = ({ service, onBack }) => 
   };
 
   const relatedArticles = (service.relatedArticleSlugs || [])
-    .map((slug) => getArticleBySlug(slug))
+    .map((aSlug) => articlesMeta.find((a) => a.slug === aSlug))
     .filter((a): a is NonNullable<typeof a> => Boolean(a));
 
   const socialMeta = getServiceSocialMeta(service);
 
   return (
-    <div className="bg-[#FAF8F5] min-h-screen pb-24">
-      {/* Top Bar with Reading Progress */}
-      <div className="bg-white border-b border-[#E5E0EA] sticky top-0 z-40 shadow-xs">
+    <div className="bg-[#F4F1EC] min-h-screen pb-24">
+      <div className="sticky top-0 z-40">
         <div
-          className="h-1 bg-gradient-to-r from-[#C5A059] to-[#3E2F5B] transition-all duration-150"
+          className="h-1 bg-[#344A42] transition-all duration-150"
           style={{ width: `${readingProgress}%` }}
         />
-
-        <div className="container-custom h-15 flex items-center justify-between">
-          <a
-            href="/"
-            onClick={(e) => {
-              e.preventDefault();
-              onBack();
-            }}
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-black text-[#6D5AA8] hover:text-[#44386B] cursor-pointer"
-          >
-            <ArrowRight className="w-4 h-4" />
-            <span>بازگشت به خدمات و صفحه اصلی</span>
-          </a>
-
-          <div className="flex items-center text-lg font-black text-[#44386B]" dir="ltr">
-            <span>Z</span>
-            <svg width="14" height="14" viewBox="0 0 32 29" className="inline-block mx-0.5 fill-[#8FAF9B]">
-              <path d="M16 29 C16 29 0 18.5 0 8.8 C0 3.5 4 0 8.6 0 C11.8 0 14.4 1.8 16 4.6 C17.6 1.8 20.2 0 23.4 0 C28 0 32 3.5 32 8.8 C32 18.5 16 29 16 29 Z" />
-            </svg>
-            <svg width="14" height="14" viewBox="0 0 32 29" className="inline-block mx-0.5 fill-[#E8A58D]">
-              <path d="M16 29 C16 29 0 18.5 0 8.8 C0 3.5 4 0 8.6 0 C11.8 0 14.4 1.8 16 4.6 C17.6 1.8 20.2 0 23.4 0 C28 0 32 3.5 32 8.8 C32 18.5 16 29 16 29 Z" />
-            </svg>
-            <span>jdarman.ir</span>
-          </div>
-        </div>
+        <InnerPageTopBar
+          onBack={onBack}
+          backLabel="بازگشت به خدمات"
+          onNavigateContact={onNavigateContact}
+          maxWidthClass="max-w-6xl"
+        />
       </div>
 
       <div className="container-custom max-w-6xl pt-8 sm:pt-12">
-        {/* Breadcrumbs */}
-        <nav className="flex items-center gap-2 text-xs text-[#8e8a96] mb-6 flex-wrap">
+        <nav className="flex items-center gap-2 text-xs text-[#6E6E68] mb-5 flex-wrap">
           <a
             href="/"
             onClick={(e) => {
               e.preventDefault();
-              onBack();
+              if (onNavigateHome) onNavigateHome();
+              else onBack();
             }}
-            className="hover:text-[#6D5AA8] cursor-pointer"
+            className="hover:text-[#344A42]"
           >
             صفحه اصلی
           </a>
@@ -140,65 +148,58 @@ export const ServiceView: React.FC<ServiceViewProps> = ({ service, onBack }) => 
               e.preventDefault();
               navigateInternal('/services');
             }}
-            className="hover:text-[#6D5AA8] cursor-pointer"
+            className="hover:text-[#344A42]"
           >
             خدمات تخصصی
           </a>
           <span>/</span>
-          <span className="text-[#6D5AA8] font-bold">{service.title}</span>
+          <span className="text-[#344A42] font-semibold">{service.title}</span>
         </nav>
 
-        {/* Top Category Tag */}
-        <span className="inline-block bg-[#edf5f0] text-[#5e826b] text-xs font-black px-3.5 py-1.5 rounded-full mb-4 border border-[#8FAF9B]/30">
+        <p className="text-xs font-semibold text-[#3D5E4E] mb-3">
           {service.category || 'پروتکل تخصصی بالینی'}
-        </span>
+        </p>
 
-        {/* H1 Title */}
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#44386B] leading-[1.35] mb-4">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#292D2A] leading-[1.35] mb-4 max-w-4xl">
           {service.h1 || service.title}
         </h1>
 
-        {/* Lead Description */}
-        <p className="text-sm sm:text-base text-[#6F6B78] leading-relaxed mb-6 text-justify">
+        <p className="text-sm sm:text-base text-[#555650] leading-relaxed mb-6 max-w-3xl">
           {service.description}
         </p>
 
-        {/* Clinical Protocol Badges */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
-          <div className="bg-white p-4 rounded-2xl border border-[#E5E0EA] flex items-center gap-3">
-            <ShieldCheck className="w-5 h-5 text-[#5e826b] shrink-0" />
-            <span className="text-xs font-bold text-[#292733]">پروانه نظام روان‌شناسی ۱۴۱۴۰۸۳</span>
+          <div className="bg-[#FCFBF8] p-4 rounded-xl border border-[#E5E0D8] flex items-center gap-3">
+            <ShieldCheck className="w-5 h-5 text-[#3D5E4E] shrink-0" />
+            <span className="text-xs font-semibold text-[#292D2A]">پروانه نظام روان‌شناسی ۱۴۱۴۰۸۳</span>
           </div>
-          <div className="bg-white p-4 rounded-2xl border border-[#E5E0EA] flex items-center gap-3">
-            <Clock className="w-5 h-5 text-[#6D5AA8] shrink-0" />
-            <span className="text-xs font-bold text-[#292733]">
-              مدت هر جلسه: {service.sessionDuration || '۶۰ دقیقه استاندارد'}
+          <div className="bg-[#FCFBF8] p-4 rounded-xl border border-[#E5E0D8] flex items-center gap-3">
+            <Clock className="w-5 h-5 text-[#344A42] shrink-0" />
+            <span className="text-xs font-semibold text-[#292D2A]">
+              مدت جلسه: {service.sessionDuration || '۶۰ دقیقه استاندارد'}
             </span>
           </div>
-          <div className="bg-white p-4 rounded-2xl border border-[#E5E0EA] flex items-center gap-3">
-            <Globe2 className="w-5 h-5 text-[#E8A58D] shrink-0" />
-            <span className="text-xs font-bold text-[#292733]">
-              {service.modality || 'حضوری تهران (پونک) و آنلاین'}
+          <div className="bg-[#FCFBF8] p-4 rounded-xl border border-[#E5E0D8] flex items-center gap-3">
+            <Globe2 className="w-5 h-5 text-[#3D5E4E] shrink-0" />
+            <span className="text-xs font-semibold text-[#292D2A]">
+              حضوری تهران (منطقه ۲) و آنلاین
             </span>
           </div>
-          <div className="bg-white p-4 rounded-2xl border border-[#E5E0EA] flex items-center gap-3">
-            <CheckCircle2 className="w-5 h-5 text-[#6D5AA8] shrink-0" />
-            <span className="text-xs font-bold text-[#292733]">پروتکل علمی EFT و گاتمن</span>
+          <div className="bg-[#FCFBF8] p-4 rounded-xl border border-[#E5E0D8] flex items-center gap-3">
+            <CheckCircle2 className="w-5 h-5 text-[#344A42] shrink-0" />
+            <span className="text-xs font-semibold text-[#292D2A]">پروتکل علمی EFT و گاتمن</span>
           </div>
         </div>
 
-        {/* Social Share Buttons */}
         <div className="mb-8">
           <SocialShareButtons meta={socialMeta} />
         </div>
 
-        {/* Data-Driven Key Takeaways */}
         <SeoTakeawaysCard
           title="دستاوردهای کلیدی و اهداف درمانی این خدمت"
           items={service.takeaways}
         />
 
-        {/* 2-Column Data-Driven Layout with Sticky TableOfContents */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           <aside className="hidden lg:block lg:col-span-4 lg:sticky lg:top-24 lg:order-1 w-full space-y-6">
             <TableOfContents
@@ -220,8 +221,7 @@ export const ServiceView: React.FC<ServiceViewProps> = ({ service, onBack }) => 
               />
             </div>
 
-            {/* Service Rendered Body + Data-Driven Structured Tables */}
-            <article className="bg-white rounded-3xl p-6 sm:p-12 border border-[#E5E0EA] shadow-xs mb-10">
+            <article className="bg-[#FCFBF8] rounded-2xl p-6 sm:p-11 border border-[#E5E0D8] mb-10">
               <div
                 ref={contentRef}
                 onClick={handleContentClick}
@@ -232,35 +232,42 @@ export const ServiceView: React.FC<ServiceViewProps> = ({ service, onBack }) => 
               </div>
             </article>
 
-            {/* Interactive FAQ Accordion */}
             <InteractiveFaqSection
               faqs={service.faqs}
               title="سوالات متداول مراجعان این حوزه"
             />
 
-            {/* Service CTA */}
-            <div className="bg-gradient-to-br from-[#FAF8F5] to-[#f2eff8] border border-[#6D5AA8]/30 rounded-3xl p-8 sm:p-10 mb-10 text-center">
-              <h3 className="text-xl font-black text-[#44386B] mb-3">
-                آماده شروع جلسات تخصصی {service.title} هستید؟
+            <div className="bg-[#EDF2EE] border border-[#D3E0D7] rounded-2xl p-7 sm:p-9 mb-10 text-center">
+              <h3 className="text-lg sm:text-xl font-extrabold text-[#292D2A] mb-3">
+                هماهنگی اولین جلسه {service.title}
               </h3>
-              <p className="text-xs sm:text-sm text-[#6F6B78] max-w-xl mx-auto mb-6 leading-relaxed">
-                برای دریافت اولین وقت مشاوره حضوری (کلینیک پیوند امن تهران - پونک) یا آنلاین با مهناز خوینی، در پیام‌رسان واتساپ با ما در ارتباط باشید.
+              <p className="text-xs sm:text-sm text-[#555650] max-w-xl mx-auto mb-6 leading-relaxed">
+                جلسات حضوری در تهران، منطقه ۲ (محدوده صادقیه – پونک، کلینیک پیوند امن) و به‌صورت
+                آنلاین در سراسر ایران و جهان برگزار می‌شوند.
               </p>
-              <a
-                href={`https://wa.me/989199087264?text=${encodeURIComponent(
-                  `سلام، مایل به رزرو نوبت مشاوره برای خدمت «${service.title}» هستم.`
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#6D5AA8] hover:bg-[#44386B] text-white text-xs sm:text-sm font-black px-8 py-3.5 rounded-full shadow-md transition-all"
-              >
-                <MessageSquare className="w-4 h-4" />
-                <span>رزرو وقت در واتساپ (۰۹۱۹۹۰۸۷۲۶۴)</span>
-              </a>
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                {onNavigateContact && (
+                  <button
+                    type="button"
+                    onClick={onNavigateContact}
+                    className="inline-flex items-center gap-2 bg-[#344A42] hover:bg-[#273932] text-[#FCFBF8] text-xs sm:text-sm font-semibold px-7 py-3 rounded-lg transition-colors cursor-pointer"
+                  >
+                    <span>درخواست رزرو نوبت</span>
+                  </button>
+                )}
+                <a
+                  href="https://wa.me/989199087264"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 border border-[#344A42] bg-[#FCFBF8] hover:bg-[#F4F1EC] text-[#344A42] text-xs sm:text-sm font-semibold px-6 py-3 rounded-lg transition-colors"
+                >
+                  <MessageSquare className="w-4 h-4" />
+                  <span>واتساپ پذیرش (۰۹۱۹۹۰۸۷۲۶۴)</span>
+                </a>
+              </div>
             </div>
 
-            {/* Author Bio Box */}
-            <div className="bg-white rounded-2xl p-6 border border-[#E5E0EA] flex items-center gap-4 shadow-xs mb-10">
+            <div className="bg-[#FCFBF8] rounded-2xl p-6 border border-[#E5E0D8] flex items-center gap-4 mb-10">
               <img
                 src="/images/mahnaz-khoini-thumb.webp"
                 onError={(e) => {
@@ -271,26 +278,25 @@ export const ServiceView: React.FC<ServiceViewProps> = ({ service, onBack }) => 
                 height={775}
                 loading="lazy"
                 decoding="async"
-                className="w-16 h-16 rounded-full object-cover shrink-0 border-2 border-[#6D5AA8]"
+                className="w-16 h-16 rounded-full object-cover object-top shrink-0 border border-[#CFC7BA]"
               />
               <div>
-                <h4 className="text-sm font-black text-[#292733] mb-1">مهناز خوینی</h4>
-                <p className="text-xs text-[#6F6B78] leading-relaxed">
-                  کارشناس ارشد روان‌شناسی بالینی و مسئول فنی کلینیک پیوند امن | پروانه ۱۴۱۴۰۸۳
+                <h4 className="text-sm font-bold text-[#292D2A] mb-1">مهناز خوینی</h4>
+                <p className="text-xs text-[#555650] leading-relaxed">
+                  کارشناس ارشد روان‌شناسی بالینی و مسئول فنی کلینیک پیوند امن · پروانه ۱۴۱۴۰۸۳
                 </p>
               </div>
             </div>
           </main>
         </div>
 
-        {/* Related Specialized Articles Cluster */}
         {relatedArticles.length > 0 && (
-          <div className="mt-8 pt-8 border-t border-[#E5E0EA]">
-            <h3 className="text-lg font-black text-[#44386B] mb-6 flex items-center gap-2">
-              <BookOpen className="w-5 h-5 text-[#6D5AA8]" />
-              <span>مقالات علمی و راهنماهای مرتبط با این خدمت</span>
+          <div className="mt-8 pt-8 border-t border-[#E5E0D8]">
+            <h3 className="text-lg font-extrabold text-[#292D2A] mb-6 flex items-center gap-2">
+              <BookOpen className="w-5 h-5 text-[#344A42]" />
+              <span>مقالات علمی و راهنماهای مرتبط</span>
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {relatedArticles.map((rel) => (
                 <a
                   key={rel.slug}
@@ -299,19 +305,19 @@ export const ServiceView: React.FC<ServiceViewProps> = ({ service, onBack }) => 
                     e.preventDefault();
                     navigateInternal(`/articles/${rel.slug}`);
                   }}
-                  className="bg-white p-5 rounded-2xl border border-[#E5E0EA] hover:border-[#6D5AA8] transition-all cursor-pointer shadow-xs hover:shadow-md flex flex-col justify-between"
+                  className="bg-[#FCFBF8] p-5 rounded-xl border border-[#E5E0D8] hover:border-[#8FAE9B] transition-colors flex flex-col justify-between group"
                 >
                   <div>
-                    <span className="text-[10px] font-bold text-[#8e482f] bg-[#fcf1ec] px-2 py-0.5 rounded-full mb-2 inline-block">
-                      {rel.category}
+                    <span className="text-xs font-medium text-[#6E6E68] mb-2 block">
+                      {rel.category} · {rel.readTime}
                     </span>
-                    <h4 className="text-xs sm:text-sm font-bold text-[#292733] line-clamp-2 mb-2">
+                    <h4 className="text-sm font-bold text-[#292D2A] group-hover:text-[#344A42] line-clamp-2 mb-2">
                       {rel.h1 || rel.title}
                     </h4>
                   </div>
-                  <span className="text-[11px] text-[#6D5AA8] font-black mt-3 flex items-center gap-1">
+                  <span className="text-xs text-[#344A42] font-semibold mt-3 flex items-center gap-1">
                     مطالعه راهنمای کامل
-                    <ArrowRight className="w-3 h-3 rotate-180" />
+                    <ArrowRight className="w-3.5 h-3.5 rotate-180" />
                   </span>
                 </a>
               ))}

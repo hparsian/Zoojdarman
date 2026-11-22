@@ -1,16 +1,6 @@
 import React, { useEffect } from 'react';
-import {
-  ArrowRight,
-  Phone,
-  MessageSquare,
-  MapPin,
-  Clock,
-  Mail,
-  ShieldCheck,
-  Calendar,
-  CheckCircle2,
-  Video
-} from 'lucide-react';
+import { Phone, MessageSquare, MapPin, Clock, Video } from 'lucide-react';
+import { InnerPageTopBar } from './InnerPageTopBar';
 import { ConsultationForm } from './ConsultationForm';
 import { StandaloneSeoGuide } from './StandaloneSeoGuide';
 
@@ -25,138 +15,126 @@ export const ContactView: React.FC<ContactViewProps> = ({ onBack, onNavigateTool
   }, []);
 
   return (
-    <div className="bg-[#FAF8F5] min-h-screen pb-24">
-      {/* Top Bar */}
-      <div className="bg-white border-b border-[#E5E0EA] sticky top-0 z-40">
-        <div className="container-custom h-16 flex items-center justify-between">
-          <a
-            href="/"
-            onClick={(e) => { e.preventDefault(); onBack(); }}
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-black text-[#6D5AA8] hover:text-[#44386B] cursor-pointer"
-          >
-            <ArrowRight className="w-4 h-4" />
-            <span>بازگشت به صفحه اصلی</span>
-          </a>
-
-          <div className="flex items-center text-lg font-black text-[#44386B]" dir="ltr">
-            <span>Z</span>
-            <svg width="14" height="14" viewBox="0 0 32 29" className="inline-block mx-0.5 fill-[#8FAF9B]">
-              <path d="M16 29 C16 29 0 18.5 0 8.8 C0 3.5 4 0 8.6 0 C11.8 0 14.4 1.8 16 4.6 C17.6 1.8 20.2 0 23.4 0 C28 0 32 3.5 32 8.8 C32 18.5 16 29 16 29 Z" />
-            </svg>
-            <svg width="14" height="14" viewBox="0 0 32 29" className="inline-block mx-0.5 fill-[#E8A58D]">
-              <path d="M16 29 C16 29 0 18.5 0 8.8 C0 3.5 4 0 8.6 0 C11.8 0 14.4 1.8 16 4.6 C17.6 1.8 20.2 0 23.4 0 C28 0 32 3.5 32 8.8 C32 18.5 16 29 16 29 Z" />
-            </svg>
-            <span>jdarman.ir</span>
-          </div>
-        </div>
-      </div>
+    <div className="bg-[#F4F1EC] min-h-screen pb-24 text-[#292D2A]">
+      <InnerPageTopBar
+        onBack={onBack}
+        backLabel="صفحه اصلی"
+        onNavigateTools={onNavigateTools}
+        maxWidthClass="max-w-4xl"
+      />
 
       <div className="container-custom max-w-4xl pt-8 sm:pt-12">
-        {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-xs text-[#8e8a96] mb-6">
-          <a href="/" onClick={(e) => { e.preventDefault(); onBack(); }} className="hover:text-[#6D5AA8] cursor-pointer">
+        <nav aria-label="مسیر صفحه" className="flex items-center gap-2 text-xs text-[#6B6D67] mb-6">
+          <a
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              onBack();
+            }}
+            className="hover:text-[#344A42] cursor-pointer"
+          >
             صفحه اصلی
           </a>
           <span>/</span>
-          <span className="text-[#6D5AA8] font-bold">تماس و نوبت‌دهی</span>
+          <span className="text-[#344A42] font-semibold">تماس و نوبت‌دهی</span>
         </nav>
 
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <span className="inline-block bg-[#edf5f0] text-[#5e826b] text-xs font-black px-4 py-1.5 rounded-full mb-3 border border-[#8FAF9B]/30">
-            پذیرش مراجعان جدید (حضوری و آنلاین)
-          </span>
-          <h1 className="text-2xl sm:text-4xl font-black text-[#44386B] mb-3">
+          <p className="text-xs font-semibold text-[#3D5E4E] mb-2">
+            پذیرش مراجعان جدید · حضوری تهران و آنلاین
+          </p>
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-[#292D2A] mb-3">
             هماهنگی جلسه مشاوره با مهناز خوینی
           </h1>
-          <p className="text-xs sm:text-base text-[#6F6B78] leading-relaxed">
-            جلسات حضوری در کلینیک پیوند امن (تهران) و جلسات آنلاین برای مراجعان سراسر ایران و هموطنان خارج از کشور با هماهنگی قبلی برگزار می‌شود.
+          <p className="text-xs sm:text-base text-[#555650] leading-relaxed">
+            جلسات حضوری در کلینیک پیوند امن (منطقه ۲ تهران) و جلسات آنلاین برای مراجعان سراسر ایران و خارج از کشور با هماهنگی قبلی برگزار می‌شود.
           </p>
         </div>
 
         {/* Quick Contact Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
           <a
-            href="https://wa.me/989199087264?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D9%86%D9%88%D8%A8%D8%AA%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%B2%D9%88%D8%AC%E2%80%8C%D8%AF%D8%B1%D9%85%D8%A7%D9%86%DB%8C%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%87%D9%85."
+            href="https://wa.me/989199087264?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D9%87%D9%85%D8%A7%D9%87%D9%86%DA%AF%DB%8C%20%D9%86%D9%88%D8%A8%D8%AA%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%87%D9%85."
             target="_blank"
             rel="noopener noreferrer"
-            className="p-5 rounded-2xl bg-white border border-[#E5E0EA] hover:border-[#6D5AA8] shadow-xs flex flex-col items-center text-center group transition-all"
+            className="p-5 rounded-xl bg-[#FCFBF8] border border-[#E5E0D8] hover:border-[#344A42] flex flex-col items-center text-center transition-colors"
           >
-            <div className="w-12 h-12 rounded-2xl bg-[#edf5f0] text-[#5e826b] flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
-              <MessageSquare className="w-6 h-6" />
+            <div className="w-11 h-11 rounded-xl bg-[#EDF2EE] text-[#344A42] flex items-center justify-center mb-3">
+              <MessageSquare className="w-5 h-5" />
             </div>
-            <span className="text-xs text-[#6F6B78] font-bold mb-1">ارتباط در پیام‌رسان</span>
-            <span className="text-sm font-black text-[#44386B]">واتساپ پذیرش</span>
-            <span className="text-[11px] text-[#5e826b] mt-1 font-bold">پاسخگویی سریع</span>
+            <span className="text-xs text-[#6B6D67] font-medium mb-1">ارتباط در پیام‌رسان</span>
+            <span className="text-sm font-bold text-[#292D2A]">واتساپ پذیرش</span>
+            <span className="text-[11px] text-[#3D5E4E] mt-1 font-semibold">هماهنگی غیرحضوری و آنلاین</span>
           </a>
 
           <a
             href="tel:09199087264"
-            className="p-5 rounded-2xl bg-white border border-[#E5E0EA] hover:border-[#6D5AA8] shadow-xs flex flex-col items-center text-center group transition-all"
+            className="p-5 rounded-xl bg-[#FCFBF8] border border-[#E5E0D8] hover:border-[#344A42] flex flex-col items-center text-center transition-colors"
           >
-            <div className="w-12 h-12 rounded-2xl bg-[#f2eff8] text-[#6D5AA8] flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
-              <Phone className="w-6 h-6" />
+            <div className="w-11 h-11 rounded-xl bg-[#EDF2EE] text-[#344A42] flex items-center justify-center mb-3">
+              <Phone className="w-5 h-5" />
             </div>
-            <span className="text-xs text-[#6F6B78] font-bold mb-1">تماس تلفنی مستقیم</span>
-            <span className="text-sm font-black text-[#44386B]" dir="ltr">۰۹۱۹ ۹۰۸ ۷۲۶۴</span>
-            <span className="text-[11px] text-[#6F6B78] mt-1">شنبه تا پنج‌شنبه ۹ تا ۲۱</span>
+            <span className="text-xs text-[#6B6D67] font-medium mb-1">تماس تلفنی مستقیم</span>
+            <span className="text-sm font-bold text-[#292D2A]" dir="ltr">۰۹۱۹ ۹۰۸ ۷۲۶۴</span>
+            <span className="text-[11px] text-[#6B6D67] mt-1">شنبه تا پنج‌شنبه ۹ تا ۲۱</span>
           </a>
 
           <a
             href="tel:02144600980"
-            className="p-5 rounded-2xl bg-white border border-[#E5E0EA] hover:border-[#6D5AA8] shadow-xs flex flex-col items-center text-center group transition-all"
+            className="p-5 rounded-xl bg-[#FCFBF8] border border-[#E5E0D8] hover:border-[#344A42] flex flex-col items-center text-center transition-colors"
           >
-            <div className="w-12 h-12 rounded-2xl bg-[#fcf1ec] text-[#8e482f] flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
-              <Phone className="w-6 h-6" />
+            <div className="w-11 h-11 rounded-xl bg-[#F4F1EC] text-[#344A42] flex items-center justify-center mb-3">
+              <Phone className="w-5 h-5" />
             </div>
-            <span className="text-xs text-[#6F6B78] font-bold mb-1">تلفن ثابت کلینیک</span>
-            <span className="text-sm font-black text-[#44386B]" dir="ltr">۰۲۱ ۴۴۶۰۰۹۸۰</span>
-            <span className="text-[11px] text-[#6F6B78] mt-1">پذیرش و هماهنگی وقت</span>
+            <span className="text-xs text-[#6B6D67] font-medium mb-1">تلفن ثابت کلینیک</span>
+            <span className="text-sm font-bold text-[#292D2A]" dir="ltr">۰۲۱ ۴۴۶۰۰۹۸۰</span>
+            <span className="text-[11px] text-[#6B6D67] mt-1">پذیرش و هماهنگی وقت</span>
           </a>
 
-          <div className="p-5 rounded-2xl bg-white border border-[#E5E0EA] shadow-xs flex flex-col items-center text-center">
-            <div className="w-12 h-12 rounded-2xl bg-[#FAF8F5] text-[#E8A58D] flex items-center justify-center mb-3">
-              <Video className="w-6 h-6" />
+          <div className="p-5 rounded-xl bg-[#FCFBF8] border border-[#E5E0D8] flex flex-col items-center text-center">
+            <div className="w-11 h-11 rounded-xl bg-[#F4F1EC] text-[#9E563E] flex items-center justify-center mb-3">
+              <Video className="w-5 h-5" />
             </div>
-            <span className="text-xs text-[#6F6B78] font-bold mb-1">مشاوره خارج از کشور</span>
-            <span className="text-sm font-black text-[#44386B]">آنلاین تصویری</span>
-            <span className="text-[11px] text-[#6F6B78] mt-1">Google Meet / WhatsApp</span>
+            <span className="text-xs text-[#6B6D67] font-medium mb-1">مشاوره خارج از کشور</span>
+            <span className="text-sm font-bold text-[#292D2A]">آنلاین تصویری</span>
+            <span className="text-[11px] text-[#6B6D67] mt-1">Google Meet / WhatsApp</span>
           </div>
         </div>
 
         {/* Location & Clinic Info */}
-        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#E5E0EA] shadow-xs mb-10">
-          <h2 className="text-base sm:text-lg font-black text-[#44386B] mb-4 flex items-center gap-2">
-            <MapPin className="w-5 h-5 text-[#E8A58D]" />
+        <div className="bg-[#FCFBF8] p-6 sm:p-8 rounded-2xl border border-[#E5E0D8] mb-10">
+          <h2 className="text-base sm:text-lg font-extrabold text-[#292D2A] mb-4 flex items-center gap-2">
+            <MapPin className="w-5 h-5 text-[#344A42]" />
             <span>نشانی کلینیک تخصصی و ساعات کاری</span>
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm text-[#6F6B78]">
-            <div className="space-y-3">
-              <p className="leading-relaxed">
-                <strong>آدرس جلسات حضوری:</strong> تهران، منطقه ۲ (کلینیک تخصصی روان‌شناسی و مشاوره خانواده{' '}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm text-[#555650]">
+            <div className="space-y-3 leading-relaxed">
+              <p>
+                <strong className="text-[#292D2A]">آدرس جلسات حضوری:</strong> تهران، منطقه ۲، محدوده صادقیه – پونک (کلینیک تخصصی روان‌شناسی و مشاوره خانواده{' '}
                 <a
                   href="https://peyvandamn.ir"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#6D5AA8] font-bold hover:underline"
+                  className="text-[#344A42] font-semibold underline"
                 >
                   پیوند امن
                 </a>
                 )
               </p>
               <p>
-                <strong>تلفن کلینیک:</strong>{' '}
-                <a href="tel:02144600980" className="text-[#6D5AA8] font-bold hover:underline" dir="ltr">
+                <strong className="text-[#292D2A]">تلفن کلینیک:</strong>{' '}
+                <a href="tel:02144600980" className="text-[#344A42] font-semibold underline" dir="ltr">
                   ۰۲۱ ۴۴۶۰۰۹۸۰
-                </a>
-                {' '}(شنبه تا پنج‌شنبه ۹ تا ۲۱)
+                </a>{' '}
+                (شنبه تا پنج‌شنبه ۹ تا ۲۱)
               </p>
               <p>
-                <strong>دسترسی حمل‌ونقل:</strong> دسترسی آسان از طریق بزرگراه‌های یادگار امام، چمران و ایستگاه‌های مترو و بی‌آرتی منطقه ۲.
+                <strong className="text-[#292D2A]">دسترسی حمل‌ونقل:</strong> دسترسی آسان از طریق بزرگراه‌های یادگار امام، اشرفی اصفهانی، چمران و ایستگاه‌های مترو منطقه ۲.
               </p>
               <p>
-                <strong>پروانه رسمی نظام:</strong> ۱۴۱۴۰۸۳ (خانم مهناز خوینی، مسئول فنی)
+                <strong className="text-[#292D2A]">پروانه رسمی نظام:</strong> ۱۴۱۴۰۸۳ (مهناز خوینی، مسئول فنی)
               </p>
 
               <div className="pt-2">
@@ -164,32 +142,32 @@ export const ContactView: React.FC<ContactViewProps> = ({ onBack, onNavigateTool
                   href="https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#4285F4] hover:bg-[#3367D6] text-white text-xs font-bold rounded-xl shadow-xs transition-all cursor-pointer"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#344A42] hover:bg-[#273932] text-[#FCFBF8] text-xs font-semibold rounded-lg transition-colors"
                 >
-                  <MapPin className="w-4 h-4 text-white" />
-                  <span>مسیریابی هوشمند روی گوگل مپ (Google Maps)</span>
+                  <MapPin className="w-4 h-4" />
+                  <span>مسیریابی روی نقشه گوگل (Google Maps)</span>
                 </a>
               </div>
             </div>
 
-            <div className="space-y-3 bg-[#FAF8F5] p-4 rounded-2xl border border-[#E5E0EA]">
-              <p className="flex items-center gap-2 text-[#44386B] font-bold">
-                <Clock className="w-4 h-4 text-[#6D5AA8]" />
+            <div className="space-y-3 bg-[#F4F1EC] p-5 rounded-xl border border-[#E5E0D8]">
+              <p className="flex items-center gap-2 text-[#292D2A] font-bold">
+                <Clock className="w-4 h-4 text-[#344A42]" />
                 <span>ساعات کاری پذیرش کلینیک:</span>
               </p>
-              <ul className="space-y-1 text-xs">
+              <ul className="space-y-1.5 text-xs">
                 <li>شنبه تا چهارشنبه: ۹:۰۰ صبح الی ۲۱:۰۰ شب</li>
                 <li>پنج‌شنبه‌ها: ۹:۰۰ صبح الی ۱۸:۰۰ عصر</li>
                 <li>جمعه‌ها و ایام تعطیل رسمی: پذیرش آنلاین با هماهنگی قبلی</li>
               </ul>
-              <div className="pt-2 border-t border-[#E5E0EA] text-[11px] text-[#6F6B78]">
-                موقعیت کلینیک در نقشه گوگل ثبت و اعتبارسنجی شده است.
+              <div className="pt-3 border-t border-[#E5E0D8] text-[11px] text-[#6B6D67]">
+                آدرس دقیق و دستورالعمل ورود پس از هماهنگی نوبت در اختیار مراجع قرار می‌گیرد.
               </div>
             </div>
           </div>
         </div>
 
-        {/* Embedded Consultation Form */}
+        {/* Embedded Privacy-First Consultation Form */}
         <ConsultationForm />
 
         <StandaloneSeoGuide routeKey="contact" />

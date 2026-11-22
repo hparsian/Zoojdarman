@@ -1,79 +1,76 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronUp, Phone, MessageSquare } from 'lucide-react';
+import { ArrowUp, Calendar, Phone } from 'lucide-react';
 
-export const FloatingActions: React.FC = () => {
-  const [showBackToTop, setShowBackToTop] = useState(false);
+interface FloatingActionsProps {
+  onNavigateContact?: () => void;
+}
+
+export const FloatingActions: React.FC<FloatingActionsProps> = ({ onNavigateContact }) => {
+  const [showTopBtn, setShowTopBtn] = useState(false);
+  const [isInputFocused, setIsInputFocused] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setShowBackToTop(window.scrollY > 360);
+    const handleScroll = () => setShowTopBtn(window.scrollY > 500);
+    const handleFocusIn = (e: FocusEvent) => {
+      const tag = (e.target as HTMLElement)?.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') {
+        setIsInputFocused(true);
+      }
     };
+    const handleFocusOut = () => setIsInputFocused(false);
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('focusin', handleFocusIn);
+    window.addEventListener('focusout', handleFocusOut);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('focusin', handleFocusIn);
+      window.removeEventListener('focusout', handleFocusOut);
+    };
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handleBookClick = () => {
+    if (onNavigateContact) {
+      onNavigateContact();
+    } else {
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
     <>
-      {/* Back to Top Floating Button */}
-      <button
-        type="button"
-        onClick={scrollToTop}
-        className={`fixed bottom-16 lg:bottom-8 right-5 z-40 w-10 h-10 rounded-lg bg-white text-[#241A35] border border-[#E8E2D8] shadow-md flex items-center justify-center transition-all duration-200 hover:bg-[#241A35] hover:text-[#C5A059] cursor-pointer ${
-          showBackToTop ? 'opacity-100 translate-y-0' : 'opacity-0 pointer-events-none translate-y-3'
-        }`}
-        aria-label="رفتن به بالای صفحه"
-      >
-        <ChevronUp className="w-5 h-5" />
-      </button>
-
-      {/* Desktop Floating Contact Shortcut (Bottom Left) */}
-      <div className="hidden lg:flex fixed bottom-8 left-8 z-40 flex-col gap-2">
-        <a
-          href="https://wa.me/989199087264?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D9%86%D9%88%D8%A8%D8%AA%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%B2%D9%88%D8%AC%E2%80%8C%D8%AF%D8%B1%D9%85%D8%A7%D9%86%DB%8C%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%87%D9%85."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-[#241A35] hover:bg-[#3E2F5B] text-white text-xs font-black px-4 py-2.5 rounded-lg border border-[#C5A059]/35 shadow-lg transition-colors"
+      {/* Subtle Desktop Back-to-Top */}
+      {showTopBtn && (
+        <button
+          type="button"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          aria-label="بازگشت به بالای صفحه"
+          className="hidden sm:flex fixed bottom-6 left-6 z-40 w-10 h-10 rounded-full bg-[#FCFBF8] border border-[#CFC7BA] hover:border-[#344A42] text-[#344A42] items-center justify-center shadow-sm transition-colors cursor-pointer"
         >
-          <MessageSquare className="w-4 h-4 text-[#C5A059]" />
-          <span>پذیرش واتساپ کلینیک</span>
-        </a>
+          <ArrowUp className="w-4 h-4" />
+        </button>
+      )}
 
-        <a
-          href="tel:09199087264"
-          className="inline-flex items-center gap-2 bg-white hover:bg-[#FCFAF8] text-[#241A35] border border-[#E8E2D8] text-xs font-black px-4 py-2.5 rounded-lg shadow-md transition-colors tabular-nums"
-        >
-          <Phone className="w-4 h-4 text-[#4E7A66]" />
-          <span dir="ltr">۰۹۱۹ ۹۰۸ ۷۲۶۴</span>
-        </a>
-      </div>
-
-      {/* Compact Mobile Sticky Action Bar (< 8% height) */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-[#E8E2D8] px-3 py-2">
-        <div className="flex items-center gap-2.5 max-w-md mx-auto">
-          <a
-            href="https://wa.me/989199087264?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D9%86%D9%88%D8%A8%D8%AA%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%B2%D9%88%D8%AC%E2%80%8C%D8%AF%D8%B1%D9%85%D8%A7%D9%86%DB%8C%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%87%D9%85."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 py-2.5 bg-[#241A35] text-white text-xs font-black rounded-lg border border-[#C5A059]/35 flex items-center justify-center gap-1.5"
+      {/* Compact Mobile Bottom Action Bar (< 56px high, hides when typing) */}
+      {!isInputFocused && (
+        <div className="sm:hidden fixed bottom-0 inset-x-0 z-40 bg-[#FCFBF8]/95 backdrop-blur-md border-t border-[#E5E0D8] px-4 py-2.5 flex items-center gap-2.5">
+          <button
+            type="button"
+            onClick={handleBookClick}
+            className="flex-1 h-10 rounded-lg bg-[#344A42] text-[#FCFBF8] text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer"
           >
-            <MessageSquare className="w-3.5 h-3.5 text-[#C5A059]" />
-            <span>نوبت‌دهی واتساپ</span>
-          </a>
-
+            <Calendar className="w-3.5 h-3.5" />
+            <span>رزرو جلسه مشاوره</span>
+          </button>
           <a
             href="tel:09199087264"
-            className="flex-1 py-2.5 bg-[#FCFAF8] text-[#241A35] border border-[#E8E2D8] text-xs font-black rounded-lg flex items-center justify-center gap-1.5"
+            className="h-10 px-4 rounded-lg border border-[#CFC7BA] bg-[#F4F1EC] text-[#344A42] text-xs font-semibold flex items-center justify-center gap-1.5"
           >
-            <Phone className="w-3.5 h-3.5 text-[#4E7A66]" />
-            <span>تماس کلینیک</span>
+            <Phone className="w-3.5 h-3.5" />
+            <span>تماس</span>
           </a>
         </div>
-      </div>
+      )}
     </>
   );
 };

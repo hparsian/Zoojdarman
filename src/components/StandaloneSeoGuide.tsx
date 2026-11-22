@@ -29,25 +29,25 @@ export const StandaloneSeoGuide: React.FC<StandaloneSeoGuideProps> = ({
       aria-label="راهنمای تخصصی و سوالات متداول"
       className={`container-custom ${maxWidthClass} py-12 space-y-8`}
     >
-      <div className="bg-white rounded-2xl p-6 sm:p-10 border border-[#E8E2D8]">
-        <span className="text-[11px] font-extrabold text-[#9E7D36] block mb-2">
+      <div className="bg-[#FCFBF8] rounded-2xl p-6 sm:p-10 border border-[#E5E0D8]">
+        <span className="text-xs font-semibold text-[#3D5E4E] block mb-2">
           راهنمای جامع بالینی کلینیک پیوند امن · پروانه نظام ۱۴۱۴۰۸۳
         </span>
 
-        <h2 className="balance-text text-xl sm:text-2xl font-black text-[#241A35] mb-6 leading-snug">
+        <h2 className="balance-text text-xl sm:text-2xl font-extrabold text-[#292D2A] mb-6 leading-snug">
           {entry.heading}
         </h2>
 
         <div
-          className="article-rendered-content text-sm sm:text-base text-[#292733] leading-[2.05] space-y-5"
+          className="article-rendered-content text-sm sm:text-base text-[#292D2A] leading-[2.05] space-y-5"
           dangerouslySetInnerHTML={{ __html: entry.bodyHtml }}
         />
       </div>
 
       {!skipFaqSchema && entry.faqs && entry.faqs.length > 0 && (
-        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#E8DFD5] shadow-xs">
-          <h2 className="text-lg sm:text-xl font-black text-[#241A35] mb-5 flex items-center gap-2">
-            <HelpCircle className="w-5 h-5 text-[#6D5AA8]" />
+        <div className="bg-[#FCFBF8] rounded-2xl p-6 sm:p-10 border border-[#E5E0D8]">
+          <h2 className="text-lg sm:text-xl font-extrabold text-[#292D2A] mb-5 flex items-center gap-2">
+            <HelpCircle className="w-5 h-5 text-[#344A42]" />
             <span>پرسش‌های متداول تکمیلی</span>
           </h2>
 
@@ -57,10 +57,10 @@ export const StandaloneSeoGuide: React.FC<StandaloneSeoGuideProps> = ({
               return (
                 <div
                   key={idx}
-                  className={`rounded-2xl border transition-all ${
+                  className={`rounded-xl border transition-colors ${
                     isOpen
-                      ? 'bg-[#FCFAF8] border-[#6D5AA8] shadow-xs'
-                      : 'bg-white border-[#E5E0EA] hover:border-[#6D5AA8]/40'
+                      ? 'bg-[#F4F1EC] border-[#8FAE9B]'
+                      : 'bg-[#FCFBF8] border-[#E5E0D8] hover:border-[#8FAE9B]'
                   }`}
                 >
                   <button
@@ -68,23 +68,19 @@ export const StandaloneSeoGuide: React.FC<StandaloneSeoGuideProps> = ({
                     onClick={() => setOpenFaq(isOpen ? null : idx)}
                     className="w-full p-4 sm:p-5 text-right flex items-center justify-between gap-4 cursor-pointer"
                   >
-                    <span className="text-xs sm:text-sm font-black text-[#292733] leading-snug">
+                    <span className="text-xs sm:text-sm font-bold text-[#292D2A] leading-snug">
                       {faq.q}
                     </span>
-                    <div
-                      className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-transform ${
-                        isOpen
-                          ? 'rotate-180 bg-[#6D5AA8] text-white'
-                          : 'bg-[#FAF8F5] text-[#6D5AA8]'
+                    <ChevronDown
+                      className={`w-4 h-4 text-[#344A42] shrink-0 transition-transform ${
+                        isOpen ? 'rotate-180' : ''
                       }`}
-                    >
-                      <ChevronDown className="w-4 h-4" />
-                    </div>
+                    />
                   </button>
 
                   {isOpen && (
                     <div
-                      className="px-4 pb-5 sm:px-5 sm:pb-5 pt-1 text-xs sm:text-sm text-[#5E5868] leading-relaxed border-t border-[#E5E0EA]/60 text-justify"
+                      className="px-4 pb-5 sm:px-5 sm:pb-5 pt-1 text-xs sm:text-sm text-[#555650] leading-[1.9] border-t border-[#E5E0D8] text-justify"
                       dangerouslySetInnerHTML={{ __html: faq.a }}
                     />
                   )}
