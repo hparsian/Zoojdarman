@@ -10,6 +10,7 @@ import {
 import { InnerPageTopBar } from './InnerPageTopBar';
 import { SeoCertificationSummaryCard } from './SeoCertificationSummaryCard';
 import { StandaloneSeoGuide } from './StandaloneSeoGuide';
+import { ClinicSpaceFigure } from './ClinicSpaceFigure';
 
 interface AboutViewProps {
   onBack: () => void;
@@ -197,6 +198,20 @@ export const AboutView: React.FC<AboutViewProps> = ({
               <span className="text-xs font-medium text-[#555650]">اصلاح الگوهای تخریبی گفت‌وگو</span>
             </div>
           </div>
+        </div>
+
+        {/* Clinic Consultation Environment Showcase */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+          <ClinicSpaceFigure
+            space="consultation-room"
+            alt="اتاق جلسات زوج‌درمانی حضوری در کلینیک پیوند امن تهران؛ صندلی‌های راحت روبه‌روی هم در نور طبیعی روز برای گفت‌وگوی آرام زوجین"
+            caption="اتاق مشاوره زوج‌درمانی حضوری — طراحی‌شده برای ایجاد امنیت عاطفی و تمرکز بدون حواس‌پرتی"
+          />
+          <ClinicSpaceFigure
+            space="quiet-lounge"
+            alt="فضای انتظار آرام و محرمانه کلینیک تخصصی مهناز خوینی با نشیمن سبز مریم‌گلی و نور ملایم طبیعی پیش از ورود به اتاق درمان"
+            caption="فضای انتظار خصوصی کلینیک پیوند امن — حفظ آرامش و محرمانگی مراجعان پیش از شروع جلسه"
+          />
         </div>
 
         {/* Practice Locations & Contact Callout */}

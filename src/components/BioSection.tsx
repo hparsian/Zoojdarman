@@ -1,5 +1,6 @@
 import React from 'react';
 import { Award, BookOpen, ShieldCheck, ArrowLeft } from 'lucide-react';
+import { ClinicSpaceFigure } from './ClinicSpaceFigure';
 
 interface BioSectionProps {
   onNavigateAbout?: () => void;
@@ -73,43 +74,51 @@ export const BioSection: React.FC<BioSectionProps> = ({
             </div>
           </div>
 
-          {/* Typographic Verified Credentials Ledger (5 cols) */}
-          <div className="lg:col-span-5 bg-[#FCFBF8] border border-[#E5E0D8] rounded-2xl p-6 sm:p-8 space-y-6">
-            <h3 className="text-base font-bold text-[#292D2A] pb-4 border-b border-[#E5E0D8]">
-              مشخصات حرفه‌ای و مجوزهای رسمی
-            </h3>
+          {/* Consultation Setting + Verified Credentials Ledger (5 cols) */}
+          <div className="lg:col-span-5 space-y-5">
+            <ClinicSpaceFigure
+              space="consultation-room"
+              alt="اتاق جلسات حضوری زوج‌درمانی مهناز خوینی در کلینیک پیوند امن تهران؛ دو صندلی راحت در فاصله استاندارد گفت‌وگو با نور طبیعی و فضایی آرام"
+              caption="اتاق مشاوره حضوری کلینیک پیوند امن — فضایی آرام، بی‌طرف و بدون قضاوت برای گفت‌وگوی زوجین"
+            />
 
-            <ul className="space-y-5 text-sm">
-              <li className="flex items-start gap-3.5">
-                <ShieldCheck className="w-5 h-5 text-[#3D5E4E] shrink-0 mt-0.5" />
-                <div>
-                  <span className="font-bold text-[#292D2A] block">پروانه اشتغال تخصصی شماره ۱۴۱۴۰۸۳</span>
-                  <span className="text-xs text-[#555650] leading-relaxed block mt-1">
-                    صادره از سازمان نظام روان‌شناسی و مشاوره جمهوری اسلامی ایران (قابل استعلام)
-                  </span>
-                </div>
-              </li>
+            <div className="bg-[#FCFBF8] border border-[#E5E0D8] rounded-2xl p-6 sm:p-8 space-y-6">
+              <h3 className="text-base font-bold text-[#292D2A] pb-4 border-b border-[#E5E0D8]">
+                مشخصات حرفه‌ای و مجوزهای رسمی
+              </h3>
 
-              <li className="flex items-start gap-3.5">
-                <BookOpen className="w-5 h-5 text-[#3D5E4E] shrink-0 mt-0.5" />
-                <div>
-                  <span className="font-bold text-[#292D2A] block">کارشناس ارشد روان‌شناسی بالینی</span>
-                  <span className="text-xs text-[#555650] leading-relaxed block mt-1">
-                    دارای گواهینامه‌های تخصصی زوج‌درمانی هیجان‌مدار (EFT) و طرحواره‌درمانی
-                  </span>
-                </div>
-              </li>
+              <ul className="space-y-5 text-sm">
+                <li className="flex items-start gap-3.5">
+                  <ShieldCheck className="w-5 h-5 text-[#3D5E4E] shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-bold text-[#292D2A] block">پروانه اشتغال تخصصی شماره ۱۴۱۴۰۸۳</span>
+                    <span className="text-xs text-[#555650] leading-relaxed block mt-1">
+                      صادره از سازمان نظام روان‌شناسی و مشاوره جمهوری اسلامی ایران (قابل استعلام)
+                    </span>
+                  </div>
+                </li>
 
-              <li className="flex items-start gap-3.5">
-                <Award className="w-5 h-5 text-[#3D5E4E] shrink-0 mt-0.5" />
-                <div>
-                  <span className="font-bold text-[#292D2A] block">مسئول فنی کلینیک تخصصی پیوند امن</span>
-                  <span className="text-xs text-[#555650] leading-relaxed block mt-1">
-                    تهران، منطقه ۲ (محدوده صادقیه – پونک) و ارائه جلسات آنلاین برای سراسر ایران و خارج از کشور
-                  </span>
-                </div>
-              </li>
-            </ul>
+                <li className="flex items-start gap-3.5">
+                  <BookOpen className="w-5 h-5 text-[#3D5E4E] shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-bold text-[#292D2A] block">کارشناس ارشد روان‌شناسی بالینی</span>
+                    <span className="text-xs text-[#555650] leading-relaxed block mt-1">
+                      دارای گواهینامه‌های تخصصی زوج‌درمانی هیجان‌مدار (EFT) و طرحواره‌درمانی
+                    </span>
+                  </div>
+                </li>
+
+                <li className="flex items-start gap-3.5">
+                  <Award className="w-5 h-5 text-[#3D5E4E] shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-bold text-[#292D2A] block">مسئول فنی کلینیک تخصصی پیوند امن</span>
+                    <span className="text-xs text-[#555650] leading-relaxed block mt-1">
+                      تهران، منطقه ۲ (محدوده صادقیه – پونک) و ارائه جلسات آنلاین برای سراسر ایران و خارج از کشور
+                    </span>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { Phone, MessageSquare, MapPin, Clock, Video } from 'lucide-react';
 import { InnerPageTopBar } from './InnerPageTopBar';
 import { ConsultationForm } from './ConsultationForm';
 import { StandaloneSeoGuide } from './StandaloneSeoGuide';
+import { ClinicSpaceFigure } from './ClinicSpaceFigure';
 
 interface ContactViewProps {
   onBack: () => void;
@@ -108,6 +109,19 @@ export const ContactView: React.FC<ContactViewProps> = ({ onBack, onNavigateTool
             <MapPin className="w-5 h-5 text-[#344A42]" />
             <span>نشانی کلینیک تخصصی و ساعات کاری</span>
           </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <ClinicSpaceFigure
+              space="quiet-lounge"
+              alt="محیط ورودی و فضای انتظار آرام کلینیک پیوند امن در منطقه ۲ تهران؛ فضایی امن و محرمانه پیش از شروع جلسه مشاوره حضوری"
+              caption="فضای آرام پذیرش و انتظار خصوصی در کلینیک پیوند امن (تهران، منطقه ۲)"
+            />
+            <ClinicSpaceFigure
+              space="consultation-room"
+              alt="اتاق مشاوره حضوری زوج‌درمانی با دو صندلی روبه‌روی هم و نور طبیعی ملایم در کلینیک تخصصی مهناز خوینی"
+              caption="اتاق گفت‌وگوی زوجین برای جلسات حضوری ۶۰ تا ۹۰ دقیقه‌ای"
+            />
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm text-[#555650]">
             <div className="space-y-3 leading-relaxed">

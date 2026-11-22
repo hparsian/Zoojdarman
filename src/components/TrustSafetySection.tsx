@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShieldCheck, Lock, Scale, HeartHandshake } from 'lucide-react';
+import { ClinicSpaceFigure } from './ClinicSpaceFigure';
 
 interface TrustSafetySectionProps {
   onNavigatePrivacy?: () => void;
@@ -34,28 +35,39 @@ export const TrustSafetySection: React.FC<TrustSafetySectionProps> = ({
   return (
     <section id="trust-safety" className="py-16 sm:py-20 bg-[#EDF2EE] border-b border-[#D3E0D7]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
-          <div className="max-w-2xl">
-            <p className="text-xs font-semibold text-[#3D5E4E] mb-2">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center mb-10">
+          <div className="lg:col-span-7 space-y-4">
+            <p className="text-xs font-semibold text-[#3D5E4E]">
               امنیت روانی و اخلاق حرفه‌ای
             </p>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#292D2A] leading-snug mb-2">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#292D2A] leading-snug">
               چرا می‌توانید با آرامش خاطر گفت‌وگو را آغاز کنید؟
             </h2>
-            <p className="text-sm text-[#555650] leading-relaxed">
+            <p className="text-sm sm:text-base text-[#555650] leading-relaxed max-w-2xl">
               حفاظت از حریم خصوصی، شأن انسانی و مرزهای اخلاقی، شرط اول هر مداخله مؤثر در زوج‌درمانی است.
+              تمامی جلسات حضوری و آنلاین در محیطی کاملاً خصوصی، ایزوله و بدون حضور شخص ثالث برگزار می‌شود.
             </p>
+
+            {onNavigatePrivacy && (
+              <div className="pt-1">
+                <button
+                  type="button"
+                  onClick={onNavigatePrivacy}
+                  className="text-xs sm:text-sm font-semibold text-[#344A42] hover:underline cursor-pointer whitespace-nowrap"
+                >
+                  مطالعه منشور حریم خصوصی سایت
+                </button>
+              </div>
+            )}
           </div>
 
-          {onNavigatePrivacy && (
-            <button
-              type="button"
-              onClick={onNavigatePrivacy}
-              className="text-xs sm:text-sm font-semibold text-[#344A42] hover:underline self-start md:self-auto cursor-pointer whitespace-nowrap"
-            >
-              مطالعه منشور حریم خصوصی سایت
-            </button>
-          )}
+          <div className="lg:col-span-5">
+            <ClinicSpaceFigure
+              space="online-studio"
+              alt="دفتر تخصصی خصوصی و عایق صدای مهناز خوینی برای برگزاری جلسات زوج‌درمانی آنلاین و مطالعات بالینی با منابع تخصصی روان‌شناسی"
+              caption="محیط خصوصی و آکوستیک جلسات آنلاین و مطالعه بالینی درمانگر"
+            />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
