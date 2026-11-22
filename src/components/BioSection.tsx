@@ -1,6 +1,7 @@
 import React from 'react';
 import { Award, BookOpen, ShieldCheck, ArrowLeft } from 'lucide-react';
 import { ClinicSpaceFigure } from './ClinicSpaceFigure';
+import { PARENT_CLINIC_LINKS } from '../utils/parentClinicLinks';
 
 interface BioSectionProps {
   onNavigateAbout?: () => void;
@@ -111,7 +112,17 @@ export const BioSection: React.FC<BioSectionProps> = ({
                 <li className="flex items-start gap-3.5">
                   <Award className="w-5 h-5 text-[#3D5E4E] shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold text-[#292D2A] block">مسئول فنی کلینیک تخصصی پیوند امن</span>
+                    <span className="font-bold text-[#292D2A] block">
+                      مسئول فنی{' '}
+                      <a
+                        href={PARENT_CLINIC_LINKS.aboutClinic}
+                        target="_blank"
+                        rel="noopener"
+                        className="text-[#344A42] underline underline-offset-4 hover:text-[#273932] transition-colors"
+                      >
+                        کلینیک تخصصی پیوند امن
+                      </a>
+                    </span>
                     <span className="text-xs text-[#555650] leading-relaxed block mt-1">
                       تهران، منطقه ۲ (محدوده صادقیه – پونک) و ارائه جلسات آنلاین برای سراسر ایران و خارج از کشور
                     </span>

@@ -18,9 +18,11 @@ import {
   Globe2,
   BookOpen,
   AlertCircle,
+  ExternalLink,
 } from 'lucide-react';
 import { SocialShareButtons } from './SocialShareButtons';
 import { getServiceSocialMeta } from '../utils/socialShareSeo';
+import { PARENT_CLINIC_LINKS, getParentServiceLink } from '../utils/parentClinicLinks';
 
 interface ServiceViewProps {
   slug: string;
@@ -112,6 +114,7 @@ export const ServiceView: React.FC<ServiceViewProps> = ({
     .filter((a): a is NonNullable<typeof a> => Boolean(a));
 
   const socialMeta = getServiceSocialMeta(service);
+  const parentService = getParentServiceLink(service.slug);
 
   return (
     <div className="bg-[#F4F1EC] min-h-screen pb-24">
@@ -263,6 +266,26 @@ export const ServiceView: React.FC<ServiceViewProps> = ({
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>واتساپ پذیرش (۰۹۱۹۹۰۸۷۲۶۴)</span>
+                </a>
+              </div>
+              <div className="mt-5 pt-4 border-t border-[#D3E0D7] flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-[#344A42]">
+                <a
+                  href={parentService.url}
+                  target="_blank"
+                  rel="noopener"
+                  className="inline-flex items-center gap-1.5 font-semibold hover:text-[#273932] underline underline-offset-4 transition-colors"
+                >
+                  <span>{parentService.label}</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+                <a
+                  href={PARENT_CLINIC_LINKS.portal}
+                  target="_blank"
+                  rel="noopener"
+                  className="inline-flex items-center gap-1.5 font-semibold hover:text-[#273932] underline underline-offset-4 transition-colors"
+                >
+                  <span>پورتال مراجعان کلینیک پیوند امن</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>
             </div>

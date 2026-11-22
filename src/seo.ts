@@ -21,6 +21,9 @@ const NOT_FOUND_ROBOTS = 'noindex, follow';
 const DEFAULT_IMAGE = '/images/og-cover.jpg';
 const THERAPIST_ID = `${SITE_URL}/#therapist`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
+const PARENT_CLINIC_ID = 'https://peyvandamn.ir/#organization';
+const PARENT_CLINIC_URL = 'https://peyvandamn.ir';
+const PARENT_THERAPIST_URL = 'https://peyvandamn.ir/author/mkhoini/';
 
 const HOME_TITLE = 'مرکز تخصصی زوج درمان | مهناز خوینی (نظام ۱۴۱۴۰۸۳)';
 const HOME_DESCRIPTION =
@@ -267,6 +270,7 @@ function serviceSchema(slug: string, url: string): Record<string, unknown>[] {
         '@id': `${SITE_URL}/#clinic`,
         name: 'مرکز تخصصی زوج درمان مهناز خوینی',
         telephone: '+989199087264',
+        parentOrganization: { '@id': PARENT_CLINIC_ID },
       },
       areaServed: ['تهران', 'کرج', 'اصفهان', 'کرمان', 'شیراز', 'مشهد', 'سراسر ایران', 'خارج از کشور'],
       availableLanguage: 'fa-IR',
@@ -339,14 +343,31 @@ function toolsHubSchema(url: string): Record<string, unknown>[] {
 function homeJsonLdSchema(url: string): Record<string, unknown>[] {
   return [
     {
+      '@type': ['MedicalClinic', 'Organization'],
+      '@id': PARENT_CLINIC_ID,
+      name: 'کلینیک تخصصی روان‌شناسی پیوند امن',
+      alternateName: ['پيوند امن', 'مهناز خوینی زوج درمانگر | پيوند امن'],
+      url: PARENT_CLINIC_URL,
+      telephone: '+989199087264',
+      sameAs: [
+        SITE_URL,
+        'https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA',
+        'https://instagram.com/mahnaz.khoini',
+        'https://t.me/MKHOINI',
+        'https://www.aparat.com/Mahnaz.khoini_psychology',
+        'https://youtube.com/@mahnaz.khoini',
+      ],
+    },
+    {
       '@type': 'WebSite',
       '@id': `${url}#website`,
       url,
       name: 'مرکز تخصصی زوج درمان مهناز خوینی',
       alternateName: ['Zoojdarman', 'zoojdarman.ir'],
-      description: 'مرکز تخصصی زوج‌درمانی، مشاوره خیانت، درمان طلاق عاطفی و روان‌شناسی روابط با مهناز خوینی (پروانه نظام ۱۴۱۴۰۸۳)',
+      description: 'مرکز تخصصی زوج‌درمانی، مشاوره خیانت، درمان طلاق عاطفی و روان‌شناسی روابط؛ بخش تخصصی زوج‌درمانی کلینیک پیوند امن با مهناز خوینی (پروانه نظام ۱۴۱۴۰۸۳)',
       inLanguage: 'fa-IR',
-      publisher: { '@id': THERAPIST_ID },
+      publisher: { '@id': PARENT_CLINIC_ID },
+      creator: { '@id': THERAPIST_ID },
       potentialAction: {
         '@type': 'SearchAction',
         target: {
@@ -369,11 +390,15 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
       image: absoluteUrl(DEFAULT_IMAGE),
       telephone: '+989199087264',
       email: 'Khoini.1988@gmail.com',
-      memberOf: {
-        '@type': 'Organization',
-        name: 'سازمان نظام روان‌شناسی و مشاوره جمهوری اسلامی ایران',
-        url: 'https://pcoiran.ir',
-      },
+      worksFor: { '@id': PARENT_CLINIC_ID },
+      memberOf: [
+        {
+          '@type': 'Organization',
+          name: 'سازمان نظام روان‌شناسی و مشاوره جمهوری اسلامی ایران',
+          url: 'https://pcoiran.ir',
+        },
+        { '@id': PARENT_CLINIC_ID },
+      ],
       hasCredential: {
         '@type': 'EducationalOccupationalCredential',
         credentialCategory: 'پروانه اشتغال تخصصی',
@@ -397,7 +422,8 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
       ],
       sameAs: [
         'https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA',
-        'https://peyvandamn.ir',
+        PARENT_CLINIC_URL,
+        PARENT_THERAPIST_URL,
         'https://instagram.com/mahnaz.khoini',
         'https://t.me/MKHOINI',
         'https://www.aparat.com/Mahnaz.khoini_psychology',
@@ -416,14 +442,16 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
       '@type': 'MedicalBusiness',
       '@id': `${url}#clinic`,
       name: 'مرکز تخصصی زوج درمان مهناز خوینی',
-      alternateName: ['کلینیک پیوند امن'],
+      alternateName: ['کلینیک پیوند امن', 'سامانه تخصصی زوج‌درمانی کلینیک پیوند امن'],
       description:
-        'مرکز تخصصی زوج درمان، مشاوره خیانت، درمان طلاق عاطفی و حل تعارضات زناشویی با رویکرد هیجان‌مدار (EFT) تحت مسئولیت فنی مهناز خوینی با پروانه نظام روانشناسی ۱۴۱۴۰۸۳',
+        'پرتال تخصصی زوج درمان، مشاوره خیانت، درمان طلاق عاطفی و حل تعارضات زناشویی با رویکرد هیجان‌مدار (EFT) زیرمجموعه کلینیک پیوند امن تحت مسئولیت فنی مهناز خوینی (نظام ۱۴۱۴۰۸۳)',
       url,
+      parentOrganization: { '@id': PARENT_CLINIC_ID },
+      branchOf: { '@id': PARENT_CLINIC_ID },
       hasMap: 'https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA',
       sameAs: [
         'https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA',
-        'https://peyvandamn.ir',
+        PARENT_CLINIC_URL,
         'https://instagram.com/mahnaz.khoini',
         'https://www.aparat.com/Mahnaz.khoini_psychology',
         'https://youtube.com/@mahnaz.khoini',
@@ -856,6 +884,7 @@ export function seoForRoute(route: RouteState): SeoPage {
               '@id': `${SITE_URL}/#clinic`,
               name: 'مرکز تخصصی زوج درمان مهناز خوینی',
               telephone: '+989199087264',
+              parentOrganization: { '@id': PARENT_CLINIC_ID },
             },
             areaServed: {
               '@type': 'City',
@@ -904,6 +933,7 @@ export function seoForRoute(route: RouteState): SeoPage {
               '@id': `${SITE_URL}/#clinic`,
               name: 'مرکز تخصصی زوج درمان مهناز خوینی',
               telephone: '+989199087264',
+              parentOrganization: { '@id': PARENT_CLINIC_ID },
             },
             areaServed: {
               '@type': 'Country',

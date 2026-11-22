@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import { Phone, MessageSquare, MapPin, Clock, Video } from 'lucide-react';
+import { Phone, MessageSquare, MapPin, Clock, Video, ExternalLink } from 'lucide-react';
 import { InnerPageTopBar } from './InnerPageTopBar';
 import { ConsultationForm } from './ConsultationForm';
 import { StandaloneSeoGuide } from './StandaloneSeoGuide';
 import { ClinicSpaceFigure } from './ClinicSpaceFigure';
+import { PARENT_CLINIC_LINKS } from '../utils/parentClinicLinks';
 
 interface ContactViewProps {
   onBack: () => void;
@@ -128,10 +129,10 @@ export const ContactView: React.FC<ContactViewProps> = ({ onBack, onNavigateTool
               <p>
                 <strong className="text-[#292D2A]">آدرس جلسات حضوری:</strong> تهران، منطقه ۲، محدوده صادقیه – پونک (کلینیک تخصصی روان‌شناسی و مشاوره خانواده{' '}
                 <a
-                  href="https://peyvandamn.ir"
+                  href={PARENT_CLINIC_LINKS.aboutClinic}
                   target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#344A42] font-semibold underline"
+                  rel="noopener"
+                  className="text-[#344A42] font-semibold underline underline-offset-4"
                 >
                   پیوند امن
                 </a>
@@ -151,7 +152,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ onBack, onNavigateTool
                 <strong className="text-[#292D2A]">پروانه رسمی نظام:</strong> ۱۴۱۴۰۸۳ (مهناز خوینی، مسئول فنی)
               </p>
 
-              <div className="pt-2">
+              <div className="pt-2 flex flex-wrap items-center gap-3">
                 <a
                   href="https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA"
                   target="_blank"
@@ -160,6 +161,15 @@ export const ContactView: React.FC<ContactViewProps> = ({ onBack, onNavigateTool
                 >
                   <MapPin className="w-4 h-4" />
                   <span>مسیریابی روی نقشه گوگل (Google Maps)</span>
+                </a>
+                <a
+                  href={PARENT_CLINIC_LINKS.portal}
+                  target="_blank"
+                  rel="noopener"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 border border-[#344A42] bg-[#FCFBF8] hover:bg-[#EDF2EE] text-[#344A42] text-xs font-semibold rounded-lg transition-colors"
+                >
+                  <span>پورتال مراجعان پیوند امن</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>
             </div>

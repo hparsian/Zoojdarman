@@ -1,6 +1,7 @@
 import React from 'react';
 import { Phone, MapPin } from 'lucide-react';
 import { BrandMark, ZoojdarmanWordmark } from './BrandMark';
+import { PARENT_CLINIC_LINKS } from '../utils/parentClinicLinks';
 
 interface FooterProps {
   onNavigateHome: (section?: string) => void;
@@ -84,6 +85,17 @@ export const Footer: React.FC<FooterProps> = ({
                 <Phone className="w-4 h-4 text-[#8FAE9B] shrink-0" />
                 <span dir="ltr">021-44600980 · 0919-908-7264</span>
               </div>
+              <p className="text-[11px] text-[#D8CBB9] pt-1 leading-relaxed">
+                بخش تخصصی زوج‌درمانی و زیرمجموعه رسمی{' '}
+                <a
+                  href={PARENT_CLINIC_LINKS.home}
+                  target="_blank"
+                  rel="noopener"
+                  className="text-[#8FAE9B] hover:text-[#FCFBF8] underline underline-offset-4 transition-colors"
+                >
+                  کلینیک پیوند امن (peyvandamn.ir)
+                </a>
+              </p>
             </div>
           </div>
 
@@ -134,6 +146,16 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-[#FCFBF8] transition-colors"
                 >
                   مشاوره آنلاین بین‌المللی
+                </a>
+              </li>
+              <li>
+                <a
+                  href={PARENT_CLINIC_LINKS.familyCounseling}
+                  target="_blank"
+                  rel="noopener"
+                  className="hover:text-[#FCFBF8] transition-colors"
+                >
+                  مشاوره فردی و خانواده (پیوند امن)
                 </a>
               </li>
               <li>
@@ -312,9 +334,9 @@ export const Footer: React.FC<FooterProps> = ({
               حریم خصوصی و محرمانگی
             </a>
             <a
-              href="https://peyvandamn.ir"
+              href={PARENT_CLINIC_LINKS.home}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               className="hover:text-[#FCFBF8] transition-colors"
             >
               کلینیک پیوند امن

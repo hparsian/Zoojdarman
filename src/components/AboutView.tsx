@@ -6,11 +6,13 @@ import {
   MapPin,
   Calendar,
   Compass,
+  ExternalLink,
 } from 'lucide-react';
 import { InnerPageTopBar } from './InnerPageTopBar';
 import { SeoCertificationSummaryCard } from './SeoCertificationSummaryCard';
 import { StandaloneSeoGuide } from './StandaloneSeoGuide';
 import { ClinicSpaceFigure } from './ClinicSpaceFigure';
+import { PARENT_CLINIC_LINKS } from '../utils/parentClinicLinks';
 
 interface AboutViewProps {
   onBack: () => void;
@@ -230,13 +232,24 @@ export const AboutView: React.FC<AboutViewProps> = ({
             </div>
           </div>
 
-          <button
-            type="button"
-            onClick={onNavigateContact}
-            className="w-full sm:w-auto px-6 py-3 bg-[#344A42] hover:bg-[#273932] text-[#FCFBF8] rounded-lg font-semibold text-xs transition-colors cursor-pointer whitespace-nowrap"
-          >
-            اطلاعات تماس و رزرو جلسه
-          </button>
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+            <button
+              type="button"
+              onClick={onNavigateContact}
+              className="w-full sm:w-auto px-6 py-3 bg-[#344A42] hover:bg-[#273932] text-[#FCFBF8] rounded-lg font-semibold text-xs transition-colors cursor-pointer whitespace-nowrap"
+            >
+              اطلاعات تماس و رزرو جلسه
+            </button>
+            <a
+              href={PARENT_CLINIC_LINKS.aboutClinic}
+              target="_blank"
+              rel="noopener"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-3 border border-[#CFC7BA] hover:border-[#344A42] bg-[#F4F1EC] text-[#344A42] rounded-lg font-semibold text-xs transition-colors whitespace-nowrap"
+            >
+              <span>معرفی کلینیک مادر (پیوند امن)</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </div>
         </div>
 
         <StandaloneSeoGuide routeKey="about" />

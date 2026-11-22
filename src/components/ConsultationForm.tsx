@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Phone, MapPin, Clock, CheckCircle2, Copy, Check, MessageSquare } from 'lucide-react';
+import { Phone, MapPin, Clock, CheckCircle2, Copy, Check, MessageSquare, ExternalLink } from 'lucide-react';
+import { PARENT_CLINIC_LINKS } from '../utils/parentClinicLinks';
 
 export const ConsultationForm: React.FC = () => {
   const [nameOrAlias, setNameOrAlias] = useState('');
@@ -83,6 +84,18 @@ export const ConsultationForm: React.FC = () => {
                     شنبه تا چهارشنبه ۹ تا ۲۱ · پنج‌شنبه‌ها تا ۱۹ (جمعه‌ها ویژه ایرانیان خارج از کشور با هماهنگی قبلی)
                   </p>
                 </div>
+              </div>
+
+              <div className="pt-4 border-t border-[#E5E0D8]">
+                <a
+                  href={PARENT_CLINIC_LINKS.portal}
+                  target="_blank"
+                  rel="noopener"
+                  className="inline-flex items-center gap-2 text-xs font-semibold text-[#344A42] hover:text-[#273932] underline underline-offset-4 transition-colors"
+                >
+                  <span>ورود به پورتال مراجعان کلینیک پیوند امن</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
             </div>
           </div>
