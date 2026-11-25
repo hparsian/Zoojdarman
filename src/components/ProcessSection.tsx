@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowLeft } from 'lucide-react';
+import { ClinicSpaceFigure } from './ClinicSpaceFigure';
 
 interface ProcessSectionProps {
   onNavigateProcess?: () => void;
@@ -80,7 +81,7 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({ onNavigateProces
         </div>
 
         {/* Common Reassurance Notes */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
           <div className="bg-[#EDF2EE]/70 border border-[#D3E0D7] rounded-xl p-5 sm:p-6">
             <h3 className="text-sm font-bold text-[#344A42] mb-2">
               اگر همسرم تمایلی به شرکت در جلسه نداشته باشد چطور؟
@@ -99,6 +100,22 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({ onNavigateProces
               آرام منزل یا در دو مکان مجزا، با تمرکز بیشتری گفت‌وگو را پیش می‌برند.
             </p>
           </div>
+        </div>
+
+        {/* Real Session Environments (In-Person EFT Room + Online Controlled-Light Room) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <ClinicSpaceFigure
+            space="navy-eft-counseling-room"
+            aspectRatio="4/5"
+            title="اتاق جلسات تحلیلی و ترسیم چرخه ارتباطی (EFT)"
+            caption="مجهز به مبلمان مخمل سرمه‌ای، دیوارپوش سرتاسری آکوستیک و وایت‌برد آموزشی برای ترسیم نقشه چرخه‌های دفاعی و نیازهای دلبستگی در جلسات حضوری."
+          />
+          <ClinicSpaceFigure
+            space="controlled-light-online-room"
+            aspectRatio="4/5"
+            title="اتاق نور کنترل‌شده ویژه جلسات آنلاین تصویری"
+            caption="دفتر بالینی با نور تنظیم‌شده بدون بازتاب و فضای ایزوله برای برگزاری جلسات آنلاین تصویری هم‌تراز با جلسات حضوری در کلینیک پیوند امن."
+          />
         </div>
       </div>
     </section>

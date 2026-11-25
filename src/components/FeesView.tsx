@@ -12,6 +12,7 @@ import {
 import { registerFaqSchema } from '../seo';
 import { InnerPageTopBar } from './InnerPageTopBar';
 import { StandaloneSeoGuide } from './StandaloneSeoGuide';
+import { ClinicSpaceFigure } from './ClinicSpaceFigure';
 
 interface FeesViewProps {
   onBack: () => void;
@@ -387,6 +388,22 @@ export const FeesView: React.FC<FeesViewProps> = ({
               <MessageSquare className="w-4 h-4" />
               <span>هماهنگی پرداخت و نوبت آنلاین</span>
             </button>
+          </div>
+        </div>
+
+        {/* Clinic & Online Session Environments */}
+        <div className="mb-12">
+          <div className="mb-5">
+            <span className="text-xs font-semibold text-[#3D5E4E] block mb-1">
+              محیط استاندارد جلسات
+            </span>
+            <h2 className="text-lg sm:text-xl font-extrabold text-[#292D2A]">
+              فضای انتظار حضوری در کلینیک پیوند امن و اتاق جلسات آنلاین
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <ClinicSpaceFigure space="waiting-lounge-doors" aspectRatio="4/5" />
+            <ClinicSpaceFigure space="controlled-light-online-room" aspectRatio="4/5" />
           </div>
         </div>
 

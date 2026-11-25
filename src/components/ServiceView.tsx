@@ -23,6 +23,16 @@ import {
 import { SocialShareButtons } from './SocialShareButtons';
 import { getServiceSocialMeta } from '../utils/socialShareSeo';
 import { PARENT_CLINIC_LINKS, getParentServiceLink } from '../utils/parentClinicLinks';
+import { ClinicSpaceFigure, ClinicSpaceKey } from './ClinicSpaceFigure';
+
+const SERVICE_SPACE_MAP: Record<string, ClinicSpaceKey> = {
+  'couples-therapy': 'tehran-sunlit-mustard-room',
+  'infidelity-counseling': 'acoustic-leather-private-room',
+  'divorce-counseling': 'acoustic-leather-private-room',
+  'premarital-counseling': 'sunlit-blue-couples-room',
+  'online-counseling': 'controlled-light-online-room',
+  'relationship-patterns-therapy': 'navy-eft-counseling-room',
+};
 
 interface ServiceViewProps {
   slug: string;
@@ -239,6 +249,14 @@ export const ServiceView: React.FC<ServiceViewProps> = ({
               faqs={service.faqs}
               title="سوالات متداول مراجعان این حوزه"
             />
+
+            <div className="mb-10">
+              <ClinicSpaceFigure
+                space={SERVICE_SPACE_MAP[service.slug] || 'tehran-sunlit-mustard-room'}
+                aspectRatio="4/5"
+                className="max-w-md mx-auto"
+              />
+            </div>
 
             <div className="bg-[#EDF2EE] border border-[#D3E0D7] rounded-2xl p-7 sm:p-9 mb-10 text-center">
               <h3 className="text-lg sm:text-xl font-extrabold text-[#292D2A] mb-3">

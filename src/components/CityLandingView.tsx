@@ -5,6 +5,7 @@ import { getArticleMetaBySlug } from '../data/articlesMeta';
 import { registerFaqSchema } from '../seo';
 import { InnerPageTopBar } from './InnerPageTopBar';
 import { CitiesHubView } from './CitiesHubView';
+import { ClinicSpaceFigure } from './ClinicSpaceFigure';
 import {
   MapPin,
   Phone,
@@ -185,6 +186,28 @@ export const CityLandingView: React.FC<CityLandingViewProps> = ({
             <p className="text-xs sm:text-sm text-[#555650] leading-relaxed">
               {cityData.neighborhoods.join(' · ')}
             </p>
+          </div>
+        </div>
+
+        {/* Session Environment for this City */}
+        <div className="bg-[#FCFBF8] p-6 sm:p-8 rounded-2xl border border-[#E5E0D8]">
+          <h2 className="text-base sm:text-lg font-extrabold text-[#292D2A] mb-4">
+            {cityData.slug === 'tehran'
+              ? 'فضای جلسات حضوری و سالن انتظار کلینیک پیوند امن در تهران'
+              : `فضای برگزاری جلسات آنلاین تصویری برای مراجعان ${cityData.cityName}`}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {cityData.slug === 'tehran' ? (
+              <>
+                <ClinicSpaceFigure space="tehran-sunlit-mustard-room" aspectRatio="4/5" />
+                <ClinicSpaceFigure space="waiting-lounge-doors" aspectRatio="4/5" />
+              </>
+            ) : (
+              <>
+                <ClinicSpaceFigure space="controlled-light-online-room" aspectRatio="4/5" />
+                <ClinicSpaceFigure space="acoustic-leather-private-room" aspectRatio="4/5" />
+              </>
+            )}
           </div>
         </div>
 

@@ -111,17 +111,10 @@ export const ContactView: React.FC<ContactViewProps> = ({ onBack, onNavigateTool
             <span>نشانی کلینیک تخصصی و ساعات کاری</span>
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <ClinicSpaceFigure
-              space="quiet-lounge"
-              alt="محیط ورودی و فضای انتظار آرام کلینیک پیوند امن در منطقه ۲ تهران؛ فضایی امن و محرمانه پیش از شروع جلسه مشاوره حضوری"
-              caption="فضای آرام پذیرش و انتظار خصوصی در کلینیک پیوند امن (تهران، منطقه ۲)"
-            />
-            <ClinicSpaceFigure
-              space="consultation-room"
-              alt="اتاق مشاوره حضوری زوج‌درمانی با دو صندلی روبه‌روی هم و نور طبیعی ملایم در کلینیک تخصصی مهناز خوینی"
-              caption="اتاق گفت‌وگوی زوجین برای جلسات حضوری ۶۰ تا ۹۰ دقیقه‌ای"
-            />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
+            <ClinicSpaceFigure space="reception-desk-lounge" />
+            <ClinicSpaceFigure space="waiting-lounge-doors" />
+            <ClinicSpaceFigure space="sunlit-blue-couples-room" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm text-[#555650]">

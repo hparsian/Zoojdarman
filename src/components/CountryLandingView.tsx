@@ -5,6 +5,7 @@ import { getArticleMetaBySlug } from '../data/articlesMeta';
 import { registerFaqSchema } from '../seo';
 import { InnerPageTopBar } from './InnerPageTopBar';
 import { CountriesHubView } from './CountriesHubView';
+import { ClinicSpaceFigure } from './ClinicSpaceFigure';
 import {
   Globe,
   Phone,
@@ -185,6 +186,16 @@ export const CountryLandingView: React.FC<CountryLandingViewProps> = ({
             <p className="text-xs sm:text-sm text-[#555650] leading-relaxed">
               {countryData.majorCities.join(' · ')}
             </p>
+          </div>
+        </div>
+
+        <div className="bg-[#FCFBF8] p-6 sm:p-8 rounded-2xl border border-[#E5E0D8]">
+          <h2 className="text-base sm:text-lg font-extrabold text-[#292D2A] mb-4">
+            فضای خصوصی و عایق صوت برگزاری جلسات آنلاین از کلینیک پیوند امن تهران
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <ClinicSpaceFigure space="controlled-light-online-room" aspectRatio="4/5" />
+            <ClinicSpaceFigure space="acoustic-leather-private-room" aspectRatio="4/5" />
           </div>
         </div>
 

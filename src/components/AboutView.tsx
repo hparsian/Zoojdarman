@@ -203,18 +203,25 @@ export const AboutView: React.FC<AboutViewProps> = ({
         </div>
 
         {/* Clinic Consultation Environment Showcase */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-          <ClinicSpaceFigure
-            space="consultation-room"
-            alt="اتاق جلسات زوج‌درمانی حضوری در کلینیک پیوند امن تهران؛ صندلی‌های راحت روبه‌روی هم در نور طبیعی روز برای گفت‌وگوی آرام زوجین"
-            caption="اتاق مشاوره زوج‌درمانی حضوری — طراحی‌شده برای ایجاد امنیت عاطفی و تمرکز بدون حواس‌پرتی"
-          />
-          <ClinicSpaceFigure
-            space="quiet-lounge"
-            alt="فضای انتظار آرام و محرمانه کلینیک تخصصی مهناز خوینی با نشیمن سبز مریم‌گلی و نور ملایم طبیعی پیش از ورود به اتاق درمان"
-            caption="فضای انتظار خصوصی کلینیک پیوند امن — حفظ آرامش و محرمانگی مراجعان پیش از شروع جلسه"
-          />
-        </div>
+        <section className="mb-10">
+          <div className="mb-5">
+            <p className="text-xs font-semibold text-[#3D5E4E] mb-1">
+              معرفی فضای فیزیکی درمان
+            </p>
+            <h2 className="text-lg sm:text-xl font-extrabold text-[#292D2A]">
+              نگاهی به اتاق‌های مشاوره، سالن انتظار و سالن کارگاه کلینیک پیوند امن
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <ClinicSpaceFigure space="tehran-sunlit-mustard-room" />
+            <ClinicSpaceFigure space="sunlit-blue-couples-room" />
+            <ClinicSpaceFigure space="navy-eft-counseling-room" />
+            <ClinicSpaceFigure space="acoustic-leather-private-room" />
+            <ClinicSpaceFigure space="workshop-group-hall" />
+            <ClinicSpaceFigure space="reception-hall-corridor" />
+          </div>
+        </section>
 
         {/* Practice Locations & Contact Callout */}
         <div className="bg-[#FCFBF8] p-6 sm:p-8 rounded-2xl border border-[#E5E0D8] flex flex-col sm:flex-row items-center justify-between gap-6">

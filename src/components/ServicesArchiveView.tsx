@@ -3,6 +3,7 @@ import { servicesMeta } from '../data/servicesMeta';
 import { ProfessionalCredentialsSummaryCard } from './ProfessionalCredentialsSummaryCard';
 import { StandaloneSeoGuide } from './StandaloneSeoGuide';
 import { InnerPageTopBar } from './InnerPageTopBar';
+import { ClinicSpaceFigure } from './ClinicSpaceFigure';
 import { ChevronLeft } from 'lucide-react';
 
 interface ServicesArchiveViewProps {
@@ -102,6 +103,22 @@ export const ServicesArchiveView: React.FC<ServicesArchiveViewProps> = ({
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Clinic Spaces for Individual, Couples & Group Workshops */}
+        <div className="mb-12">
+          <div className="mb-5">
+            <p className="text-xs font-semibold text-[#3D5E4E] mb-1">
+              امکانات کلینیک پیوند امن تهران
+            </p>
+            <h2 className="text-lg sm:text-xl font-extrabold text-[#292D2A]">
+              اتاق‌های مشاوره زوجین و سالن کارگاه‌های تخصصی و گروه‌درمانی
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <ClinicSpaceFigure space="sunlit-blue-couples-room" aspectRatio="4/5" />
+            <ClinicSpaceFigure space="workshop-group-hall" aspectRatio="4/5" />
+          </div>
         </div>
 
         <div className="bg-[#EDF2EE] p-7 sm:p-9 rounded-2xl border border-[#D3E0D7] text-center mb-12">

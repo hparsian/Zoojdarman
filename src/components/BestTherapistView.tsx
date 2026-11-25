@@ -15,6 +15,7 @@ import {
 import { InnerPageTopBar } from './InnerPageTopBar';
 import { SeoCertificationSummaryCard } from './SeoCertificationSummaryCard';
 import { StandaloneSeoGuide } from './StandaloneSeoGuide';
+import { ClinicSpaceFigure } from './ClinicSpaceFigure';
 
 interface BestTherapistViewProps {
   onBack: () => void;
@@ -332,7 +333,7 @@ export const BestTherapistView: React.FC<BestTherapistViewProps> = ({
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
             {tehranDistricts.map((d, idx) => (
               <div key={idx} className="bg-[#F4F1EC] p-5 rounded-xl border border-[#E5E0D8]">
                 <div className="flex items-center gap-2 mb-1.5">
@@ -342,6 +343,11 @@ export const BestTherapistView: React.FC<BestTherapistViewProps> = ({
                 <p className="text-xs text-[#555650] leading-relaxed">{d.desc}</p>
               </div>
             ))}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-[#E5E0D8]">
+            <ClinicSpaceFigure space="reception-hall-corridor" aspectRatio="4/5" />
+            <ClinicSpaceFigure space="tehran-sunlit-mustard-room" aspectRatio="4/5" />
           </div>
         </div>
 

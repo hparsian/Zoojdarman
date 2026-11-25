@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { InnerPageTopBar } from './InnerPageTopBar';
 import { StandaloneSeoGuide } from './StandaloneSeoGuide';
+import { ClinicSpaceFigure } from './ClinicSpaceFigure';
 
 interface ProcessViewProps {
   onBack: () => void;
@@ -165,6 +166,17 @@ export const ProcessView: React.FC<ProcessViewProps> = ({
               <span><strong>ساختار زمانی مشخص:</strong> جلسات زوجی ۶۰ تا ۹۰ دقیقه و جلسات انفرادی ۴۵ تا ۶۰ دقیقه برگزار می‌شود.</span>
             </li>
           </ul>
+        </div>
+
+        {/* Clinic Rooms Showcase */}
+        <div className="mb-10">
+          <h3 className="text-base sm:text-lg font-extrabold text-[#292D2A] mb-4">
+            فضای برگزاری جلسات حضوری و آنلاین
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <ClinicSpaceFigure space="navy-eft-counseling-room" aspectRatio="4/5" />
+            <ClinicSpaceFigure space="controlled-light-online-room" aspectRatio="4/5" />
+          </div>
         </div>
 
         {/* Action Callout */}
