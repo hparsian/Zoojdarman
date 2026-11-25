@@ -147,7 +147,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ onBack, onNavigateTool
 
               <div className="pt-2 flex flex-wrap items-center gap-3">
                 <a
-                  href="https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA"
+                  href="https://maps.app.goo.gl/b9dx9xeA69wJJPzd6"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#344A42] hover:bg-[#273932] text-[#FCFBF8] text-xs font-semibold rounded-lg transition-colors"

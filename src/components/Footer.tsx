@@ -79,7 +79,14 @@ export const Footer: React.FC<FooterProps> = ({
             <div className="space-y-2 text-xs text-[#E5E0D8]/90 pt-2">
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#8FAE9B] shrink-0 mt-0.5" />
-                <span>تهران، منطقه ۲ (محدوده صادقیه – پونک، کلینیک پیوند امن)</span>
+                <a
+                  href="https://maps.app.goo.gl/b9dx9xeA69wJJPzd6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#FCFBF8] underline underline-offset-4 decoration-[#8FAE9B]/50 transition-colors"
+                >
+                  تهران، منطقه ۲ (محدوده صادقیه – پونک، کلینیک پیوند امن)
+                </a>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#8FAE9B] shrink-0" />

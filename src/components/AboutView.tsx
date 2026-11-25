@@ -248,6 +248,15 @@ export const AboutView: React.FC<AboutViewProps> = ({
               اطلاعات تماس و رزرو جلسه
             </button>
             <a
+              href="https://maps.app.goo.gl/b9dx9xeA69wJJPzd6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-3 border border-[#CFC7BA] hover:border-[#344A42] bg-[#F4F1EC] text-[#344A42] rounded-lg font-semibold text-xs transition-colors whitespace-nowrap"
+            >
+              <MapPin className="w-3.5 h-3.5" />
+              <span>لوکیشن کلینیک (گوگل‌مپ)</span>
+            </a>
+            <a
               href={PARENT_CLINIC_LINKS.aboutClinic}
               target="_blank"
               rel="noopener"

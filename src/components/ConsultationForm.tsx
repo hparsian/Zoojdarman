@@ -73,6 +73,15 @@ export const ConsultationForm: React.FC = () => {
                   <p className="text-xs sm:text-sm text-[#555650] leading-relaxed mt-1">
                     تهران، منطقه ۲ (محدوده صادقیه – پونک، کلینیک پیوند امن)
                   </p>
+                  <a
+                    href="https://maps.app.goo.gl/b9dx9xeA69wJJPzd6"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#344A42] hover:text-[#273932] underline underline-offset-4 mt-1.5 transition-colors"
+                  >
+                    <span>مسیریابی کلینیک روی نقشه گوگل</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
                 </div>
               </div>
 

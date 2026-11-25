@@ -351,7 +351,7 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
       telephone: '+989199087264',
       sameAs: [
         SITE_URL,
-        'https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA',
+        'https://maps.app.goo.gl/b9dx9xeA69wJJPzd6',
         'https://instagram.com/mahnaz.khoini',
         'https://t.me/MKHOINI',
         'https://www.aparat.com/Mahnaz.khoini_psychology',
@@ -421,7 +421,7 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
         'روان‌شناسی بالینی و دلبستگی بزرگسالان',
       ],
       sameAs: [
-        'https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA',
+        'https://maps.app.goo.gl/b9dx9xeA69wJJPzd6',
         PARENT_CLINIC_URL,
         PARENT_THERAPIST_URL,
         'https://instagram.com/mahnaz.khoini',
@@ -429,7 +429,7 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
         'https://www.aparat.com/Mahnaz.khoini_psychology',
         'https://youtube.com/@mahnaz.khoini',
       ],
-      hasMap: 'https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA',
+      hasMap: 'https://maps.app.goo.gl/b9dx9xeA69wJJPzd6',
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'منطقه ۲، محدوده صادقیه – پونک، کلینیک پیوند امن',
@@ -448,9 +448,9 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
       url,
       parentOrganization: { '@id': PARENT_CLINIC_ID },
       branchOf: { '@id': PARENT_CLINIC_ID },
-      hasMap: 'https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA',
+      hasMap: 'https://maps.app.goo.gl/b9dx9xeA69wJJPzd6',
       sameAs: [
-        'https://maps.app.goo.gl/P8KDPPDp9mQ6nEbWA',
+        'https://maps.app.goo.gl/b9dx9xeA69wJJPzd6',
         PARENT_CLINIC_URL,
         'https://instagram.com/mahnaz.khoini',
         'https://www.aparat.com/Mahnaz.khoini_psychology',
