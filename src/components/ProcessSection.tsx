@@ -107,14 +107,10 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({ onNavigateProces
           <ClinicSpaceFigure
             space="navy-eft-counseling-room"
             aspectRatio="4/5"
-            title="اتاق جلسات تحلیلی و ترسیم چرخه ارتباطی (EFT)"
-            caption="مجهز به مبلمان مخمل سرمه‌ای، دیوارپوش سرتاسری آکوستیک و وایت‌برد آموزشی برای ترسیم نقشه چرخه‌های دفاعی و نیازهای دلبستگی در جلسات حضوری."
           />
           <ClinicSpaceFigure
             space="controlled-light-online-room"
             aspectRatio="4/5"
-            title="اتاق نور کنترل‌شده ویژه جلسات آنلاین تصویری"
-            caption="دفتر بالینی با نور تنظیم‌شده بدون بازتاب و فضای ایزوله برای برگزاری جلسات آنلاین تصویری هم‌تراز با جلسات حضوری در کلینیک پیوند امن."
           />
         </div>
       </div>

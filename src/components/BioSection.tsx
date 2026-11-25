@@ -80,9 +80,6 @@ export const BioSection: React.FC<BioSectionProps> = ({
             <ClinicSpaceFigure
               space="tehran-sunlit-mustard-room"
               aspectRatio="4/5"
-              title="اتاق اصلی زوج‌درمانی کلینیک پیوند امن (تهران، منطقه ۲)"
-              alt="اتاق اصلی زوج‌درمانی مهناز خوینی در کلینیک پیوند امن تهران؛ پنجره بزرگ نورگیر رو به چشم‌انداز شهر، صندلی‌های راحتی مخمل خردلی، وایت‌برد آموزشی و دیوارهای آکوستیک"
-              caption="اتاق نورگیر و عایق صدای زوج‌درمانی حضوری با چیدمان صندلی‌های راحت روبه‌روی هم، وایت‌برد آموزشی EFT و چشم‌انداز آرام شهری برای گفت‌وگوی بی‌طرف."
             />
 
             <div className="bg-[#FCFBF8] border border-[#E5E0D8] rounded-2xl p-6 sm:p-8 space-y-6">
