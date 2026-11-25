@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getTestBySlug, testsData } from '../data/testsData';
 import { registerFaqSchema } from '../seo';
 import { InnerPageTopBar } from './InnerPageTopBar';
+import { ClinicalTrustFooter } from './ClinicalTrustFooter';
 import {
   ShieldCheck,
   Brain,
@@ -414,6 +415,8 @@ export const SingleTestView: React.FC<SingleTestViewProps> = ({
             </div>
           </div>
         )}
+
+        <ClinicalTrustFooter context="test" />
 
         <div>
           <div className="flex items-center justify-between mb-5">

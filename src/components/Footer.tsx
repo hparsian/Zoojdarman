@@ -1,6 +1,7 @@
 import React from 'react';
 import { Phone, MapPin } from 'lucide-react';
 import { BrandMark, ZoojdarmanWordmark } from './BrandMark';
+import { FooterCredentials } from './FooterCredentials';
 import { PARENT_CLINIC_LINKS } from '../utils/parentClinicLinks';
 
 interface FooterProps {
@@ -85,7 +86,7 @@ export const Footer: React.FC<FooterProps> = ({
                   rel="noopener noreferrer"
                   className="hover:text-[#FCFBF8] underline underline-offset-4 decoration-[#8FAE9B]/50 transition-colors"
                 >
-                  تهران، منطقه ۲ (محدوده صادقیه – پونک، کلینیک پیوند امن)
+                  تهران، پونک (منطقه ۲)، کلینیک پیوند امن
                 </a>
               </div>
               <div className="flex items-center gap-2">
@@ -101,7 +102,8 @@ export const Footer: React.FC<FooterProps> = ({
                   className="text-[#8FAE9B] hover:text-[#FCFBF8] underline underline-offset-4 transition-colors"
                 >
                   کلینیک پیوند امن (peyvandamn.ir)
-                </a>
+                </a>{' '}
+                · پروانه نظام روان‌شناسی: ۱۴۱۴۰۸۳
               </p>
             </div>
           </div>
@@ -326,6 +328,9 @@ export const Footer: React.FC<FooterProps> = ({
             </ul>
           </div>
         </div>
+
+        {/* Official Credentials & Trust Seals */}
+        <FooterCredentials />
 
         {/* Bottom Copyright & Privacy */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#E5E0D8]/80">

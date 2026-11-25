@@ -120,7 +120,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ onBack, onNavigateTool
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm text-[#555650]">
             <div className="space-y-3 leading-relaxed">
               <p>
-                <strong className="text-[#292D2A]">آدرس جلسات حضوری:</strong> تهران، منطقه ۲، محدوده صادقیه – پونک (کلینیک تخصصی روان‌شناسی و مشاوره خانواده{' '}
+                <strong className="text-[#292D2A]">آدرس جلسات حضوری:</strong> تهران، پونک (منطقه ۲)، کلینیک تخصصی روان‌شناسی{' '}
                 <a
                   href={PARENT_CLINIC_LINKS.aboutClinic}
                   target="_blank"
@@ -136,13 +136,13 @@ export const ContactView: React.FC<ContactViewProps> = ({ onBack, onNavigateTool
                 <a href="tel:02144600980" className="text-[#344A42] font-semibold underline" dir="ltr">
                   ۰۲۱ ۴۴۶۰۰۹۸۰
                 </a>{' '}
-                (شنبه تا پنج‌شنبه ۹ تا ۲۱)
+                (شنبه تا پنج‌شنبه)
               </p>
               <p>
                 <strong className="text-[#292D2A]">دسترسی حمل‌ونقل:</strong> دسترسی آسان از طریق بزرگراه‌های یادگار امام، اشرفی اصفهانی، چمران و ایستگاه‌های مترو منطقه ۲.
               </p>
-              <p>
-                <strong className="text-[#292D2A]">پروانه رسمی نظام:</strong> ۱۴۱۴۰۸۳ (مهناز خوینی، مسئول فنی)
+              <p className="tabular-nums">
+                <strong className="text-[#292D2A]">پروانه رسمی نظام:</strong> پروانه اشتغال تخصصی ۱۴۱۴۰۸۳ سازمان نظام روان‌شناسی و مشاوره ایران
               </p>
 
               <div className="pt-2 flex flex-wrap items-center gap-3">
@@ -153,7 +153,7 @@ export const ContactView: React.FC<ContactViewProps> = ({ onBack, onNavigateTool
                   className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#344A42] hover:bg-[#273932] text-[#FCFBF8] text-xs font-semibold rounded-lg transition-colors"
                 >
                   <MapPin className="w-4 h-4" />
-                  <span>مسیریابی روی نقشه گوگل (Google Maps)</span>
+                  <span>مسیریابی و نظرات مراجعین در گوگل‌مپ</span>
                 </a>
                 <a
                   href={PARENT_CLINIC_LINKS.portal}

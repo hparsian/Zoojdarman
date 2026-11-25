@@ -100,7 +100,7 @@ export const ProfessionalCredentialsSummaryCard: React.FC = () => {
           <h2 className="text-lg font-extrabold text-[#292D2A] sm:text-xl">
             {summary.name}
           </h2>
-          <p className="mt-1 text-sm font-medium text-[#555650]">
+          <p className="mt-1 text-sm font-medium text-[#555650] tabular-nums">
             {[
               summary.role,
               summary.licenseNumber ? `پروانه نظام روان‌شناسی: ${summary.licenseNumber}` : '',
@@ -114,12 +114,14 @@ export const ProfessionalCredentialsSummaryCard: React.FC = () => {
             </p>
           )}
         </div>
-        <a
-          href="/about"
-          className="inline-flex shrink-0 items-center justify-center rounded-lg bg-[#344A42] hover:bg-[#273932] px-5 py-2.5 text-xs sm:text-sm font-semibold text-[#FCFBF8] transition-colors"
-        >
-          مشاهده سوابق حرفه‌ای
-        </a>
+        <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+          <a
+            href="/about"
+            className="inline-flex shrink-0 items-center justify-center rounded-lg bg-[#344A42] hover:bg-[#273932] px-5 py-2.5 text-xs sm:text-sm font-semibold text-[#FCFBF8] transition-colors whitespace-nowrap"
+          >
+            مشاهده سوابق حرفه‌ای
+          </a>
+        </div>
       </div>
     </aside>
   );

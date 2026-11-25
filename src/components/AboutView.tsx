@@ -85,7 +85,7 @@ export const AboutView: React.FC<AboutViewProps> = ({
                 مهناز خوینی
               </h1>
               <p className="text-xs sm:text-sm font-semibold text-[#344A42] mb-4">
-                کارشناس ارشد روان‌شناسی بالینی · مسئول فنی کلینیک تخصصی پیوند امن
+                کارشناس ارشد روان‌شناسی · زوج‌درمانگر بالینی و مسئول فنی کلینیک تخصصی پیوند امن
               </p>
               <p className="text-sm text-[#555650] leading-[1.9] mb-6 text-justify">
                 روان‌شناس بالینی و زوج‌درمانگر متمرکز بر رویکرد هیجان‌مدار (EFT)، مداخله در ترومای خیانت،
@@ -127,19 +127,26 @@ export const AboutView: React.FC<AboutViewProps> = ({
             <ul className="space-y-3 text-xs sm:text-sm text-[#555650] leading-relaxed">
               <li className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-[#3D5E4E] mt-0.5 shrink-0" />
-                <span>پروانه رسمی اشتغال تخصصی از سازمان نظام روان‌شناسی و مشاوره ایران (شماره پروانه: ۱۴۱۴۰۸۳)</span>
+                <span>
+                  پروانه رسمی اشتغال تخصصی از سازمان نظام روان‌شناسی و مشاوره ایران (شماره پروانه:
+                  ۱۴۱۴۰۸۳)
+                </span>
               </li>
               <li className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-[#3D5E4E] mt-0.5 shrink-0" />
-                <span>کارشناس ارشد روان‌شناسی بالینی با پژوهش متمرکز بر سبک‌های دلبستگی و رضایت زناشویی</span>
+                <span>
+                  عضو رسمی سازمان نظام روان‌شناسی و مشاوره جمهوری اسلامی ایران (اعتبار عضویت: تا ۱۴۰۷/۰۲/۰۱)
+                </span>
               </li>
               <li className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-[#3D5E4E] mt-0.5 shrink-0" />
-                <span>مسئول فنی کلینیک تخصصی روان‌شناسی پیوند امن تهران</span>
+                <span>
+                  کارشناس و کارشناس ارشد روان‌شناسی عمومی (ثبت‌شده در سامانه جامع اعضای نظام روان‌شناسی)
+                </span>
               </li>
               <li className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-[#3D5E4E] mt-0.5 shrink-0" />
-                <span>عضو سازمان نظام روان‌شناسی و انجمن‌های تخصصی خانواده</span>
+                <span>مسئول فنی و مدیر کلینیک تخصصی روان‌شناسی پیوند امن تهران</span>
               </li>
             </ul>
           </div>
@@ -216,7 +223,7 @@ export const AboutView: React.FC<AboutViewProps> = ({
                 کلینیک حضوری تهران و پذیرش آنلاین
               </h3>
               <p className="text-xs text-[#555650] leading-relaxed">
-                تهران، منطقه ۲ (محدوده صادقیه – پونک، کلینیک تخصصی پیوند امن) · جلسات آنلاین تصویری در بستر امن
+                تهران، پونک (منطقه ۲)، کلینیک تخصصی پیوند امن · جلسات آنلاین تصویری در بستر امن
               </p>
             </div>
           </div>
@@ -236,7 +243,7 @@ export const AboutView: React.FC<AboutViewProps> = ({
               className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-3 border border-[#CFC7BA] hover:border-[#344A42] bg-[#F4F1EC] text-[#344A42] rounded-lg font-semibold text-xs transition-colors whitespace-nowrap"
             >
               <MapPin className="w-3.5 h-3.5" />
-              <span>لوکیشن کلینیک (گوگل‌مپ)</span>
+              <span>نقشه و نظرات مراجعین (Google Maps)</span>
             </a>
             <a
               href={PARENT_CLINIC_LINKS.aboutClinic}

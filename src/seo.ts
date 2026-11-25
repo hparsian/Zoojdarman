@@ -20,10 +20,16 @@ const DEFAULT_ROBOTS = 'index, follow, max-image-preview:large, max-snippet:-1, 
 const NOT_FOUND_ROBOTS = 'noindex, follow';
 const DEFAULT_IMAGE = '/images/og-cover.jpg';
 const THERAPIST_ID = `${SITE_URL}/#therapist`;
+const CLINIC_ID = `${SITE_URL}/#clinic`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
 const PARENT_CLINIC_ID = 'https://peyvandamn.ir/#organization';
 const PARENT_CLINIC_URL = 'https://peyvandamn.ir';
 const PARENT_THERAPIST_URL = 'https://peyvandamn.ir/author/mkhoini/';
+const PCOIRAN_MEMBER_URL =
+  'https://my.pcoiran.ir/member/34627/681f39aa-c089-4d04-8ac8-9f06fb220300/';
+const ENAMAD_URL =
+  'https://trustseal.enamad.ir/?id=643054&Code=nx981iXskBJv092Gl1DLZ7th8oSh1hI2';
+const GOOGLE_MAPS_URL = 'https://maps.app.goo.gl/b9dx9xeA69wJJPzd6';
 
 const HOME_TITLE = 'مرکز تخصصی زوج درمان | مهناز خوینی (نظام ۱۴۱۴۰۸۳)';
 const HOME_DESCRIPTION =
@@ -204,6 +210,43 @@ export function applySeo(page: SeoPage): void {
 /* تبدیل مسیر (Route) به پیکربندی سئو                                */
 /* ------------------------------------------------------------------ */
 
+function parsePersianDateToIso(raw?: string): string {
+  if (!raw) return '2026-11-12T10:00:00+03:30';
+  const toEn = (s: string) =>
+    s
+      .replace(/[۰-۹]/g, (d) => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)))
+      .replace(/[٠-٩]/g, (d) => String('٠١٢٣٤٥٦٧٨٩'.indexOf(d)));
+  const normalized = toEn(raw).trim();
+  const isoMatch = normalized.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (isoMatch) {
+    return `${isoMatch[1]}-${isoMatch[2]}-${isoMatch[3]}T10:00:00+03:30`;
+  }
+  const monthMap: Record<string, string> = {
+    فروردین: '04-05',
+    اردیبهشت: '05-05',
+    خرداد: '06-05',
+    تیر: '07-05',
+    مرداد: '08-05',
+    شهریور: '09-05',
+    مهر: '10-05',
+    آبان: '11-01',
+    آذر: '12-01',
+    دی: '01-05',
+    بهمن: '02-05',
+    اسفند: '03-05',
+  };
+  const yearMatch = normalized.match(/(14\d{2})/);
+  const persianYear = yearMatch ? Number(yearMatch[1]) : 1405;
+  const matchedMonth = Object.keys(monthMap).find((m) => normalized.includes(m));
+  if (matchedMonth) {
+    if (normalized.includes('22 آبان 1405')) return '2026-11-13T10:00:00+03:30';
+    const isWinter = ['دی', 'بهمن', 'اسفند'].includes(matchedMonth);
+    const gregYear = persianYear + (isWinter ? 622 : 621);
+    return `${gregYear}-${monthMap[matchedMonth]}T10:00:00+03:30`;
+  }
+  return '2026-11-12T10:00:00+03:30';
+}
+
 function articleSchema(slug: string, url: string): Record<string, unknown>[] {
   const article = getArticleMetaBySlug(slug);
   if (!article) return [];
@@ -216,6 +259,7 @@ function articleSchema(slug: string, url: string): Record<string, unknown>[] {
       'روانشناسی بالینی',
     ])
   );
+  const dateModified = parsePersianDateToIso(article.updatedAt);
   return [
     {
       '@type': 'Article',
@@ -226,15 +270,20 @@ function articleSchema(slug: string, url: string): Record<string, unknown>[] {
       inLanguage: 'fa-IR',
       mainEntityOfPage: { '@id': url },
       datePublished: '2025-01-15T08:00:00+03:30',
-      dateModified: '2026-11-12T10:00:00+03:30',
+      dateModified,
       wordCount: article.wordCount,
       keywords,
+      publishingPrinciples: `${SITE_URL}/privacy-policy`,
       author: {
         '@type': 'Person',
         '@id': THERAPIST_ID,
         name: 'مهناز خوینی',
-        jobTitle: 'کارشناس ارشد روانشناسی بالینی و زوج درمانگر',
+        jobTitle: 'کارشناس ارشد روان‌شناسی عمومی و زوج‌درمانگر بالینی',
         url: `${SITE_URL}/about`,
+        sameAs: ['https://my.pcoiran.ir/member/34627/681f39aa-c089-4d04-8ac8-9f06fb220300/', PARENT_THERAPIST_URL],
+      },
+      reviewedBy: {
+        '@id': THERAPIST_ID,
       },
       publisher: {
         '@type': 'Organization',
@@ -340,31 +389,354 @@ function toolsHubSchema(url: string): Record<string, unknown>[] {
   ];
 }
 
-function homeJsonLdSchema(url: string): Record<string, unknown>[] {
-  return [
-    {
-      '@type': ['MedicalClinic', 'Organization'],
-      '@id': PARENT_CLINIC_ID,
-      name: 'کلینیک تخصصی روان‌شناسی پیوند امن',
-      alternateName: ['پيوند امن', 'مهناز خوینی زوج درمانگر | پيوند امن'],
-      url: PARENT_CLINIC_URL,
-      telephone: '+989199087264',
-      sameAs: [
-        SITE_URL,
-        'https://maps.app.goo.gl/b9dx9xeA69wJJPzd6',
-        'https://instagram.com/mahnaz.khoini',
-        'https://t.me/MKHOINI',
-        'https://www.aparat.com/Mahnaz.khoini_psychology',
-        'https://youtube.com/@mahnaz.khoini',
+function parentClinicNode(): Record<string, unknown> {
+  return {
+    '@type': ['MedicalClinic', 'Organization'],
+    '@id': PARENT_CLINIC_ID,
+    name: 'کلینیک تخصصی روان‌شناسی پیوند امن',
+    alternateName: ['پيوند امن', 'مهناز خوینی زوج درمانگر | پيوند امن'],
+    url: PARENT_CLINIC_URL,
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://peyvandamn.ir/wp-content/uploads/2025/04/logoasl.webp',
+    },
+    telephone: '+989199087264',
+    hasMap: GOOGLE_MAPS_URL,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'منطقه ۲، پونک، کلینیک تخصصی پیوند امن',
+      addressLocality: 'تهران',
+      addressRegion: 'منطقه ۲',
+      addressCountry: 'IR',
+    },
+    hasCredential: [
+      {
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'پروانه مسئولیت فنی کلینیک روان‌شناسی',
+        identifier: '1414083',
+        url: PCOIRAN_MEMBER_URL,
+        recognizedBy: {
+          '@type': 'Organization',
+          name: 'سازمان نظام روان‌شناسی و مشاوره جمهوری اسلامی ایران',
+          url: 'https://pcoiran.ir',
+        },
+      },
+      {
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'نماد اعتماد الکترونیکی (اینماد)',
+        identifier: '643054',
+        url: ENAMAD_URL,
+        recognizedBy: {
+          '@type': 'GovernmentOrganization',
+          name: 'مرکز توسعه تجارت الکترونیکی (وزارت صمت)',
+          url: 'https://enamad.ir',
+        },
+      },
+    ],
+    sameAs: [
+      SITE_URL,
+      GOOGLE_MAPS_URL,
+      ENAMAD_URL,
+      PCOIRAN_MEMBER_URL,
+      'https://instagram.com/mahnaz.khoini',
+      'https://t.me/MKHOINI',
+      'https://www.aparat.com/Mahnaz.khoini_psychology',
+      'https://youtube.com/@mahnaz.khoini',
+    ],
+  };
+}
+
+function therapistEntityNode(): Record<string, unknown> {
+  return {
+    '@type': 'Psychologist',
+    '@id': THERAPIST_ID,
+    name: 'مهناز خوینی',
+    alternateName: ['Mahnaz Khoini'],
+    jobTitle: 'زوج‌درمانگر بالینی و مشاور خانواده (کارشناس ارشد روان‌شناسی عمومی)',
+    description:
+      'کارشناس ارشد روان‌شناسی عمومی، زوج‌درمانگر متمرکز بر رویکرد هیجان‌مدار (EFT) و طرحواره‌درمانی، مسئول فنی کلینیک پیوند امن با پروانه اشتغال ۱۴۱۴۰۸۳ سازمان نظام روان‌شناسی',
+    identifier: '1414083',
+    url: `${SITE_URL}/about`,
+    mainEntityOfPage: `${SITE_URL}/about`,
+    image: absoluteUrl('/images/mahnaz-khoini.jpg'),
+    telephone: '+989199087264',
+    email: 'Khoini.1988@gmail.com',
+    knowsLanguage: ['fa', 'en'],
+    publishingPrinciples: `${SITE_URL}/privacy-policy`,
+    worksFor: { '@id': PARENT_CLINIC_ID },
+    affiliation: [
+      { '@id': CLINIC_ID },
+      { '@id': PARENT_CLINIC_ID },
+    ],
+    memberOf: [
+      {
+        '@type': 'Organization',
+        name: 'سازمان نظام روان‌شناسی و مشاوره جمهوری اسلامی ایران',
+        url: PCOIRAN_MEMBER_URL,
+      },
+      { '@id': PARENT_CLINIC_ID },
+    ],
+    hasCredential: [
+      {
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'پروانه اشتغال تخصصی روان‌شناسی',
+        identifier: '1414083',
+        url: PCOIRAN_MEMBER_URL,
+        validThrough: '2028-04-20',
+        recognizedBy: {
+          '@type': 'Organization',
+          name: 'سازمان نظام روان‌شناسی و مشاوره جمهوری اسلامی ایران',
+          url: 'https://pcoiran.ir',
+        },
+        validIn: {
+          '@type': 'AdministrativeArea',
+          name: 'ایران',
+        },
+      },
+      {
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'عضویت رسمی سازمان نظام روان‌شناسی و مشاوره ایران',
+        identifier: '34627',
+        url: PCOIRAN_MEMBER_URL,
+        validThrough: '2028-04-20',
+        recognizedBy: {
+          '@type': 'Organization',
+          name: 'سازمان نظام روان‌شناسی و مشاوره جمهوری اسلامی ایران',
+          url: 'https://pcoiran.ir',
+        },
+      },
+      {
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'degree',
+        educationalLevel: 'کارشناسی ارشد روان‌شناسی عمومی',
+        url: PCOIRAN_MEMBER_URL,
+        recognizedBy: {
+          '@type': 'Organization',
+          name: 'سازمان نظام روان‌شناسی و مشاوره جمهوری اسلامی ایران',
+          url: 'https://pcoiran.ir',
+        },
+      },
+    ],
+    knowsAbout: [
+      'زوج‌درمانی هیجان‌مدار (EFT)',
+      'طرحواره‌درمانی زوجین',
+      'مداخله در بحران و ترومای خیانت',
+      'درمان طلاق عاطفی و بازسازی صمیمیت',
+      'ارزیابی و مشاوره پیش از ازدواج',
+      'زوج‌درمانی آنلاین برای ایرانیان خارج از کشور',
+      'روان‌شناسی بالینی و دلبستگی بزرگسالان',
+    ],
+    sameAs: [
+      PCOIRAN_MEMBER_URL,
+      GOOGLE_MAPS_URL,
+      PARENT_CLINIC_URL,
+      PARENT_THERAPIST_URL,
+      'https://instagram.com/mahnaz.khoini',
+      'https://t.me/MKHOINI',
+      'https://www.aparat.com/Mahnaz.khoini_psychology',
+      'https://youtube.com/@mahnaz.khoini',
+    ],
+    hasMap: GOOGLE_MAPS_URL,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'منطقه ۲، پونک، کلینیک تخصصی پیوند امن',
+      addressLocality: 'تهران',
+      addressRegion: 'منطقه ۲',
+      addressCountry: 'IR',
+    },
+  };
+}
+
+function clinicEntityNode(): Record<string, unknown> {
+  return {
+    '@type': ['MedicalBusiness', 'MedicalClinic'],
+    '@id': CLINIC_ID,
+    name: 'مرکز تخصصی زوج درمان مهناز خوینی',
+    alternateName: ['کلینیک پیوند امن', 'سامانه تخصصی زوج‌درمانی کلینیک پیوند امن'],
+    description:
+      'پرتال تخصصی زوج درمان، مشاوره خیانت، درمان طلاق عاطفی و حل تعارضات زناشویی با رویکرد هیجان‌مدار (EFT) زیرمجموعه کلینیک پیوند امن تحت مسئولیت فنی مهناز خوینی (نظام ۱۴۱۴۰۸۳)',
+    url: SITE_URL,
+    parentOrganization: { '@id': PARENT_CLINIC_ID },
+    branchOf: { '@id': PARENT_CLINIC_ID },
+    publishingPrinciples: `${SITE_URL}/privacy-policy`,
+    hasMap: GOOGLE_MAPS_URL,
+    sameAs: [
+      GOOGLE_MAPS_URL,
+      PCOIRAN_MEMBER_URL,
+      ENAMAD_URL,
+      PARENT_CLINIC_URL,
+      'https://instagram.com/mahnaz.khoini',
+      'https://www.aparat.com/Mahnaz.khoini_psychology',
+      'https://youtube.com/@mahnaz.khoini',
+    ],
+    logo: {
+      '@type': 'ImageObject',
+      url: `${SITE_URL}/images/logo-512.png`,
+      width: 512,
+      height: 512,
+    },
+    image: absoluteUrl(DEFAULT_IMAGE),
+    medicalSpecialty: 'Psychological',
+    isAcceptingNewPatients: true,
+    telephone: '+989199087264',
+    email: 'Khoini.1988@gmail.com',
+    priceRange: '$$',
+    currenciesAccepted: 'IRR, USD, EUR, CAD, GBP, AED',
+    paymentAccepted:
+      'کارت‌خوان (POS)، واریز بانکی، پی‌پال (PayPal)، وایز (Wise)، کردیت‌کارت بین‌المللی، پذیرش فاکتور بیمه تکمیلی',
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'خدمات مرکز تخصصی زوج درمان مهناز خوینی',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          name: 'زوج‌درمانی تخصصی حضوری و آنلاین (EFT)',
+          description:
+            'جلسات ارزیابی و درمان تعارضات زناشویی، طلاق عاطفی و احیای صمیمیت بر مبنای پروتکل هیجان‌مدار و گاتمن',
+          url: `${SITE_URL}/services/couples-therapy`,
+          priceCurrency: 'IRR',
+          availability: 'https://schema.org/InStock',
+        },
+        {
+          '@type': 'Offer',
+          name: 'مشاوره تخصصی مدیریت شوک و بحران خیانت زناشویی',
+          description:
+            'مدیریت ترومای خیانت، بازسازی اعتماد و تصمیم‌گیری شفاف طبق موازین اخلاق حرفه‌ای نظام روان‌شناسی',
+          url: `${SITE_URL}/services/infidelity-counseling`,
+          priceCurrency: 'IRR',
+          availability: 'https://schema.org/InStock',
+        },
+        {
+          '@type': 'Offer',
+          name: 'مشاوره طلاق آگاهانه و کم‌آسیب',
+          description:
+            'مدیریت بحران عاطفی جدایی، کاهش آسیب‌های روانشناختی فرزندان و همراهی در تصمیم‌گیری عقلانی',
+          url: `${SITE_URL}/services/divorce-counseling`,
+          priceCurrency: 'IRR',
+          availability: 'https://schema.org/InStock',
+        },
+        {
+          '@type': 'Offer',
+          name: 'مشاوره پیش از ازدواج و ارزیابی تناسب شخصیتی',
+          description:
+            'ارزیابی تخصصی بالینی، تست انریچ و تحلیل سبک‌های دلبستگی و انتظارات مشترک پیش از ازدواج',
+          url: `${SITE_URL}/services/premarital-counseling`,
+          priceCurrency: 'IRR',
+          availability: 'https://schema.org/InStock',
+        },
+        {
+          '@type': 'Offer',
+          name: 'مشاوره آنلاین زوج‌درمانی ویژه ایرانیان خارج از کشور',
+          description:
+            'جلسات آنلاین تصویری با تطبیق منطقه زمانی محلی (کانادا، آمریکا، اروپا، استرالیا، امارات)',
+          url: `${SITE_URL}/services/online-counseling`,
+          priceCurrency: 'USD',
+          availability: 'https://schema.org/InStock',
+        },
+        {
+          '@type': 'Offer',
+          name: 'گروه‌درمانی الگوهای تکراری در روابط عاطفی',
+          description:
+            'تحلیل الگوهای ناخودآگاه تکرارشونده در انتخاب شریک و یادگیری مرزبندی سالم',
+          url: `${SITE_URL}/services/relationship-patterns-therapy`,
+          priceCurrency: 'IRR',
+          availability: 'https://schema.org/InStock',
+        },
       ],
     },
+    founder: { '@id': THERAPIST_ID },
+    employee: [{ '@id': THERAPIST_ID }],
+    hasCredential: [
+      {
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'پروانه اشتغال تخصصی روانشناسی بالینی و زوج‌درمانی',
+        identifier: '1414083',
+        url: PCOIRAN_MEMBER_URL,
+        validThrough: '2028-04-20',
+        recognizedBy: {
+          '@type': 'Organization',
+          name: 'سازمان نظام روان‌شناسی و مشاوره جمهوری اسلامی ایران',
+          url: 'https://pcoiran.ir',
+        },
+      },
+      {
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'نماد اعتماد الکترونیکی (اینماد)',
+        identifier: '643054',
+        url: ENAMAD_URL,
+        recognizedBy: {
+          '@type': 'GovernmentOrganization',
+          name: 'مرکز توسعه تجارت الکترونیکی (وزارت صمت)',
+          url: 'https://enamad.ir',
+        },
+      },
+      {
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'مسئولیت فنی کلینیک تخصصی روان‌شناسی پیوند امن',
+        url: PARENT_CLINIC_URL,
+        recognizedBy: {
+          '@type': 'Organization',
+          name: 'سازمان نظام روان‌شناسی و مشاوره',
+          url: 'https://pcoiran.ir',
+        },
+      },
+    ],
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 35.7208,
+      longitude: 51.3347,
+    },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday'],
+        opens: '09:00',
+        closes: '21:00',
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Thursday'],
+        opens: '09:00',
+        closes: '18:00',
+      },
+    ],
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        telephone: '+989199087264',
+        contactType: 'reservations',
+        areaServed: ['تهران', 'کرج', 'اصفهان', 'کرمان', 'شیراز', 'مشهد', 'IR', 'خارج از کشور'],
+        availableLanguage: ['fa', 'en'],
+      },
+      {
+        '@type': 'ContactPoint',
+        telephone: '+982144600980',
+        contactType: 'customer support',
+        areaServed: 'IR',
+        availableLanguage: ['fa'],
+      },
+    ],
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'منطقه ۲، پونک، کلینیک تخصصی پیوند امن',
+      addressLocality: 'تهران',
+      addressRegion: 'منطقه ۲',
+      addressCountry: 'IR',
+    },
+  };
+}
+
+function homeJsonLdSchema(url: string): Record<string, unknown>[] {
+  return [
+    parentClinicNode(),
     {
       '@type': 'WebSite',
-      '@id': `${url}#website`,
+      '@id': WEBSITE_ID,
       url,
       name: 'مرکز تخصصی زوج درمان مهناز خوینی',
       alternateName: ['Zoojdarman', 'zoojdarman.ir'],
-      description: 'مرکز تخصصی زوج‌درمانی، مشاوره خیانت، درمان طلاق عاطفی و روان‌شناسی روابط؛ بخش تخصصی زوج‌درمانی کلینیک پیوند امن با مهناز خوینی (پروانه نظام ۱۴۱۴۰۸۳)',
+      description:
+        'مرکز تخصصی زوج‌درمانی، مشاوره خیانت، درمان طلاق عاطفی و روان‌شناسی روابط؛ بخش تخصصی زوج‌درمانی کلینیک پیوند امن با مهناز خوینی (پروانه نظام ۱۴۱۴۰۸۳)',
       inLanguage: 'fa-IR',
       publisher: { '@id': PARENT_CLINIC_ID },
       creator: { '@id': THERAPIST_ID },
@@ -377,214 +749,8 @@ function homeJsonLdSchema(url: string): Record<string, unknown>[] {
         'query-input': 'required name=search_term_string',
       },
     },
-    {
-      '@type': 'Psychologist',
-      '@id': THERAPIST_ID,
-      name: 'مهناز خوینی',
-      alternateName: ['Mahnaz Khoini'],
-      jobTitle: 'زوج درمانگر بالینی و مشاور خانواده',
-      description:
-        'کارشناس ارشد روانشناسی بالینی، متخصص زوج درمان با رویکرد هیجان‌مدار (EFT) و طرحواره‌درمانی، مسئول فنی کلینیک پیوند امن با پروانه نظام روانشناسی ۱۴۱۴۰۸۳',
-      identifier: '1414083',
-      url: `${SITE_URL}/about`,
-      image: absoluteUrl(DEFAULT_IMAGE),
-      telephone: '+989199087264',
-      email: 'Khoini.1988@gmail.com',
-      worksFor: { '@id': PARENT_CLINIC_ID },
-      memberOf: [
-        {
-          '@type': 'Organization',
-          name: 'سازمان نظام روان‌شناسی و مشاوره جمهوری اسلامی ایران',
-          url: 'https://pcoiran.ir',
-        },
-        { '@id': PARENT_CLINIC_ID },
-      ],
-      hasCredential: {
-        '@type': 'EducationalOccupationalCredential',
-        credentialCategory: 'پروانه اشتغال تخصصی',
-        recognizedBy: {
-          '@type': 'Organization',
-          name: 'سازمان نظام روان‌شناسی و مشاوره',
-        },
-        validIn: {
-          '@type': 'AdministrativeArea',
-          name: 'ایران',
-        },
-      },
-      knowsAbout: [
-        'زوج‌درمانی هیجان‌مدار (EFT)',
-        'طرحواره‌درمانی زوجین',
-        'مداخله در بحران و ترومای خیانت',
-        'درمان طلاق عاطفی و بازسازی صمیمیت',
-        'ارزیابی و مشاوره پیش از ازدواج',
-        'زوج‌درمانی آنلاین برای ایرانیان خارج از کشور',
-        'روان‌شناسی بالینی و دلبستگی بزرگسالان',
-      ],
-      sameAs: [
-        'https://maps.app.goo.gl/b9dx9xeA69wJJPzd6',
-        PARENT_CLINIC_URL,
-        PARENT_THERAPIST_URL,
-        'https://instagram.com/mahnaz.khoini',
-        'https://t.me/MKHOINI',
-        'https://www.aparat.com/Mahnaz.khoini_psychology',
-        'https://youtube.com/@mahnaz.khoini',
-      ],
-      hasMap: 'https://maps.app.goo.gl/b9dx9xeA69wJJPzd6',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: 'منطقه ۲، محدوده صادقیه – پونک، کلینیک پیوند امن',
-        addressLocality: 'تهران',
-        addressRegion: 'منطقه ۲',
-        addressCountry: 'IR',
-      },
-    },
-    {
-      '@type': 'MedicalBusiness',
-      '@id': `${url}#clinic`,
-      name: 'مرکز تخصصی زوج درمان مهناز خوینی',
-      alternateName: ['کلینیک پیوند امن', 'سامانه تخصصی زوج‌درمانی کلینیک پیوند امن'],
-      description:
-        'پرتال تخصصی زوج درمان، مشاوره خیانت، درمان طلاق عاطفی و حل تعارضات زناشویی با رویکرد هیجان‌مدار (EFT) زیرمجموعه کلینیک پیوند امن تحت مسئولیت فنی مهناز خوینی (نظام ۱۴۱۴۰۸۳)',
-      url,
-      parentOrganization: { '@id': PARENT_CLINIC_ID },
-      branchOf: { '@id': PARENT_CLINIC_ID },
-      hasMap: 'https://maps.app.goo.gl/b9dx9xeA69wJJPzd6',
-      sameAs: [
-        'https://maps.app.goo.gl/b9dx9xeA69wJJPzd6',
-        PARENT_CLINIC_URL,
-        'https://instagram.com/mahnaz.khoini',
-        'https://www.aparat.com/Mahnaz.khoini_psychology',
-        'https://youtube.com/@mahnaz.khoini',
-      ],
-      logo: `${SITE_URL}/images/logo-512.png`,
-      image: absoluteUrl(DEFAULT_IMAGE),
-      medicalSpecialty: 'Psychological',
-      telephone: '+989199087264',
-      email: 'Khoini.1988@gmail.com',
-      priceRange: '$$',
-      currenciesAccepted: 'IRR, USD, EUR, CAD, GBP, AED',
-      paymentAccepted:
-        'کارت‌خوان (POS)، واریز بانکی، پی‌پال (PayPal)، وایز (Wise)، کردیت‌کارت بین‌المللی، پذیرش فاکتور بیمه تکمیلی',
-      hasOfferCatalog: {
-        '@type': 'OfferCatalog',
-        name: 'خدمات مرکز تخصصی زوج درمان مهناز خوینی',
-        itemListElement: [
-          {
-            '@type': 'Offer',
-            name: 'زوج‌درمانی تخصصی حضوری و آنلاین (EFT)',
-            description: 'جلسات ارزیابی و درمان تعارضات زناشویی، طلاق عاطفی و احیای صمیمیت بر مبنای پروتکل هیجان‌مدار و گاتمن',
-            url: `${SITE_URL}/services/couples-therapy`,
-            priceCurrency: 'IRR',
-            availability: 'https://schema.org/InStock',
-          },
-          {
-            '@type': 'Offer',
-            name: 'مشاوره تخصصی مدیریت شوک و بحران خیانت زناشویی',
-            description: 'مدیریت ترومای خیانت، بازسازی اعتماد و تصمیم‌گیری شفاف طبق موازین اخلاق حرفه‌ای نظام روان‌شناسی',
-            url: `${SITE_URL}/services/infidelity-counseling`,
-            priceCurrency: 'IRR',
-            availability: 'https://schema.org/InStock',
-          },
-          {
-            '@type': 'Offer',
-            name: 'مشاوره طلاق آگاهانه و کم‌آسیب',
-            description: 'مدیریت بحران عاطفی جدایی، کاهش آسیب‌های روانشناختی فرزندان و همراهی در تصمیم‌گیری عقلانی',
-            url: `${SITE_URL}/services/divorce-counseling`,
-            priceCurrency: 'IRR',
-            availability: 'https://schema.org/InStock',
-          },
-          {
-            '@type': 'Offer',
-            name: 'مشاوره پیش از ازدواج و ارزیابی تناسب شخصیتی',
-            description: 'ارزیابی تخصصی بالینی، تست انریچ و تحلیل سبک‌های دلبستگی و انتظارات مشترک پیش از ازدواج',
-            url: `${SITE_URL}/services/premarital-counseling`,
-            priceCurrency: 'IRR',
-            availability: 'https://schema.org/InStock',
-          },
-          {
-            '@type': 'Offer',
-            name: 'مشاوره آنلاین زوج‌درمانی ویژه ایرانیان خارج از کشور',
-            description: 'جلسات آنلاین تصویری با تطبیق منطقه زمانی محلی (کانادا، آمریکا، اروپا، استرالیا، امارات)',
-            url: `${SITE_URL}/services/online-counseling`,
-            priceCurrency: 'USD',
-            availability: 'https://schema.org/InStock',
-          },
-          {
-            '@type': 'Offer',
-            name: 'گروه‌درمانی الگوهای تکراری در روابط عاطفی',
-            description: 'تحلیل الگوهای ناخودآگاه تکرارشونده در انتخاب شریک و یادگیری مرزبندی سالم',
-            url: `${SITE_URL}/services/relationship-patterns-therapy`,
-            priceCurrency: 'IRR',
-            availability: 'https://schema.org/InStock',
-          },
-        ],
-      },
-      founder: { '@id': THERAPIST_ID },
-      employee: [{ '@id': THERAPIST_ID }],
-      hasCredential: [
-        {
-          '@type': 'EducationalOccupationalCredential',
-          credentialCategory: 'پروانه اشتغال تخصصی روانشناسی بالینی و زوج‌درمانی',
-          identifier: '1414083',
-          recognizedBy: {
-            '@type': 'Organization',
-            name: 'سازمان نظام روان‌شناسی و مشاوره جمهوری اسلامی ایران',
-            url: 'https://pcoiran.ir',
-          },
-        },
-        {
-          '@type': 'EducationalOccupationalCredential',
-          credentialCategory: 'مسئولیت فنی کلینیک تخصصی روان‌شناسی پیوند امن',
-          recognizedBy: {
-            '@type': 'Organization',
-            name: 'سازمان نظام روان‌شناسی و مشاوره',
-          },
-        },
-      ],
-      geo: {
-        '@type': 'GeoCoordinates',
-        latitude: 35.7208,
-        longitude: 51.3347,
-      },
-      openingHoursSpecification: [
-        {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday'],
-          opens: '09:00',
-          closes: '21:00',
-        },
-        {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: ['Thursday'],
-          opens: '09:00',
-          closes: '18:00',
-        },
-      ],
-      contactPoint: [
-        {
-          '@type': 'ContactPoint',
-          telephone: '+989199087264',
-          contactType: 'reservations',
-          areaServed: ['تهران', 'کرج', 'اصفهان', 'کرمان', 'شیراز', 'مشهد', 'IR', 'خارج از کشور'],
-          availableLanguage: ['fa', 'en'],
-        },
-        {
-          '@type': 'ContactPoint',
-          telephone: '+982144600980',
-          contactType: 'customer support',
-          areaServed: 'IR',
-          availableLanguage: ['fa'],
-        },
-      ],
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: 'منطقه ۲، محدوده صادقیه – پونک، کلینیک پیوند امن',
-        addressLocality: 'تهران',
-        addressRegion: 'منطقه ۲',
-        postalCode: '14517',
-        addressCountry: 'IR',
-      },
-    },
+    therapistEntityNode(),
+    clinicEntityNode(),
     {
       '@type': 'ItemList',
       '@id': `${url}#sitelinks`,
@@ -639,13 +805,17 @@ function videosJsonLdSchema(url: string): Record<string, unknown>[] {
           '@type': 'ListItem',
           position: idx + 1,
           item: {
-            '@type': 'CreativeWork',
+            '@type': 'VideoObject',
             '@id': `${url}#video-${v.id}`,
             name: v.title,
             description: v.description,
-            url: v.youtubeUrl || v.aparatUrl,
+            thumbnailUrl: [absoluteUrl(v.thumbnail)],
+            uploadDate: '2026-10-01T10:00:00+03:30',
+            contentUrl: v.youtubeUrl,
+            embedUrl: v.youtubeEmbedUrl,
             inLanguage: 'fa-IR',
             author: { '@id': THERAPIST_ID },
+            publisher: { '@id': `${SITE_URL}/#clinic` },
           },
         })),
       },
@@ -791,6 +961,9 @@ export function seoForRoute(route: RouteState): SeoPage {
             inLanguage: 'fa-IR',
             mainEntity: { '@id': THERAPIST_ID },
           },
+          therapistEntityNode(),
+          clinicEntityNode(),
+          parentClinicNode(),
         ],
       };
 
@@ -819,6 +992,18 @@ export function seoForRoute(route: RouteState): SeoPage {
           'رزرو وقت حضوری در تهران و مشاوره آنلاین سراسر جهان؛ آدرس کلینیک پیوند امن، ساعات کاری، تماس مستقیم و هماهنگی نوبت.',
         path: '/contact',
         breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'تماس و نوبت‌دهی' }],
+        jsonLd: [
+          {
+            '@type': 'ContactPage',
+            '@id': `${absoluteUrl('/contact')}#contact`,
+            url: absoluteUrl('/contact'),
+            inLanguage: 'fa-IR',
+            mainEntity: { '@id': CLINIC_ID },
+          },
+          clinicEntityNode(),
+          therapistEntityNode(),
+          parentClinicNode(),
+        ],
       };
 
     case 'bestTherapist': {
@@ -842,7 +1027,12 @@ export function seoForRoute(route: RouteState): SeoPage {
             url: absoluteUrl(path),
             inLanguage: 'fa-IR',
             about: { '@id': THERAPIST_ID },
+            author: { '@id': THERAPIST_ID },
+            reviewedBy: { '@id': THERAPIST_ID },
+            publisher: { '@id': CLINIC_ID },
           },
+          therapistEntityNode(),
+          clinicEntityNode(),
         ],
       };
     }
@@ -854,6 +1044,18 @@ export function seoForRoute(route: RouteState): SeoPage {
           'تعهد مرکز تخصصی زوج درمان مهناز خوینی به محرمانگی جلسات بالینی، حفظ داده‌های مراجعان و تطابق با موازین سازمان نظام روان‌شناسی و مشاوره.',
         path: '/privacy-policy',
         breadcrumb: [{ name: 'صفحه اصلی', path: '/' }, { name: 'حریم خصوصی' }],
+        jsonLd: [
+          {
+            '@type': 'WebPage',
+            '@id': `${absoluteUrl('/privacy-policy')}#privacy`,
+            name: 'منشور محرمانگی بالینی و حریم خصوصی کلینیک پیوند امن',
+            url: absoluteUrl('/privacy-policy'),
+            inLanguage: 'fa-IR',
+            publisher: { '@id': CLINIC_ID },
+            about: { '@id': THERAPIST_ID },
+          },
+          clinicEntityNode(),
+        ],
       };
 
     case 'city': {

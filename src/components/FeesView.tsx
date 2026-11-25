@@ -221,7 +221,7 @@ export const FeesView: React.FC<FeesViewProps> = ({
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {(
                 [
-                  { id: 'inPerson', title: 'حضوری تهران (کلینیک پیوند امن)', sub: 'منطقه ۲ تهران (صادقیه – پونک)' },
+                  { id: 'inPerson', title: 'حضوری تهران (کلینیک پیوند امن)', sub: 'تهران، پونک (منطقه ۲)' },
                   { id: 'onlineDomestic', title: 'آنلاین سراسر ایران', sub: 'جلسات تصویری در بستر امن' },
                   { id: 'onlineInternational', title: 'آنلاین ایرانیان خارج از کشور', sub: 'هماهنگ با منطقه زمانی شما' },
                 ] as { id: FormatKey; title: string; sub: string }[]

@@ -295,7 +295,15 @@ export const Hero: React.FC<HeroProps> = ({
                 حضوری تهران و آنلاین سراسری
               </p>
               <p className="text-xs text-[#555650] mt-1 leading-relaxed">
-                منطقه ۲ تهران (صادقیه–پونک) و جلسات تصویری ایران و خارج
+                تهران، پونک (منطقه ۲) ·{' '}
+                <a
+                  href="https://maps.app.goo.gl/b9dx9xeA69wJJPzd6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#344A42] font-semibold underline underline-offset-4 hover:text-[#273932]"
+                >
+                  نقشه گوگل
+                </a>
               </p>
             </div>
           </div>

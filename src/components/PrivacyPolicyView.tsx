@@ -85,7 +85,7 @@ export const PrivacyPolicyView: React.FC<PrivacyPolicyViewProps> = ({
           <div className="pt-6 border-t border-[#E5E0D8]">
             <h3 className="text-sm font-bold text-[#292D2A] mb-2">اطلاعات تماس کلینیک:</h3>
             <p className="text-xs text-[#555650]">
-              تلفن هماهنگی: ۰۹۱۹۹۰۸۷۲۶۴ · تلفن ثابت: ۰۲۱۴۴۶۰۰۹۸۰ · ایمیل: Khoini.1988@gmail.com · تهران، منطقه ۲ (محدوده صادقیه – پونک)
+              تلفن هماهنگی: ۰۹۱۹۹۰۸۷۲۶۴ · تلفن ثابت: ۰۲۱۴۴۶۰۰۹۸۰ · ایمیل: Khoini.1988@gmail.com · تهران، پونک (منطقه ۲)
             </p>
           </div>
         </article>

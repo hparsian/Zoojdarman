@@ -18,6 +18,7 @@ import {
   InteractiveFaqSection,
 } from './StructuredContentBlocks';
 import { SocialShareButtons } from './SocialShareButtons';
+import { ClinicalTrustFooter } from './ClinicalTrustFooter';
 import { getArticleSocialMeta } from '../utils/socialShareSeo';
 
 interface ArticleViewProps {
@@ -254,6 +255,12 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
               </div>
             </div>
 
+            <ClinicalTrustFooter
+              context="article"
+              updatedAt={article.updatedAt}
+              onNavigateAbout={() => navigateInternal('/about')}
+            />
+
             <div className="bg-[#FCFBF8] rounded-2xl p-6 border border-[#E5E0D8] flex items-center gap-4 mb-10">
               <img
                 src="/images/mahnaz-khoini-thumb.webp"
@@ -269,8 +276,8 @@ export const ArticleView: React.FC<ArticleViewProps> = ({
               />
               <div>
                 <h4 className="text-sm font-bold text-[#292D2A] mb-1">مهناز خوینی</h4>
-                <p className="text-xs text-[#555650] leading-relaxed">
-                  زوج‌درمانگر بالینی و مسئول فنی کلینیک پیوند امن · پروانه سازمان نظام روان‌شناسی: ۱۴۱۴۰۸۳
+                <p className="text-xs text-[#555650] leading-relaxed tabular-nums">
+                  کارشناس ارشد روان‌شناسی و زوج‌درمانگر بالینی · پروانه نظام روان‌شناسی: ۱۴۱۴۰۸۳
                 </p>
               </div>
             </div>

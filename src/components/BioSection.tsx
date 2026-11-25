@@ -91,9 +91,11 @@ export const BioSection: React.FC<BioSectionProps> = ({
                 <li className="flex items-start gap-3.5">
                   <ShieldCheck className="w-5 h-5 text-[#3D5E4E] shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold text-[#292D2A] block">پروانه اشتغال تخصصی شماره ۱۴۱۴۰۸۳</span>
+                    <span className="font-bold text-[#292D2A] block tabular-nums">
+                      پروانه اشتغال تخصصی شماره ۱۴۱۴۰۸۳
+                    </span>
                     <span className="text-xs text-[#555650] leading-relaxed block mt-1">
-                      صادره از سازمان نظام روان‌شناسی و مشاوره جمهوری اسلامی ایران (قابل استعلام)
+                      ثبت‌شده در سامانه سازمان نظام روان‌شناسی و مشاوره ایران
                     </span>
                   </div>
                 </li>
@@ -101,9 +103,9 @@ export const BioSection: React.FC<BioSectionProps> = ({
                 <li className="flex items-start gap-3.5">
                   <BookOpen className="w-5 h-5 text-[#3D5E4E] shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold text-[#292D2A] block">کارشناس ارشد روان‌شناسی بالینی</span>
+                    <span className="font-bold text-[#292D2A] block">کارشناس ارشد روان‌شناسی و زوج‌درمانگر بالینی</span>
                     <span className="text-xs text-[#555650] leading-relaxed block mt-1">
-                      دارای گواهینامه‌های تخصصی زوج‌درمانی هیجان‌مدار (EFT) و طرحواره‌درمانی
+                      متمرکز بر زوج‌درمانی هیجان‌مدار (EFT)، پروتکل گاتمن و طرحواره‌درمانی روابط
                     </span>
                   </div>
                 </li>
@@ -123,7 +125,7 @@ export const BioSection: React.FC<BioSectionProps> = ({
                       </a>
                     </span>
                     <span className="text-xs text-[#555650] leading-relaxed block mt-1">
-                      تهران، منطقه ۲ (محدوده صادقیه – پونک) و ارائه جلسات آنلاین برای سراسر ایران و خارج از کشور
+                      تهران، پونک (منطقه ۲) و جلسات آنلاین سراسری
                     </span>
                   </div>
                 </li>

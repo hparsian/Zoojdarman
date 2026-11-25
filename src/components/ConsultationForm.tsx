@@ -71,7 +71,7 @@ export const ConsultationForm: React.FC = () => {
                 <div>
                   <span className="font-bold text-[#292D2A] block">نشانی جلسات حضوری</span>
                   <p className="text-xs sm:text-sm text-[#555650] leading-relaxed mt-1">
-                    تهران، منطقه ۲ (محدوده صادقیه – پونک، کلینیک پیوند امن)
+                    تهران، پونک (منطقه ۲)، کلینیک پیوند امن
                   </p>
                   <a
                     href="https://maps.app.goo.gl/b9dx9xeA69wJJPzd6"
@@ -79,7 +79,7 @@ export const ConsultationForm: React.FC = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#344A42] hover:text-[#273932] underline underline-offset-4 mt-1.5 transition-colors"
                   >
-                    <span>مسیریابی کلینیک روی نقشه گوگل</span>
+                    <span>مسیریابی و نظرات مراجعین در گوگل‌مپ</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 </div>
@@ -244,28 +244,41 @@ export const ConsultationForm: React.FC = () => {
                 </div>
 
                 <div className="bg-[#FCFBF8] border border-[#E5E0D8] rounded-xl p-4 text-xs sm:text-sm text-[#292D2A] whitespace-pre-line leading-relaxed">
-                  {summaryText}
+                  {`${summaryText}\nراه ارتباطی: ${contactWay.trim()}`}
                 </div>
 
                 <div className="flex flex-wrap items-center gap-3">
+                  <a
+                    href={`https://wa.me/989199087264?text=${encodeURIComponent(
+                      `${summaryText}\nراه ارتباطی: ${contactWay.trim()}`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#344A42] hover:bg-[#273932] text-[#FCFBF8] text-xs font-semibold transition-colors"
+                  >
+                    <MessageSquare className="w-4 h-4" />
+                    <span>ارسال مستقیم در واتساپ پذیرش</span>
+                  </a>
+
+                  <a
+                    href={`mailto:Khoini.1988@gmail.com?subject=${encodeURIComponent(
+                      'درخواست نوبت مشاوره - ' + topic
+                    )}&body=${encodeURIComponent(
+                      `${summaryText}\nراه ارتباطی: ${contactWay.trim()}`
+                    )}`}
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#344A42] text-[#344A42] hover:bg-[#EDF2EE] text-xs font-semibold transition-colors"
+                  >
+                    <span>ارسال از طریق ایمیل</span>
+                  </a>
+
                   <button
                     type="button"
                     onClick={handleCopySummary}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#344A42] hover:bg-[#273932] text-[#FCFBF8] text-xs font-semibold transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#CFC7BA] bg-[#FCFBF8] hover:bg-[#ECE7DF] text-[#292D2A] text-xs font-semibold transition-colors cursor-pointer"
                   >
                     {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                    <span>{copied ? 'خلاصه کپی شد' : 'کپی متن درخواست'}</span>
+                    <span>{copied ? 'خلاصه کپی شد' : 'کپی متن'}</span>
                   </button>
-
-                  <a
-                    href="https://wa.me/989199087264"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#344A42] text-[#344A42] hover:bg-[#EDF2EE] text-xs font-semibold transition-colors"
-                  >
-                    <MessageSquare className="w-4 h-4" />
-                    <span>گفت‌وگو با پذیرش در واتساپ</span>
-                  </a>
 
                   <button
                     type="button"

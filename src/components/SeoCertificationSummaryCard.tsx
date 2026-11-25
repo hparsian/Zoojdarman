@@ -51,7 +51,7 @@ export const SeoCertificationSummaryCard: React.FC<SeoCertificationSummaryCardPr
           <div className="text-xs font-semibold text-[#3D5E4E]">نحوه دسترسی</div>
           <div className="text-base font-bold text-[#292D2A]">حضوری تهران و آنلاین</div>
           <p className="text-xs text-[#555650] leading-relaxed">
-            تهران، منطقه ۲ (محدوده صادقیه – پونک، کلینیک پیوند امن) و جلسات آنلاین سراسر جهان
+            تهران، پونک (منطقه ۲)، کلینیک پیوند امن و جلسات آنلاین سراسر جهان
           </p>
         </div>
       </div>

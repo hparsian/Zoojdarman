@@ -24,6 +24,7 @@ import { SocialShareButtons } from './SocialShareButtons';
 import { getServiceSocialMeta } from '../utils/socialShareSeo';
 import { PARENT_CLINIC_LINKS, getParentServiceLink } from '../utils/parentClinicLinks';
 import { ClinicSpaceFigure, ClinicSpaceKey } from './ClinicSpaceFigure';
+import { ClinicalTrustFooter } from './ClinicalTrustFooter';
 
 const SERVICE_SPACE_MAP: Record<string, ClinicSpaceKey> = {
   'couples-therapy': 'tehran-sunlit-mustard-room',
@@ -263,7 +264,7 @@ export const ServiceView: React.FC<ServiceViewProps> = ({
                 هماهنگی اولین جلسه {service.title}
               </h3>
               <p className="text-xs sm:text-sm text-[#555650] max-w-xl mx-auto mb-6 leading-relaxed">
-                جلسات حضوری در تهران، منطقه ۲ (محدوده صادقیه – پونک، کلینیک پیوند امن) و به‌صورت
+                جلسات حضوری در تهران، پونک (منطقه ۲)، کلینیک پیوند امن و به‌صورت
                 آنلاین در سراسر ایران و جهان برگزار می‌شوند.
               </p>
               <div className="flex flex-wrap items-center justify-center gap-3">
@@ -308,6 +309,11 @@ export const ServiceView: React.FC<ServiceViewProps> = ({
               </div>
             </div>
 
+            <ClinicalTrustFooter
+              context="service"
+              onNavigateAbout={() => navigateInternal('/about')}
+            />
+
             <div className="bg-[#FCFBF8] rounded-2xl p-6 border border-[#E5E0D8] flex items-center gap-4 mb-10">
               <img
                 src="/images/mahnaz-khoini-thumb.webp"
@@ -323,8 +329,8 @@ export const ServiceView: React.FC<ServiceViewProps> = ({
               />
               <div>
                 <h4 className="text-sm font-bold text-[#292D2A] mb-1">مهناز خوینی</h4>
-                <p className="text-xs text-[#555650] leading-relaxed">
-                  کارشناس ارشد روان‌شناسی بالینی و مسئول فنی کلینیک پیوند امن · پروانه ۱۴۱۴۰۸۳
+                <p className="text-xs text-[#555650] leading-relaxed tabular-nums">
+                  کارشناس ارشد روان‌شناسی و مسئول فنی کلینیک پیوند امن · پروانه نظام روان‌شناسی: ۱۴۱۴۰۸۳
                 </p>
               </div>
             </div>
