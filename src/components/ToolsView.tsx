@@ -115,7 +115,7 @@ export const ToolsView: React.FC<ToolsViewProps> = ({
                 <strong className="text-[#292D2A]">الگوی ۴ رفتار تخریبی گاتمن:</strong> شناخت نشانه‌های انتقاد، تحقیر، دفاع و دیوارکشی سکوت در تعاملات روزمره زوجین.
               </li>
               <li>
-                <strong className="text-[#292D2A]">نظریه دلبستگی و رویکرد هیجان‌مدار (EFT):</strong> شناخت واکنش‌های ایمن، اضطرابی و اجتنابی در لحظات تنش یا دوری عاطفی.
+                <strong className="text-[#292D2A]">رویکرد شناختی-رفتاری (CBCT) و نظریه دلبستگی:</strong> شناخت خطاهای شناختی، الگوهای رفتاری تقابلی و واکنش‌های ایمن یا مضطرب در لحظات تنش یا دوری عاطفی.
               </li>
             </ul>
             <p className="bg-[#EDF2EE] p-4 rounded-xl border border-[#D3E0D7] text-[#292D2A] text-xs font-medium">

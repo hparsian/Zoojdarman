@@ -164,7 +164,7 @@ export const ConsultationForm: React.FC = () => {
                     onChange={(e) => setTopic(e.target.value)}
                     className="w-full px-4 py-3 rounded-lg bg-[#FCFBF8] border border-[#CFC7BA] focus:border-[#344A42] focus:outline-none text-sm text-[#292D2A]"
                   >
-                    <option value="زوج‌درمانی و بهبود گفت‌وگو">زوج‌درمانی و بهبود گفت‌وگو (EFT)</option>
+                    <option value="زوج‌درمانی و بهبود گفت‌وگو">زوج‌درمانی شناختی-رفتاری و بهبود گفت‌وگو (CBCT)</option>
                     <option value="مدیریت بحران و ترمیم خیانت">مدیریت بحران و ترمیم خیانت</option>
                     <option value="سردی عاطفی یا تصمیم‌گیری درباره طلاق">سردی عاطفی یا تصمیم‌گیری درباره طلاق</option>
                     <option value="مشاوره پیش از ازدواج">مشاوره و ارزیابی پیش از ازدواج</option>

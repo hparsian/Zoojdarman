@@ -88,9 +88,9 @@ export const AboutView: React.FC<AboutViewProps> = ({
                 کارشناس ارشد روان‌شناسی · زوج‌درمانگر بالینی و مسئول فنی کلینیک تخصصی پیوند امن
               </p>
               <p className="text-sm text-[#555650] leading-[1.9] mb-6 text-justify">
-                روان‌شناس بالینی و زوج‌درمانگر متمرکز بر رویکرد هیجان‌مدار (EFT)، مداخله در ترومای خیانت،
-                سکس‌تراپی و طرحواره‌درمانی روابط. هدف اتاق درمان کمک به همسران برای خروج از چرخه‌های فرسایشی
-                مشاجره یا سکوت و بازیابی امنیت، اعتماد و پیوند عاطفی پایدار است.
+                روان‌شناس بالینی و زوج‌درمانگر متمرکز بر رویکرد شناختی-رفتاری (CBT / CBCT)، مداخله در ترومای خیانت،
+                سکس‌تراپی و طرحواره‌درمانی روابط. هدف اتاق درمان کمک به همسران برای شناسایی خطاهای شناختی، اصلاح رفتارهای
+                فرسایشی و یادگیری مهارت‌های عملی حل مسئله و پیوند پایدار است.
               </p>
 
               <div className="flex flex-wrap gap-3">
@@ -161,7 +161,7 @@ export const AboutView: React.FC<AboutViewProps> = ({
             <ul className="space-y-3 text-xs sm:text-sm text-[#555650] leading-relaxed">
               <li className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-[#3D5E4E] mt-0.5 shrink-0" />
-                <span>زوج‌درمانی هیجان‌مدار (EFT — مبتنی بر الگوی دلبستگی دکتر سو جانسون)</span>
+                <span>زوج‌درمانی شناختی-رفتاری (CBCT — مبتنی بر الگوی بک، باکوم و اپستین)</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-[#3D5E4E] mt-0.5 shrink-0" />
@@ -190,13 +190,13 @@ export const AboutView: React.FC<AboutViewProps> = ({
           </h2>
           <p className="text-sm text-[#292D2A] leading-[1.9] mb-6 text-justify">
             «در جلسات درمانی، هیچ‌یک از طرفین به‌عنوان مقصر یا متهم پای میز قضاوت نشانده نمی‌شوند. دعواهای مکرر،
-            قهر، یا حتی سردی عاطفی علائمی از یک چرخه منفی ناخودآگاه هستند که هر دو نفر در آن خسته شده‌اند.
-            با شناخت نیازهای دلبستگی برآورده‌نشده و توقف سرزنش، گفت‌وگوی امن دوباره شکل می‌گیرد.»
+            قهر، یا حتی سردی عاطفی محصول باورهای خودکار ناکارآمد، سوءتعبیرهای ذهنی و چرخه‌های رفتاریِ آموخته‌شده هستند
+            که هر دو نفر را خسته کرده‌اند. با اصلاح شناختی و آموزش مهارت‌های ارتباطی شفاف، گفت‌وگوی سازنده دوباره شکل می‌گیرد.»
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-5 border-t border-[#D3E0D7]">
             <div className="bg-[#FCFBF8] p-4 rounded-xl border border-[#E5E0D8] text-center">
-              <span className="text-lg font-extrabold text-[#344A42] block mb-1">EFT</span>
-              <span className="text-xs font-medium text-[#555650]">زوج‌درمانی هیجان‌مدار</span>
+              <span className="text-lg font-extrabold text-[#344A42] block mb-1">CBCT</span>
+              <span className="text-xs font-medium text-[#555650]">زوج‌درمانی شناختی-رفتاری</span>
             </div>
             <div className="bg-[#FCFBF8] p-4 rounded-xl border border-[#E5E0D8] text-center">
               <span className="text-lg font-extrabold text-[#3D5E4E] block mb-1">طرحواره</span>

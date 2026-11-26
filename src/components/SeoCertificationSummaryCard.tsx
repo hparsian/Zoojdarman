@@ -42,7 +42,7 @@ export const SeoCertificationSummaryCard: React.FC<SeoCertificationSummaryCardPr
           <div className="text-xs font-semibold text-[#3D5E4E]">مرکز درمانی مجاز</div>
           <div className="text-base font-bold text-[#292D2A]">مسئول فنی کلینیک پیوند امن</div>
           <p className="text-xs text-[#555650] leading-relaxed">
-            پایش بالینی جلسات با رویکرد هیجان‌مدار (EFT) و صدور فاکتور رسمی جهت ارائه به بیمه تکمیلی
+            پایش بالینی جلسات با رویکرد شناختی-رفتاری (CBCT) و صدور فاکتور رسمی جهت ارائه به بیمه تکمیلی
           </p>
         </div>
 

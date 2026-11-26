@@ -118,7 +118,7 @@ export const Footer: React.FC<FooterProps> = ({
                   onClick={(e) => handleLink(e, () => onNavigateService?.('couples-therapy'), 'services')}
                   className="hover:text-[#FCFBF8] transition-colors"
                 >
-                  زوج‌درمانی تخصصی (EFT)
+                  زوج‌درمانی شناختی-رفتاری (CBCT)
                 </a>
               </li>
               <li>
@@ -225,7 +225,7 @@ export const Footer: React.FC<FooterProps> = ({
                   onClick={(e) => handleLink(e, onNavigateProcess, 'process')}
                   className="hover:text-[#FCFBF8] transition-colors"
                 >
-                  مراحل ۴گانه درمان EFT
+                  مراحل ۴گانه درمان CBCT
                 </a>
               </li>
               <li>

@@ -11,13 +11,13 @@ export interface ServiceMeta {
 export const servicesMeta: ServiceMeta[] = [
   {
     slug: 'couples-therapy',
-    title: 'زوج درمانگر در تهران و آنلاین (EFT) | مهناز خوینی',
+    title: 'زوج درمانگر در تهران و آنلاین (رویکرد شناختی-رفتاری CBCT) | مهناز خوینی',
     h1: 'مرکز تخصصی زوج درمان در تهران و مشاوره آنلاین؛ حل دعواهای مکرر و بازگشت صمیمیت',
     description:
-      'زوج درمانی تخصصی حضوری در غرب تهران و آنلاین سراسر جهان با مهناز خوینی (پروانه ۱۴۱۴۰۸۳). حل تعارضات زناشویی، درمان طلاق عاطفی و بازسازی دلبستگی امن.',
-    category: 'زوج‌درمانی تخصصی (EFT و گاتمن)',
-    shortSummary: 'توقف چرخه‌های تکرارشونده بحث، کاهش قهر و سردی، و بازگرداندن امنیت گفت‌وگو به خانه.',
-    relatedArticleSlugs: ['emotionally-focused-therapy-eft', 'how-many-sessions-couples-therapy', 'gottman-couples-therapy'],
+      'زوج درمانی تخصصی حضوری در غرب تهران و آنلاین سراسر جهان با رویکرد شناختی-رفتاری (CBCT) با مهناز خوینی (پروانه ۱۴۱۴۰۸۳). اصلاح الگوهای ارتباطی، درمان طلاق عاطفی و آموزش مهارت حل مسئله.',
+    category: 'زوج‌درمانی شناختی-رفتاری (CBCT و گاتمن)',
+    shortSummary: 'توقف چرخه‌های تکرارشونده بحث، اصلاح خطاهای شناختی، کاهش قهر و بازگرداندن گفت‌وگوی سازنده به خانه.',
+    relatedArticleSlugs: ['what-is-couples-therapy', 'how-many-sessions-couples-therapy', 'gottman-couples-therapy'],
   },
   {
     slug: 'infidelity-counseling',

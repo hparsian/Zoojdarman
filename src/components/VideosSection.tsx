@@ -28,7 +28,7 @@ function matchesFilter(category: VideoCategory, filter: FilterKey): boolean {
   if (filter === 'conflict') {
     return category === 'ارتباط و گفتگو' || category === 'طلاق عاطفی';
   }
-  return category === 'رویکرد EFT' || category === 'سوالات متداول';
+  return category === 'رویکرد CBCT' || category === 'سوالات متداول';
 }
 
 const ThumbnailWithFallback: React.FC<{

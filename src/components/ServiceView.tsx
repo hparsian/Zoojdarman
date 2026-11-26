@@ -201,7 +201,7 @@ export const ServiceView: React.FC<ServiceViewProps> = ({
           </div>
           <div className="bg-[#FCFBF8] p-4 rounded-xl border border-[#E5E0D8] flex items-center gap-3">
             <CheckCircle2 className="w-5 h-5 text-[#344A42] shrink-0" />
-            <span className="text-xs font-semibold text-[#292D2A]">پروتکل علمی EFT و گاتمن</span>
+            <span className="text-xs font-semibold text-[#292D2A]">پروتکل علمی CBCT و گاتمن</span>
           </div>
         </div>
 

@@ -82,7 +82,7 @@ export const Hero: React.FC<HeroProps> = ({
               اگر میان بحث‌های تکراری، سکوت طولانی یا تردید پس از آسیب اعتماد مانده‌اید،
               اینجا فضایی امن، بی‌طرف و بدون قضاوت برای شنیده‌شدن هر دو نفر است — با هدایت{' '}
               <strong className="font-semibold text-[#292D2A]">مهناز خوینی</strong>،
-              زوج‌درمانگر بالینی و درمانگر رویکرد هیجان‌مدار (EFT).
+              زوج‌درمانگر بالینی و درمانگر رویکرد شناختی-رفتاری (CBT / CBCT).
             </p>
 
             {/* Primary & Secondary Action Row */}
@@ -198,7 +198,7 @@ export const Hero: React.FC<HeroProps> = ({
                       مهناز خوینی
                     </p>
                     <p className="text-xs sm:text-sm text-[#E5E0D8] mt-0.5">
-                      کارشناس ارشد روان‌شناسی بالینی · زوج‌درمانگر (EFT)
+                      کارشناس ارشد روان‌شناسی بالینی · زوج‌درمانگر شناختی-رفتاری (CBCT)
                     </p>
                   </div>
                 </div>
@@ -268,10 +268,10 @@ export const Hero: React.FC<HeroProps> = ({
             <BookOpen className="w-4 h-4 text-[#9E563E] shrink-0 mt-1" />
             <div>
               <p className="text-xs sm:text-sm font-bold text-[#292D2A]">
-                رویکرد علمی هیجان‌مدار (EFT)
+                رویکرد علمی شناختی-رفتاری (CBCT)
               </p>
               <p className="text-xs text-[#555650] mt-1 leading-relaxed">
-                شناسایی چرخه تعارض و بازسازی پیوند عاطفی بدون سرزنش
+                شناسایی خطاهای شناختی، اصلاح الگوهای رفتاری و آموزش گفت‌وگوی سازنده
               </p>
             </div>
           </div>

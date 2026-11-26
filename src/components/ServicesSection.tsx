@@ -32,7 +32,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
               خدمات تخصصی کلینیک زوج‌درمان
             </h2>
             <p className="text-sm sm:text-base text-[#555650] leading-relaxed">
-              هر خدمت بر پایه پروتکل‌های معتبر علمی (EFT و گاتمن) و متناسب با وضعیت واقعی شما طراحی می‌شود.
+              هر خدمت بر پایه پروتکل‌های معتبر علمی (CBCT، طرحواره‌درمانی و گاتمن) و متناسب با وضعیت واقعی شما طراحی می‌شود.
             </p>
           </div>
 

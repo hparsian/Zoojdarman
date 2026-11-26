@@ -73,7 +73,7 @@ export const InteractiveToolsSuite: React.FC<InteractiveToolsSuiteProps> = ({
       id: 'attachment',
       title: 'تست سبک دلبستگی در روابط عاطفی',
       shortDesc: 'تشخیص سبک دلبستگی شما و همسرتان (ایمن، اضطرابی، اجتنابی) برای شکستن چرخه دعوا',
-      badge: 'رویکرد EFT',
+      badge: 'شناخت رفتار رابطه',
       icon: 'attachment',
       questionsCount: 9,
       timeEstimate: '۳ دقیقه',
@@ -524,7 +524,7 @@ export const InteractiveToolsSuite: React.FC<InteractiveToolsSuiteProps> = ({
         advice: [
           'توقف سرزنش‌های کلی در هنگام دعوا و تبدیل انتقاد به بیان نیاز عاطفی.',
           'تمرین گوش دادن بازتابی بدون دفاع و گارد گرفتن.',
-          'گذراندن ۴ الی ۶ جلسه زوج‌درمانی متمرکز بر حل تعارض (EFT).',
+          'گذراندن ۴ الی ۶ جلسه زوج‌درمانی شناختی-رفتاری (CBCT) متمرکز بر حل تعارض.',
         ],
       };
     } else if (scorePct >= 40) {
@@ -939,7 +939,7 @@ export const InteractiveToolsSuite: React.FC<InteractiveToolsSuiteProps> = ({
               <Brain className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-xs font-bold text-[#292D2A] mb-1">مبتنی بر مفاهیم EFT و گاتمن</h4>
+              <h4 className="text-xs font-bold text-[#292D2A] mb-1">مبتنی بر مفاهیم CBCT، دلبستگی و گاتمن</h4>
               <p className="text-[11px] text-[#555650] leading-relaxed">
                 طراحی‌شده بر پایه مقیاس‌های پژوهشی انریچ، دلبستگی و الگوهای گفت‌وگوی زوجین.
               </p>

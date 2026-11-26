@@ -11,14 +11,14 @@ export interface ClinicalReference {
 const DEFAULT_REFERENCES: Record<'article' | 'service' | 'test', ClinicalReference[]> = {
   article: [
     {
-      authors: 'Johnson, S. M. (2019)',
-      title: 'The Practice of Emotionally Focused Couple Therapy: Creating Connection (3rd ed.)',
-      source: 'Routledge / ICEEFT',
+      authors: 'Epstein, N. B., & Baucom, D. H. (2002)',
+      title: 'Enhanced Cognitive-Behavioral Therapy for Couples: A Contextual Approach',
+      source: 'American Psychological Association (APA)',
     },
     {
-      authors: 'Gottman, J. M., & Silver, N. (2015)',
-      title: 'The Seven Principles for Making Marriage Work',
-      source: 'The Gottman Institute / Harmony Books',
+      authors: 'Dattilio, F. M. (2010)',
+      title: 'Cognitive-Behavioral Therapy with Couples and Families: A Comprehensive Guide for Clinicians',
+      source: 'Guilford Press',
     },
     {
       authors: 'Young, J. E., Klosko, J. S., & Weishaar, M. E. (2003)',
@@ -33,19 +33,19 @@ const DEFAULT_REFERENCES: Record<'article' | 'service' | 'test', ClinicalReferen
   ],
   service: [
     {
-      authors: 'Johnson, S. M. (2019)',
-      title: 'Attachment Theory in Practice: Emotionally Focused Therapy (EFT)',
-      source: 'Guilford Press / ICEEFT',
+      authors: 'Epstein, N. B., & Baucom, D. H. (2002)',
+      title: 'Enhanced Cognitive-Behavioral Therapy for Couples (CBCT)',
+      source: 'American Psychological Association (APA)',
+    },
+    {
+      authors: 'Beck, A. T. (1988)',
+      title: 'Love Is Never Enough: Resolving Relationship Problems Through Cognitive Therapy',
+      source: 'Harper & Row',
     },
     {
       authors: 'Baucom, D. H., Snyder, D. K., & Gordon, K. C. (2009)',
       title: 'Helping Couples Get Past the Affair: A Clinician’s Guide',
       source: 'Guilford Press',
-    },
-    {
-      authors: 'Gottman, J. M., & Gottman, J. S. (2017)',
-      title: 'The Natural Principles of Love & Sound Relationship House',
-      source: 'The Gottman Institute',
     },
   ],
   test: [

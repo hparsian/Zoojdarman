@@ -61,8 +61,8 @@ const SCENARIOS: RelationshipScenario[] = [
       safeReframe:
         '«وقتی لحن تند می‌شود نگران می‌شوم که نتوانم رضایتت را جلب کنم؛ کمی فرصت بده با آرامش به حرفت گوش دهم.»',
     },
-    articleSlug: 'emotionally-focused-therapy-eft',
-    articleTitle: 'زوج‌درمانی هیجان‌مدار (EFT) چگونه چرخه را متوقف می‌کند؟',
+    articleSlug: 'what-is-couples-therapy',
+    articleTitle: 'زوج‌درمانی شناختی-رفتاری (CBCT) چگونه چرخه را متوقف می‌کند؟',
     serviceSlug: 'couples-therapy',
   },
   {
@@ -146,8 +146,8 @@ const GUIDE_TOPICS: GuideTopic[] = [
     id: 'conflict',
     label: 'بحث‌های تکراری، خشم یا قهر طولانی',
     serviceSlug: 'couples-therapy',
-    serviceName: 'زوج‌درمانی تخصصی (EFT)',
-    articleSlug: 'emotionally-focused-therapy-eft',
+    serviceName: 'زوج‌درمانی شناختی-رفتاری (CBCT)',
+    articleSlug: 'what-is-couples-therapy',
     articleTitle: 'چگونه چرخه دعوای تکراری متوقف می‌شود؟',
     testSlug: 'gottman-divorce-predictor',
     testTitle: 'مرور ۴ الگوی آسیب‌زا در مشاجره (گاتمن)',
@@ -279,15 +279,15 @@ export const RelationshipGalaxySection: React.FC<RelationshipGalaxySectionProps>
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
             <div className="max-w-2xl">
               <p className="text-xs sm:text-sm font-semibold text-[#3D5E4E] mb-2">
-                مترجم بالینی گفت‌وگو · برگرفته از زوج‌درمانی هیجان‌مدار (EFT)
+                مترجم بالینی گفت‌وگو · برگرفته از رویکرد شناختی-رفتاری (CBCT)
               </p>
               <h2 className="balance-text text-2xl sm:text-3xl font-extrabold text-[#292D2A] leading-snug mb-3">
-                پشتِ جمله‌های تند یا سکوت‌های طولانی، واقعاً چه می‌گذرد؟
+                پشتِ جمله‌های تند یا سکوت‌های طولانی، چه باورها و افکاری فعال است؟
               </h2>
               <p className="text-sm sm:text-base text-[#555650] leading-relaxed">
-                بسیاری از بحث‌های فرسایشی نه به خاطر نبودن علاقه، بلکه به این دلیل است که ترس‌های
-                دلبستگی پشت واکنش‌های دفاعی پنهان می‌مانند. یک موقعیت را انتخاب کنید و لایه زیرین
-                آن را ببینید.
+                بسیاری از بحث‌های فرسایشی نه به خاطر نبودن علاقه، بلکه به این دلیل است که افکار خودکار،
+                اسنادهای منفی و واکنش‌های دفاعی مسیر گفت‌وگو را می‌بندند. یک موقعیت را انتخاب کنید و لایه زیرین
+                و بازسازی شناختی آن را ببینید.
               </p>
             </div>
 

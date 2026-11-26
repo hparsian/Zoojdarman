@@ -23,7 +23,7 @@ export type VideoCategory =
   | 'مشاوره خیانت'
   | 'طلاق عاطفی'
   | 'ارتباط و گفتگو'
-  | 'رویکرد EFT'
+  | 'رویکرد CBCT'
   | 'سوالات متداول';
 
 export interface VideoCategoryItem {
@@ -230,7 +230,7 @@ export const VIDEOS_DATA: VideoItem[] = [
     title: 'تابع یا مطیع بودن بیش از حد در رابطه',
     description:
       'چرا کوتاه آمدن مداوم، سرکوب خواسته‌ها و ترس از ناراحت کردن شریک عاطفی به جای صمیمیت، به خستگی پنهان و فاصله منجر می‌شود.',
-    category: 'رویکرد EFT',
+    category: 'رویکرد CBCT',
     format: 'ویدیو کوتاه (Shorts)',
     isShort: true,
     duration: 'Shorts',
@@ -243,7 +243,7 @@ export const VIDEOS_DATA: VideoItem[] = [
     youtubeEmbedUrl: 'https://www.youtube-nocookie.com/embed/nyni_tKmwvM',
     youtubeUrl: 'https://www.youtube.com/shorts/nyni_tKmwvM',
     thumbnail: '/images/youtube/nyni_tKmwvM.jpg',
-    tags: ['دلبستگی', 'مرزبندی سالم', 'رویکرد EFT'],
+    tags: ['شناختی رفتاری', 'مرزبندی سالم', 'رویکرد CBCT'],
     keyTakeaways: [
       'تفاوت همدلی سالم با نادیده گرفتن مداوم نیازهای خود',
       'بازسازی گفت‌وگوی برابر در رابطه عاطفی',

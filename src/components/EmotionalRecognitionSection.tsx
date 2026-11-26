@@ -22,25 +22,25 @@ const CONFLICT_CARDS: ConflictCardItem[] = [
   {
     id: 'loops',
     num: '۰۱',
-    category: 'چرخه تعقیب و دفاع',
+    category: 'چرخه افکار و دفاع رفتاری',
     quote: 'هر بحث کوچکی به مشاجره تکراری یا سکوت چندروزه ختم می‌شود.',
     surfaceNote:
       'موضوع دعوا هر بار عوض می‌شود، اما احساس خستگی و شنیده‌نشدن در پایان بحث ثابت است.',
     eftExplanation:
-      'در رویکرد EFT، خشمِ پیگیری‌کننده و سکوتِ عقب‌نشین هر دو واکنش‌هایی برای محافظت از دلبستگی هستند؛ پشت حمله، ترس از نادیده‌گرفته‌شدن و پشت سکوت، ترس از شکست و طرد پنهان است.',
-    actionLabel: 'زوج‌درمانی تخصصی EFT',
+      'در رویکرد CBCT، مشاجره‌های مکرر از «اسنادهای منفی» و افکار خودکار (مانند ذهن‌خوانی نیت بد طرف مقابل) تغذیه می‌شود؛ حمله انتقادی و کناره‌گیری متقابل یک چرخه رفتاری تقابلی را بازتولید می‌کنند.',
+    actionLabel: 'زوج‌درمانی شناختی-رفتاری (CBCT)',
     targetType: 'service',
     slug: 'couples-therapy',
   },
   {
     id: 'distance',
     num: '۰۲',
-    category: 'فاصله و سکوت عاطفی',
+    category: 'فاصله و اجتناب رفتاری',
     quote: 'زیر یک سقف زندگی می‌کنیم، اما احساس تنهایی و غریبگی عمیقی داریم.',
     surfaceNote:
       'گفت‌وگوها فقط به کارهای روزمره محدود شده و دیگر از نیازها و احساسات حرفی زده نمی‌شود.',
     eftExplanation:
-      'در تحلیل هیجان‌مدار، سردی تدریجی (طلاق عاطفی) محصولِ ناامیدی از دسترس‌پذیری عاطفی است؛ سکوت برای جلوگیری از رنج بیشتر شکل می‌گیرد اما نیاز به نزدیکی همچنان زنده است.',
+      'در تحلیل شناختی-رفتاری، سردی و طلاق عاطفی محصول باورِ ناکارآمد «گفت‌وگو بی‌فایده است» و اجتناب از تعارض است؛ کاهش تعامل‌های مثبتِ روزمره به‌تدریج پیوند را فرسوده می‌کند.',
     actionLabel: 'راهنمای درمان طلاق عاطفی',
     targetType: 'article',
     slug: 'emotional-divorce',
@@ -48,12 +48,12 @@ const CONFLICT_CARDS: ConflictCardItem[] = [
   {
     id: 'trust',
     num: '۰۳',
-    category: 'ترومای اعتماد و بی‌ثباتی',
+    category: 'آسیب اعتماد و افکار مزاحم',
     quote: 'پس از شکستن اعتماد یا خیانت، ذهنم مدام درگیر شک و اضطراب است.',
     surfaceNote:
       'پرسش‌های مکرر و تنش ناگهانی آرامش خانه را بر هم می‌زند و گفت‌وگو را دشوار می‌کند.',
     eftExplanation:
-      'EFT آسیب اعتماد را «آسیب دلبستگی» می‌داند؛ واکنش‌های تند و کنترل‌گرانه، هشدار سیستم عصبی برای بقا و پیشگیری از ضربه دوباره است و پیش از هر تصمیم باید با شفافیت مهار شود.',
+      'در پروتکل CBCT پس از آسیب اعتماد، افکار فاجعه‌ساز و گوش‌به‌زنگی شناختی برای پیشگیری از ضربه دوباره فعال می‌شوند؛ بازسازی نیازمند قرارداد شفافیت رفتاری، بازسازی شناختی و پاسخ‌گویی منسجم است.',
     actionLabel: 'مسیر تخصصی ترمیم اعتماد',
     targetType: 'service',
     slug: 'infidelity-counseling',
@@ -61,13 +61,13 @@ const CONFLICT_CARDS: ConflictCardItem[] = [
   {
     id: 'unheard',
     num: '۰۴',
-    category: 'ناهماهنگی نیازهای عاطفی',
+    category: 'خطاهای شناختی و ارتباطی',
     quote: 'حس می‌کنم هرچه تلاش می‌کنم، همسرم منظور و نیاز واقعی من را نمی‌فهمد.',
     surfaceNote:
       'نیت هر دو طرف خیر است، اما پیام‌های محبت‌آمیز یا انتقادها به‌اشتباه دریافت می‌شوند.',
     eftExplanation:
-      'بسیاری از تعارض‌ها از برخورد دو سبک دلبستگی متفاوت شکل می‌گیرد؛ وقتی ترس‌های زیرین با زبان آرام و بدون سرزنش بیان شوند، امکان پاسخ‌گویی همدلانه طرف مقابل فعال می‌شود.',
-    actionLabel: 'شناخت سبک‌های دلبستگی',
+      'بسیاری از سوءتفاهم‌ها از تحریف‌های شناختی مانند «تعمیم مفرط» و انتظار ذهن‌خوانی بدون بیان صریح خواسته ناشی می‌شود؛ آموزش مهارت‌های شنود فعال و بیان روشن نیازها پیام‌ها را دقیق منتقل می‌کند.',
+    actionLabel: 'آموزش مهارت‌های گفت‌وگو',
     targetType: 'article',
     slug: 'attachment-style-in-marriage',
   },
@@ -79,7 +79,7 @@ const CONFLICT_CARDS: ConflictCardItem[] = [
     surfaceNote:
       'فشار هیجانی تصمیم‌گیری، قضاوت درباره ظرفیت واقعی رابطه را دشوار کرده است.',
     eftExplanation:
-      'در رویکرد EFT پیش از تصمیم نهایی به جدایی، بررسی می‌شود که آیا فرسودگیِ فعلی ناشی از چرخه ارتباطیِ قابل اصلاح است یا ناهمسویی بنیادین؛ این تفکیک جلوی پشیمانی را می‌گیرد.',
+      'در رویکرد CBCT پیش از تصمیم نهایی به جدایی، بررسی می‌شود که آیا فرسودگیِ فعلی ناشی از باورهای ناکارآمد و نقص مهارت‌های قابل آموزش است یا ناهمسویی بنیادین؛ این تفکیک جلوی تصمیم عجولانه را می‌گیرد.',
     actionLabel: 'مشاوره تصمیم‌گیری آگاهانه',
     targetType: 'service',
     slug: 'divorce-counseling',
@@ -92,7 +92,7 @@ const CONFLICT_CARDS: ConflictCardItem[] = [
     surfaceNote:
       'تنش‌های شغلی، اقتصادی یا تنهایی مهاجرت صبر و حوصله گفت‌وگو در خانه را کم کرده است.',
     eftExplanation:
-      'وقتی شبکه حمایتی بیرونی کم می‌شود، تمام بار امنیت روانی بر دوش شریک عاطفی می‌افتد؛ EFT کمک می‌کند زوجین به‌جای تخلیه فشار روی یکدیگر، تکیه‌گاه امن هم شوند.',
+      'وقتی منابع حمایتی و تقویت‌کننده‌های مثبت بیرونی کم می‌شوند، آستانه تحمل شناختی کاهش می‌یابد؛ CBCT کمک می‌کند به‌جای اسناد خطا به شخصیت همسر، مهارت‌های حل مسئله مشترک و حمایت متقابل فعال شوند.',
     actionLabel: 'جلسات آنلاین بین‌المللی',
     targetType: 'service',
     slug: 'online-counseling',
@@ -100,12 +100,12 @@ const CONFLICT_CARDS: ConflictCardItem[] = [
   {
     id: 'premarital',
     num: '۰۷',
-    category: 'تعارض ارزش‌ها پیش از عقد',
+    category: 'باورها و ارزش‌ها پیش از عقد',
     quote: 'قصد ازدواج داریم اما نگران تفاوت‌های جدی و دخالت خانواده‌ها هستیم.',
     surfaceNote:
       'برخی اختلاف‌های مالی، فرهنگی یا مرزبندی با خانواده هنوز شفاف حل‌وفصل نشده‌اند.',
     eftExplanation:
-      'ارزیابی هیجان‌مدار پیش از ازدواج نشان می‌دهد آیا دو نفر در زمان فشار و اختلاف توانایی نزدیک‌شدن و ترمیم دارند یا به‌سرعت وارد چرخه‌های طرد و دفاع می‌شوند.',
+      'ارزیابی شناختی-رفتاری پیش از ازدواج باورهای زیربنایی درباره نقش‌ها، مدیریت مالی و مرزبندی با خانواده و نیز شیوه واقعی حل مسئله دو نفر را پیش از تعهد رسمی می‌سنجد.',
     actionLabel: 'ارزیابی تخصصی پیش از ازدواج',
     targetType: 'service',
     slug: 'premarital-counseling',
@@ -118,7 +118,7 @@ const CONFLICT_CARDS: ConflictCardItem[] = [
     surfaceNote:
       'با وجود تغییر شرایط یا افراد، نقطه شروع دلخوری‌ها و واکنش‌های دفاعی شبیه گذشته است.',
     eftExplanation:
-      'طرحواره‌های اولیه دلبستگی تعیین می‌کنند هنگام تهدید، حمله کنیم یا پنهان شویم؛ آگاهی از این نقشه درونی امکان انتخاب واکنش تازه و ساخت رابطه ایمن را فراهم می‌سازد.',
+      'طرحواره‌ها و قواعد شرطیِ آموخته‌شده تعیین می‌کنند هنگام تنش چه افکار خودکار و رفتارهای دفاعی یا اجتنابی فعال شوند؛ بازسازی شناختی این نقشه ذهنی امکان انتخاب واکنش سازنده را فراهم می‌سازد.',
     actionLabel: 'کار روی الگوهای تکراری',
     targetType: 'service',
     slug: 'relationship-patterns-therapy',
@@ -149,20 +149,20 @@ export const EmotionalRecognitionSection: React.FC<EmotionalRecognitionSectionPr
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
           <div className="max-w-2xl">
             <p className="text-xs sm:text-sm font-semibold text-[#3D5E4E] mb-2">
-              مدیریت تعارض و بازشناسی الگوهای رابطه · رویکرد EFT
+              مدیریت تعارض و بازشناسی الگوهای رابطه · رویکرد CBCT
             </p>
             <h2 className="balance-text text-2xl sm:text-3xl font-extrabold text-[#292D2A] leading-snug mb-3">
-              مدیریت تعارض؛ از کشمکش تکراری تا فهم نیاز پنهان
+              مدیریت تعارض؛ از خطای شناختی تا گفت‌وگوی سازنده
             </h2>
             <p className="text-sm sm:text-base text-[#555650] leading-relaxed">
-              در زوج‌درمانی هیجان‌مدار (EFT)، تعارض نشانه‌ی شکست رابطه نیست؛ بلکه علامتِ
-              نیازهای دلبستگی است که هنوز مسیر امنی برای شنیده‌شدن پیدا نکرده‌اند.
+              در زوج‌درمانی شناختی-رفتاری (CBCT)، تعارض نشانه بن‌بست نیست؛ بلکه حاصل
+              باورهای ناکارآمد، سوءتعبیرهای ذهنی و عادت‌های رفتاری قابل اصلاح در تعامل روزمره است.
             </p>
           </div>
 
           <p className="text-xs font-medium text-[#3D5E4E] flex items-center gap-2 shrink-0">
             <Eye className="w-4 h-4 shrink-0" />
-            <span>روی هر کارت مکث (هاور) کنید تا تبیین روان‌شناسی EFT نمایش داده شود</span>
+            <span>روی هر کارت مکث (هاور) کنید تا تبیین شناختی-رفتاری (CBCT) نمایش داده شود</span>
           </p>
         </div>
 
@@ -205,7 +205,7 @@ export const EmotionalRecognitionSection: React.FC<EmotionalRecognitionSectionPr
                           : 'text-[#6E6E68] group-hover:text-[#344A42]'
                       }`}
                     >
-                      {isExpanded ? 'بستن دیدگاه' : 'دیدگاه EFT'}
+                      {isExpanded ? 'بستن دیدگاه' : 'دیدگاه CBCT'}
                     </button>
                   </div>
 
@@ -214,7 +214,7 @@ export const EmotionalRecognitionSection: React.FC<EmotionalRecognitionSectionPr
                     «{item.quote}»
                   </h3>
 
-                  {/* Grid Single-Cell Overlap: Zero layout shift between resting & hover EFT insight */}
+                  {/* Grid Single-Cell Overlap: Zero layout shift between resting & hover CBCT insight */}
                   <div className="grid my-4">
                     {/* Resting Surface Description */}
                     <div
@@ -229,7 +229,7 @@ export const EmotionalRecognitionSection: React.FC<EmotionalRecognitionSectionPr
                       </p>
                     </div>
 
-                    {/* Hover / Focus / Tap EFT Psychological Explanation */}
+                    {/* Hover / Focus / Tap CBCT Psychological Explanation */}
                     <div
                       className={`col-start-1 row-start-1 transition-all duration-200 ${
                         isExpanded
@@ -239,7 +239,7 @@ export const EmotionalRecognitionSection: React.FC<EmotionalRecognitionSectionPr
                     >
                       <div className="bg-[#EDF2EE] border border-[#D3E0D7] rounded-xl p-3.5">
                         <span className="block text-[11px] font-bold text-[#344A42] mb-1">
-                          تبیین روان‌شناسی EFT:
+                          تبیین شناختی-رفتاری (CBCT):
                         </span>
                         <p className="text-xs text-[#292D2A] leading-relaxed">
                           {item.eftExplanation}

@@ -220,7 +220,7 @@ export const Header: React.FC<HeaderProps> = ({
                   onClick={(e) => handleAction(e, onNavigateProcess, 'process')}
                   className="px-3 py-2.5 rounded-lg hover:bg-[#F4F1EC] transition-colors"
                 >
-                  مسیر جلسات EFT
+                  مسیر جلسات CBCT
                 </a>
                 <a
                   href="/fees"
